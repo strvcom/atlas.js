@@ -43,12 +43,11 @@ distclean: clean
 			-name '*.js' \
 			-or -name '*.js.map' \
 		\) \
+		-not -path "*/node_modules/*" \
 		-not -name '.*.js' \
 		-print -delete
 
 pristine: distclean
-	@rm -rf node_modules
-	@find packages -maxdepth 2 -name node_modules -type d -print -exec rm -rf {} \;
-
+	@rm -rf node_modules packages/*/node_modules
 
 .PHONY: install lint test test-debug clean distclean pristine
