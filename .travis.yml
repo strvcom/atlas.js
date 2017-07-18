@@ -1,0 +1,24 @@
+---
+sudo: false
+dist: trusty
+language: node_js
+node_js:
+  - '6'
+  - '8'
+
+cache:
+  directories:
+    - node_modules
+
+before_install:
+  - npm i -g npm@$(node -p "require('./package').engines.npm")
+
+install:
+  - make install
+
+script:
+  - make lint
+  - make test
+
+after_success:
+  - make coverage
