@@ -12,6 +12,7 @@ cache:
 
 before_install:
   - npm i -g npm@$(node -p "require('./package').engines.npm")
+  - touch package.json
 
 install:
   - make install
