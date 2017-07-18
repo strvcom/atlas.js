@@ -1,0 +1,16 @@
+{
+  "compact": false,
+  "comments": false,
+  "sourceMaps": true,
+  "plugins": [
+    ["transform-es2015-modules-commonjs", {
+      "allowTopLevelThis": false
+    }],
+    "transform-class-properties",
+    "transform-function-bind",
+    ["transform-runtime", {
+      "polyfill": false,
+      "regenerator": false
+    }]
+  ]
+}
