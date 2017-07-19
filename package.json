@@ -6,7 +6,7 @@
   "contributors": [],
   "dependencies": {},
   "devDependencies": {
-    "@strv/eslint-config-javascript": "^7.1.0",
+    "@strv/eslint-config-javascript": "^7.2.0",
     "babel-cli": "^6.24.1",
     "babel-eslint": "^7.2.3",
     "babel-plugin-transform-class-properties": "^6.24.1",
@@ -17,7 +17,6 @@
     "chai-as-promised": "^7.1.1",
     "chai-sinon": "^2.8.1",
     "eslint": "^4.2.0",
-    "eslint-plugin-import": "^2.7.0",
     "lerna": "^2.0.0",
     "mocha": "^3.4.2",
     "nyc": "^11.1.0",
