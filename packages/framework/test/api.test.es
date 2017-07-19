@@ -9,6 +9,10 @@ describe('Framework', () => {
     expect(framework.Service).to.be.a('function')
   })
 
+  it('includes the Hook class', () => {
+    expect(framework.Hook).to.be.a('function')
+  })
+
   it('includes the errors package', () => {
     expect(framework.errors).to.be.an('object')
     expect(framework.errors).to.include.keys([
