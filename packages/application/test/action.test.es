@@ -61,4 +61,13 @@ describe('Application::action()', () => {
     expect(args.config).to.be.an('object')
     expect(args.config).to.equal(options.config.actions.dummy)
   })
+
+  it('applies defaults defined on action on top of user-provided config', () => {
+    const action = sinon.spy()
+    action.defaults = { default: true }
+    app.action('dummy', action)
+    const args = action.getCall(0).args[0]
+
+    expect(args.config).to.have.property('default', true)
+  })
 })

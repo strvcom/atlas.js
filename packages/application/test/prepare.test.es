@@ -1,12 +1,14 @@
 import Application from '..'
 
 class DummyService {
+  static defaults = { default: true }
   prepare() {}
   start() {}
   stop() {}
 }
 
 class DummyHook {
+  static defaults = { default: true }
   prepare() {}
   'service:prepare:before'() {}
   'service:prepare:after'() {}
@@ -92,6 +94,13 @@ describe('Application::prepare()', () => {
       expect(opts.config).to.be.an('object')
       expect(opts.config).to.equal(options.config.services.dummy)
     })
+
+    it('applies defaults defined on service on top of user-provided config', async () => {
+      await app.prepare()
+
+      const opts = DummyService.prototype.prepare.getCall(0).args[0]
+      expect(opts.config).to.have.property('default', true)
+    })
   })
 
 
@@ -132,6 +141,13 @@ describe('Application::prepare()', () => {
       expect(opts).to.have.key('config')
       expect(opts.config).to.be.an('object')
       expect(opts.config).to.equal(options.config.hooks.dummy)
+    })
+
+    it('applies defaults defined on hook on top of user-provided config', async () => {
+      await app.prepare()
+
+      const opts = DummyHook.prototype.prepare.getCall(0).args[0]
+      expect(opts.config).to.have.property('default', true)
     })
   })
 
