@@ -126,7 +126,7 @@ class Application {
     // Hooks must not depend on each other since they can only react to events and we are not
     // emitting any yet
     this.log.debug('hooks:prepare:start')
-    await Promise.all(Array.from(hooks.entries()).map(([alias, hook]) => {
+    await Promise.all(Array.from(hooks).map(([alias, hook]) => {
       const config = this.config.hooks[alias]
       return hook.prepare({ config })
     }))
@@ -136,7 +136,7 @@ class Application {
     // @TODO (services): Refactor to make service initialisation parallel
     // Services can be initialised in parallel, but the hooks for each service must be called in
     // order, so some form of promise grouping will be necessary
-    for (const [alias, service] of services.entries()) {
+    for (const [alias, service] of services) {
       this.log.debug({ service: alias }, 'service:prepare:before')
       await this::dispatch('service:prepare:before')
       await this::dispatch(`${alias}:prepare:before`)
@@ -168,7 +168,7 @@ class Application {
 
     const { services } = this::hidden().catalog
 
-    for (const [alias, service] of services.entries()) {
+    for (const [alias, service] of services) {
       this.log.debug({ service: alias }, 'service:start:before')
       await this::dispatch('service:start:before')
       await this::dispatch(`${alias}:start:before`)
@@ -197,7 +197,7 @@ class Application {
 
     const { services } = this::hidden().catalog
 
-    for (const [alias, service] of services.entries()) {
+    for (const [alias, service] of services) {
       delete this.services[alias]
       await service.stop()
     }
@@ -224,7 +224,7 @@ function expose(collection, property, returns) {
 function dispatch(event) {
   const { hooks } = this::hidden().catalog
 
-  for (const [alias, hook] of hooks.entries()) {
+  for (const [alias, hook] of hooks) {
     if (!(event in hook)) {
       continue
     }
