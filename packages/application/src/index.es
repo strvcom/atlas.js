@@ -61,18 +61,18 @@ class Application {
     const app = new this({ config })
 
     // Hooks
-    for (const alias of Object.keys(modules.hooks)) {
-      app.hook(alias, modules.hooks[alias])
+    for (const [alias, Hook] of Object.entries(modules.hooks)) {
+      app.hook(alias, Hook)
     }
 
     // Services
-    for (const alias of Object.keys(modules.services)) {
-      app.service(alias, modules.services[alias])
+    for (const [alias, Service] of Object.entries(modules.services)) {
+      app.service(alias, Service)
     }
 
     // Actions
-    for (const alias of Object.keys(modules.actions)) {
-      app.action(alias, modules.actions[alias])
+    for (const [alias, Action] of Object.entries(modules.actions)) {
+      app.action(alias, Action)
     }
 
     return app
