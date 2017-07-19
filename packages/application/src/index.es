@@ -16,6 +16,68 @@ class Application {
     },
   }
 
+  /**
+   * Initialise a brand-new app from the given module locations
+   *
+   * @param     {Object}      options                       Configuration options
+   * @param     {String}      options.env                   The environment under which to operate
+   * @param     {String}      options.root                  The root directory to which all other
+   *                                                        directories mentioned here are relative
+   * @param     {String}      options.config='config'       Module location for the configuration
+   * @param     {String}      options.hooks='hooks'         Module location for the hooks
+   * @param     {String}      options.services='services'   Module location for the services
+   * @param     {String}      options.actions='actions'     Module location for the actions
+   * @return    {Application}
+   */
+  static init(options = {}) {
+    const { env, root } = options
+
+    _.defaultsDeep(options, {
+      config: 'config',
+      hooks: 'hooks',
+      services: 'services',
+      actions: 'actions',
+    })
+
+    if (!env) {
+      throw new FrameworkError(`env must be explicitly specified, got ${env}`)
+    }
+
+    if (!root) {
+      throw new FrameworkError(`root must be explicitly specified, got ${root}`)
+    }
+
+    // Got all we need, start loading the modules
+    const modules = {
+      /* eslint-disable global-require */
+      config: require(path.join(root, options.config)),
+      env: require(path.join(root, options.config, 'env', options.env)),
+      hooks: require(path.join(root, options.hooks)),
+      services: require(path.join(root, options.services)),
+      actions: require(path.join(root, options.actions)),
+      /* eslint-enable global-require */
+    }
+    const config = _.merge({}, modules.config, modules.env)
+    const app = new this({ config })
+
+    // Hooks
+    for (const alias of Object.keys(modules.hooks)) {
+      app.hook(alias, modules.hooks[alias])
+    }
+
+    // Services
+    for (const alias of Object.keys(modules.services)) {
+      app.service(alias, modules.services[alias])
+    }
+
+    // Actions
+    for (const alias of Object.keys(modules.actions)) {
+      app.action(alias, modules.actions[alias])
+    }
+
+    return app
+  }
+
 
   get prepared() {
     return this::hidden().prepared

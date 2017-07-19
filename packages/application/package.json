@@ -12,7 +12,11 @@
     "lodash": "^4.17.4",
     "pino": "^4.7.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "@strv/hook": "^1.0.0",
+    "@strv/action": "^1.0.0",
+    "@strv/service": "^1.0.0"
+  },
   "engines": {
     "node": "^8.1.4",
     "npm": "^5.2.0"
