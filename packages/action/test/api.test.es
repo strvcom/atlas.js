@@ -14,15 +14,18 @@ describe('Action: basics and API', () => {
     expect(Object.keys(Action.defaults)).to.have.length(0)
   })
 
-  it('saves app and log objects given on constructor to itself', () => {
+  it('saves app, log and config objects given on constructor to itself', () => {
     const app = { app: true }
     const log = { log: true }
+    const config = { config: true }
     const action = new Action({
       app,
       log,
+      config,
     })
 
     expect(action).to.have.property('app', app)
     expect(action).to.have.property('log', log)
+    expect(action).to.have.property('config', config)
   })
 })

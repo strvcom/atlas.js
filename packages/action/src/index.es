@@ -7,6 +7,7 @@ class Action {
   constructor(options = {}) {
     this.app = options.app
     this.log = options.log
+    this.config = options.config
   }
 }
 
