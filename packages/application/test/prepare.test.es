@@ -14,6 +14,10 @@ class DummyHook {
   'dummy:prepare:after'() {}
 }
 
+class DummyAction {
+  dummyMethod() {}
+}
+
 describe('Application::prepare()', () => {
   let app
   let options
@@ -87,6 +91,17 @@ describe('Application::prepare()', () => {
       expect(opts).to.have.key('config')
       expect(opts.config).to.be.an('object')
       expect(opts.config).to.equal(options.config.services.dummy)
+    })
+  })
+
+
+  describe('Action interactions', () => {
+    it('exposes all actions on this.actions', async () => {
+      app.action('dummy', DummyAction)
+      await app.prepare()
+
+      expect(app.actions).to.have.property('dummy')
+      expect(app.actions.dummy).to.respondTo('dummyMethod')
     })
   })
 

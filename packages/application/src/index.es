@@ -29,6 +29,8 @@ class Application {
 
   services = {}
 
+  actions = {}
+
   /**
    * Create a new application
    *
@@ -44,12 +46,14 @@ class Application {
     this::hidden().catalog = {
       services: new Map(),
       hooks: new Map(),
+      actions: new Map(),
     }
 
     this.config = mkdefaults(options.config, {
       application: {},
       services: {},
       hooks: {},
+      actions: {},
     })
     this.config.application = mkdefaults(this.config.application, Application.defaults)
     this.log = pino(this.config.application.log)
@@ -110,6 +114,30 @@ class Application {
     return this
   }
 
+  action(alias, Action) {
+    const { actions } = this::hidden().catalog
+
+    // Safety checks first
+    if (actions.has(alias)) {
+      throw new FrameworkError(`Action with alias ${alias} already used`)
+    }
+
+    if (typeof Action !== 'function') {
+      throw new FrameworkError(`Action must be a class, got ${typeof Action}`)
+    }
+
+    this.config.actions[alias] = mkdefaults(this.config.actions[alias], Action.defaults)
+    actions.set(alias, new Action({
+      app: this,
+      log: this.log.child({ action: alias }),
+      config: this.config.actions[alias],
+    }))
+
+    this.log.debug({ action: alias }, 'action:add')
+
+    return this
+  }
+
   /**
    * Prepare all services and hooks for use
    *
@@ -120,7 +148,7 @@ class Application {
       return this
     }
 
-    const { services, hooks } = this::hidden().catalog
+    const { services, hooks, actions } = this::hidden().catalog
 
     // Prepare hooks (in parallel)
     // Hooks must not depend on each other since they can only react to events and we are not
@@ -131,6 +159,11 @@ class Application {
       return hook.prepare({ config })
     }))
     this.log.debug('hooks:prepare:end')
+
+    // Prepare actions
+    for (const [alias, action] of actions) {
+      this.actions[alias] = action
+    }
 
     // Prepare services
     // @TODO (services): Refactor to make service initialisation parallel
@@ -195,11 +228,15 @@ class Application {
       return this
     }
 
-    const { services } = this::hidden().catalog
+    const { services, actions } = this::hidden().catalog
 
     for (const [alias, service] of services) {
       delete this.services[alias]
       await service.stop()
+    }
+
+    for (const [alias] of actions) {
+      delete this.actions[alias]
     }
 
     this::hidden().started = false

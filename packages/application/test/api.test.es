@@ -21,6 +21,7 @@ describe('Application: basics and API', () => {
     const app = new Application()
 
     expect(app).to.include.all.keys([
+      'actions',
       'services',
       'config',
       'log',

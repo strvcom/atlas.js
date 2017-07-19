@@ -6,6 +6,8 @@ class DummyService {
   stop() {}
 }
 
+class DummyAction {}
+
 describe('Application::stop()', () => {
   let app
   let options
@@ -32,6 +34,7 @@ describe('Application::stop()', () => {
     }
     app = new Application(options)
     app.service('dummy', DummyService)
+    app.action('dummy', DummyAction)
 
     return app.start()
   })
@@ -76,6 +79,17 @@ describe('Application::stop()', () => {
       expect(app.services).to.have.property('dummy')
       await app.stop()
       expect(app.services).to.not.have.property('dummy')
+    })
+  })
+
+
+  describe('Action interactions', () => {
+    it('removes the action from this.actions', async () => {
+      // Sanity check
+      expect(app.actions).to.have.property('dummy')
+
+      await app.stop()
+      expect(app.actions).to.not.have.property('dummy')
     })
   })
 })
