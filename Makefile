@@ -4,8 +4,7 @@ bin := node_modules/.bin/
 all: compile
 
 compile: install
-	@$(bin)babel packages -q --extensions .es --source-maps both --out-dir packages
-	@$(bin)babel test -q --extensions .es --source-maps both --out-dir test
+	$(bin)babel . -q --extensions .es --source-maps both --out-dir .
 
 # In layman's terms: node_modules directory depends on the state of package.json Make will compare
 # their timestamps and only if package.json is newer, it will run this target.
@@ -14,12 +13,12 @@ compile: install
 # thinks node_modules is not up to date and tries to constantly install pacakges. Touching
 # node_modules after installation fixes that.
 node_modules: package.json
-	@npm install && touch node_modules && $(bin)lerna bootstrap
+	npm install && touch node_modules && $(bin)lerna bootstrap
 
 install: node_modules
 
 lint:
-	@$(bin)eslint --ext .es .
+	$(bin)eslint --ext .es .
 
 test: compile
 	$(bin)mocha
@@ -37,7 +36,7 @@ clean:
 
 # Delete all the .js and .js.map files (excluding any potential dotfiles with .js extension)
 distclean: clean
-	@find packages test \
+	find packages test \
 		\( \
 			-name '*.js' \
 			-or -name '*.js.map' \
@@ -47,6 +46,6 @@ distclean: clean
 		-print -delete
 
 pristine: distclean
-	@rm -rf node_modules packages/*/node_modules
+	rm -rf node_modules packages/*/node_modules
 
 .PHONY: install lint test test-debug clean distclean pristine
