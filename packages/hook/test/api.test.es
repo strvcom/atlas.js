@@ -26,15 +26,18 @@ describe('Hook: basics and API', () => {
     expect(hook.prepare()).to.be.a('promise')
   })
 
-  it('saves app and log objects given on constructor to itself', () => {
+  it('saves app log and config objects given on constructor to itself', () => {
     const app = { app: true }
     const log = { log: true }
+    const config = { config: true }
     const hook = new Hook({
       app,
       log,
+      config,
     })
 
     expect(hook).to.have.property('app', app)
     expect(hook).to.have.property('log', log)
+    expect(hook).to.have.property('config', config)
   })
 })
