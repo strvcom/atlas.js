@@ -36,11 +36,11 @@ class Repl extends Action {
     terminal.context.app = this.app
     terminal.once('exit', () => this::say('Bye 👋'))
 
-    return new Promise((resolve, reject) => {
+    await new Promise((resolve, reject) => {
       terminal.once('error', reject)
       terminal.once('exit', resolve)
     })
-      .then(() => this::saveHistory(terminal.lines))
+    await this::saveHistory(terminal.lines)
   }
 }
 
