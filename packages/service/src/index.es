@@ -9,9 +9,12 @@ class Service {
     this.log = options.log
   }
 
-  async prepare() {}
-  async start() {}
-  async stop() {}
+  prepare(options = {}) {
+    this.config = options.config
+  }
+
+  start() {}
+  stop() {}
 }
 
 export default Service

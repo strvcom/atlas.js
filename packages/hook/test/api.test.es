@@ -20,24 +20,21 @@ describe('Hook: basics and API', () => {
     expect(hook).to.respondTo('prepare')
   })
 
-  it('all those methods return a promise', () => {
+  it('all those methods are synchronous', () => {
     const hook = new Hook()
 
-    expect(hook.prepare()).to.be.a('promise')
+    expect(hook.prepare()).to.not.be.a('promise')
   })
 
-  it('saves app log and config objects given on constructor to itself', () => {
+  it('saves app and log objects given on constructor to itself', () => {
     const app = { app: true }
     const log = { log: true }
-    const config = { config: true }
     const hook = new Hook({
       app,
       log,
-      config,
     })
 
     expect(hook).to.have.property('app', app)
     expect(hook).to.have.property('log', log)
-    expect(hook).to.have.property('config', config)
   })
 })

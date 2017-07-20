@@ -7,10 +7,11 @@ class Hook {
   constructor(options = {}) {
     this.app = options.app
     this.log = options.log
-    this.config = options.config
   }
 
-  async prepare() {}
+  prepare(options = {}) {
+    this.config = options.config
+  }
 }
 
 export default Hook

@@ -22,12 +22,12 @@ describe('Service: basics and API', () => {
     expect(service).to.respondTo('stop')
   })
 
-  it('all those methods return a promise', () => {
+  it('all those methods are synchronous', () => {
     const service = new Service()
 
-    expect(service.prepare()).to.be.a('promise')
-    expect(service.start()).to.be.a('promise')
-    expect(service.stop()).to.be.a('promise')
+    expect(service.prepare()).to.not.be.a('promise')
+    expect(service.start()).to.not.be.a('promise')
+    expect(service.stop()).to.not.be.a('promise')
   })
 
   it('saves app and log objects given on constructor to itself', () => {
