@@ -13,7 +13,7 @@ compile: install
 # thinks node_modules is not up to date and tries to constantly install pacakges. Touching
 # node_modules after installation fixes that.
 node_modules: package.json
-	npm install && touch node_modules && $(bin)lerna bootstrap
+	npm install && $(bin)lerna bootstrap && touch node_modules
 
 install: node_modules
 
