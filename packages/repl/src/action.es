@@ -7,7 +7,7 @@ import Action from '@theframework/action'
 
 class Repl extends Action {
   static defaults = {
-    historyFile: path.join(os.homedir(), '.node_repl_history'),
+    historyFile: path.resolve(os.homedir(), '.node_repl_history'),
     username: os.userInfo().username,
     prompt: '✏️ ',
   }

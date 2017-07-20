@@ -13,7 +13,7 @@ describe('Application::init()', () => {
   })
 
   it('loads all actions, hooks and services from the specified locations', async () => {
-    const root = path.join(__dirname, 'demoapp')
+    const root = path.resolve(__dirname, 'demoapp')
     const app = Application.init({
       root,
       env: 'test',
@@ -46,7 +46,7 @@ describe('Application::init()', () => {
   })
 
   it('provides defaults for paths to services, hooks, actions and config directories', () => {
-    const root = path.join(__dirname, 'demoapp')
+    const root = path.resolve(__dirname, 'demoapp')
     const app = Application.init({
       root,
       env: 'test',

@@ -46,11 +46,11 @@ class Application {
     // Got all we need, start loading the modules
     const modules = {
       /* eslint-disable global-require */
-      config: require(path.join(root, options.config)),
-      env: require(path.join(root, options.config, 'env', options.env)),
-      hooks: require(path.join(root, options.hooks)),
-      services: require(path.join(root, options.services)),
-      actions: require(path.join(root, options.actions)),
+      config: require(path.resolve(root, options.config)),
+      env: require(path.resolve(root, options.config, 'env', options.env)),
+      hooks: require(path.resolve(root, options.hooks)),
+      services: require(path.resolve(root, options.services)),
+      actions: require(path.resolve(root, options.actions)),
       /* eslint-enable global-require */
     }
     const config = _.merge({}, modules.config, modules.env)

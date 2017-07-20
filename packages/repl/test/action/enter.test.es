@@ -132,7 +132,7 @@ describe('Repl::enter()', () => {
 
   it('reads and saves history to specified file', async () => {
     // Prepare test history
-    const historyFile = path.join(os.tmpdir(), '.strv-framework-test-history')
+    const historyFile = path.resolve(os.tmpdir(), '.strv-framework-test-history')
     const history = [
       'null',
       'void 0',
