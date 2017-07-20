@@ -7,11 +7,6 @@ describe('Application::init()', () => {
     expect(Application).itself.to.respondTo('init')
   })
 
-  it('throws when no env is provided', () => {
-    expect(() => Application.init())
-      .to.throw(FrameworkError, /env must be explicitly specified/)
-  })
-
   it('throws when no root is provided', () => {
     expect(() => Application.init({ env: 'test' }))
       .to.throw(FrameworkError, /root must be explicitly specified/)

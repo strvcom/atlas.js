@@ -21,6 +21,12 @@ describe('Application: basics and API', () => {
     expect(() => new Application()).to.throw(FrameworkError, /root must be explicitly specified/)
   })
 
+  it('throws when env is not provided and NODE_ENV is not set', function() {
+    // eslint-disable-next-line no-process-env
+    this.sb.each.stub(process.env, 'NODE_ENV').value('')
+    expect(() => new Application(opts)).to.throw(FrameworkError, /env not specified/)
+  })
+
   it('responds to known methods', () => {
     const app = new Application(opts)
 
@@ -39,6 +45,8 @@ describe('Application: basics and API', () => {
       'log',
     ])
     // Implemented as getters, and Chai does not seem to work with them when checking for .keys()
+    // eslint-disable-next-line no-process-env
+    expect(app.env).to.equal(process.env.NODE_ENV).and.to.be.a('string')
     expect(app.root).to.equal(__dirname)
     expect(app.prepared).to.equal(false)
     expect(app.started).to.equal(false)

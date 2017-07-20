@@ -39,10 +39,6 @@ class Application {
       actions: 'actions',
     })
 
-    if (!env) {
-      throw new FrameworkError(`env must be explicitly specified, got ${env}`)
-    }
-
     if (!root) {
       throw new FrameworkError(`root must be explicitly specified, got ${root}`)
     }
@@ -58,7 +54,7 @@ class Application {
       /* eslint-enable global-require */
     }
     const config = _.merge({}, modules.config, modules.env)
-    const app = new this({ root, config })
+    const app = new this({ env, root, config })
 
     // Hooks
     for (const [alias, Hook] of Object.entries(modules.hooks)) {
@@ -78,6 +74,10 @@ class Application {
     return app
   }
 
+
+  get env() {
+    return this::hidden().env
+  }
 
   get root() {
     return this::hidden().root
@@ -111,6 +111,8 @@ class Application {
     }
 
     // Initialise private stuff
+    // eslint-disable-next-line no-process-env
+    this::hidden().env = options.env || process.env.NODE_ENV
     this::hidden().root = options.root
     this::hidden().prepared = false
     this::hidden().started = false
@@ -118,6 +120,10 @@ class Application {
       services: new Map(),
       hooks: new Map(),
       actions: new Map(),
+    }
+
+    if (!this::hidden().env) {
+      throw new FrameworkError('env not specified and NODE_ENV was not set')
     }
 
     this.config = mkdefaults(options.config, {
