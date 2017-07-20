@@ -5,7 +5,7 @@ import path from 'path'
 import os from 'os'
 import fsp from 'promisified-core/fs'
 import Application from '@theframework/application'
-import { Action as Repl } from '..'
+import { Action as Repl } from '../..'
 
 function waitForCall(spy, callCount = 1) {
   return new Promise(resolve => {

@@ -1,4 +1,4 @@
-import { Action as Repl } from '..'
+import { Action as Repl } from '../..'
 import Action from '@theframework/action'
 
 describe('Action: Repl', () => {
