@@ -6,7 +6,7 @@ describe('Action: Repl', () => {
     expect(Action).to.be.a('function')
   })
 
-  it('extends framework.Action', () => {
+  it('extends @theframework/action', () => {
     expect(new Repl()).to.be.instanceof(Action)
   })
 
