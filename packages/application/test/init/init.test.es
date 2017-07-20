@@ -1,6 +1,6 @@
 import path from 'path'
 import Application from '../..'
-import { FrameworkError } from '@strv/errors'
+import { FrameworkError } from '@theframework/errors'
 
 describe('Application::init()', () => {
   it('exists', () => {

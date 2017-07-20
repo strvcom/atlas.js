@@ -1,4 +1,4 @@
-# @strv/hook
+# @theframework/hook
 
 The main Hook class from which all other Hooks should inherit.
 

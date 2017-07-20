@@ -1,6 +1,6 @@
-# @strv/application
+# @theframework/application
 
-The core component of @strv/framework. This is where all components meet.
+The core component of @theframework. This is where all components meet.
 
 ## License
 

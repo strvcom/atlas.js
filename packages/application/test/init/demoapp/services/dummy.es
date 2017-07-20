@@ -1,3 +1,3 @@
-import Service from '@strv/service'
+import Service from '@theframework/service'
 
 export default class DummyService extends Service {}

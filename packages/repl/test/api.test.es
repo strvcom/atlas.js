@@ -1,5 +1,5 @@
 import { Action as Repl } from '..'
-import Action from '@strv/action'
+import Action from '@theframework/action'
 
 describe('Action: Repl', () => {
   it('exists', () => {

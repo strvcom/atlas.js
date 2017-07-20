@@ -1,5 +1,5 @@
 import Application from '..'
-import { FrameworkError } from '@strv/errors'
+import { FrameworkError } from '@theframework/errors'
 
 class DummyService {
   prepare() {}

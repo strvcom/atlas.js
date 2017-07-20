@@ -5,7 +5,7 @@ import path from 'path'
 import pino from 'pino'
 import _ from 'lodash'
 import hidden from 'local-scope/create'
-import { FrameworkError } from '@strv/errors'
+import { FrameworkError } from '@theframework/errors'
 
 class Application {
   static defaults = {

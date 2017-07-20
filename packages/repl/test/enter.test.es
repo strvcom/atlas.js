@@ -4,7 +4,7 @@ import { PassThrough } from 'stream'
 import path from 'path'
 import os from 'os'
 import fsp from 'promisified-core/fs'
-import Application from '@strv/application'
+import Application from '@theframework/application'
 import { Action as Repl } from '..'
 
 function waitForCall(spy, callCount = 1) {

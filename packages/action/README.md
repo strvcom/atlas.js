@@ -1,6 +1,6 @@
-# @strv/action
+# @theframework/action
 
-The main Action class from which all other Actions should inherit.
+The main Action class from which all other Actions should inherit from for @theframework.
 
 ## License
 

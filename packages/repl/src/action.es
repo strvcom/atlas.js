@@ -3,7 +3,7 @@ import fs from 'fs'
 import fsp from 'promisified-core/fs'
 import path from 'path'
 import repl from 'repl'
-import Action from '@strv/action'
+import Action from '@theframework/action'
 
 class Repl extends Action {
   static defaults = {

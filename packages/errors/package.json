@@ -1,6 +1,6 @@
 {
-  "name": "@strv/errors",
-  "description": "The parent class for all errors thrown by @strv/framework",
+  "name": "@theframework/errors",
+  "description": "The parent class for all errors thrown by @theframework",
   "version": "1.0.0",
   "author": "Robert Rossmann <robert.rossmann@strv.com>",
   "bugs": "https://github.com/strvcom/framework/issues",

@@ -1,6 +1,6 @@
-# @strv/errors
+# @theframework/errors
 
-All the errors that the @strv/framework may ever throw at you. If it throws something else, it's not coming from us. 😇
+All the errors that the @theframework may ever throw at you. If it throws something else, it's not coming from us. 😇
 
 ## License
 

@@ -1,17 +1,17 @@
 {
-  "name": "@strv/repl",
-  "description": "A REPL action to drop into interactive shell for @strv/framework",
+  "name": "@theframework/repl",
+  "description": "A REPL action to drop into interactive shell for @theframework",
   "version": "1.0.0",
   "author": "Robert Rossmann <robert.rossmann@strv.com>",
   "bugs": "https://github.com/strvcom/framework/issues",
   "contributors": [],
   "dependencies": {
-    "@strv/action": "^1.0.0",
+    "@theframework/action": "^1.0.0",
     "babel-runtime": "^6.23.0",
     "promisified-core": "^1.0.0"
   },
   "devDependencies": {
-    "@strv/application": "^1.0.0"
+    "@theframework/application": "^1.0.0"
   },
   "engines": {
     "node": "^8.1.4",

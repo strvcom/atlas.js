@@ -1,6 +1,6 @@
 {
-  "name": "@strv/action",
-  "description": "The base Action class all actions should inherit from for @strv/framework",
+  "name": "@theframework/action",
+  "description": "The base Action class all actions should inherit from for @theframework",
   "version": "1.0.0",
   "author": "Robert Rossmann <robert.rossmann@strv.com>",
   "bugs": "https://github.com/strvcom/framework/issues",

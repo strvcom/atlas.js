@@ -1,4 +1,4 @@
-# @strv/service
+# @theframework/service
 
 The main Service class from which all other Services should inherit.
 

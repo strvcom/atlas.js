@@ -1,6 +1,6 @@
 {
-  "name": "@strv/service",
-  "description": "The base Service class all services should inherit from for @strv/framework",
+  "name": "@theframework/service",
+  "description": "The base Service class all services should inherit from for @theframework",
   "version": "1.0.0",
   "author": "Robert Rossmann <robert.rossmann@strv.com>",
   "bugs": "https://github.com/strvcom/framework/issues",

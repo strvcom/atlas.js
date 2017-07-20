@@ -1,16 +1,16 @@
 {
-  "name": "@strv/framework",
-  "description": "An STRV-developed application framework",
+  "name": "@theframework/core",
+  "description": "A meta-package for @theframework with all the important components to get you up and running",
   "version": "1.0.0",
   "author": "Robert Rossmann <robert.rossmann@strv.com>",
   "bugs": "https://github.com/strvcom/framework/issues",
   "contributors": [],
   "dependencies": {
-    "@strv/application": "^1.0.0",
-    "@strv/errors": "^1.0.0",
-    "@strv/service": "^1.0.0",
-    "@strv/hook": "^1.0.0",
-    "@strv/action": "^1.0.0",
+    "@theframework/application": "^1.0.0",
+    "@theframework/errors": "^1.0.0",
+    "@theframework/service": "^1.0.0",
+    "@theframework/hook": "^1.0.0",
+    "@theframework/action": "^1.0.0",
     "babel-runtime": "^6.23.0"
   },
   "devDependencies": {},
@@ -18,7 +18,7 @@
     "node": "^8.1.4",
     "npm": "^5.2.0"
   },
-  "homepage": "https://github.com/strvcom/framework/tree/master/packages/framework",
+  "homepage": "https://github.com/strvcom/framework/tree/master/packages/core",
   "keywords": [],
   "license": "BSD-3-Clause",
   "main": "src",
