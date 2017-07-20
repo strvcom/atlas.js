@@ -20,7 +20,7 @@ coverage
 gh-pages
 
 # Garbage
-*.lerna-backup
+*.lerna_backup
 *.log
 *~
 *#
