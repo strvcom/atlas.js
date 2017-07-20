@@ -58,7 +58,7 @@ class Application {
       /* eslint-enable global-require */
     }
     const config = _.merge({}, modules.config, modules.env)
-    const app = new this({ config })
+    const app = new this({ root, config })
 
     // Hooks
     for (const [alias, Hook] of Object.entries(modules.hooks)) {
@@ -78,6 +78,10 @@ class Application {
     return app
   }
 
+
+  get root() {
+    return this::hidden().root
+  }
 
   get prepared() {
     return this::hidden().prepared
@@ -102,7 +106,12 @@ class Application {
    *                                            the app
    */
   constructor(options = {}) {
+    if (typeof options.root !== 'string') {
+      throw new FrameworkError(`root must be explicitly specified, got ${options.root}`)
+    }
+
     // Initialise private stuff
+    this::hidden().root = options.root
     this::hidden().prepared = false
     this::hidden().started = false
     this::hidden().catalog = {

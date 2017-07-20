@@ -13,6 +13,7 @@ describe('Application::hook()', () => {
 
   beforeEach(() => {
     options = {
+      root: __dirname,
       config: {
         hooks: {
           dummy: {

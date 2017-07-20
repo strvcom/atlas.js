@@ -39,10 +39,13 @@ describe('Repl::enter()', () => {
     this.sb.each.stub(repl, 'start').returns(terminal)
 
     // Prepare the app
-    app = new Application({ config: { actions: { repl: {
+    app = new Application({
+      root: __dirname,
+      config: { actions: { repl: {
       // Disable history loading/saving
-      historyFile: null,
-    } } } })
+        historyFile: null,
+      } } },
+    })
     app.action('repl', Repl)
 
     await app.prepare()
@@ -106,10 +109,13 @@ describe('Repl::enter()', () => {
   })
 
   it('allows overriding the prompt via config', async () => {
-    app = new Application({ config: { actions: { repl: {
-      historyFile: null,
-      prompt: '$ ',
-    } } } })
+    app = new Application({
+      root: __dirname,
+      config: { actions: { repl: {
+        historyFile: null,
+        prompt: '$ ',
+      } } },
+    })
     app.action('repl', Repl)
     await app.prepare()
     const ret = app.actions.repl.enter(opts)
@@ -135,9 +141,12 @@ describe('Repl::enter()', () => {
 
     await fsp.writeFile(historyFile, history.join(os.EOL, 'utf8'))
 
-    app = new Application({ config: { actions: { repl: {
-      historyFile,
-    } } } })
+    app = new Application({
+      root: __dirname,
+      config: { actions: { repl: {
+        historyFile,
+      } } },
+    })
     app.action('repl', Repl)
     await app.prepare()
     opts.input = new PassThrough()

@@ -26,6 +26,7 @@ describe('Application::prepare()', () => {
 
   beforeEach(() => {
     options = {
+      root: __dirname,
       config: {
         services: {
           dummy: {

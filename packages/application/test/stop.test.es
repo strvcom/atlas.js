@@ -14,6 +14,7 @@ describe('Application::stop()', () => {
 
   beforeEach(() => {
     options = {
+      root: __dirname,
       config: {
         application: {
           log: {

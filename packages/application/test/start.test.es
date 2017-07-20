@@ -22,6 +22,7 @@ describe('Application::start()', () => {
 
   beforeEach(function() {
     options = {
+      root: __dirname,
       config: {
         application: {
           log: {

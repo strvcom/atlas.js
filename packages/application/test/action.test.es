@@ -9,6 +9,7 @@ describe('Application::action()', () => {
 
   beforeEach(() => {
     options = {
+      root: __dirname,
       config: {
         actions: {
           dummy: {

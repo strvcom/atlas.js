@@ -13,6 +13,7 @@ describe('Application::service()', () => {
 
   beforeEach(() => {
     options = {
+      root: __dirname,
       config: {
         services: {
           dummy: {
