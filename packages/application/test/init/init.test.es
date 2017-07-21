@@ -12,6 +12,10 @@ describe('Application::init()', () => {
       .to.throw(FrameworkError, /root must be explicitly specified/)
   })
 
+  it('does not throw TypeError when options is not provided', () => {
+    expect(() => Application.init()).to.not.throw(TypeError)
+  })
+
   it('loads all actions, hooks and services from the specified locations', async () => {
     const root = path.resolve(__dirname, 'demoapp')
     const app = Application.init({
