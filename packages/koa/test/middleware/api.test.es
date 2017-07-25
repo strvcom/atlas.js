@@ -48,7 +48,7 @@ describe('Koa: MiddlewareHook', () => {
 
 
   describe('application:start:before', () => {
-    it('loads all exported middleware from the specified module into Koa', async () => {
+    it('loads all exported middleware from the specified module into Koa', () => {
       hook['application:start:before']()
 
       expect(testmiddleware.first).to.have.callCount(1)
