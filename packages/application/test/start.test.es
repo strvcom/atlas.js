@@ -1,20 +1,10 @@
 import Application from '..'
+import Service from '@theframework/service'
+import Hook from '@theframework/hook'
 
-class DummyService {
-  prepare() {}
-  start() {}
-  stop() {}
-}
+class DummyService extends Service {}
 
-class DummyHook {
-  prepare() {}
-  'service:start:before'() {}
-  'service:start:after'() {}
-  'dummy:start:before'() {}
-  'dummy:start:after'() {}
-  'application:start:before'() {}
-  'application:start:after'() {}
-}
+class DummyHook extends Hook {}
 
 describe('Application::start()', () => {
   let app
@@ -84,12 +74,12 @@ describe('Application::start()', () => {
 
   describe('Hook interactions - dispatching events', () => {
     beforeEach(function() {
-      this.sb.each.stub(DummyHook.prototype, 'application:start:before').resolves()
-      this.sb.each.stub(DummyHook.prototype, 'service:start:before').resolves()
-      this.sb.each.stub(DummyHook.prototype, 'dummy:start:before').resolves()
-      this.sb.each.stub(DummyHook.prototype, 'application:start:after').resolves()
-      this.sb.each.stub(DummyHook.prototype, 'service:start:after').resolves()
-      this.sb.each.stub(DummyHook.prototype, 'dummy:start:after').resolves()
+      DummyHook.prototype['application:start:before'] = this.sb.each.stub().resolves()
+      DummyHook.prototype['service:start:before'] = this.sb.each.stub().resolves()
+      DummyHook.prototype['dummy:start:before'] = this.sb.each.stub().resolves()
+      DummyHook.prototype['application:start:after'] = this.sb.each.stub().resolves()
+      DummyHook.prototype['service:start:after'] = this.sb.each.stub().resolves()
+      DummyHook.prototype['dummy:start:after'] = this.sb.each.stub().resolves()
       app.service('dummy', DummyService)
       app.hook('dummy', DummyHook)
     })
@@ -107,9 +97,7 @@ describe('Application::start()', () => {
     })
 
     it('can handle hooks which do not implement any listeners', async () => {
-      class Empty {
-        prepare() {}
-      }
+      class Empty {}
 
       app.hook('empty', Empty)
       // This not throwing will suffice 😎

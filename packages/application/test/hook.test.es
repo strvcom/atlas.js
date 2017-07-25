@@ -1,11 +1,8 @@
 import Application from '..'
+import Hook from '@theframework/hook'
 import { FrameworkError } from '@theframework/errors'
 
-class DummyHook {
-  prepare() {}
-  start() {}
-  stop() {}
-}
+class DummyHook extends Hook {}
 
 describe('Application::hook()', () => {
   let app

@@ -1,13 +1,14 @@
 import repl from 'repl'
 import { EventEmitter } from 'events'
 import { PassThrough } from 'stream'
+import crypto from 'crypto'
 import path from 'path'
 import os from 'os'
 import fsp from 'promisified-core/fs'
 import Application from '@theframework/application'
 import { Action as Repl } from '../..'
 
-function waitForCall(spy, callCount = 1) {
+function waitForCall(spy, callCount) {
   return new Promise(resolve => {
     const intv = setInterval(() => {
       if (spy.callCount >= callCount) {
@@ -55,6 +56,10 @@ describe('Repl::enter()', () => {
 
   it('exists', () => {
     expect(instance).to.respondTo('enter')
+  })
+
+  it('does not throw TypeError when no options are given', () => {
+    expect(instance.enter()).to.eventually.not.be.rejectedWith(TypeError)
   })
 
   it('returns promise', async () => {
@@ -167,5 +172,28 @@ describe('Repl::enter()', () => {
     const last = contents.trim().split(os.EOL).pop()
 
     expect(last).to.equal('123')
+  })
+
+  it('does not throw then the history file does not exist', async () => {
+    const tmpname = `.theframework-${crypto.randomBytes(9).toString('base64')}`
+    const historyFile = path.resolve(os.tmpdir(), tmpname)
+
+    app = new Application({
+      root: __dirname,
+      config: { actions: { repl: {
+        historyFile,
+      } } },
+    })
+    app.action('repl', Repl)
+    await app.prepare()
+    opts.input = new PassThrough()
+    const ret = app.actions.repl.enter(opts)
+
+    await waitForCall(terminal.once, 2)
+    terminal.emit('exit')
+    await ret
+    await fsp.unlink(historyFile)
+
+    expect(terminal.history).to.be.an('array').and.have.length(0)
   })
 })

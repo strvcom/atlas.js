@@ -1,10 +1,7 @@
 import Application from '..'
+import Service from '@theframework/service'
 
-class DummyService {
-  prepare() {}
-  start() {}
-  stop() {}
-}
+class DummyService extends Service {}
 
 class DummyAction {}
 

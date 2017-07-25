@@ -1,22 +1,17 @@
 import Application from '..'
+import Service from '@theframework/service'
+import Hook from '@theframework/hook'
+import Action from '@theframework/action'
 
-class DummyService {
+class DummyService extends Service {
   static defaults = { default: true }
-  prepare() {}
-  start() {}
-  stop() {}
 }
 
-class DummyHook {
+class DummyHook extends Hook {
   static defaults = { default: true }
-  prepare() {}
-  'service:prepare:before'() {}
-  'service:prepare:after'() {}
-  'dummy:prepare:before'() {}
-  'dummy:prepare:after'() {}
 }
 
-class DummyAction {
+class DummyAction extends Action {
   dummyMethod() {}
 }
 
@@ -154,10 +149,10 @@ describe('Application::prepare()', () => {
 
   describe('Hook interactions - dispatching events', () => {
     beforeEach(function() {
-      this.sb.each.stub(DummyHook.prototype, 'service:prepare:before').resolves()
-      this.sb.each.stub(DummyHook.prototype, 'service:prepare:after').resolves()
-      this.sb.each.stub(DummyHook.prototype, 'dummy:prepare:before').resolves()
-      this.sb.each.stub(DummyHook.prototype, 'dummy:prepare:after').resolves()
+      DummyHook.prototype['service:prepare:before'] = this.sb.each.stub().resolves()
+      DummyHook.prototype['service:prepare:after'] = this.sb.each.stub().resolves()
+      DummyHook.prototype['dummy:prepare:before'] = this.sb.each.stub().resolves()
+      DummyHook.prototype['dummy:prepare:after'] = this.sb.each.stub().resolves()
       app.service('dummy', DummyService)
       app.hook('dummy', DummyHook)
     })

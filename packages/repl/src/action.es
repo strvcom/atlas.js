@@ -47,7 +47,7 @@ class Repl extends Action {
 
 // @TODO (io): When using custom IO (like TCP streams) how should we handle newlines?
 // The target OS may not be the same as the one running the app, so `os.EOL` may be incorrect.
-function say(message = os.EOL) {
+function say(message) {
   this.io.out.write(`${message}${os.EOL}`)
 }
 

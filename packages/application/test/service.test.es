@@ -1,11 +1,8 @@
 import Application from '..'
 import { FrameworkError } from '@theframework/errors'
+import Service from '@theframework/service'
 
-class DummyService {
-  prepare() {}
-  start() {}
-  stop() {}
-}
+class DummyService extends Service {}
 
 describe('Application::service()', () => {
   let app
