@@ -175,7 +175,7 @@ describe('Repl::enter()', () => {
   })
 
   it('does not throw then the history file does not exist', async () => {
-    const tmpname = `.theframework-${crypto.randomBytes(9).toString('base64')}`
+    const tmpname = `.theframework-${crypto.randomBytes(6).toString('hex')}`
     const historyFile = path.resolve(os.tmpdir(), tmpname)
 
     app = new Application({
