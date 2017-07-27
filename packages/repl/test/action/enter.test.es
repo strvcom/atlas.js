@@ -135,6 +135,48 @@ describe('Repl::enter()', () => {
     return ret
   })
 
+  it('allows overriding the newline sequence via input options', async () => {
+    opts.nl = '\r\n'
+    const ret = instance.enter(opts)
+    await waitForCall(terminal.once, 2)
+    terminal.emit('exit')
+    await ret
+
+    // Read whatever has been sent to the output
+    const out = opts.output.read().toString('utf8')
+    const matches = out.match(new RegExp(opts.nl, 'g'))
+    // Make sure we get four lines separated by the \r\n escape sequence
+    expect(matches).to.have.length(4)
+  })
+
+  it('supports the `win32` line ending specifier', async () => {
+    opts.nl = 'win32'
+    const ret = instance.enter(opts)
+    await waitForCall(terminal.once, 2)
+    terminal.emit('exit')
+    await ret
+
+    // Read whatever has been sent to the output
+    const out = opts.output.read().toString('utf8')
+    const matches = out.match(/\r\n/g)
+    // Make sure we get four lines separated by the \r\n escape sequence
+    expect(matches).to.have.length(4)
+  })
+
+  it('supports the `unix` line ending specifier', async () => {
+    opts.nl = 'unix'
+    const ret = instance.enter(opts)
+    await waitForCall(terminal.once, 2)
+    terminal.emit('exit')
+    await ret
+
+    // Read whatever has been sent to the output
+    const out = opts.output.read().toString('utf8')
+    const matches = out.match(/\n/g)
+    // Make sure we get four lines separated by the \r\n escape sequence
+    expect(matches).to.have.length(4)
+  })
+
   it('reads and saves history to specified file', async () => {
     // Prepare test history
     const historyFile = path.resolve(os.tmpdir(), '.strv-framework-test-history')

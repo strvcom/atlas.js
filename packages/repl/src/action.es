@@ -16,9 +16,20 @@ class Repl extends Action {
     this.io = {
       in: options.input || process.stdin,
       out: options.output || process.stdout,
+      nl: options.nl || os.EOL,
     }
 
-    this::say(`${os.EOL}Hello, ${this.config.username}`)
+    switch (this.io.nl) {
+      case 'win32':
+        this.io.nl = '\r\n'
+        break
+      case 'unix':
+        this.io.nl = '\n'
+        break
+      // no default
+    }
+
+    this::say(`${this.io.nl}Hello, ${this.config.username}`)
     this::say('Type `app` to play around. Have fun!')
 
     const history = await this::readHistory()
@@ -44,11 +55,8 @@ class Repl extends Action {
   }
 }
 
-
-// @TODO (io): When using custom IO (like TCP streams) how should we handle newlines?
-// The target OS may not be the same as the one running the app, so `os.EOL` may be incorrect.
 function say(message) {
-  this.io.out.write(`${message}${os.EOL}`)
+  this.io.out.write(`${message}${this.io.nl}`)
 }
 
 async function readHistory() {
