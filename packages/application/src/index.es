@@ -335,7 +335,7 @@ function expose(collection, property, returns) {
   })
 }
 
-function dispatch(event) {
+async function dispatch(event) {
   const { hooks } = this::hidden().catalog
 
   for (const [alias, hook] of hooks) {
@@ -344,7 +344,7 @@ function dispatch(event) {
     }
 
     this.log.debug({ hook: alias, event }, 'event:dispatch')
-    hook[event]()
+    await hook[event]()
   }
 }
 
