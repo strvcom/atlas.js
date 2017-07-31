@@ -7,6 +7,11 @@ import _ from 'lodash'
 import hidden from 'local-scope/create'
 import { FrameworkError } from '@theframework/errors'
 
+/**
+ * This class represents your application and aggregates all components together
+ *
+ * You should generally create only one instance of this class in a program.
+ */
 class Application {
   static defaults = {
     log: {
@@ -75,26 +80,69 @@ class Application {
   }
 
 
+  /**
+   * The current environment under which this app operates
+   *
+   * Defaults to NODE_ENV from the environment.
+   *
+   * @readonly
+   * @return    {String}
+   */
   get env() {
     return this::hidden().env
   }
 
+  /**
+   * The root folder where all other paths should be relative to
+   *
+   * It is recommended that you set this to the project's root directory.
+   *
+   * @readonly
+   * @return    {String}
+   */
   get root() {
     return this::hidden().root
   }
 
+  /**
+   * Is this app in a prepared state?
+   *
+   * @readonly
+   * @return    {boolean}
+   */
   get prepared() {
     return this::hidden().prepared
   }
 
+  /**
+   * Is this app in a started state?
+   *
+   * @readonly
+   * @return    {boolean}
+   */
   get started() {
     return this::hidden().started
   }
 
+  /**
+   * Application configuration, as passed in to the constructor
+   *
+   * @type    {Object}
+   */
   config = {}
 
+  /**
+   * All services added to this application
+   *
+   * @type    {Object}
+   */
   services = {}
 
+  /**
+   * All actions added to this application
+   *
+   * @type    {Object}
+   */
   actions = {}
 
   /**
@@ -104,6 +152,10 @@ class Application {
    * @param     {Object}    options.config      Configuration object for the app and for all
    *                                            services or other components which will be added to
    *                                            the app
+   * @param     {String}    options.root        The root directory of the application
+   * @param     {String}    options.env         The environment under which this app operates.
+   *                                            Components may use this value for various purposes.
+   *                                            Defaults to NODE_ENV.
    */
   constructor(options = {}) {
     if (typeof options.root !== 'string') {
@@ -168,6 +220,14 @@ class Application {
     return this
   }
 
+  /**
+   * Register a hook into this app using given alias
+   *
+   * @param     {String}    alias     The alias for the hook - it will be used for passing
+   *                                  configuration data to it
+   * @param     {class}    Hook       The hook class
+   * @return    {this}
+   */
   hook(alias, Hook) {
     const { hooks } = this::hidden().catalog
 
@@ -191,6 +251,15 @@ class Application {
     return this
   }
 
+  /**
+   * Register an action into this app at given alias
+   *
+   * @param     {String}    alias     The alias for the action - it will be used for exposing the
+   *                                  action's API on the app.actions object and for passing
+   *                                  configuration data to it
+   * @param     {class}    Action     The action class
+   * @return    {this}
+   */
   action(alias, Action) {
     const { actions } = this::hidden().catalog
 
@@ -217,6 +286,10 @@ class Application {
 
   /**
    * Prepare all services and hooks for use
+   *
+   * Generally you should use `app.start()` instead to get your app up and running. However,
+   * sometimes it is necessary to get all the services into a "get-ready" state before they start
+   * connecting to remote resources or doing any intensive I/O operations.
    *
    * @return    {Promise<this>}
    */
@@ -296,7 +369,10 @@ class Application {
   }
 
   /**
-   * Stop all services and unregister their getters
+   * Stop all services, unregister all actions and hooks and unpublish any APIs exposed by them
+   *
+   * This puts the whole application into a state as it was before `app.prepare()` and/or
+   * `app.start()` was called.
    *
    * @return    {Promise<this>}
    */
@@ -323,10 +399,27 @@ class Application {
   }
 }
 
+/**
+ * Assign default values to a configuration object
+ *
+ * @private
+ * @param     {Object}    [config={}]    Target object
+ * @param     {Object}    [defaults={}]    Default values
+ * @return    {Object}
+ */
 function mkdefaults(config = {}, defaults = {}) {
   return _.defaultsDeep(config, defaults)
 }
 
+/**
+ * Expose a getter on the application instance under the specified collection (object)
+ *
+ * @private
+ * @param     {String}    collection    The collection (object) onto which to attach the getter
+ * @param     {String}    property      The getter's name/key
+ * @param     {mixed}     returns       The value to return from the getter
+ * @return    {void}
+ */
 function expose(collection, property, returns) {
   Object.defineProperty(this[collection], property, {
     enumerable: true,
@@ -335,6 +428,13 @@ function expose(collection, property, returns) {
   })
 }
 
+/**
+ * Dispatch an event to all registered hooks
+ *
+ * @private
+ * @param     {String}    event     The event's name
+ * @return    {Promise<void>}
+ */
 async function dispatch(event) {
   const { hooks } = this::hidden().catalog
 
