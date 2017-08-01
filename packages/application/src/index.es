@@ -300,36 +300,22 @@ class Application {
 
     const { services, hooks, actions } = this::hidden().catalog
 
-    // Prepare hooks (in parallel)
-    // Hooks must not depend on each other since they can only react to events and we are not
-    // emitting any yet
-    this.log.debug('hooks:prepare:start')
-    await Promise.all(Array.from(hooks).map(([alias, hook]) => {
-      const config = this.config.hooks[alias]
-      return hook.prepare({ config })
-    }))
-    this.log.debug('hooks:prepare:end')
+    // Prepare all hooks, in parallel 💪
+    await Promise.all(Array.from(hooks).map(([alias, hook]) =>
+    // eslint-disable-next-line no-use-before-define
+      this::lifecycle.hook.prepare(alias, hook)
+    ))
 
     // Prepare actions
     for (const [alias, action] of actions) {
       this.actions[alias] = action
     }
 
-    // Prepare services
-    // @TODO (services): Refactor to make service initialisation parallel
-    // Services can be initialised in parallel, but the hooks for each service must be called in
-    // order, so some form of promise grouping will be necessary
-    for (const [alias, service] of services) {
-      this.log.debug({ service: alias }, 'service:prepare:before')
-      await this::dispatch('service:prepare:before')
-      await this::dispatch(`${alias}:prepare:before`)
-      const config = this.config.services[alias]
-      const instance = await service.prepare({ config })
-      this::expose('services', alias, instance)
-      await this::dispatch('service:prepare:after')
-      await this::dispatch(`${alias}:prepare:after`)
-      this.log.debug({ service: alias }, 'service:prepare:after')
-    }
+    // Prepare all services, in parallel 💪
+    await Promise.all(Array.from(services).map(([alias, service]) =>
+      // eslint-disable-next-line no-use-before-define
+      this::lifecycle.service.prepare(alias, service)
+    ))
 
     this::hidden().prepared = true
 
@@ -351,15 +337,11 @@ class Application {
 
     const { services } = this::hidden().catalog
 
-    for (const [alias, service] of services) {
-      this.log.debug({ service: alias }, 'service:start:before')
-      await this::dispatch('service:start:before')
-      await this::dispatch(`${alias}:start:before`)
-      await service.start()
-      await this::dispatch('service:start:after')
-      await this::dispatch(`${alias}:start:after`)
-      this.log.debug({ service: alias }, 'service:start:after')
-    }
+    // Start all services, in parallel 💪
+    await Promise.all(Array.from(services).map(([alias, service]) =>
+      // eslint-disable-next-line no-use-before-define
+      this::lifecycle.service.start(alias, service)
+    ))
 
     this::hidden().started = true
     await this::dispatch('application:start:after')
@@ -383,11 +365,13 @@ class Application {
 
     const { services, actions } = this::hidden().catalog
 
-    for (const [alias, service] of services) {
-      delete this.services[alias]
-      await service.stop()
-    }
+    // Stop all services, in parallel 💪
+    await Promise.all(Array.from(services).map(([alias, service]) =>
+      // eslint-disable-next-line no-use-before-define
+      this::lifecycle.service.stop(alias, service)
+    ))
 
+    // Unregister actions
     for (const [alias] of actions) {
       delete this.actions[alias]
     }
@@ -446,6 +430,79 @@ async function dispatch(event) {
     this.log.debug({ hook: alias, event }, 'event:dispatch')
     await hook[event]()
   }
+}
+
+const lifecycle = {
+  service: {
+    /**
+     * Prepare a service
+     *
+     * @private
+     * @param     {String}    alias       The Service's alias
+     * @param     {Object}    service     The service implementation
+     * @return    {Promise<void>}
+     */
+    async prepare(alias, service) {
+      this.log.debug({ service: alias }, 'service:prepare:before')
+      await this::dispatch('service:prepare:before')
+      await this::dispatch(`${alias}:prepare:before`)
+      const config = this.config.services[alias]
+      const instance = await service.prepare({ config })
+      this::expose('services', alias, instance)
+      await this::dispatch('service:prepare:after')
+      await this::dispatch(`${alias}:prepare:after`)
+      this.log.debug({ service: alias }, 'service:prepare:after')
+    },
+
+    /**
+     * Start a service
+     *
+     * @private
+     * @param     {String}    alias       The Service's alias
+     * @param     {Object}    service     The service implementation
+     * @return    {Promise<void>}
+     */
+    async start(alias, service) {
+      this.log.debug({ service: alias }, 'service:start:before')
+      await this::dispatch('service:start:before')
+      await this::dispatch(`${alias}:start:before`)
+      await service.start()
+      await this::dispatch('service:start:after')
+      await this::dispatch(`${alias}:start:after`)
+      this.log.debug({ service: alias }, 'service:start:after')
+    },
+
+    /**
+     * Stop a service
+     *
+     * @private
+     * @param     {String}    alias       The Service's alias
+     * @param     {Object}    service     The service implementation
+     * @return    {Promise<void>}
+     */
+    async stop(alias, service) {
+      delete this.services[alias]
+      // @TODO: Implement stop hooks
+      await service.stop()
+    },
+  },
+
+  hook: {
+    /**
+     * Prepare a hook
+     *
+     * @private
+     * @param     {String}    alias     The Service's alias
+     * @param     {Object}    hook      The hook implementation
+     * @return    {Promise<void>}
+     */
+    async prepare(alias, hook) {
+      this.log.debug('hooks:prepare:start')
+      const config = this.config.hooks[alias]
+      await hook.prepare({ config })
+      this.log.debug('hooks:prepare:end')
+    },
+  },
 }
 
 export default Application
