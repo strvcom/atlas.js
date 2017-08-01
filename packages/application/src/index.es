@@ -449,9 +449,9 @@ const lifecycle = {
       const config = this.config.services[alias]
       const instance = await service.prepare({ config })
       this::expose('services', alias, instance)
+      this.log.debug({ service: alias }, 'service:prepare:after')
       await this::dispatch('service:prepare:after')
       await this::dispatch(`${alias}:prepare:after`)
-      this.log.debug({ service: alias }, 'service:prepare:after')
     },
 
     /**
@@ -467,9 +467,9 @@ const lifecycle = {
       await this::dispatch('service:start:before')
       await this::dispatch(`${alias}:start:before`)
       await service.start()
+      this.log.debug({ service: alias }, 'service:start:after')
       await this::dispatch('service:start:after')
       await this::dispatch(`${alias}:start:after`)
-      this.log.debug({ service: alias }, 'service:start:after')
     },
 
     /**
@@ -497,10 +497,10 @@ const lifecycle = {
      * @return    {Promise<void>}
      */
     async prepare(alias, hook) {
-      this.log.debug('hooks:prepare:start')
+      this.log.debug({ hook: alias }, 'hook:prepare:before')
       const config = this.config.hooks[alias]
       await hook.prepare({ config })
-      this.log.debug('hooks:prepare:end')
+      this.log.debug({ hook: alias }, 'hook:prepare:after')
     },
   },
 }
