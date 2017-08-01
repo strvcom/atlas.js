@@ -32,9 +32,7 @@ coverage: compile
 	$(bin)nyc $(MAKE) test
 
 clean:
-	rm -rf .nyc_output
-	rm -rf coverage
-	rm -rf docs
+	rm -rf {.nyc_output,coverage,docs}
 
 # Delete all the .js and .js.map files (excluding any potential dotfiles with .js extension)
 distclean: clean
