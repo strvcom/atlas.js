@@ -1,9 +1,12 @@
 import Application from '..'
 import Service from '@theframework/service'
+import Hook from '@theframework/hook'
 
 class DummyService extends Service {}
 
 class DummyAction {}
+
+class DummyHook extends Hook {}
 
 describe('Application::stop()', () => {
   let app
@@ -33,6 +36,7 @@ describe('Application::stop()', () => {
     app = new Application(options)
     app.service('dummy', DummyService)
     app.action('dummy', DummyAction)
+    app.hook('dummy', DummyHook)
 
     return app.start()
   })
@@ -77,6 +81,30 @@ describe('Application::stop()', () => {
       expect(app.services).to.have.property('dummy')
       await app.stop()
       expect(app.services).to.not.have.property('dummy')
+    })
+  })
+
+
+  describe('Service interactions - dispatching events', () => {
+    beforeEach(function() {
+      DummyHook.prototype['application:stop:before'] = this.sb.each.stub().resolves()
+      DummyHook.prototype['application:stop:after'] = this.sb.each.stub().resolves()
+      DummyHook.prototype['service:stop:before'] = this.sb.each.stub().resolves()
+      DummyHook.prototype['service:stop:after'] = this.sb.each.stub().resolves()
+      DummyHook.prototype['dummy:stop:before'] = this.sb.each.stub().resolves()
+      DummyHook.prototype['dummy:stop:after'] = this.sb.each.stub().resolves()
+    })
+
+    it('calls the stop hooks', async () => {
+      await app.stop()
+
+      const proto = DummyHook.prototype
+      expect(proto['application:stop:before']).to.have.callCount(1)
+      expect(proto['application:stop:after']).to.have.callCount(1)
+      expect(proto['service:stop:before']).to.have.callCount(1)
+      expect(proto['service:stop:after']).to.have.callCount(1)
+      expect(proto['dummy:stop:before']).to.have.callCount(1)
+      expect(proto['dummy:stop:after']).to.have.callCount(1)
     })
   })
 

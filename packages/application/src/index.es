@@ -365,6 +365,8 @@ class Application {
 
     const { services, actions } = this::hidden().catalog
 
+    await this::dispatch('application:stop:before')
+
     // Stop all services, in parallel 💪
     await Promise.all(Array.from(services).map(([alias, service]) =>
       // eslint-disable-next-line no-use-before-define
@@ -378,6 +380,9 @@ class Application {
 
     this::hidden().started = false
     this::hidden().prepared = false
+
+    await this::dispatch('application:stop:after')
+    this.log.info('app:stopped')
 
     return this
   }
@@ -481,9 +486,14 @@ const lifecycle = {
      * @return    {Promise<void>}
      */
     async stop(alias, service) {
+      this.log.debug({ service: alias }, 'service:stop:before')
+      await this::dispatch('service:stop:before')
+      await this::dispatch(`${alias}:stop:before`)
       delete this.services[alias]
-      // @TODO: Implement stop hooks
       await service.stop()
+      this.log.debug({ service: alias }, 'service:stop:after')
+      await this::dispatch('service:stop:after')
+      await this::dispatch(`${alias}:stop:after`)
     },
   },
 
