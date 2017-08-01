@@ -1,10 +1,12 @@
-bin := node_modules/.bin/
+# Defining shell is necessary in order to modify PATH
+SHELL := bash
+export PATH := node_modules/.bin/:$(PATH)
 
 # Do this when make is invoked without targets
 all: compile
 
 compile: install
-	$(bin)babel . -q --extensions .es --source-maps both --out-dir .
+	babel . -q --extensions .es --source-maps both --out-dir .
 
 # In layman's terms: node_modules directory depends on the state of package.json Make will compare
 # their timestamps and only if package.json is newer, it will run this target.
@@ -14,22 +16,22 @@ compile: install
 # node_modules after installation fixes that.
 node_modules: package.json
 	npm install && \
-	$(bin)lerna bootstrap --loglevel success && \
+	lerna bootstrap --loglevel success && \
 	touch node_modules
 
 install: node_modules
 
 lint:
-	$(bin)eslint --ext .es .
+	eslint --ext .es .
 
 test: compile
-	$(bin)mocha
+	mocha
 
 test-debug: compile
-	$(bin)mocha --inspect --inspect-brk
+	mocha --inspect --inspect-brk
 
 coverage: compile
-	$(bin)nyc $(MAKE) test
+	nyc mocha
 
 clean:
 	rm -rf {.nyc_output,coverage,docs}
