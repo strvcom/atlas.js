@@ -428,17 +428,18 @@ function expose(collection, property, returns) {
  */
 async function dispatch(...events) {
   const { hooks } = this::hidden().catalog
+  const tasks = []
 
   for (const [alias, hook] of hooks) {
     for (const event of events) {
-      if (!(event in hook)) {
-        continue
+      if (typeof hook[event] === 'function') {
+        this.log.debug({ hook: alias, event }, 'event:dispatch')
+        tasks.push(hook[event]())
       }
-
-      this.log.debug({ hook: alias, event }, 'event:dispatch')
-      await hook[event]()
     }
   }
+
+  await Promise.all(tasks)
 }
 
 const lifecycle = {
