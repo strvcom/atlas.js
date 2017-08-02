@@ -86,25 +86,42 @@ describe('Application::stop()', () => {
 
 
   describe('Service interactions - dispatching events', () => {
+    const events = [
+      'application:stop:before',
+      'application:stop:after',
+      'service:stop:before',
+      'dummy:stop:before',
+    ]
+
     beforeEach(function() {
-      DummyHook.prototype['application:stop:before'] = this.sb.each.stub().resolves()
-      DummyHook.prototype['application:stop:after'] = this.sb.each.stub().resolves()
-      DummyHook.prototype['service:stop:before'] = this.sb.each.stub().resolves()
-      DummyHook.prototype['service:stop:after'] = this.sb.each.stub().resolves()
-      DummyHook.prototype['dummy:stop:before'] = this.sb.each.stub().resolves()
-      DummyHook.prototype['dummy:stop:after'] = this.sb.each.stub().resolves()
+      this.sb.each.stub(DummyService.prototype, 'prepare').resolves()
+
+      // Stub out all the event handlers
+      for (const event of events) {
+        DummyHook.prototype[event] = this.sb.each.stub().resolves()
+      }
     })
 
     it('calls the stop hooks', async () => {
       await app.stop()
 
+      for (const event of events) {
+        expect(DummyHook.prototype[event]).to.have.callCount(1)
+      }
+    })
+
+    it('calls the hook with the service instance before stop', async () => {
       const proto = DummyHook.prototype
-      expect(proto['application:stop:before']).to.have.callCount(1)
-      expect(proto['application:stop:after']).to.have.callCount(1)
-      expect(proto['service:stop:before']).to.have.callCount(1)
-      expect(proto['service:stop:after']).to.have.callCount(1)
-      expect(proto['dummy:stop:before']).to.have.callCount(1)
-      expect(proto['dummy:stop:after']).to.have.callCount(1)
+      const instance = { api: true }
+      // Redefine the service getter so we can properly test the hooks
+      Object.defineProperty(app.services, 'dummy', {
+        value: instance,
+      })
+
+      await app.stop()
+
+      expect(proto['service:stop:before']).to.have.been.calledWith(instance)
+      expect(proto['dummy:stop:before']).to.have.been.calledWith(instance)
     })
   })
 

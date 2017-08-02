@@ -148,11 +148,19 @@ describe('Application::prepare()', () => {
   })
 
   describe('Hook interactions - dispatching events', () => {
+    const events = [
+      'service:prepare:after',
+      'dummy:prepare:after',
+    ]
+
     beforeEach(function() {
-      DummyHook.prototype['service:prepare:before'] = this.sb.each.stub().resolves()
-      DummyHook.prototype['service:prepare:after'] = this.sb.each.stub().resolves()
-      DummyHook.prototype['dummy:prepare:before'] = this.sb.each.stub().resolves()
-      DummyHook.prototype['dummy:prepare:after'] = this.sb.each.stub().resolves()
+      this.sb.each.stub(DummyService.prototype, 'prepare').resolves()
+
+      // Stub out all the event handlers
+      for (const event of events) {
+        DummyHook.prototype[event] = this.sb.each.stub().resolves()
+      }
+
       app.service('dummy', DummyService)
       app.hook('dummy', DummyHook)
     })
@@ -160,11 +168,20 @@ describe('Application::prepare()', () => {
     it('calls the prepare hooks', async () => {
       await app.prepare()
 
+      for (const event of events) {
+        expect(DummyHook.prototype[event]).to.have.callCount(1)
+      }
+    })
+
+    it('calls the hook with the service instance after prepare', async () => {
       const proto = DummyHook.prototype
-      expect(proto['service:prepare:before']).to.have.callCount(1)
-      expect(proto['service:prepare:after']).to.have.callCount(1)
-      expect(proto['dummy:prepare:before']).to.have.callCount(1)
-      expect(proto['dummy:prepare:after']).to.have.callCount(1)
+      const instance = { api: true }
+      DummyService.prototype.prepare.resolves(instance)
+
+      await app.prepare()
+
+      expect(proto['service:prepare:after']).to.have.been.calledWith(instance)
+      expect(proto['dummy:prepare:after']).to.have.been.calledWith(instance)
     })
 
     it('can handle hooks which do not implement any listeners', async () => {
