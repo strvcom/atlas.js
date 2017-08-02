@@ -158,10 +158,6 @@ class Application {
    *                                            Defaults to NODE_ENV.
    */
   constructor(options = {}) {
-    if (typeof options.root !== 'string') {
-      throw new FrameworkError(`root must be explicitly specified, got ${options.root}`)
-    }
-
     // Initialise private stuff
     // eslint-disable-next-line no-process-env
     this::hidden().env = options.env || process.env.NODE_ENV
@@ -174,10 +170,16 @@ class Application {
       actions: new Map(),
     }
 
+    // Safety checks
     if (!this::hidden().env) {
       throw new FrameworkError('env not specified and NODE_ENV was not set')
     }
 
+    if (typeof this::hidden().root !== 'string') {
+      throw new FrameworkError(`root must be explicitly specified, got ${options.root}`)
+    }
+
+    // Default configuration keys
     this.config = mkdefaults(options.config, {
       application: {},
       services: {},
@@ -185,6 +187,7 @@ class Application {
       actions: {},
     })
     this.config.application = mkdefaults(this.config.application, Application.defaults)
+    // Logger 🌲
     this.log = pino(this.config.application.log)
   }
 
