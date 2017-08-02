@@ -406,14 +406,14 @@ function mkdefaults(config = {}, defaults = {}) {
  * @private
  * @param     {String}    collection    The collection (object) onto which to attach the getter
  * @param     {String}    property      The getter's name/key
- * @param     {mixed}     returns       The value to return from the getter
+ * @param     {mixed}     value       The value to return from the getter
  * @return    {void}
  */
-function expose(collection, property, returns) {
+function expose(collection, property, value) {
   Object.defineProperty(this[collection], property, {
     enumerable: true,
     configurable: true,
-    get: () => returns,
+    get: () => value,
   })
 }
 
