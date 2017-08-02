@@ -420,20 +420,24 @@ function expose(collection, property, returns) {
 /**
  * Dispatch an event to all registered hooks
  *
+ * This function takes variable number of events to be dispatched to hooks
+ *
  * @private
  * @param     {String}    event     The event's name
  * @return    {Promise<void>}
  */
-async function dispatch(event) {
+async function dispatch(...events) {
   const { hooks } = this::hidden().catalog
 
   for (const [alias, hook] of hooks) {
-    if (!(event in hook)) {
-      continue
-    }
+    for (const event of events) {
+      if (!(event in hook)) {
+        continue
+      }
 
-    this.log.debug({ hook: alias, event }, 'event:dispatch')
-    await hook[event]()
+      this.log.debug({ hook: alias, event }, 'event:dispatch')
+      await hook[event]()
+    }
   }
 }
 
@@ -449,14 +453,18 @@ const lifecycle = {
      */
     async prepare(alias, service) {
       this.log.debug({ service: alias }, 'service:prepare:before')
-      await this::dispatch('service:prepare:before')
-      await this::dispatch(`${alias}:prepare:before`)
+      await this::dispatch(
+        'service:prepare:before',
+        `${alias}:prepare:before`,
+      )
       const config = this.config.services[alias]
       const instance = await service.prepare({ config })
       this::expose('services', alias, instance)
       this.log.debug({ service: alias }, 'service:prepare:after')
-      await this::dispatch('service:prepare:after')
-      await this::dispatch(`${alias}:prepare:after`)
+      await this::dispatch(
+        'service:prepare:after',
+        `${alias}:prepare:after`,
+      )
     },
 
     /**
@@ -469,12 +477,16 @@ const lifecycle = {
      */
     async start(alias, service) {
       this.log.debug({ service: alias }, 'service:start:before')
-      await this::dispatch('service:start:before')
-      await this::dispatch(`${alias}:start:before`)
+      await this::dispatch(
+        'service:start:before',
+        `${alias}:start:before`,
+      )
       await service.start()
       this.log.debug({ service: alias }, 'service:start:after')
-      await this::dispatch('service:start:after')
-      await this::dispatch(`${alias}:start:after`)
+      await this::dispatch(
+        'service:start:after',
+        `${alias}:start:after`,
+      )
     },
 
     /**
@@ -487,13 +499,17 @@ const lifecycle = {
      */
     async stop(alias, service) {
       this.log.debug({ service: alias }, 'service:stop:before')
-      await this::dispatch('service:stop:before')
-      await this::dispatch(`${alias}:stop:before`)
+      await this::dispatch(
+        'service:stop:before',
+        `${alias}:stop:before`,
+      )
       delete this.services[alias]
       await service.stop()
       this.log.debug({ service: alias }, 'service:stop:after')
-      await this::dispatch('service:stop:after')
-      await this::dispatch(`${alias}:stop:after`)
+      await this::dispatch(
+        'service:stop:after',
+        `${alias}:stop:after`,
+      )
     },
   },
 
