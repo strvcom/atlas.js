@@ -6,7 +6,7 @@ export PATH := node_modules/.bin/:$(PATH)
 all: compile
 
 compile: install
-	babel . -q --extensions .es --source-maps both --out-dir .
+	babel . -q --extensions .es --source-maps both --out-dir . --ignore node_modules
 
 # In layman's terms: node_modules directory depends on the state of package.json Make will compare
 # their timestamps and only if package.json is newer, it will run this target.
