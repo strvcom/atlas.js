@@ -14,21 +14,18 @@ describe('Component: basics and API', () => {
     expect(Object.keys(Component.defaults)).to.have.length(0)
   })
 
-  xit('implements methods each Component should have', () => {
-    const component = new Component()
-
-    expect(component).to.respondTo('component')
-  })
-
-  it('saves app and log objects given on constructor to itself', () => {
+  it('saves app, log and config objects given on constructor to itself', () => {
     const app = { app: true }
     const log = { log: true }
+    const config = { config: true }
     const component = new Component({
       app,
       log,
+      config,
     })
 
     expect(component).to.have.property('app', app)
     expect(component).to.have.property('log', log)
+    expect(component).to.have.property('config', config)
   })
 })
