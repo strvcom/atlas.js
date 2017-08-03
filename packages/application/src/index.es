@@ -443,8 +443,7 @@ const lifecycle = {
      * @return    {Promise<void>}
      */
     async prepare(alias, service) {
-      const config = this.config.services[alias]
-      const instance = await service.prepare({ config })
+      const instance = await service.prepare()
       this::expose('services', alias, instance)
       this.log.debug({ service: alias }, 'service:prepare:after')
       await this::dispatch([
@@ -505,8 +504,7 @@ const lifecycle = {
      */
     async prepare(alias, hook) {
       this.log.debug({ hook: alias }, 'hook:prepare:before')
-      const config = this.config.hooks[alias]
-      await hook.prepare({ config })
+      await hook.prepare()
       this.log.debug({ hook: alias }, 'hook:prepare:after')
     },
   },

@@ -14,14 +14,14 @@ describe('Koa: MiddlewareHook', () => {
           server,
         },
       },
-    })
-    hook.prepare({
       config: {
         service: 'server',
         module: 'testmiddleware',
         middleware: {},
       },
     })
+
+    return hook.prepare()
   })
 
 
@@ -56,8 +56,14 @@ describe('Koa: MiddlewareHook', () => {
       expect(server.use).to.have.callCount(2)
     })
 
-    it('passes the provided middleware config to the middleware', () => {
-      hook.prepare({
+    it('passes the provided middleware config to the middleware', async () => {
+      hook = new MiddlewareHook({
+        app: {
+          root: __dirname,
+          services: {
+            server,
+          },
+        },
         config: {
           service: 'server',
           module: 'testmiddleware',
@@ -67,6 +73,8 @@ describe('Koa: MiddlewareHook', () => {
           },
         },
       })
+
+      await hook.prepare()
       hook['application:start:before']()
 
       const args = {

@@ -81,22 +81,6 @@ describe('Application::prepare()', () => {
 
       expect(DummyService.prototype.prepare).to.have.callCount(1)
     })
-
-    it('receives an object with service configuration provided by user', async () => {
-      await app.prepare()
-
-      const opts = DummyService.prototype.prepare.getCall(0).args[0]
-      expect(opts).to.have.key('config')
-      expect(opts.config).to.be.an('object')
-      expect(opts.config).to.equal(options.config.services.dummy)
-    })
-
-    it('applies defaults defined on service on top of user-provided config', async () => {
-      await app.prepare()
-
-      const opts = DummyService.prototype.prepare.getCall(0).args[0]
-      expect(opts.config).to.have.property('default', true)
-    })
   })
 
 
@@ -128,22 +112,6 @@ describe('Application::prepare()', () => {
       await app.prepare()
 
       expect(DummyHook.prototype.prepare).to.have.callCount(1)
-    })
-
-    it('receives an object with hook configuration provided by user', async () => {
-      await app.prepare()
-
-      const opts = DummyHook.prototype.prepare.getCall(0).args[0]
-      expect(opts).to.have.key('config')
-      expect(opts.config).to.be.an('object')
-      expect(opts.config).to.equal(options.config.hooks.dummy)
-    })
-
-    it('applies defaults defined on hook on top of user-provided config', async () => {
-      await app.prepare()
-
-      const opts = DummyHook.prototype.prepare.getCall(0).args[0]
-      expect(opts.config).to.have.property('default', true)
     })
   })
 

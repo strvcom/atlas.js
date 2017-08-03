@@ -26,23 +26,11 @@ class ComponentContainer {
       throw new FrameworkError(`Component must be a class, got ${typeof this.Component}`)
     }
 
-    const input = {
+    this.component = new this.Component({
       app,
       log: app.log.child({ [this.type]: this.alias }),
-    }
-
-    switch (this.type) {
-      case 'service':
-      case 'hook':
-        defaults(info.config, this.Component.defaults)
-        break
-      case 'action':
-        input.config = defaults(info.config, this.Component.defaults)
-        break
-      // no default
-    }
-
-    this.component = new this.Component(input)
+      config: defaults(info.config, this.Component.defaults),
+    })
   }
 }
 

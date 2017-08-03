@@ -53,4 +53,23 @@ describe('Application::service()', () => {
     expect(args.log).to.be.an('object')
     expect(args.log.chindings).to.match(/"service":"dummy"/)
   })
+
+  it('provides config object on service constructor argument', () => {
+    const service = sinon.spy()
+    app.service('dummy', service)
+    const args = service.getCall(0).args[0]
+
+    expect(args).to.have.property('config')
+    expect(args.config).to.be.an('object')
+    expect(args.config).to.equal(options.config.services.dummy)
+  })
+
+  it('applies defaults defined on service on top of user-provided config', () => {
+    const service = sinon.spy()
+    service.defaults = { default: true }
+    app.service('dummy', service)
+    const args = service.getCall(0).args[0]
+
+    expect(args.config).to.have.property('default', true)
+  })
 })

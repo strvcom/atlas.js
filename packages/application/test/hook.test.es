@@ -53,4 +53,23 @@ describe('Application::hook()', () => {
     expect(args.log).to.be.an('object')
     expect(args.log.chindings).to.match(/"hook":"dummy"/)
   })
+
+  it('provides config object on hook constructor argument', () => {
+    const hook = sinon.spy()
+    app.hook('dummy', hook)
+    const args = hook.getCall(0).args[0]
+
+    expect(args).to.have.property('config')
+    expect(args.config).to.be.an('object')
+    expect(args.config).to.equal(options.config.hooks.dummy)
+  })
+
+  it('applies defaults defined on hook on top of user-provided config', () => {
+    const hook = sinon.spy()
+    hook.defaults = { default: true }
+    app.hook('dummy', hook)
+    const args = hook.getCall(0).args[0]
+
+    expect(args.config).to.have.property('default', true)
+  })
 })

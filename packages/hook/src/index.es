@@ -1,9 +1,7 @@
 import Component from '@theframework/component'
 
 class Hook extends Component {
-  prepare(options = {}) {
-    this.config = options.config
-  }
+  prepare() {}
 }
 
 export default Hook

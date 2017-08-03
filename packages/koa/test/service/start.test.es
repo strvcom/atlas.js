@@ -17,13 +17,11 @@ describe('Koa::start()', () => {
   })
 
   beforeEach(() => {
-    instance = new Koa({
+    opts = {
       app: {},
       log: {
         info: () => {},
       },
-    })
-    opts = {
       config: {
         http: { timeout: 20000 },
         server: {
@@ -32,8 +30,9 @@ describe('Koa::start()', () => {
         },
       },
     }
+    instance = new Koa(opts)
 
-    return instance.prepare(opts)
+    return instance.prepare()
   })
 
   beforeEach(function() {
