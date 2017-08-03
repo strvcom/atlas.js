@@ -15,6 +15,7 @@ describe('Action: Repl', () => {
       'historyFile',
       'username',
       'prompt',
+      'newlines',
     ])
   })
 })

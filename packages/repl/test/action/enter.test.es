@@ -144,8 +144,32 @@ describe('Repl::enter()', () => {
 
     // Read whatever has been sent to the output
     const out = opts.output.read().toString('utf8')
-    const matches = out.match(new RegExp(opts.nl, 'g'))
+    const matches = out.match(new RegExp(opts.nl, 'g')) || []
     // Make sure we get four lines separated by the \r\n escape sequence
+    expect(matches).to.have.length(4)
+  })
+
+  it('allows defining custom newline sequences through configuration alias', async () => {
+    app = new Application({
+      root: __dirname,
+      config: { actions: { repl: {
+        newlines: {
+          lolnl: '<EOL>',
+        },
+      } } },
+    })
+    app.action('repl', Repl)
+    await app.prepare()
+    opts.nl = 'lolnl'
+    const ret = app.actions.repl.enter(opts)
+    await waitForCall(terminal.once, 2)
+    terminal.emit('exit')
+    await ret
+
+    // Read whatever has been sent to the output
+    const out = opts.output.read().toString('utf8')
+    const matches = out.match(new RegExp('<EOL>', 'g')) || []
+    // Make sure we get four lines separated by the <EOL> escape sequence
     expect(matches).to.have.length(4)
   })
 
@@ -158,7 +182,7 @@ describe('Repl::enter()', () => {
 
     // Read whatever has been sent to the output
     const out = opts.output.read().toString('utf8')
-    const matches = out.match(/\r\n/g)
+    const matches = out.match(/\r\n/g) || []
     // Make sure we get four lines separated by the \r\n escape sequence
     expect(matches).to.have.length(4)
   })
@@ -172,7 +196,7 @@ describe('Repl::enter()', () => {
 
     // Read whatever has been sent to the output
     const out = opts.output.read().toString('utf8')
-    const matches = out.match(/\n/g)
+    const matches = out.match(/\n/g) || []
     // Make sure we get four lines separated by the \r\n escape sequence
     expect(matches).to.have.length(4)
   })

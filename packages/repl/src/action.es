@@ -10,6 +10,10 @@ class Repl extends Action {
     historyFile: path.resolve(os.homedir(), '.node_repl_history'),
     username: os.userInfo().username,
     prompt: '✏️ ',
+    newlines: {
+      unix: '\n',
+      win32: '\r\n',
+    },
   }
 
   async enter(options = {}) {
@@ -19,14 +23,8 @@ class Repl extends Action {
       nl: options.nl || os.EOL,
     }
 
-    switch (this.io.nl) {
-      case 'win32':
-        this.io.nl = '\r\n'
-        break
-      case 'unix':
-        this.io.nl = '\n'
-        break
-      // no default
+    if (this.io.nl in this.config.newlines) {
+      this.io.nl = this.config.newlines[this.io.nl]
     }
 
     this::say(`${this.io.nl}Hello, ${this.config.username}`)
