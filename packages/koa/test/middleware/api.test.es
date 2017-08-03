@@ -10,15 +10,12 @@ describe('Koa: MiddlewareHook', () => {
     hook = new MiddlewareHook({
       app: {
         root: __dirname,
-        services: {
-          server,
-        },
       },
       config: {
-        service: 'server',
         module: 'testmiddleware',
         middleware: {},
       },
+      resolve() { return server },
     })
 
     return hook.prepare()
@@ -40,7 +37,6 @@ describe('Koa: MiddlewareHook', () => {
   it('defines its defaults', () => {
     expect(MiddlewareHook).to.have.property('defaults')
     expect(MiddlewareHook.defaults).to.have.all.keys([
-      'service',
       'module',
       'middleware',
     ])
@@ -60,18 +56,15 @@ describe('Koa: MiddlewareHook', () => {
       hook = new MiddlewareHook({
         app: {
           root: __dirname,
-          services: {
-            server,
-          },
         },
         config: {
-          service: 'server',
           module: 'testmiddleware',
           middleware: {
             first: { firsttest: true },
             second: { secondtest: true },
           },
         },
+        resolve() { return server },
       })
 
       await hook.prepare()

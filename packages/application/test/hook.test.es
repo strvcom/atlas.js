@@ -64,6 +64,15 @@ describe('Application::hook()', () => {
     expect(args.config).to.equal(options.config.hooks.dummy)
   })
 
+  it('provides the resolve function on hook constructor argument', () => {
+    const hook = sinon.spy()
+    app.hook('dummy', hook)
+    const args = hook.getCall(0).args[0]
+
+    expect(args).to.have.property('resolve')
+    expect(args.resolve).to.be.a('function')
+  })
+
   it('applies defaults defined on hook on top of user-provided config', () => {
     const hook = sinon.spy()
     hook.defaults = { default: true }

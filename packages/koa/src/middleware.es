@@ -4,7 +4,6 @@ import hidden from 'local-scope/create'
 
 class MiddlewareHook extends Hook {
   static defaults = {
-    service: 'server',
     module: 'middleware',
     middleware: {},
   }
@@ -22,7 +21,7 @@ class MiddlewareHook extends Hook {
     // Register all loaded middleware into the Koa instance
     const config = this.config
     const middleware = this::hidden().middleware
-    const koa = this.app.services[config.service]
+    const koa = this.component('service:koa')
 
     for (const [name, handler] of Object.entries(middleware)) {
       const options = config.middleware[name]

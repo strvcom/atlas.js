@@ -9,6 +9,7 @@ class Component {
     this.app = options.app
     this.log = options.log
     this.config = options.config || {}
+    this.component = options.resolve
   }
 }
 

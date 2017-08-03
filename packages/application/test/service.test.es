@@ -64,6 +64,15 @@ describe('Application::service()', () => {
     expect(args.config).to.equal(options.config.services.dummy)
   })
 
+  it('provides the resolve function on service constructor argument', () => {
+    const service = sinon.spy()
+    app.service('dummy', service)
+    const args = service.getCall(0).args[0]
+
+    expect(args).to.have.property('resolve')
+    expect(args.resolve).to.be.a('function')
+  })
+
   it('applies defaults defined on service on top of user-provided config', () => {
     const service = sinon.spy()
     service.defaults = { default: true }

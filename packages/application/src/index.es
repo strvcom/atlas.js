@@ -199,13 +199,16 @@ class Application {
    *                                        the service's API on the app.services object and for
    *                                        passing configuration data to it
    * @param     {class}     Component       The service class
+   * @param     {Object}    opts            Runtime options for the service
+   * @param     {Object}    opts.aliases    Bindings to other defined components
    * @return    {this}
    */
-  service(alias, Component) {
+  service(alias, Component, opts = {}) {
     return this::component({
       type: 'service',
       alias,
       Component,
+      aliases: opts.aliases,
     }, this::hidden().catalog.services)
   }
 
@@ -215,13 +218,16 @@ class Application {
    * @param     {String}    alias           The alias for the hook - it will be used for passing
    *                                        configuration data to it
    * @param     {class}     Component       The hook class
+   * @param     {Object}    opts            Runtime options for the hook
+   * @param     {Object}    opts.aliases    Bindings to other defined components
    * @return    {this}
    */
-  hook(alias, Component) {
+  hook(alias, Component, opts = {}) {
     return this::component({
       type: 'hook',
       alias,
       Component,
+      aliases: opts.aliases,
     }, this::hidden().catalog.hooks)
   }
 
@@ -232,13 +238,16 @@ class Application {
    *                                        the action's API on the app.actions object and for
    *                                        passing configuration data to it
    * @param     {class}     Component       The action class
+   * @param     {Object}    opts            Runtime options for the action
+   * @param     {Object}    opts.aliases    Bindings to other defined components
    * @return    {this}
    */
-  action(alias, Component) {
+  action(alias, Component, opts = {}) {
     return this::component({
       type: 'action',
       alias,
       Component,
+      aliases: opts.aliases,
     }, this::hidden().catalog.actions)
   }
 
@@ -358,6 +367,7 @@ class Application {
  * @param     {String}    info.type         The component's type (service, hook, action)
  * @param     {String}    info.alias        The component's user-specified name/alias
  * @param     {Class}     info.Component    The component class
+ * @param     {Object}    info.aliases      Binding information to other defined components
  * @param     {Map}       catalog           The catalog to which to save the component
  * @return    {this}
  */

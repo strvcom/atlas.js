@@ -63,6 +63,15 @@ describe('Application::action()', () => {
     expect(args.config).to.equal(options.config.actions.dummy)
   })
 
+  it('provides the resolve function on action constructor argument', () => {
+    const action = sinon.spy()
+    app.action('dummy', action)
+    const args = action.getCall(0).args[0]
+
+    expect(args).to.have.property('resolve')
+    expect(args.resolve).to.be.a('function')
+  })
+
   it('applies defaults defined on action on top of user-provided config', () => {
     const action = sinon.spy()
     action.defaults = { default: true }
