@@ -331,11 +331,14 @@ class Application {
 
     const { services } = this::hidden().catalog
 
-    // Start all services, in parallel 💪
-    await Promise.all(Array.from(services).map(([alias, service]) =>
+    // Start all services, in the order they were added to the app 💪
+    // Ordering is important here! Some services should be started as the last ones because they
+    // expose some functionality to the outside world and starting those before ie. a database
+    // service is started might break stuff!
+    for (const [alias, service] of services) {
       // eslint-disable-next-line no-use-before-define
-      this::lifecycle.service.start(alias, service.component)
-    ))
+      await this::lifecycle.service.start(alias, service.component)
+    }
 
     this::hidden().started = true
     await this::dispatch('application:start:after', this)
@@ -361,11 +364,12 @@ class Application {
 
     await this::dispatch('application:stop:before', this)
 
-    // Stop all services, in parallel 💪
-    await Promise.all(Array.from(services).map(([alias, service]) =>
+    // Stop all services, in the reverse order they were added to the app 💪
+    // This will make sure the most important services are stopped first.
+    for (const [alias, service] of Array.from(services).reverse()) {
       // eslint-disable-next-line no-use-before-define
-      this::lifecycle.service.stop(alias, service.component)
-    ))
+      await this::lifecycle.service.stop(alias, service.component)
+    }
 
     // Unregister actions
     for (const [alias] of actions) {
