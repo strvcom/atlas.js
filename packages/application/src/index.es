@@ -405,7 +405,9 @@ function expose(collection, property, value) {
  * This function takes variable number of events to be dispatched to hooks
  *
  * @private
- * @param     {String}    event     The event's name
+ * @param     {String|Array}    events    The events' names
+ * @param     {mixed}           subject   The thing that is related to the event (ie. a component)
+ *                                        It is given to the event handler on input.
  * @return    {Promise<void>}
  */
 async function dispatch(events, subject) {
