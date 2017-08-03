@@ -195,87 +195,51 @@ class Application {
   /**
    * Register a service into this app at given alias
    *
-   * @param     {String}    alias     The alias for the service - it will be used for exposing the
-   *                                  service's API on the app.services object and for passing
-   *                                  configuration data to it
-   * @param     {class}    Service    The service class
+   * @param     {String}    alias           The alias for the service - it will be used for exposing
+   *                                        the service's API on the app.services object and for
+   *                                        passing configuration data to it
+   * @param     {class}     Component       The service class
    * @return    {this}
    */
-  service(alias, Service) {
-    const { services } = this::hidden().catalog
-
-    // Safety checks first
-    if (services.has(alias)) {
-      throw new FrameworkError(`Service with alias ${alias} already used`)
-    }
-
-    services.set(alias, new ComponentContainer({
-      alias,
+  service(alias, Component) {
+    return this::component({
       type: 'service',
-      config: this.config.services[alias],
-      Component: Service,
-    }, this))
-
-    this.log.debug({ service: alias }, 'service:add')
-
-    return this
+      alias,
+      Component,
+    }, this::hidden().catalog.services)
   }
 
   /**
    * Register a hook into this app using given alias
    *
-   * @param     {String}    alias     The alias for the hook - it will be used for passing
-   *                                  configuration data to it
-   * @param     {class}    Hook       The hook class
+   * @param     {String}    alias           The alias for the hook - it will be used for passing
+   *                                        configuration data to it
+   * @param     {class}     Component       The hook class
    * @return    {this}
    */
-  hook(alias, Hook) {
-    const { hooks } = this::hidden().catalog
-
-    // Safety checks first
-    if (hooks.has(alias)) {
-      throw new FrameworkError(`Hook with alias ${alias} already used`)
-    }
-
-    hooks.set(alias, new ComponentContainer({
-      alias,
+  hook(alias, Component) {
+    return this::component({
       type: 'hook',
-      config: this.config.hooks[alias],
-      Component: Hook,
-    }, this))
-
-    this.log.debug({ hook: alias }, 'hook:add')
-
-    return this
+      alias,
+      Component,
+    }, this::hidden().catalog.hooks)
   }
 
   /**
    * Register an action into this app at given alias
    *
-   * @param     {String}    alias     The alias for the action - it will be used for exposing the
-   *                                  action's API on the app.actions object and for passing
-   *                                  configuration data to it
-   * @param     {class}    Action     The action class
+   * @param     {String}    alias           The alias for the action - it will be used for exposing
+   *                                        the action's API on the app.actions object and for
+   *                                        passing configuration data to it
+   * @param     {class}     Component       The action class
    * @return    {this}
    */
-  action(alias, Action) {
-    const { actions } = this::hidden().catalog
-
-    // Safety checks first
-    if (actions.has(alias)) {
-      throw new FrameworkError(`Action with alias ${alias} already used`)
-    }
-
-    actions.set(alias, new ComponentContainer({
-      alias,
+  action(alias, Component) {
+    return this::component({
       type: 'action',
-      config: this.config.actions[alias],
-      Component: Action,
-    }, this))
-
-    this.log.debug({ action: alias }, 'action:add')
-
-    return this
+      alias,
+      Component,
+    }, this::hidden().catalog.actions)
   }
 
   /**
@@ -384,6 +348,33 @@ class Application {
 
     return this
   }
+}
+
+/**
+ * Register a component into the given catalog
+ *
+ * @private
+ * @param     {Object}    info              Component information
+ * @param     {String}    info.type         The component's type (service, hook, action)
+ * @param     {String}    info.alias        The component's user-specified name/alias
+ * @param     {Class}     info.Component    The component class
+ * @param     {Map}       catalog           The catalog to which to save the component
+ * @return    {this}
+ */
+function component(info, catalog) {
+  // Safety checks first
+  if (catalog.has(info.alias)) {
+    throw new FrameworkError(`Component with alias ${info.alias} (${info.type}) already used`)
+  }
+
+  // Pull user-provided config for this component
+  const keys = { action: 'actions', service: 'services', hook: 'hooks' }
+  info.config = this.config[keys[info.type]][info.alias]
+
+  catalog.set(info.alias, new ComponentContainer(info, this))
+  this.log.debug({ [info.type]: info.alias }, `${info.type}:add`)
+
+  return this
 }
 
 /**
