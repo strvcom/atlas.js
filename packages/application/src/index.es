@@ -3,9 +3,10 @@
 
 import path from 'path'
 import pino from 'pino'
-import _ from 'lodash'
+import _, { defaultsDeep as defaults } from 'lodash'
 import hidden from 'local-scope/create'
 import { FrameworkError } from '@theframework/errors'
+import { ComponentContainer } from './private'
 
 /**
  * This class represents your application and aggregates all components together
@@ -180,13 +181,13 @@ class Application {
     }
 
     // Default configuration keys
-    this.config = mkdefaults(options.config, {
+    this.config = defaults(options.config, {
       application: {},
       services: {},
       hooks: {},
       actions: {},
     })
-    this.config.application = mkdefaults(this.config.application, Application.defaults)
+    this.config.application = defaults(this.config.application, Application.defaults)
     // Logger 🌲
     this.log = pino(this.config.application.log)
   }
@@ -208,15 +209,12 @@ class Application {
       throw new FrameworkError(`Service with alias ${alias} already used`)
     }
 
-    if (typeof Service !== 'function') {
-      throw new FrameworkError(`Service must be a class, got ${typeof Service}`)
-    }
-
-    this.config.services[alias] = mkdefaults(this.config.services[alias], Service.defaults)
-    services.set(alias, new Service({
-      app: this,
-      log: this.log.child({ service: alias }),
-    }))
+    services.set(alias, new ComponentContainer({
+      alias,
+      type: 'service',
+      config: this.config.services[alias],
+      Component: Service,
+    }, this))
 
     this.log.debug({ service: alias }, 'service:add')
 
@@ -239,15 +237,12 @@ class Application {
       throw new FrameworkError(`Hook with alias ${alias} already used`)
     }
 
-    if (typeof Hook !== 'function') {
-      throw new FrameworkError(`Hook must be a class, got ${typeof Hook}`)
-    }
-
-    this.config.hooks[alias] = mkdefaults(this.config.hooks[alias], Hook.defaults)
-    hooks.set(alias, new Hook({
-      app: this,
-      log: this.log.child({ hook: alias }),
-    }))
+    hooks.set(alias, new ComponentContainer({
+      alias,
+      type: 'hook',
+      config: this.config.hooks[alias],
+      Component: Hook,
+    }, this))
 
     this.log.debug({ hook: alias }, 'hook:add')
 
@@ -271,16 +266,12 @@ class Application {
       throw new FrameworkError(`Action with alias ${alias} already used`)
     }
 
-    if (typeof Action !== 'function') {
-      throw new FrameworkError(`Action must be a class, got ${typeof Action}`)
-    }
-
-    this.config.actions[alias] = mkdefaults(this.config.actions[alias], Action.defaults)
-    actions.set(alias, new Action({
-      app: this,
-      log: this.log.child({ action: alias }),
+    actions.set(alias, new ComponentContainer({
+      alias,
+      type: 'action',
       config: this.config.actions[alias],
-    }))
+      Component: Action,
+    }, this))
 
     this.log.debug({ action: alias }, 'action:add')
 
@@ -306,18 +297,18 @@ class Application {
     // Prepare all hooks, in parallel 💪
     await Promise.all(Array.from(hooks).map(([alias, hook]) =>
     // eslint-disable-next-line no-use-before-define
-      this::lifecycle.hook.prepare(alias, hook)
+      this::lifecycle.hook.prepare(alias, hook.component)
     ))
 
     // Prepare actions
     for (const [alias, action] of actions) {
-      this.actions[alias] = action
+      this.actions[alias] = action.component
     }
 
     // Prepare all services, in parallel 💪
     await Promise.all(Array.from(services).map(([alias, service]) =>
       // eslint-disable-next-line no-use-before-define
-      this::lifecycle.service.prepare(alias, service)
+      this::lifecycle.service.prepare(alias, service.component)
     ))
 
     this::hidden().prepared = true
@@ -343,7 +334,7 @@ class Application {
     // Start all services, in parallel 💪
     await Promise.all(Array.from(services).map(([alias, service]) =>
       // eslint-disable-next-line no-use-before-define
-      this::lifecycle.service.start(alias, service)
+      this::lifecycle.service.start(alias, service.component)
     ))
 
     this::hidden().started = true
@@ -373,7 +364,7 @@ class Application {
     // Stop all services, in parallel 💪
     await Promise.all(Array.from(services).map(([alias, service]) =>
       // eslint-disable-next-line no-use-before-define
-      this::lifecycle.service.stop(alias, service)
+      this::lifecycle.service.stop(alias, service.component)
     ))
 
     // Unregister actions
@@ -389,18 +380,6 @@ class Application {
 
     return this
   }
-}
-
-/**
- * Assign default values to a configuration object
- *
- * @private
- * @param     {Object}    [config={}]    Target object
- * @param     {Object}    [defaults={}]    Default values
- * @return    {Object}
- */
-function mkdefaults(config = {}, defaults = {}) {
-  return _.defaultsDeep(config, defaults)
 }
 
 /**
@@ -437,9 +416,9 @@ async function dispatch(events, subject) {
 
   for (const [alias, hook] of hooks) {
     for (const event of events) {
-      if (typeof hook[event] === 'function') {
+      if (typeof hook.component[event] === 'function') {
         this.log.debug({ hook: alias, event }, 'event:dispatch')
-        tasks.push(hook[event](subject))
+        tasks.push(hook.component[event](subject))
       }
     }
   }
