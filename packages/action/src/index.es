@@ -1,12 +1,9 @@
-class Action {
-  static defaults = {}
+import Component from '@theframework/component'
 
-  app = null
-  log = null
-
+class Action extends Component {
   constructor(options = {}) {
-    this.app = options.app
-    this.log = options.log
+    super(options)
+
     this.config = options.config
   }
 }

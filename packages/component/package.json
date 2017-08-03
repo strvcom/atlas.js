@@ -1,12 +1,11 @@
 {
-  "name": "@theframework/action",
-  "description": "The base Action class all actions should inherit from for @theframework",
+  "name": "@theframework/component",
+  "description": "The main class from which all other components inherit for @theframework. You should not need to use this class directly - it is used internally.",
   "version": "1.0.0",
   "author": "Robert Rossmann <robert.rossmann@strv.com>",
   "bugs": "https://github.com/strvcom/framework/issues",
   "contributors": [],
   "dependencies": {
-    "@theframework/component": "^1.0.0",
     "babel-runtime": "^6.23.0"
   },
   "devDependencies": {},
@@ -14,7 +13,7 @@
     "node": "^8.1.4",
     "npm": "^5.2.0"
   },
-  "homepage": "https://github.com/strvcom/framework/tree/master/packages/action",
+  "homepage": "https://github.com/strvcom/framework/tree/master/packages/component",
   "keywords": [],
   "license": "BSD-3-Clause",
   "main": "src",

@@ -6,6 +6,7 @@
   "bugs": "https://github.com/strvcom/framework/issues",
   "contributors": [],
   "dependencies": {
+    "@theframework/component": "^1.0.0",
     "babel-runtime": "^6.23.0"
   },
   "devDependencies": {},

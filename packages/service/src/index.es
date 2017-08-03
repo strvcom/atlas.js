@@ -1,14 +1,6 @@
-class Service {
-  static defaults = {}
+import Component from '@theframework/component'
 
-  app = null
-  log = null
-
-  constructor(options = {}) {
-    this.app = options.app
-    this.log = options.log
-  }
-
+class Service extends Component {
   prepare(options = {}) {
     this.config = options.config
   }
