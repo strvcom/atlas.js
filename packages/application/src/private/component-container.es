@@ -23,7 +23,7 @@ class ComponentContainer {
   constructor(info, app) {
     this.type = info.type
     this.alias = info.alias
-    this.aliases = info.aliases
+    this.aliases = info.aliases || {}
     this.Component = info.Component
 
     if (typeof this.Component !== 'function') {
