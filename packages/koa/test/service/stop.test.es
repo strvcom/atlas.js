@@ -11,9 +11,6 @@ describe('Koa::stop()', () => {
     sandbox.stub(http.Server.prototype, 'address').callsFake(() => ({
       port: opts.config.server.port,
     }))
-    // sandbox.stub(Koa.prototype, 'start').callsFake(function stubbedStart() {
-    //   this.instance.server = http.createServer()
-    // })
   })
 
   after(() => {
