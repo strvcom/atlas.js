@@ -33,6 +33,9 @@ describe('Application: cross-component communication', () => {
   beforeEach(() => {
     app = new Application({
       root: __dirname,
+      config: { application: { log: {
+        level: 'warn',
+      } } },
     })
 
     app.action('action', DummyAction, { aliases: {
