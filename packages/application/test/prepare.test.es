@@ -119,6 +119,7 @@ describe('Application::prepare()', () => {
     const events = [
       'service:prepare:after',
       'dummy:prepare:after',
+      'application:prepare:after',
     ]
 
     beforeEach(function() {
@@ -150,6 +151,13 @@ describe('Application::prepare()', () => {
 
       expect(proto['service:prepare:after']).to.have.been.calledWith(instance)
       expect(proto['dummy:prepare:after']).to.have.been.calledWith(instance)
+    })
+
+    it('calls the application:prepare:after hook with the application', async () => {
+      const proto = DummyHook.prototype
+      await app.prepare()
+
+      expect(proto['application:prepare:after']).to.have.been.calledWith(app)
     })
 
     it('can handle hooks which do not implement any listeners', async () => {

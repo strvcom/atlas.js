@@ -285,6 +285,7 @@ class Application {
     ))
 
     this::hidden().prepared = true
+    this::dispatch('application:prepare:after', this)
 
     return this
   }
