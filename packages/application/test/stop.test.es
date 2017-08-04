@@ -89,8 +89,6 @@ describe('Application::stop()', () => {
     const events = [
       'application:stop:before',
       'application:stop:after',
-      'service:stop:before',
-      'dummy:stop:before',
     ]
 
     beforeEach(function() {
@@ -110,18 +108,20 @@ describe('Application::stop()', () => {
       }
     })
 
-    it('calls the hook with the service instance before stop', async () => {
+    it('calls the application:stop:before hook with the application instance', async () => {
       const proto = DummyHook.prototype
-      const instance = { api: true }
-      // Redefine the service getter so we can properly test the hooks
-      Object.defineProperty(app.services, 'dummy', {
-        value: instance,
-      })
-
       await app.stop()
 
-      expect(proto['service:stop:before']).to.have.been.calledWith(instance)
-      expect(proto['dummy:stop:before']).to.have.been.calledWith(instance)
+      expect(proto['application:stop:before']).to.have.been.calledWith(app)
+    })
+
+    it('calls the application:stop:after hook with no arguments', async () => {
+      const proto = DummyHook.prototype
+      await app.stop()
+      const args = proto['application:stop:after'].lastCall.args
+
+      expect(args).to.have.length(1)
+      expect(args[0]).to.equal(void 0)
     })
   })
 

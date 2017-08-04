@@ -424,6 +424,7 @@ async function dispatch(events, subject) {
 
   for (const [alias, hook] of hooks) {
     for (const event of events) {
+      // Is this hook listening for the event being dispatched?
       if (typeof hook.component[event] === 'function') {
         this.log.debug({ hook: alias, event }, 'event:dispatch')
         tasks.push(hook.component[event](subject))
@@ -449,12 +450,7 @@ const lifecycle = {
       const instance = await service.prepare()
       this::expose('services', alias, instance)
       this.log.debug({ service: alias }, 'service:prepare:after')
-      await this::dispatch([
-        'service:prepare:after',
-        `${alias}:prepare:after`,
-      ], instance)
     },
-
     /**
      * Start a service
      *
@@ -465,18 +461,9 @@ const lifecycle = {
      */
     async start(alias, service) {
       this.log.debug({ service: alias }, 'service:start:before')
-      await this::dispatch([
-        'service:start:before',
-        `${alias}:start:before`,
-      ], this.services[alias])
       await service.start()
       this.log.debug({ service: alias }, 'service:start:after')
-      await this::dispatch([
-        'service:start:after',
-        `${alias}:start:after`,
-      ], this.services[alias])
     },
-
     /**
      * Stop a service
      *
@@ -487,12 +474,9 @@ const lifecycle = {
      */
     async stop(alias, service) {
       this.log.debug({ service: alias }, 'service:stop:before')
-      await this::dispatch([
-        'service:stop:before',
-        `${alias}:stop:before`,
-      ], this.services[alias])
       delete this.services[alias]
       await service.stop()
+      this.log.debug({ service: alias }, 'service:stop:after')
     },
   },
 
