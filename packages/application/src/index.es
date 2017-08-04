@@ -444,6 +444,7 @@ const lifecycle = {
      * @return    {Promise<void>}
      */
     async prepare(alias, service) {
+      this.log.debug({ service: alias }, 'service:prepare:before')
       const instance = await service.prepare()
       this::expose('services', alias, instance)
       this.log.debug({ service: alias }, 'service:prepare:after')
