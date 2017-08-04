@@ -38,7 +38,7 @@ class Application {
   static init(options = {}) {
     const { env, root } = options
 
-    _.defaultsDeep(options, {
+    defaults(options, {
       config: 'config',
       hooks: 'hooks',
       services: 'services',
