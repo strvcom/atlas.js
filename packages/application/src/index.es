@@ -33,6 +33,7 @@ class Application {
    * @param     {String}      options.hooks='hooks'         Module location for the hooks
    * @param     {String}      options.services='services'   Module location for the services
    * @param     {String}      options.actions='actions'     Module location for the actions
+   * @param     {String}      options.aliases='aliases'     Module location for the aliases
    * @return    {Application}
    */
   static init(options = {}) {
@@ -43,6 +44,7 @@ class Application {
       hooks: 'hooks',
       services: 'services',
       actions: 'actions',
+      aliases: 'aliases',
     })
 
     if (!root) {
@@ -57,24 +59,35 @@ class Application {
       hooks: require(path.resolve(root, options.hooks)),
       services: require(path.resolve(root, options.services)),
       actions: require(path.resolve(root, options.actions)),
+      aliases: require(path.resolve(root, options.aliases)),
       /* eslint-enable global-require */
     }
+
+    defaults(modules.aliases, {
+      actions: {},
+      hooks: {},
+      services: {},
+    })
+
     const config = _.merge({}, modules.config, modules.env)
     const app = new this({ env, root, config })
 
     // Hooks
     for (const [alias, Hook] of Object.entries(modules.hooks)) {
-      app.hook(alias, Hook)
+      const aliases = modules.aliases.hooks[alias]
+      app.hook(alias, Hook, { aliases })
     }
 
     // Services
     for (const [alias, Service] of Object.entries(modules.services)) {
-      app.service(alias, Service)
+      const aliases = modules.aliases.services[alias]
+      app.service(alias, Service, { aliases })
     }
 
     // Actions
     for (const [alias, Action] of Object.entries(modules.actions)) {
-      app.action(alias, Action)
+      const aliases = modules.aliases.actions[alias]
+      app.action(alias, Action, { aliases })
     }
 
     return app
