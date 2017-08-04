@@ -378,8 +378,8 @@ function component(info, catalog) {
   }
 
   // Pull user-provided config for this component
-  const keys = { action: 'actions', service: 'services', hook: 'hooks' }
-  info.config = this.config[keys[info.type]][info.alias]
+  // Use a plural form of the component type, ie., action -> actions, service -> services etc.
+  info.config = this.config[`${info.type}s`][info.alias]
 
   catalog.set(info.alias, new ComponentContainer(info, this))
   this.log.debug({ [info.type]: info.alias }, `${info.type}:add`)

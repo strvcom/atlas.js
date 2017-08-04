@@ -50,8 +50,8 @@ function resolve(name) {
   }
 
   const [type] = name.split(':')
-  const keys = { service: 'services', action: 'actions', hook: 'hooks' }
-  const component = this.app[keys[type]][resolved]
+  // Use a plural form of the component type, ie., action -> actions, service -> services etc.
+  const component = this.app[`${type}s`][resolved]
 
   if (!component) {
     throw new FrameworkError(`Unable to find ${type} ${resolved} bound as ${name}`)
