@@ -43,7 +43,7 @@ describe('Repl::enter()', () => {
     app = new Application({
       root: __dirname,
       config: { actions: { repl: {
-      // Disable history loading/saving
+        // Disable history loading/saving
         historyFile: null,
       } } },
     })
@@ -58,8 +58,24 @@ describe('Repl::enter()', () => {
     expect(instance).to.respondTo('enter')
   })
 
-  it('does not throw TypeError when no options are given', () => {
-    expect(instance.enter()).to.eventually.not.be.rejectedWith(TypeError)
+  it('does not throw TypeError when no options are given', async () => {
+    app = new Application({
+      root: __dirname,
+      config: { actions: { repl: {
+        // Disable history loading/saving
+        historyFile: null,
+        // Disable greeting in this test case
+        greet: false,
+      } } },
+    })
+    app.action('repl', Repl)
+
+    await app.prepare()
+    instance = app.actions.repl
+    const ret = instance.enter()
+    await waitForCall(terminal.once, 2)
+    terminal.emit('exit')
+    return expect(ret).to.eventually.not.be.rejectedWith(TypeError)
   })
 
   it('returns promise', async () => {
@@ -131,6 +147,27 @@ describe('Repl::enter()', () => {
     const args = repl.start.getCall(0).args[0]
 
     expect(args.prompt).to.equal('$ ')
+
+    return ret
+  })
+
+  it('allows disabling the welcome message via config', async () => {
+    app = new Application({
+      root: __dirname,
+      config: { actions: { repl: {
+        greet: false,
+      } } },
+    })
+    app.action('repl', Repl)
+    await app.prepare()
+    const ret = app.actions.repl.enter(opts)
+
+    await waitForCall(terminal.once, 2)
+    terminal.emit('exit')
+
+    const out = opts.output.read()
+
+    expect(out).to.equal(null)
 
     return ret
   })

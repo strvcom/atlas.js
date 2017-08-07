@@ -16,6 +16,7 @@ describe('Action: Repl', () => {
       'username',
       'prompt',
       'newlines',
+      'greet',
     ])
   })
 })

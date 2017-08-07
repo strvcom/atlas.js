@@ -10,6 +10,7 @@ class Repl extends Action {
     historyFile: path.resolve(os.homedir(), '.node_repl_history'),
     username: os.userInfo().username,
     prompt: '✏️ ',
+    greet: true,
     newlines: {
       unix: '\n',
       win32: '\r\n',
@@ -27,8 +28,10 @@ class Repl extends Action {
       this.io.nl = this.config.newlines[this.io.nl]
     }
 
-    this::say(`${this.io.nl}Hello, ${this.config.username}`)
-    this::say('Type `app` to play around. Have fun!')
+    if (this.config.greet) {
+      this::say(`${this.io.nl}Hello, ${this.config.username}`)
+      this::say('Type `app` to play around. Have fun!')
+    }
 
     const history = await this::readHistory()
     const terminal = repl.start({
@@ -43,7 +46,11 @@ class Repl extends Action {
 
     terminal.history = history
     terminal.context.app = this.app
-    terminal.once('exit', () => this::say('Bye 👋'))
+    terminal.once('exit', () => {
+      if (this.config.greet) {
+        this::say('Bye 👋')
+      }
+    })
 
     await new Promise((resolve, reject) => {
       terminal.once('error', reject)
