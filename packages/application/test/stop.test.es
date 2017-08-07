@@ -60,8 +60,8 @@ describe('Application::stop()', () => {
 
 
   describe('Service interactions', () => {
-    beforeEach(function() {
-      this.sb.each.stub(DummyService.prototype, 'stop').resolves()
+    beforeEach(() => {
+      DummyService.prototype.stop = sinon.stub().resolves()
     })
 
 
@@ -91,12 +91,12 @@ describe('Application::stop()', () => {
       'application:stop:after',
     ]
 
-    beforeEach(function() {
-      this.sb.each.stub(DummyService.prototype, 'prepare').resolves()
+    beforeEach(() => {
+      DummyService.prototype.prepare = sinon.stub().resolves()
 
       // Stub out all the event handlers
       for (const event of events) {
-        DummyHook.prototype[event] = this.sb.each.stub().resolves()
+        DummyHook.prototype[event] = sinon.stub().resolves()
       }
     })
 

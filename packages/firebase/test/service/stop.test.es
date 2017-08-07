@@ -11,7 +11,7 @@ describe('Firebase::stop()', () => {
     }
 
     this.sb.each.stub(Admin.credential, 'cert').returns({})
-    this.sb.each.stub(Admin, 'initializeApp').returns(fakeFb)
+    this.sb.each.stub(Object.getPrototypeOf(Admin), 'initializeApp').returns(fakeFb)
 
     instance = new Firebase({
       config: {

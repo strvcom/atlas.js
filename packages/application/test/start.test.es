@@ -10,7 +10,7 @@ describe('Application::start()', () => {
   let app
   let options
 
-  beforeEach(function() {
+  beforeEach(() => {
     options = {
       root: __dirname,
       config: {
@@ -27,7 +27,7 @@ describe('Application::start()', () => {
       },
     }
     app = new Application(options)
-    this.sb.each.stub(app, 'prepare').resolves()
+    app.prepare = sinon.stub().resolves()
   })
 
 
@@ -52,8 +52,8 @@ describe('Application::start()', () => {
 
 
   describe('Service interactions', () => {
-    beforeEach(function() {
-      this.sb.each.stub(DummyService.prototype, 'start').resolves()
+    beforeEach(() => {
+      DummyService.prototype.start = sinon.stub().resolves()
       app.service('dummy', DummyService)
     })
 
@@ -78,12 +78,12 @@ describe('Application::start()', () => {
       'application:start:after',
     ]
 
-    beforeEach(function() {
-      this.sb.each.stub(DummyService.prototype, 'prepare').resolves()
+    beforeEach(() => {
+      DummyService.prototype.prepare = sinon.stub().resolves()
 
       // Stub out all the event handlers
       for (const event of events) {
-        DummyHook.prototype[event] = this.sb.each.stub().resolves()
+        DummyHook.prototype[event] = sinon.stub().resolves()
       }
 
       app.service('dummy', DummyService)

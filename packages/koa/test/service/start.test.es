@@ -7,7 +7,7 @@ describe('Koa::start()', () => {
   let opts
 
   before(() => {
-    sandbox.stub(http.Server.prototype, 'address').callsFake(() => ({
+    sandbox.stub(Object.getPrototypeOf(http.Server.prototype), 'address').callsFake(() => ({
       port: opts.config.server.port,
     }))
   })
@@ -36,9 +36,11 @@ describe('Koa::start()', () => {
   })
 
   beforeEach(function() {
-    this.sb.each.stub(http.Server.prototype, 'listen').callsFake(function stubbedListen() {
-      setImmediate(() => void this.emit('listening'))
-    })
+    this.sb.each
+      .stub(Object.getPrototypeOf(http.Server.prototype), 'listen')
+      .callsFake(function stubbedListen() {
+        setImmediate(() => void this.emit('listening'))
+      })
   })
 
 

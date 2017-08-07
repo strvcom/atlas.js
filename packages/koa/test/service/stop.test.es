@@ -8,7 +8,7 @@ describe('Koa::stop()', () => {
   let opts
 
   before(() => {
-    sandbox.stub(http.Server.prototype, 'address').callsFake(() => ({
+    sandbox.stub(Object.getPrototypeOf(http.Server.prototype), 'address').callsFake(() => ({
       port: opts.config.server.port,
     }))
   })
@@ -17,7 +17,11 @@ describe('Koa::stop()', () => {
     sandbox.restore()
   })
 
-  beforeEach(() => {
+  beforeEach(function() {
+    this.sb.each
+      .stub(Object.getPrototypeOf(http.Server.prototype), 'close')
+      .callsArgWithAsync(0, null)
+
     instance = new Koa({
       app: {},
       log: {
@@ -49,18 +53,16 @@ describe('Koa::stop()', () => {
     return expect(instance.stop()).to.eventually.be.rejectedWith(FrameworkError, msg)
   })
 
-  it('closes the http server', async function() {
-    this.sb.each.stub(http.Server.prototype, 'close').callsArgWithAsync(0, null)
-
+  it('closes the http server', async () => {
     instance.instance.server = http.createServer()
     await instance.stop()
 
     expect(http.Server.prototype.close).to.have.callCount(1)
   })
 
-  it('throws when the server throws an error while being closed', function() {
+  it('throws when the server throws an error while being closed', () => {
     const err = new Error('simulated close error')
-    this.sb.each.stub(http.Server.prototype, 'close').callsArgWithAsync(0, err)
+    http.Server.prototype.close.callsArgWithAsync(0, err)
 
     instance.instance.server = http.createServer()
     return expect(instance.stop()).to.eventually.be.rejectedWith(Error, new RegExp(err.message))

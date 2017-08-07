@@ -1,5 +1,6 @@
 {
   "name": "@theframework/theframework",
+  "version": "1.0.0",
   "description": "An STRV-developed application framework",
   "author": "Robert Rossmann <robert.rossmann@strv.com>",
   "bugs": "https://github.com/strvcom/framework/issues",
@@ -21,7 +22,7 @@
     "mocha": "^3.5.0",
     "node": "^8.2.1",
     "nyc": "^11.1.0",
-    "sinon": "^2.4.1",
+    "sinon": "^3.0.0",
     "source-map-support": "^0.4.15"
   },
   "engines": {

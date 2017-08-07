@@ -55,8 +55,8 @@ describe('Application::prepare()', () => {
 
 
   describe('Service interactions', () => {
-    beforeEach(function() {
-      this.sb.each.stub(DummyService.prototype, 'prepare').resolves()
+    beforeEach(() => {
+      DummyService.prototype.prepare = sinon.stub().resolves()
       app.service('dummy', DummyService)
     })
 
@@ -96,8 +96,8 @@ describe('Application::prepare()', () => {
 
 
   describe('Hook interactions', () => {
-    beforeEach(function() {
-      this.sb.each.stub(DummyHook.prototype, 'prepare').resolves()
+    beforeEach(() => {
+      DummyHook.prototype.prepare = sinon.stub().resolves()
       app.hook('dummy', DummyHook)
     })
 
@@ -116,9 +116,9 @@ describe('Application::prepare()', () => {
   })
 
   describe('Hook interactions - dispatching events', () => {
-    beforeEach(function() {
-      this.sb.each.stub(DummyService.prototype, 'prepare').resolves()
-      DummyHook.prototype['application:prepare:after'] = this.sb.each.stub().resolves()
+    beforeEach(() => {
+      DummyService.prototype.prepare = sinon.stub().resolves()
+      DummyHook.prototype['application:prepare:after'] = sinon.stub().resolves()
 
       app.service('dummy', DummyService)
       app.hook('dummy', DummyHook)
