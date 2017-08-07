@@ -2,11 +2,19 @@
 SHELL := bash
 export PATH := node_modules/.bin/:$(PATH)
 
+# Modify these variables in local.mk to add flags to the commands, ie.
+# testflags += --reporter nyan
+# Now mocha will be invoked with the extra flag and will show a nice nyan cat as progress bar 🎉
+testflags :=
+compileflags :=
+lintflags :=
+installflags :=
+
 # Do this when make is invoked without targets
 all: compile
 
 compile: install
-	babel . -q --extensions .es --source-maps both --out-dir . --ignore node_modules
+	babel . -q --extensions .es --source-maps both --out-dir . --ignore node_modules $(compileflags)
 
 # In layman's terms: node_modules directory depends on the state of package.json Make will compare
 # their timestamps and only if package.json is newer, it will run this target.
@@ -15,23 +23,23 @@ compile: install
 # thinks node_modules is not up to date and tries to constantly install pacakges. Touching
 # node_modules after installation fixes that.
 node_modules: package.json
-	npm install && \
+	npm install $(installflags) && \
 	lerna bootstrap --loglevel success && \
 	touch node_modules
 
 install: node_modules
 
 lint:
-	eslint --ext .es .
+	eslint --ext .es $(lintflags) .
 
 test: compile
-	mocha
+	mocha $(testflags)
 
 test-debug: compile
-	mocha --inspect --inspect-brk
+	mocha --inspect --inspect-brk $(testflags)
 
 coverage: compile
-	nyc mocha
+	nyc mocha $(testflags)
 
 clean:
 	rm -rf {.nyc_output,coverage,docs}
@@ -51,3 +59,5 @@ pristine: distclean
 	rm -rf node_modules packages/*/node_modules
 
 .PHONY: install lint test test-debug clean distclean pristine
+
+-include local.mk

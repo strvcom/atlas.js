@@ -4,6 +4,7 @@ node_modules
 # Local configuration
 .env
 .bashrc
+local.mk
 
 # Compiled files
 **/*.js
