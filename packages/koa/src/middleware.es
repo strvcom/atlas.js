@@ -7,6 +7,9 @@ class MiddlewareHook extends Hook {
     module: 'middleware',
     middleware: {},
   }
+  static requires = [
+    'service:koa',
+  ]
 
 
   prepare(options) {

@@ -1,6 +1,9 @@
 import hidden from 'local-scope/create'
 import { FrameworkError } from '@theframework/errors'
-import { defaultsDeep as defaults } from 'lodash'
+import {
+  defaultsDeep as defaults,
+  difference,
+} from 'lodash'
 
 /**
  * This class holds and manages a component
@@ -28,6 +31,22 @@ class ComponentContainer {
 
     if (typeof this.Component !== 'function') {
       throw new FrameworkError(`Component must be a class, got ${typeof this.Component}`)
+    }
+
+    // Check if the component received all the aliases it requires
+    const aliases = {
+      provided: Object.keys(this.aliases),
+      required: this.Component.requires || [],
+    }
+    const missing = difference(aliases.required, aliases.provided)
+    const extra = difference(aliases.provided, aliases.required)
+
+    if (missing.length) {
+      throw new FrameworkError(`Unsatisfied component requirements: ${missing.join(', ')}`)
+    }
+
+    if (extra.length) {
+      throw new FrameworkError(`Extraneous aliases provided: ${extra.join(', ')}`)
     }
 
     this.component = new this.Component({

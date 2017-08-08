@@ -14,6 +14,11 @@ describe('Component: basics and API', () => {
     expect(Object.keys(Component.defaults)).to.have.length(0)
   })
 
+  it('has a static requires property with an empty array', () => {
+    expect(Component.requires).to.be.an('array')
+    expect(Component.requires).to.have.length(0)
+  })
+
   it('saves app, log and config objects given on constructor to itself', () => {
     const app = { app: true }
     const log = { log: true }

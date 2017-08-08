@@ -4,6 +4,8 @@ import Action from '@theframework/action'
 import { FrameworkError } from '@theframework/errors'
 
 class DummyAction extends Action {
+  static requires = ['service:dummy']
+
   constructor(options) {
     super(options)
     this.ping = sinon.spy()
@@ -15,6 +17,8 @@ class DummyAction extends Action {
   }
 }
 class DummyService extends Service {
+  static requires = ['action:dummy']
+
   prepare() {
     super.prepare()
     return {

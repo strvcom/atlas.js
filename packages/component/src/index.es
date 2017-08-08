@@ -1,5 +1,6 @@
 class Component {
   static defaults = {}
+  static requires = []
 
   app = null
   log = null

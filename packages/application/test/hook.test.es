@@ -81,4 +81,32 @@ describe('Application::hook()', () => {
 
     expect(args.config).to.have.property('default', true)
   })
+
+  it('throws when aliases do not satisfy requirements of the component', () => {
+    const hook = sinon.spy()
+    hook.requires = ['service:dummy', 'action:dummy']
+    expect(() => {
+      app.hook('dummy', hook)
+    }).to.throw(FrameworkError, /Unsatisfied component requirements/)
+  })
+
+  it('throws when extraneous aliases are specified', () => {
+    const hook = sinon.spy()
+    expect(() => {
+      app.hook('dummy', hook, { aliases: {
+        'service:dummy': 'dummy',
+      } })
+    }).to.throw(FrameworkError, /Extraneous aliases provided/)
+  })
+
+  it('works when all requirements are specified', () => {
+    const hook = sinon.spy()
+    hook.requires = ['service:dummy', 'action:dummy']
+    expect(() => {
+      app.hook('dummy', hook, { aliases: {
+        'service:dummy': 'dummy',
+        'action:dummy': 'dummy',
+      } })
+    }).to.not.throw()
+  })
 })
