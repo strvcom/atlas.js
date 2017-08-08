@@ -65,6 +65,59 @@ That's it! Nothing else needs to be installed. 🎉
 
 ## Usage
 
+> This is a complete usage example. Real world apps would split at least the configuration part out into its own module instead of writing it inline like this.
+
+> Also, you may want to check out `Application.init()`, which initialises all the components for you based on file/folder layout you specify. 💪
+
+```js
+// We start by importing the required components...
+import { Application } from '@theframework/core'
+import * as Koa from '@theframework/koa'
+
+// Now we need an instance of the app, so let's make one
+const app = new Application({
+  // We MUST specify the root folder where our app resides
+  // This should usually point to the folder where your package.json resides
+  root: __dirname,
+  // Setting env is optional and it fallbacks to NODE_ENV, of course
+  env: process.env.NODE_ENV,
+  // This is where all the configuration data should be specified, for all the components
+  config: {
+    // Configuration for services
+    services: {
+      // The `http` configuration will be given to the service which we will name as `http`
+      // (see the `app.service()` call below)
+      http: {
+        // This goes to the `listen()` function call
+        server: {
+          port: 3000,
+        },
+        // Any properties which Koa supports can be set here
+        koa: {
+          proxy: true,
+        },
+      },
+    },
+    // Configuration for actions
+    actions: {},
+    // ...aaand configuration for hooks
+    hooks: {},
+  },
+})
+
+// We need to add the components we want to use to the application
+// The first argument is the component's name - it will be used to locate the component's configuration and also the service will be exposed on that property:
+// `app.services.http`, or from another component, `this.component('service:http')`
+app.service('http', Koa.Service)
+
+// Great, we can finally start the app!
+app.start()
+.then(() => console.log('ready!'))
+.catch(err => console.error(err))
+
+export { app }
+```
+
 See the [tutorials](tutorials) directory with detailed code examples and descriptions.
 
 ## License
