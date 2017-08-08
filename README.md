@@ -118,6 +118,38 @@ app.start()
 export { app }
 ```
 
+The configuration options each component accepts are documented in their own package repository/folder.
+
+#### Great... what now?
+
+So you have an app with a Koa service configured and running... Great! But you probably wonder where to define your middleware and routes and all the other important things?
+
+### Meet hooks
+
+Hooks are a piece of code designed to react to some lifecycle events that the framework supports. We need to define our middleware and routes after the Koa service has been initialised (prepared, in the framework's jargon), but before it starts accepting connections.
+
+The following events are currently supported:
+
+- `application:prepare:after` - Use this event to modify or otherwise enhance your components with extra functionality
+- `application:start:before` - Use this event to further configure the service with custom middleware, or register database models or perform other important tasks to prepare the service for handling requests.
+- `application:start:after` - The application is ready for prime time at this moment and services which accept connections are accepting them now. Use this to ie. start workers or schedule jobs.
+- `application:stop:before` - The application has been requested to be shut down (by calling `app.stop()`) - use this to stop workers or perform other important tasks. Note, however, that at this moment all services are still accepting requests, so do not shut down anything important!
+- `application:stop:after` - All services have been stopped or disconnected and the components are no longer available - use this to save important information to disk or perform other important cleanup.
+
+To add middleware to our Koa service, it seems the best fit would be to listen for the `application:start:before` event. But it turns out that this is such a common use case that the `@theframework/koa` package already bundles a middleware loader hook! So let's use it!
+
+```js
+app.hook('middleware', Koa.MiddlewareHook, {
+  aliases: {
+    'service:koa': 'http',
+  },
+})
+```
+
+**Wait, what's that third argument there...?**
+
+You might have noticed that you can name your components in any way you like. This gives you the flexibility to use a component as many times in a single app as you need. However, sometimes a component needs to interact with another component (like that middleware hook needs to talk to our Koa service, which we named `http`) and to do that, we need to tell the Hook where to look for `service:koa`. All components define the names of other components they expect to find and it is your task to tell them where to find them.
+
 See the [tutorials](tutorials) directory with detailed code examples and descriptions.
 
 ## License
