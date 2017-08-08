@@ -1,0 +1,21 @@
+{
+  "source": "packages",
+  "destination": "docs",
+  "includes": ["\\.es$"],
+  "excludes": ["node_modules", "test"],
+  "plugins": [{
+    "name": "esdoc-standard-plugin",
+    "option": {
+      "accessor": {
+        "access": ["public", "protected"],
+        "autoPrivate": false
+      }
+    }
+  }, {
+    "name": "esdoc-ecmascript-proposal-plugin",
+    "option": {
+      "classProperties": true,
+      "functionBind": true
+    }
+  }]
+}

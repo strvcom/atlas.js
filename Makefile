@@ -41,6 +41,9 @@ test-debug: compile
 coverage: compile
 	nyc mocha $(testflags)
 
+docs: compile
+	$(bin)esdoc
+
 clean:
 	rm -rf {.nyc_output,coverage,docs}
 
@@ -58,6 +61,6 @@ distclean: clean
 pristine: distclean
 	rm -rf node_modules packages/*/node_modules
 
-.PHONY: install lint test test-debug clean distclean pristine
+.PHONY: install lint test test-debug docs clean distclean pristine
 
 -include local.mk
