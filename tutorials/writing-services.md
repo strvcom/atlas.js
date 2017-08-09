@@ -4,6 +4,13 @@
 
 A Service is a self-contained component which interacts with some kind of remote/foreign interface. A Database library is a component, an HTTP interface for a particular API may be considered a service. Even the file system may be considered a service, really, although writing a service for that would probably be useless.
 
+Some common traits of a service:
+
+- They are self-contained (they only need their own configuration to work)
+- They do not interact with other components
+- Other components (actions, hooks) interact with the service, instead
+- They keep some kind of persistent connection open to some remote place (websockets, raw TCP etc.)
+
 ## Structure of a service
 
 A service must implement some functionality to work correctly within the framework. Here is a bare class which implements all of them, with documentation and examples.
@@ -14,10 +21,12 @@ A service must implement some functionality to work correctly within the framewo
 import Service from '@theframework/service'
 import request from 'request-promise'
 
-class MyService extends Service {
+class GithubApi extends Service {
   // Default configuration values that your service expects. If the user does
   // not provide a value for the option, the value defined here will be used.
-  static defaults = {}
+  static defaults = {
+    json: true
+  }
   // If your service needs to interact with another service or action, you should declare
   // the name of the component under which you will expect it to find.
   // It is the user's responsibility to map the name you define here to an
@@ -30,10 +39,9 @@ class MyService extends Service {
   // the service interface. It can be an object, a function or even a
   // primitive value.
   async prepare() {
-    this.instance = request.defaults({
-      baseUrl: 'api.github.com',
-      json: true
-    })
+    // this.config contains your component's configuration. It contains any
+    // options supplied by the user and your component's defaults.
+    this.instance = request.defaults(this.config)
 
     // This is what your service's users will be able to access
     return this.instance
@@ -46,10 +54,6 @@ class MyService extends Service {
   async start() {
     // Connect to any remote server or do other I/O to be able to serve your
     // clients.
-    // If you need to access another service/action, you can use
-    // `this.component()`:
-    const http = this.component('service:http')
-    // Do something funny with the `http` service.
   }
 
   // The whole application is about to be stopped. Here you should gracefully
@@ -63,5 +67,44 @@ class MyService extends Service {
   }
 }
 
-export default MyService
+export default GithubApi
+```
+
+## Using a service
+
+Once you have your service class ready, it's time to add it to your app!
+
+```js
+import { Application } from '@theframework/core'
+import GithubApi from './github-api'
+
+const app = new Application({
+  root: __dirname,
+  env: process.env.NODE_ENV,
+  config: {
+    services: {
+      // The property name that you use here must match the component name that
+      // you use when adding the component to the app, so in this case we will
+      // use `githubapi`. Otherwise your configuration won't be delivered to
+      // the component and it will use its defaults.
+      githubapi: {
+        baseUrl: 'https://api.github.com'
+      }
+    }
+  }
+})
+
+// Now add the component to the app! Remember to use the same name for the component
+// as you used in your configuration!
+app.service('githubapi', GithubApi)
+
+// Time to start the app!
+app.start()
+.then(async () => {
+  // You can now access the interface you exposed in your component's
+  // `prepare()` method this way:
+  const githubapi = app.services.githubapi
+  // Calls the github API and fetches the users (imaginary endpoint, don't use!)
+  const res = await githubapi.get({ uri: '/v1/users' })
+})
 ```
