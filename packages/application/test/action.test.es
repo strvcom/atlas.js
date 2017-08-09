@@ -1,7 +1,8 @@
 import Application from '..'
+import Action from '@theframework/action'
 import { FrameworkError } from '@theframework/errors'
 
-class DummyAction {}
+class DummyAction extends Action {}
 
 describe('Application::action()', () => {
   let app
