@@ -53,7 +53,7 @@ export default LifecycleLogger
 
 ## Using a hook
 
-Once you have your hook class redy, it's time to add it to your app!
+Once you have your hook class ready, it's time to add it to your app!
 
 ```js
 import { Application } from '@theframework/core'
