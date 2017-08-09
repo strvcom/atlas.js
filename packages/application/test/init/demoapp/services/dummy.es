@@ -1,3 +1,3 @@
-import Service from '@theframework/service'
+import Service from '@atlas.js/service'
 
 export default class DummyService extends Service {}

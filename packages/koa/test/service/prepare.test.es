@@ -36,14 +36,14 @@ describe('Koa::prepare()', () => {
     expect(instance.instance.env).to.equal('dummy')
   })
 
-  it('sets @theframework/application instance on the context as `framework`', async () => {
+  it('sets @atlas.js/application instance on the context as `atlas`', async () => {
     const app = {}
     instance = new Koa({
       app,
     })
     await instance.prepare()
 
-    expect(instance.instance.context).to.have.property('framework', app)
+    expect(instance.instance.context).to.have.property('atlas', app)
   })
 
   it('sets the service log instance on the context as `log`', async () => {

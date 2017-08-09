@@ -1,5 +1,5 @@
 import path from 'path'
-import Service from '@theframework/service'
+import Service from '@atlas.js/service'
 import * as Admin from 'firebase-admin'
 
 class Firebase extends Service {

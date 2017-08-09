@@ -27,7 +27,7 @@ Here is a bare class which implements all currently supported event handlers.
 > **NOTE**: A hook is not directly accessible from other components! The functionality each hook implements is called upon by the Application class. If you need to run the code in a hook multiple times or re-use it frequently, it is best to implement it as an Action.
 
 ```js
-import Hook from '@theframework/hook'
+import Hook from '@atlas.js/hook'
 
 class LifecycleLogger extends Hook {
 
@@ -56,7 +56,7 @@ export default LifecycleLogger
 Once you have your hook class ready, it's time to add it to your app!
 
 ```js
-import { Application } from '@theframework/core'
+import { Application } from '@atlas.js/core'
 import LifecycleLogger from './lifecycle-logger'
 
 const app = new Application({

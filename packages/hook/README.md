@@ -1,4 +1,4 @@
-# @theframework/hook
+# @atlas.js/hook
 
 The main Hook class from which all other Hooks should inherit.
 

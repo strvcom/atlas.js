@@ -1,6 +1,6 @@
-# @theframework/aws
+# @atlas.js/aws
 
-AWS SDK service for @theframework.
+AWS SDK service for @atlas.js.
 
 ## License
 

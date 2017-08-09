@@ -1,6 +1,6 @@
-# @theframework/nodemailer
+# @atlas.js/nodemailer
 
-A nodemailer-based mailing service for @theframework.
+A nodemailer-based mailing service for @atlas.js.
 
 ## License
 

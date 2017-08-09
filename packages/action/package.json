@@ -1,12 +1,12 @@
 {
-  "name": "@theframework/action",
-  "description": "The base Action class all actions should inherit from for @theframework",
+  "name": "@atlas.js/action",
+  "description": "The base Action class all actions should inherit from for @atlas.js",
   "version": "1.0.0",
   "author": "Robert Rossmann <robert.rossmann@strv.com>",
-  "bugs": "https://github.com/strvcom/framework/issues",
+  "bugs": "https://github.com/strvcom/atlas.js/issues",
   "contributors": [],
   "dependencies": {
-    "@theframework/component": "^1.0.0",
+    "@atlas.js/component": "^1.0.0",
     "babel-runtime": "^6.23.0"
   },
   "devDependencies": {},
@@ -14,12 +14,12 @@
     "node": "^8.1.4",
     "npm": "^5.2.0"
   },
-  "homepage": "https://github.com/strvcom/framework/tree/master/packages/action",
+  "homepage": "https://github.com/strvcom/atlas.js/tree/master/packages/action",
   "keywords": [],
   "license": "BSD-3-Clause",
   "main": "src",
   "repository": {
     "type": "git",
-    "url": "git://github.com/strvcom/framework.git"
+    "url": "git://github.com/strvcom/atlas.js.git"
   }
 }

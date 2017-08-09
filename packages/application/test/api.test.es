@@ -1,5 +1,5 @@
 import Application from '..'
-import { FrameworkError } from '@theframework/errors'
+import { FrameworkError } from '@atlas.js/errors'
 
 describe('Application: basics and API', () => {
   let opts

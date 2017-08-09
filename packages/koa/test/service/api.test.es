@@ -1,4 +1,4 @@
-import Service from '@theframework/service'
+import Service from '@atlas.js/service'
 import { Service as Koa } from '../..'
 
 describe('Service: Koa', () => {
@@ -6,7 +6,7 @@ describe('Service: Koa', () => {
     expect(Koa).to.be.a('function')
   })
 
-  it('extends @theframework/service', () => {
+  it('extends @atlas.js/service', () => {
     expect(new Koa()).to.be.instanceof(Service)
   })
 

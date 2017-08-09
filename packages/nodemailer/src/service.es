@@ -1,5 +1,5 @@
 import nodemailer from 'nodemailer'
-import Service from '@theframework/service'
+import Service from '@atlas.js/service'
 
 class Nodemailer extends Service {
   static defaults = {

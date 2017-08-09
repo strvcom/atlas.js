@@ -1,5 +1,5 @@
 import path from 'path'
-import Hook from '@theframework/hook'
+import Hook from '@atlas.js/hook'
 import hidden from 'local-scope/create'
 
 class MiddlewareHook extends Hook {

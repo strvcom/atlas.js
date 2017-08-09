@@ -1,7 +1,7 @@
 import Application from '..'
-import Service from '@theframework/service'
-import Action from '@theframework/action'
-import { FrameworkError } from '@theframework/errors'
+import Service from '@atlas.js/service'
+import Action from '@atlas.js/action'
+import { FrameworkError } from '@atlas.js/errors'
 
 class DummyAction extends Action {
   static requires = ['service:dummy']

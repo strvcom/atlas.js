@@ -1,4 +1,4 @@
-# @theframework/service
+# @atlas.js/service
 
 The main Service class from which all other Services should inherit.
 

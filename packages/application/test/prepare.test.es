@@ -1,7 +1,7 @@
 import Application from '..'
-import Service from '@theframework/service'
-import Hook from '@theframework/hook'
-import Action from '@theframework/action'
+import Service from '@atlas.js/service'
+import Hook from '@atlas.js/hook'
+import Action from '@atlas.js/action'
 
 class DummyService extends Service {
   static defaults = { default: true }

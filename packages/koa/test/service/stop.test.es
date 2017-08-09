@@ -1,5 +1,5 @@
 import { Service as Koa } from '../..'
-import { FrameworkError } from '@theframework/errors'
+import { FrameworkError } from '@atlas.js/errors'
 import http from 'http'
 
 describe('Koa::stop()', () => {

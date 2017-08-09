@@ -1,6 +1,6 @@
 import http from 'http'
-import Service from '@theframework/service'
-import { FrameworkError } from '@theframework/errors'
+import Service from '@atlas.js/service'
+import { FrameworkError } from '@atlas.js/errors'
 import Koa from 'koa'
 
 class KoaService extends Service {
@@ -31,7 +31,7 @@ class KoaService extends Service {
     // Prepare Koa instance
     this.instance = new Koa()
     this.instance.env = this.app.env
-    this.instance.context.framework = this.app
+    this.instance.context.atlas = this.app
     this.instance.context.log = this.log
 
     // Apply Koa settings

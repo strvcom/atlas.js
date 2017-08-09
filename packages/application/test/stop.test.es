@@ -1,6 +1,6 @@
 import Application from '..'
-import Service from '@theframework/service'
-import Hook from '@theframework/hook'
+import Service from '@atlas.js/service'
+import Hook from '@atlas.js/hook'
 
 class DummyService extends Service {}
 

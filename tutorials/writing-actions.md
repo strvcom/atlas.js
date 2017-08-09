@@ -21,7 +21,7 @@ An Action is a class which is instantiated by the Application upon adding it and
 Here is a bare class which shows how an Action works.
 
 ```js
-import Action from '@theframework/action'
+import Action from '@atlas.js/action'
 import joi from 'joi'
 
 class User extends Action {
@@ -52,7 +52,7 @@ export default User
 Once you have your action class ready, it's time to add it to your app!
 
 ```js
-import { Application } from '@theframework/core'
+import { Application } from '@atlas.js/core'
 import User from './user'
 
 const app = new Application({

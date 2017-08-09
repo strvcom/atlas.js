@@ -18,7 +18,7 @@ A service must implement some functionality to work correctly within the framewo
 > **NOTE**: This class is not what your users will interact with! It's just a state management layer so that the framework can properly interface with your actual service.
 
 ```js
-import Service from '@theframework/service'
+import Service from '@atlas.js/service'
 import request from 'request-promise'
 
 class GithubApi extends Service {
@@ -75,7 +75,7 @@ export default GithubApi
 Once you have your service class ready, it's time to add it to your app!
 
 ```js
-import { Application } from '@theframework/core'
+import { Application } from '@atlas.js/core'
 import GithubApi from './github-api'
 
 const app = new Application({

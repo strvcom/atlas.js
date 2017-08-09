@@ -5,7 +5,7 @@ import path from 'path'
 import pino from 'pino'
 import _, { defaultsDeep as defaults } from 'lodash'
 import hidden from 'local-scope/create'
-import { FrameworkError } from '@theframework/errors'
+import { FrameworkError } from '@atlas.js/errors'
 import { ComponentContainer } from './private'
 
 /**

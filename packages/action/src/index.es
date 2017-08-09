@@ -1,4 +1,4 @@
-import Component from '@theframework/component'
+import Component from '@atlas.js/component'
 
 class Action extends Component {
   static type = 'action'

@@ -1,5 +1,5 @@
 import hidden from 'local-scope/create'
-import { FrameworkError } from '@theframework/errors'
+import { FrameworkError } from '@atlas.js/errors'
 import {
   defaultsDeep as defaults,
   difference,

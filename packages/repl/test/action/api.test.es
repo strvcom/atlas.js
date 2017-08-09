@@ -1,12 +1,12 @@
 import { Action as Repl } from '../..'
-import Action from '@theframework/action'
+import Action from '@atlas.js/action'
 
 describe('Action: Repl', () => {
   it('exists', () => {
     expect(Action).to.be.a('function')
   })
 
-  it('extends @theframework/action', () => {
+  it('extends @atlas.js/action', () => {
     expect(new Repl()).to.be.instanceof(Action)
   })
 

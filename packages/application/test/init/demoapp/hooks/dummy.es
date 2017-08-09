@@ -1,3 +1,3 @@
-import Hook from '@theframework/hook'
+import Hook from '@atlas.js/hook'
 
 export default class DummyHook extends Hook {}

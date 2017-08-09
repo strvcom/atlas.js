@@ -1,21 +1,21 @@
-import * as framework from '..'
+import * as Atlas from '..'
 
-describe('Framework', () => {
+describe('Atlas', () => {
   it('includes the Application class', () => {
-    expect(framework.Application).to.be.a('function')
+    expect(Atlas.Application).to.be.a('function')
   })
 
   it('includes the Service class', () => {
-    expect(framework.Service).to.be.a('function')
+    expect(Atlas.Service).to.be.a('function')
   })
 
   it('includes the Hook class', () => {
-    expect(framework.Hook).to.be.a('function')
+    expect(Atlas.Hook).to.be.a('function')
   })
 
   it('includes the errors package', () => {
-    expect(framework.errors).to.be.an('object')
-    expect(framework.errors).to.include.keys([
+    expect(Atlas.errors).to.be.an('object')
+    expect(Atlas.errors).to.include.keys([
       'FrameworkError',
     ])
   })

@@ -3,7 +3,7 @@ import fs from 'fs'
 import fsp from 'promisified-core/fs'
 import path from 'path'
 import repl from 'repl'
-import Action from '@theframework/action'
+import Action from '@atlas.js/action'
 
 class Repl extends Action {
   static defaults = {

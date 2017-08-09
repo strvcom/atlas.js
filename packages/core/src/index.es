@@ -1,8 +1,8 @@
-import Application from '@theframework/application'
-import Service from '@theframework/service'
-import Hook from '@theframework/hook'
-import Action from '@theframework/action'
-import * as errors from '@theframework/errors'
+import Application from '@atlas.js/application'
+import Service from '@atlas.js/service'
+import Hook from '@atlas.js/hook'
+import Action from '@atlas.js/action'
+import * as errors from '@atlas.js/errors'
 
 export {
   Application,

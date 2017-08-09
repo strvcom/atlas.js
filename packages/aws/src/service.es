@@ -1,4 +1,4 @@
-import Service from '@theframework/service'
+import Service from '@atlas.js/service'
 import { defaultsDeep as defaults } from 'lodash'
 
 class AWS extends Service {

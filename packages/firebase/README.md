@@ -1,6 +1,6 @@
-# @theframework/firebase
+# @atlas.js/firebase
 
-A Firebase-admin service for @theframework.
+A Firebase-admin service for @atlas.js.
 
 ## License
 

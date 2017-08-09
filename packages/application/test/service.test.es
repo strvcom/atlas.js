@@ -1,6 +1,6 @@
 import Application from '..'
-import { FrameworkError } from '@theframework/errors'
-import Service from '@theframework/service'
+import { FrameworkError } from '@atlas.js/errors'
+import Service from '@atlas.js/service'
 
 class DummyService extends Service {}
 

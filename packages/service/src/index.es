@@ -1,4 +1,4 @@
-import Component from '@theframework/component'
+import Component from '@atlas.js/component'
 
 /**
  * Base service class all other services should inherit from

@@ -5,7 +5,7 @@ import crypto from 'crypto'
 import path from 'path'
 import os from 'os'
 import fsp from 'promisified-core/fs'
-import Application from '@theframework/application'
+import Application from '@atlas.js/application'
 import { Action as Repl } from '../..'
 
 function waitForCall(spy, callCount) {
@@ -240,7 +240,7 @@ describe('Repl::enter()', () => {
 
   it('reads and saves history to specified file', async () => {
     // Prepare test history
-    const historyFile = path.resolve(os.tmpdir(), '.strv-framework-test-history')
+    const historyFile = path.resolve(os.tmpdir(), '.strv-atlas-test-history')
     const history = [
       'null',
       'void 0',
@@ -278,7 +278,7 @@ describe('Repl::enter()', () => {
   })
 
   it('does not throw then the history file does not exist', async () => {
-    const tmpname = `.theframework-${crypto.randomBytes(6).toString('hex')}`
+    const tmpname = `.atlas-${crypto.randomBytes(6).toString('hex')}`
     const historyFile = path.resolve(os.tmpdir(), tmpname)
 
     app = new Application({

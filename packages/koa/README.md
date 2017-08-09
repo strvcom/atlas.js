@@ -1,6 +1,6 @@
-# @theframework/koa
+# @atlas.js/koa
 
-Koa.js service and a Middleware hook loader for @theframework.
+Koa.js service and a Middleware hook loader for @atlas.js.
 
 ## License
 

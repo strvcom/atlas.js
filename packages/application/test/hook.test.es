@@ -1,6 +1,6 @@
 import Application from '..'
-import Hook from '@theframework/hook'
-import { FrameworkError } from '@theframework/errors'
+import Hook from '@atlas.js/hook'
+import { FrameworkError } from '@atlas.js/errors'
 
 class DummyHook extends Hook {}
 

@@ -1,4 +1,4 @@
-import Service from '@theframework/service'
+import Service from '@atlas.js/service'
 import { Service as Nodemailer } from '../..'
 
 describe('Service: Nodemailer', () => {
@@ -6,7 +6,7 @@ describe('Service: Nodemailer', () => {
     expect(Nodemailer).to.be.a('function')
   })
 
-  it('extends @theframework/service', () => {
+  it('extends @atlas.js/service', () => {
     expect(new Nodemailer()).to.be.instanceof(Service)
   })
 

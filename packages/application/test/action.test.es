@@ -1,6 +1,6 @@
 import Application from '..'
-import Action from '@theframework/action'
-import { FrameworkError } from '@theframework/errors'
+import Action from '@atlas.js/action'
+import { FrameworkError } from '@atlas.js/errors'
 
 class DummyAction extends Action {}
 

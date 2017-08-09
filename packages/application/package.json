@@ -1,32 +1,32 @@
 {
-  "name": "@theframework/application",
-  "description": "The main Application orchestrator of @theframework",
+  "name": "@atlas.js/application",
+  "description": "The main Application orchestrator of @atlas.js",
   "version": "1.0.0",
   "author": "Robert Rossmann <robert.rossmann@strv.com>",
-  "bugs": "https://github.com/strvcom/framework/issues",
+  "bugs": "https://github.com/strvcom/atlas.js/issues",
   "contributors": [],
   "dependencies": {
-    "@theframework/errors": "^1.0.0",
+    "@atlas.js/errors": "^1.0.0",
     "babel-runtime": "^6.23.0",
     "local-scope": "^1.2.0",
     "lodash": "^4.17.4",
     "pino": "^4.7.0"
   },
   "devDependencies": {
-    "@theframework/hook": "^1.0.0",
-    "@theframework/action": "^1.0.0",
-    "@theframework/service": "^1.0.0"
+    "@atlas.js/hook": "^1.0.0",
+    "@atlas.js/action": "^1.0.0",
+    "@atlas.js/service": "^1.0.0"
   },
   "engines": {
     "node": "^8.1.4",
     "npm": "^5.2.0"
   },
-  "homepage": "https://github.com/strvcom/framework/tree/master/packages/application",
+  "homepage": "https://github.com/strvcom/atlas.js/tree/master/packages/application",
   "keywords": [],
   "license": "BSD-3-Clause",
   "main": "src",
   "repository": {
     "type": "git",
-    "url": "git://github.com/strvcom/framework.git"
+    "url": "git://github.com/strvcom/atlas.js.git"
   }
 }

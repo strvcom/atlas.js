@@ -1,10 +1,10 @@
-[travis-badge]: https://travis-ci.com/strvcom/framework.svg?token=vpBhQ7GACx5Nze8Y9Ju6
-[travis-url]: https://travis-ci.com/strvcom/framework
+[travis-badge]: https://travis-ci.com/strvcom/atlas.js.svg?token=vpBhQ7GACx5Nze8Y9Ju6
+[travis-url]: https://travis-ci.com/strvcom/atlas.js
 [make-badge]: https://img.shields.io/badge/Built%20with-GNU%20Make-brightgreen.svg
 [node-badge]: https://img.shields.io/badge/Node.js-8.0-brightgreen.svg
 [strv-home]: https://www.strv.com
 
-# @theframework
+# @atlas.js
 
 [![Build Status][travis-badge]][travis-url]
 ![Built with GNU Make][make-badge]
@@ -57,11 +57,11 @@ An action is basically a controller in the MVC architecture - it is a group of r
 
 You always need to install the core package:
 
-`npm i --save @theframework/core`
+`npm i --save @atlas.js/core`
 
 If you want, you can install any of the official services (you can always write your own if none of them suit your needs). Let's install the `koa` service:
 
-`npm i --save @theframework/koa`
+`npm i --save @atlas.js/koa`
 
 That's it! Nothing else needs to be installed. 🎉
 
@@ -73,8 +73,8 @@ That's it! Nothing else needs to be installed. 🎉
 
 ```js
 // We start by importing the required components...
-import { Application } from '@theframework/core'
-import * as Koa from '@theframework/koa'
+import { Application } from '@atlas.js/core'
+import * as Koa from '@atlas.js/koa'
 
 // Now we need an instance of the app, so let's make one
 const app = new Application({
@@ -138,7 +138,7 @@ The following events are currently supported:
 - `application:stop:before` - The application has been requested to be shut down (by calling `app.stop()`) - use this to stop workers or perform other important tasks. Note, however, that at this moment all services are still accepting requests, so do not shut down anything important!
 - `application:stop:after` - All services have been stopped or disconnected and the components are no longer available - use this to save important information to disk or perform other important cleanup.
 
-To add middleware to our Koa service, it seems the best fit would be to listen for the `application:start:before` event. But it turns out that this is such a common use case that the `@theframework/koa` package already bundles a middleware loader hook! So let's use it!
+To add middleware to our Koa service, it seems the best fit would be to listen for the `application:start:before` event. But it turns out that this is such a common use case that the `@atlas.js/koa` package already bundles a middleware loader hook! So let's use it!
 
 ```js
 app.hook('middleware', Koa.MiddlewareHook, {
