@@ -19,18 +19,20 @@ This project aims to reduce code duplication when working on backend APIs by mov
 
 ## Core ideas
 
-#### What this is?
+### What this is?
 
 - A lightweight, component-based state management container
 - A container holding any number of small components wrapped into services
 - A tool to speed up application development by not having to write the same boilerplate code over and over again
 
-#### What this is not?
+### What this is not?
 
 - An MVC framework
 - A microservices framework (you can certainly use this to build microservices, it just does not contain all the related functionality that ie. seneca does)
 - Something that will force you to write/organise code in a particular structure
 - Something that will force you to use a specific development tool
+
+## Components
 
 ### Application
 
