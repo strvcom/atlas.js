@@ -14,6 +14,10 @@ describe('Service: basics and API', () => {
     expect(Object.keys(Service.defaults)).to.have.length(0)
   })
 
+  it('has static type property se to service', () => {
+    expect(Service.type).to.equal('service')
+  })
+
   it('implements methods each Service should have', () => {
     const service = new Service()
 

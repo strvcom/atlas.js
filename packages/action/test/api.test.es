@@ -14,6 +14,10 @@ describe('Action: basics and API', () => {
     expect(Object.keys(Action.defaults)).to.have.length(0)
   })
 
+  it('has static type property se to action', () => {
+    expect(Action.type).to.equal('action')
+  })
+
   it('saves app, log and config objects given on constructor to itself', () => {
     const app = { app: true }
     const log = { log: true }
