@@ -1,5 +1,8 @@
 # Tutorials
 
+## [Component basics](component-basics.md)
+> The basic philosophy and structure of all the component types
+
 ## [Writing services](writing-services.md)
 > How to write your own service
 
