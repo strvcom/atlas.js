@@ -18,18 +18,6 @@ describe('Hook: basics and API', () => {
     expect(Hook.type).to.equal('hook')
   })
 
-  it('implements methods each Hook should have', () => {
-    const hook = new Hook()
-
-    expect(hook).to.respondTo('prepare')
-  })
-
-  it('all those methods are synchronous', () => {
-    const hook = new Hook()
-
-    expect(hook.prepare()).to.not.be.a('promise')
-  })
-
   it('saves app and log objects given on constructor to itself', () => {
     const app = { app: true }
     const log = { log: true }

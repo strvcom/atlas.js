@@ -94,27 +94,6 @@ describe('Application::prepare()', () => {
     })
   })
 
-
-  describe('Hook interactions', () => {
-    beforeEach(() => {
-      DummyHook.prototype.prepare = sinon.stub().resolves()
-      app.hook('dummy', DummyHook)
-    })
-
-
-    it('calls prepare on the hook', async () => {
-      await app.prepare()
-      expect(DummyHook.prototype.prepare).to.have.callCount(1)
-    })
-
-    it('calls the method only once for each hook for multiple .prepare() calls', async () => {
-      await app.prepare()
-      await app.prepare()
-
-      expect(DummyHook.prototype.prepare).to.have.callCount(1)
-    })
-  })
-
   describe('Hook interactions - dispatching events', () => {
     beforeEach(() => {
       DummyService.prototype.prepare = sinon.stub().resolves()

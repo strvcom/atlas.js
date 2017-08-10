@@ -11,10 +11,7 @@ class MiddlewareHook extends Hook {
     'service:koa',
   ]
 
-
-  prepare(options) {
-    super.prepare(options)
-
+  'application:prepare:after'() {
     // Load the middleware module from the user-specified directory, relative to root
     // eslint-disable-next-line global-require
     this::hidden().middleware = require(path.resolve(this.app.root, this.config.module))

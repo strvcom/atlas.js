@@ -278,13 +278,7 @@ class Application {
       return this
     }
 
-    const { services, hooks, actions } = this::hidden().catalog
-
-    // Prepare all hooks, in parallel 💪
-    await Promise.all(Array.from(hooks).map(([alias, hook]) =>
-    // eslint-disable-next-line no-use-before-define
-      this::lifecycle.hook.prepare(alias, hook.component)
-    ))
+    const { services, actions } = this::hidden().catalog
 
     // Prepare actions
     for (const [alias, action] of actions) {
