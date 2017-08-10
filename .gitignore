@@ -4,6 +4,7 @@ node_modules
 # Local configuration
 .env
 .bashrc
+.npmrc
 local.mk
 
 # Compiled files
