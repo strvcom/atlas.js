@@ -1,7 +1,7 @@
 {
   "name": "atlas.js",
-  "version": "1.0.0",
   "description": "An STRV-developed application framework",
+  "version": "1.0.0",
   "author": "Robert Rossmann <robert.rossmann@strv.com>",
   "bugs": "https://github.com/strvcom/atlas.js/issues",
   "contributors": [],
