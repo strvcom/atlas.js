@@ -44,6 +44,9 @@ coverage: compile
 docs: compile
 	$(bin)esdoc
 
+publish: compile lint test
+	lerna publish --conventional-commits
+
 clean:
 	rm -rf {.nyc_output,coverage,docs}
 
