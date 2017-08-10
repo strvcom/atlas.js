@@ -1,17 +1,17 @@
 {
   "name": "@atlas.js/repl",
   "description": "A REPL action to drop into interactive shell for @atlas.js",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "author": "Robert Rossmann <robert.rossmann@strv.com>",
   "bugs": "https://github.com/strvcom/atlas.js/issues",
   "contributors": [],
   "dependencies": {
-    "@atlas.js/action": "^1.0.0",
+    "@atlas.js/action": "^0.0.1",
     "babel-runtime": "^6.23.0",
     "promisified-core": "^1.0.0"
   },
   "devDependencies": {
-    "@atlas.js/application": "^1.0.0"
+    "@atlas.js/application": "^0.0.1"
   },
   "engines": {
     "node": "^8.3.0",
