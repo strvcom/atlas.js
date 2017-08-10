@@ -29,9 +29,7 @@ Let's say we are writing an action component... We have a basic class like this 
 import Action from '@atlas.js/service'
 
 class MyAction extends Action {
-  doThing() {
-
-  }
+  doThing() {}
 }
 ```
 

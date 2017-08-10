@@ -1,5 +1,8 @@
 # Tutorials
 
+## [First steps](first-steps.md)
+> Intro to the framework's concepts and basic usage
+
 ## [Component basics](component-basics.md)
 > The basic philosophy and structure of all the component types
 
@@ -11,6 +14,3 @@
 
 ## [Writing hooks](writing-hooks.md)
 > How to write your own hook
-
-## [Accessing components](accessing-components.md)
-> How to access other components from inside a component
