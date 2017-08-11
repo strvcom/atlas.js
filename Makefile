@@ -1,6 +1,7 @@
 # Defining shell is necessary in order to modify PATH
 SHELL := bash
 export PATH := node_modules/.bin/:$(PATH)
+export NODE_OPTIONS := --trace-deprecation --trace-warnings
 
 # Modify these variables in local.mk to add flags to the commands, ie.
 # testflags += --reporter nyan
