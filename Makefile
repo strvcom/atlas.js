@@ -43,7 +43,7 @@ coverage: compile
 	nyc mocha $(testflags)
 
 docs: compile
-	$(bin)esdoc
+	esdoc
 
 publish: compile lint test
 	lerna publish --conventional-commits
