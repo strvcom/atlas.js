@@ -1,7 +1,7 @@
 [travis-badge]: https://travis-ci.com/strvcom/atlas.js.svg?token=vpBhQ7GACx5Nze8Y9Ju6
 [travis-url]: https://travis-ci.com/strvcom/atlas.js
 [make-badge]: https://img.shields.io/badge/Built%20with-GNU%20Make-brightgreen.svg
-[node-badge]: https://img.shields.io/badge/Node.js-8.0-brightgreen.svg
+[node-badge]: https://img.shields.io/badge/Node.js-8.3-brightgreen.svg
 [strv-home]: https://www.strv.com
 
 # @atlas.js
