@@ -17,8 +17,6 @@ all: compile
 compile: install
 	babel . -q --extensions .es --source-maps both --out-dir . --ignore node_modules $(compileflags)
 
-# In layman's terms: node_modules directory depends on the state of package.json Make will compare
-# their timestamps and only if package.json is newer, it will run this target.
 # Note about `touch`:
 # npm does not update the timestamp of the node_modules folder itself. This confuses Make as it
 # thinks node_modules is not up to date and tries to constantly install pacakges. Touching
