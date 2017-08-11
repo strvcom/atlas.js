@@ -49,6 +49,11 @@ publish: compile lint test
 clean:
 	rm -rf {.nyc_output,coverage,docs}
 
+unlock:
+	rm -rf packages/*/node_modules
+	find packages -name package-lock.json -print -delete
+	touch package.json
+
 # Delete all the .js and .js.map files (excluding any potential dotfiles with .js extension)
 distclean: clean
 	find packages test \
