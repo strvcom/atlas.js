@@ -53,11 +53,9 @@ clean:
 distclean: clean
 	find packages test \
 		\( \
-			-name '*.js' \
-			-or -name '*.js.map' \
+			-name '*.js' -or -name '*.js.map' \
 		\) \
-		-not -path "*/node_modules/*" \
-		-not -name '.*.js' \
+		-not -path "*/node_modules/*" -not -name '.*.js' \
 		-print -delete
 
 pristine: distclean
