@@ -63,6 +63,14 @@ describe('Application::start()', () => {
       expect(DummyService.prototype.start).to.have.callCount(1)
     })
 
+    it('calls start with the instance returned from prepare() step', async () => {
+      const instance = { test: true }
+      app.services.dummy = instance
+      await app.start()
+
+      expect(DummyService.prototype.start).to.have.been.calledWith(instance)
+    })
+
     it('calls the method only once for each service for multiple .start() calls', async () => {
       await app.start()
       await app.start()

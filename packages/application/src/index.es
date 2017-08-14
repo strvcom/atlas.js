@@ -468,7 +468,7 @@ const lifecycle = {
      */
     async start(alias, service) {
       this.log.debug({ service: alias }, 'service:start:before')
-      await service.start()
+      await service.start(this.services[alias])
       this.log.debug({ service: alias }, 'service:start:after')
     },
     /**
@@ -481,8 +481,9 @@ const lifecycle = {
      */
     async stop(alias, service) {
       this.log.debug({ service: alias }, 'service:stop:before')
+      const instance = this.services[alias]
       delete this.services[alias]
-      await service.stop()
+      await service.stop(instance)
       this.log.debug({ service: alias }, 'service:stop:after')
     },
   },

@@ -70,6 +70,19 @@ describe('Application::stop()', () => {
       expect(DummyService.prototype.stop).to.have.callCount(1)
     })
 
+    it('passes the exposed instance to the stop() method on the service', async function() {
+      const instance = { test: true }
+      this.sb.each.stub(DummyService.prototype, 'prepare').resolves(instance)
+
+      app = new Application(options)
+      app.service('dummy', DummyService)
+
+      await app.start()
+      await app.stop()
+
+      expect(DummyService.prototype.stop).to.have.been.calledWith(instance)
+    })
+
     it('calls the method only once for each service for multiple .stop() calls', async () => {
       await app.stop()
       await app.stop()
