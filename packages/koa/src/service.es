@@ -29,21 +29,21 @@ class KoaService extends Service {
     super.prepare(options)
 
     // Prepare Koa instance
-    this.instance = new Koa()
-    this.instance.env = this.app.env
-    this.instance.context.atlas = this.app
-    this.instance.context.log = this.log
+    const koa = new Koa()
+    koa.env = this.app.env
+    koa.context.atlas = this.app
+    koa.context.log = this.log
 
     // Apply Koa settings
-    Object.assign(this.instance, this.config.koa)
+    Object.assign(koa, this.config.koa)
 
-    return this.instance
+    return koa
   }
 
-  async start() {
+  async start(koa) {
     const config = this.config
-    const server = http.createServer(this.instance.callback())
-    this.instance.server = server
+    const server = http.createServer(koa.callback())
+    koa.server = server
 
     // Apply server configuration
     Object.assign(server, config.http)
@@ -62,20 +62,19 @@ class KoaService extends Service {
       server.once('error', fail)
 
       // Listen already!
-      this.instance.server.listen(config.server.port, config.server.hostname)
+      koa.server.listen(config.server.port, config.server.hostname)
     })
 
     this.log.info({ addrinfo: server.address() }, 'listening')
   }
 
-  async stop() {
-    if (!this.instance || !this.instance.server) {
+  async stop(koa) {
+    if (!koa || !koa.server) {
       throw new FrameworkError('Cannot stop a non-running server')
     }
 
-    const server = this.instance.server
+    const server = koa.server
     const addrinfo = server.address()
-    this.instance = null
 
     await new Promise((resolve, reject) => {
       server.close(err => {

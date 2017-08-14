@@ -29,7 +29,7 @@ describe('Firebase::stop()', () => {
   })
 
   it('calls delete on the firebase instance', async () => {
-    await service.stop()
+    await service.stop(fakeFb)
 
     expect(fakeFb.delete).to.have.callCount(1)
   })

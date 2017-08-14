@@ -17,19 +17,14 @@ class Firebase extends Service {
       ? require(path.resolve(this.app.root, config.credential))
       : config.credential
 
-    this.instance = Admin.initializeApp({
+    return Admin.initializeApp({
       credential: Admin.credential.cert(credential),
       databaseURL: config.databaseURL,
     }, config.name)
-
-    return this.instance
   }
 
-  async stop() {
-    const instance = this.instance
-    this.instance = null
-
-    await instance.delete()
+  async stop(firebase) {
+    await firebase.delete()
   }
 }
 

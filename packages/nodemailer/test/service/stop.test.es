@@ -30,7 +30,7 @@ describe('Nodemailer::stop()', () => {
   })
 
   it('calls close on the transport instance', async () => {
-    await service.stop()
+    await service.stop(transport)
 
     expect(transport.close).to.have.callCount(1)
   })

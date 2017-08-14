@@ -16,29 +16,26 @@ class Nodemailer extends Service {
   }
 
   async prepare() {
-    this.instance = nodemailer.createTransport(
+    const instance = nodemailer.createTransport(
       await this.config.transport(this.config.options),
       this.config.defaults,
     )
 
     // Attach a child logger to the nodemailer transport
-    this.instance.logger = this.log.child({ transport: this.instance.transporter.name })
+    instance.logger = this.log.child({ transport: instance.transporter.name })
 
     // Apply plugins
     for (const plugin of this.config.plugins || []) {
-      this.instance.use(plugin.event, plugin.plugin(plugin.options))
+      instance.use(plugin.event, plugin.plugin(plugin.options))
     }
 
     // Attach a promisified version of the sendMail function
-    this.instance.send = this.instance::send
+    instance.send = instance::send
 
-    return this.instance
+    return instance
   }
 
-  async stop() {
-    const instance = this.instance
-    this.instance = null
-
+  async stop(instance) {
     await instance.close()
   }
 }

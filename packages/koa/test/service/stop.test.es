@@ -2,9 +2,10 @@ import { Service as Koa } from '../..'
 import { FrameworkError } from '@atlas.js/errors'
 import http from 'http'
 
-describe('Koa::stop()', () => {
+describe('Koa::stop(instance)', () => {
   const sandbox = sinon.sandbox.create()
   let service
+  let instance
   let opts
 
   before(() => {
@@ -17,7 +18,7 @@ describe('Koa::stop()', () => {
     sandbox.restore()
   })
 
-  beforeEach(function() {
+  beforeEach(async function() {
     this.sb.each
       .stub(Object.getPrototypeOf(http.Server.prototype), 'close')
       .callsArgWithAsync(0, null)
@@ -38,24 +39,28 @@ describe('Koa::stop()', () => {
       },
     }
 
-    return service.prepare(opts)
+    instance = await service.prepare(opts)
+    instance.server = http.createServer()
   })
 
 
   it('throws when called on an instance not yet started', () => {
+    delete instance.server
     const msg = /Cannot stop a non-running server/
-    return expect(service.stop()).to.eventually.be.rejectedWith(FrameworkError, msg)
+    return expect(service.stop(instance)).to.eventually.be.rejectedWith(FrameworkError, msg)
   })
 
   it('throws when called on an instance not yet prepared', () => {
+    delete instance.server
     const msg = /Cannot stop a non-running server/
-    service = new Koa()
-    return expect(service.stop()).to.eventually.be.rejectedWith(FrameworkError, msg)
+    service = new Koa({
+      log: { info: () => {} },
+    })
+    return expect(service.stop(instance)).to.eventually.be.rejectedWith(FrameworkError, msg)
   })
 
   it('closes the http server', async () => {
-    service.instance.server = http.createServer()
-    await service.stop()
+    await service.stop(instance)
 
     expect(http.Server.prototype.close).to.have.callCount(1)
   })
@@ -64,7 +69,9 @@ describe('Koa::stop()', () => {
     const err = new Error('simulated close error')
     http.Server.prototype.close.callsArgWithAsync(0, err)
 
-    service.instance.server = http.createServer()
-    return expect(service.stop()).to.eventually.be.rejectedWith(Error, new RegExp(err.message))
+    return expect(service.stop(instance)).to.eventually.be.rejectedWith(
+      Error,
+      new RegExp(err.message)
+    )
   })
 })

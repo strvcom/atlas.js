@@ -12,7 +12,7 @@ class AWS extends Service {
   }
 
   prepare() {
-    this.instance = {}
+    const aws = {}
 
     for (const [service, config] of Object.entries(this.config.services)) {
       defaults(config, this.config.globals)
@@ -22,14 +22,14 @@ class AWS extends Service {
       // eslint-disable-next-line global-require
       const AWSService = require(`aws-sdk/clients/${service.toLowerCase()}`)
 
-      this.instance[service] = new AWSService(config)
+      aws[service] = new AWSService(config)
     }
 
-    return this.instance
+    return aws
   }
 
   stop() {
-    this.instance = null
+    // noop
   }
 }
 
