@@ -2,7 +2,7 @@ import nodemailer from 'nodemailer'
 import { Service as Nodemailer } from '../..'
 
 describe('Nodemailer::stop()', () => {
-  let instance
+  let service
   let transport
 
   beforeEach(function() {
@@ -12,7 +12,7 @@ describe('Nodemailer::stop()', () => {
     }
     this.sb.each.stub(nodemailer, 'createTransport').returns(transport)
 
-    instance = new Nodemailer({
+    service = new Nodemailer({
       log: {
         child: sinon.stub(),
       },
@@ -21,16 +21,16 @@ describe('Nodemailer::stop()', () => {
       },
     })
 
-    return instance.prepare()
+    return service.prepare()
   })
 
 
   it('exists', () => {
-    expect(instance).to.respondTo('stop')
+    expect(service).to.respondTo('stop')
   })
 
   it('calls close on the transport instance', async () => {
-    await instance.stop()
+    await service.stop()
 
     expect(transport.close).to.have.callCount(1)
   })

@@ -2,58 +2,58 @@ import koa from 'koa'
 import { Service as Koa } from '../..'
 
 describe('Koa::prepare()', () => {
-  let instance
+  let service
 
   beforeEach(() => {
-    instance = new Koa({
+    service = new Koa({
       app: {},
       log: {},
       config: {},
     })
 
-    return instance.prepare()
+    return service.prepare()
   })
 
 
   it('exists', () => {
-    expect(instance).to.respondTo('prepare')
+    expect(service).to.respondTo('prepare')
   })
 
-  it('exposes the original koa instance on this.instance', () => {
-    expect(instance.instance).to.be.instanceOf(koa)
+  it('exposes the original koa instance on this.service', () => {
+    expect(service.instance).to.be.instanceof(koa)
   })
 
-  it('returns the koa instance as well', async () => {
-    expect(await instance.prepare()).to.be.instanceOf(koa)
+  it('returns the koa service as well', async () => {
+    expect(await service.prepare()).to.be.instanceof(koa)
   })
 
   it('sets env on the koa instance based on the env of the app', async () => {
-    instance = new Koa({
+    service = new Koa({
       app: { env: 'dummy' },
     })
-    await instance.prepare()
+    await service.prepare()
 
-    expect(instance.instance.env).to.equal('dummy')
+    expect(service.instance.env).to.equal('dummy')
   })
 
   it('sets @atlas.js/application instance on the context as `atlas`', async () => {
     const app = {}
-    instance = new Koa({
+    service = new Koa({
       app,
     })
-    await instance.prepare()
+    await service.prepare()
 
-    expect(instance.instance.context).to.have.property('atlas', app)
+    expect(service.instance.context).to.have.property('atlas', app)
   })
 
   it('sets the service log instance on the context as `log`', async () => {
     const log = {}
-    instance = new Koa({
+    service = new Koa({
       app: {},
       log,
     })
-    await instance.prepare()
+    await service.prepare()
 
-    expect(instance.instance.context).to.have.property('log', log)
+    expect(service.instance.context).to.have.property('log', log)
   })
 })

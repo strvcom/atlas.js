@@ -2,7 +2,7 @@ import nodemailer from 'nodemailer'
 import { Service as Nodemailer } from '../..'
 
 describe('Nodemailer::prepare()', () => {
-  let instance
+  let service
   let transport
   let config
 
@@ -21,7 +21,7 @@ describe('Nodemailer::prepare()', () => {
     }
     this.sb.each.stub(nodemailer, 'createTransport').returns(transport)
 
-    instance = new Nodemailer({
+    service = new Nodemailer({
       log: {
         child: sinon.stub(),
       },
@@ -31,31 +31,31 @@ describe('Nodemailer::prepare()', () => {
 
 
   it('exists', () => {
-    expect(instance).to.respondTo('prepare')
+    expect(service).to.respondTo('prepare')
   })
 
   it('returns the client created by createTransport', async () => {
-    expect(await instance.prepare()).to.equal(transport)
+    expect(await service.prepare()).to.equal(transport)
   })
 
   it('gives the initialised transporter to createTransport as first arg', async () => {
     const transporter = { transporter: true }
     config.transport.returns(transporter)
-    await instance.prepare()
+    await service.prepare()
     const args = nodemailer.createTransport.lastCall.args
 
     expect(args[0]).to.equal(transporter)
   })
 
   it('applies default email options from config.defaults', async () => {
-    await instance.prepare()
+    await service.prepare()
     const args = nodemailer.createTransport.lastCall.args
 
     expect(args[1]).to.equal(config.defaults)
   })
 
   it('creates the transport with the config data at options', async () => {
-    await instance.prepare()
+    await service.prepare()
 
     expect(config.transport).to.have.callCount(1)
     expect(config.transport).to.have.been.calledWith(config.options)
@@ -72,14 +72,14 @@ describe('Nodemailer::prepare()', () => {
       event: 'stream',
       options: {},
     }]
-    instance = new Nodemailer({
+    service = new Nodemailer({
       log: {
         child: sinon.stub(),
       },
       config,
     })
 
-    await instance.prepare()
+    await service.prepare()
 
     expect(transport.use).to.have.callCount(config.plugins.length)
 

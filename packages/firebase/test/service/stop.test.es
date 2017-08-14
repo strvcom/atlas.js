@@ -1,7 +1,7 @@
 import Admin from 'firebase-admin'
 import { Service as Firebase } from '../..'
 
-let instance
+let service
 let fakeFb
 
 describe('Firebase::stop()', () => {
@@ -13,23 +13,23 @@ describe('Firebase::stop()', () => {
     this.sb.each.stub(Admin.credential, 'cert').returns({})
     this.sb.each.stub(Object.getPrototypeOf(Admin), 'initializeApp').returns(fakeFb)
 
-    instance = new Firebase({
+    service = new Firebase({
       config: {
         name: 'test',
         databaseURL: 'test-url.firebaseio.com',
       },
     })
 
-    return instance.prepare()
+    return service.prepare()
   })
 
 
   it('exists', () => {
-    expect(instance).to.respondTo('stop')
+    expect(service).to.respondTo('stop')
   })
 
   it('calls delete on the firebase instance', async () => {
-    await instance.stop()
+    await service.stop()
 
     expect(fakeFb.delete).to.have.callCount(1)
   })

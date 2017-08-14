@@ -2,7 +2,7 @@ import Admin from 'firebase-admin'
 import { Service as Firebase } from '../..'
 
 describe('Firebase::prepare()', () => {
-  let instance
+  let service
   let fakeFb
 
   beforeEach(function() {
@@ -11,27 +11,27 @@ describe('Firebase::prepare()', () => {
     this.sb.each.stub(Admin.credential, 'cert').returns({})
     this.sb.each.stub(Object.getPrototypeOf(Admin), 'initializeApp').returns(fakeFb)
 
-    instance = new Firebase({
+    service = new Firebase({
       config: {
         name: 'test',
         databaseURL: 'test-url.firebaseio.com',
       },
     })
 
-    return instance.prepare()
+    return service.prepare()
   })
 
 
   it('exists', () => {
-    expect(instance).to.respondTo('prepare')
+    expect(service).to.respondTo('prepare')
   })
 
   it('returns the client created by initializeApp', async () => {
-    expect(await instance.prepare()).to.equal(fakeFb)
+    expect(await service.prepare()).to.equal(fakeFb)
   })
 
   it('passes the configuration data to the initializeApp function', async () => {
-    await instance.prepare()
+    await service.prepare()
 
     expect(Admin.initializeApp).to.have.been.calledWith({
       credential: {},
@@ -41,7 +41,7 @@ describe('Firebase::prepare()', () => {
 
   it('loads the credentials from file if the credential is a string', async () => {
     Admin.credential.cert.returnsArg(0)
-    instance = new Firebase({
+    service = new Firebase({
       app: { root: __dirname },
       config: {
         name: 'test',
@@ -49,7 +49,7 @@ describe('Firebase::prepare()', () => {
       },
     })
 
-    await instance.prepare()
+    await service.prepare()
 
     const arg = Admin.initializeApp.lastCall.args[0]
 

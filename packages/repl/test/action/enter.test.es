@@ -23,7 +23,7 @@ function waitForCall(spy, callCount) {
 describe('Repl::enter()', () => {
   let app
   let terminal
-  let instance
+  let action
   let opts
 
   beforeEach(async function() {
@@ -50,12 +50,12 @@ describe('Repl::enter()', () => {
     app.action('repl', Repl)
 
     await app.prepare()
-    instance = app.actions.repl
+    action = app.actions.repl
   })
 
 
   it('exists', () => {
-    expect(instance).to.respondTo('enter')
+    expect(action).to.respondTo('enter')
   })
 
   it('does not throw TypeError when no options are given', async () => {
@@ -71,15 +71,15 @@ describe('Repl::enter()', () => {
     app.action('repl', Repl)
 
     await app.prepare()
-    instance = app.actions.repl
-    const ret = instance.enter()
+    action = app.actions.repl
+    const ret = action.enter()
     await waitForCall(terminal.once, 2)
     terminal.emit('exit')
     return expect(ret).to.eventually.not.be.rejectedWith(TypeError)
   })
 
   it('returns promise', async () => {
-    const ret = instance.enter(opts)
+    const ret = action.enter(opts)
     expect(ret).to.be.a('promise')
 
     await waitForCall(terminal.once, 2)
@@ -92,7 +92,7 @@ describe('Repl::enter()', () => {
     // Sanity check
     expect(terminal.context).to.not.have.property('app')
 
-    const ret = instance.enter(opts)
+    const ret = action.enter(opts)
     await waitForCall(terminal.once, 2)
     terminal.emit('exit')
 
@@ -102,7 +102,7 @@ describe('Repl::enter()', () => {
   })
 
   it('sets some defaults on the repl instance', async () => {
-    const ret = instance.enter(opts)
+    const ret = action.enter(opts)
     await waitForCall(terminal.once, 2)
     terminal.emit('exit')
 
@@ -174,7 +174,7 @@ describe('Repl::enter()', () => {
 
   it('allows overriding the newline sequence via input options', async () => {
     opts.nl = '\r\n'
-    const ret = instance.enter(opts)
+    const ret = action.enter(opts)
     await waitForCall(terminal.once, 2)
     terminal.emit('exit')
     await ret
@@ -212,7 +212,7 @@ describe('Repl::enter()', () => {
 
   it('supports the `win32` line ending specifier', async () => {
     opts.nl = 'win32'
-    const ret = instance.enter(opts)
+    const ret = action.enter(opts)
     await waitForCall(terminal.once, 2)
     terminal.emit('exit')
     await ret
@@ -226,7 +226,7 @@ describe('Repl::enter()', () => {
 
   it('supports the `unix` line ending specifier', async () => {
     opts.nl = 'unix'
-    const ret = instance.enter(opts)
+    const ret = action.enter(opts)
     await waitForCall(terminal.once, 2)
     terminal.emit('exit')
     await ret

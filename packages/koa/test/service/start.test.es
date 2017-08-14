@@ -3,7 +3,7 @@ import http from 'http'
 
 describe('Koa::start()', () => {
   const sandbox = sinon.sandbox.create()
-  let instance
+  let service
   let opts
 
   before(() => {
@@ -30,9 +30,9 @@ describe('Koa::start()', () => {
         },
       },
     }
-    instance = new Koa(opts)
+    service = new Koa(opts)
 
-    return instance.prepare()
+    return service.prepare()
   })
 
   beforeEach(function() {
@@ -45,25 +45,25 @@ describe('Koa::start()', () => {
 
 
   it('exists', () => {
-    expect(instance).to.respondTo('start')
+    expect(service).to.respondTo('start')
   })
 
-  it('creates and exposes the http server on the koa instance via `server`', async () => {
-    await instance.start()
+  it('creates and exposes the http server on the koa service via `server`', async () => {
+    await service.start()
 
-    expect(instance.instance).to.have.property('server')
-    expect(instance.instance.server).to.be.instanceOf(http.Server)
+    expect(service.instance).to.have.property('server')
+    expect(service.instance.server).to.be.serviceOf(http.Server)
   })
 
-  it('applies http config to the server instance', async () => {
-    await instance.start()
-    const { server } = instance.instance
+  it('applies http config to the server service', async () => {
+    await service.start()
+    const { server } = service.instance
 
     expect(server).to.have.property('timeout', opts.config.http.timeout)
   })
 
   it('binds to specified hostname and port', async () => {
-    await instance.start()
+    await service.start()
     const [port, host] = http.Server.prototype.listen.getCall(0).args
 
     expect(port).to.equal(opts.config.server.port)
@@ -75,6 +75,6 @@ describe('Koa::start()', () => {
       setImmediate(() => void this.emit('error', new Error('simulated bind error')))
     })
 
-    return expect(instance.start()).to.eventually.be.rejectedWith(Error, /simulated bind error/)
+    return expect(service.start()).to.eventually.be.rejectedWith(Error, /simulated bind error/)
   })
 })

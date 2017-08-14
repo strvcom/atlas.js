@@ -4,7 +4,7 @@ import http from 'http'
 
 describe('Koa::stop()', () => {
   const sandbox = sinon.sandbox.create()
-  let instance
+  let service
   let opts
 
   before(() => {
@@ -22,7 +22,7 @@ describe('Koa::stop()', () => {
       .stub(Object.getPrototypeOf(http.Server.prototype), 'close')
       .callsArgWithAsync(0, null)
 
-    instance = new Koa({
+    service = new Koa({
       app: {},
       log: {
         info: () => {},
@@ -38,24 +38,24 @@ describe('Koa::stop()', () => {
       },
     }
 
-    return instance.prepare(opts)
+    return service.prepare(opts)
   })
 
 
   it('throws when called on an instance not yet started', () => {
     const msg = /Cannot stop a non-running server/
-    return expect(instance.stop()).to.eventually.be.rejectedWith(FrameworkError, msg)
+    return expect(service.stop()).to.eventually.be.rejectedWith(FrameworkError, msg)
   })
 
   it('throws when called on an instance not yet prepared', () => {
     const msg = /Cannot stop a non-running server/
-    instance = new Koa()
-    return expect(instance.stop()).to.eventually.be.rejectedWith(FrameworkError, msg)
+    service = new Koa()
+    return expect(service.stop()).to.eventually.be.rejectedWith(FrameworkError, msg)
   })
 
   it('closes the http server', async () => {
-    instance.instance.server = http.createServer()
-    await instance.stop()
+    service.instance.server = http.createServer()
+    await service.stop()
 
     expect(http.Server.prototype.close).to.have.callCount(1)
   })
@@ -64,7 +64,7 @@ describe('Koa::stop()', () => {
     const err = new Error('simulated close error')
     http.Server.prototype.close.callsArgWithAsync(0, err)
 
-    instance.instance.server = http.createServer()
-    return expect(instance.stop()).to.eventually.be.rejectedWith(Error, new RegExp(err.message))
+    service.instance.server = http.createServer()
+    return expect(service.stop()).to.eventually.be.rejectedWith(Error, new RegExp(err.message))
   })
 })

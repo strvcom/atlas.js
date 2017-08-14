@@ -2,7 +2,7 @@ import nodemailer from 'nodemailer'
 import { Service as Nodemailer } from '../..'
 
 describe('Nodemailer - instance::send()', () => {
-  let instance
+  let service
   let client
   let transport
 
@@ -14,7 +14,7 @@ describe('Nodemailer - instance::send()', () => {
     }
     this.sb.each.stub(nodemailer, 'createTransport').returns(transport)
 
-    instance = new Nodemailer({
+    service = new Nodemailer({
       log: {
         child: sinon.stub(),
       },
@@ -22,7 +22,7 @@ describe('Nodemailer - instance::send()', () => {
         transport: () => {},
       },
     })
-    client = await instance.prepare()
+    client = await service.prepare()
   })
 
   it('exists', () => {

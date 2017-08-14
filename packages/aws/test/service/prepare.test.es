@@ -2,26 +2,26 @@ import awssdk from 'aws-sdk'
 import { Service as AWS } from '../..'
 
 describe('AWS::prepare()', () => {
-  let instance
+  let service
 
   beforeEach(() => {
-    instance = new AWS({
+    service = new AWS({
       config: {
         globals: {},
         services: {},
       },
     })
 
-    return instance.prepare()
+    return service.prepare()
   })
 
 
   it('exists', () => {
-    expect(instance).to.respondTo('prepare')
+    expect(service).to.respondTo('prepare')
   })
 
   it('creates a service instance for all services configured in the services config', async () => {
-    instance = new AWS({
+    service = new AWS({
       config: {
         services: {
           s3: {},
@@ -31,7 +31,7 @@ describe('AWS::prepare()', () => {
       },
     })
 
-    const api = await instance.prepare()
+    const api = await service.prepare()
 
     expect(api.s3).to.be.instanceof(awssdk.S3)
     expect(api.cloudWatchLogs).to.be.instanceof(awssdk.CloudWatchLogs)
@@ -39,7 +39,7 @@ describe('AWS::prepare()', () => {
   })
 
   it('applies global config to all service configurations', async () => {
-    instance = new AWS({
+    service = new AWS({
       config: {
         globals: {
           testprop: 'test',
@@ -50,7 +50,7 @@ describe('AWS::prepare()', () => {
       },
     })
 
-    const api = await instance.prepare()
+    const api = await service.prepare()
     const config = api.s3.config
 
     expect(config.testprop).to.equal('test')
