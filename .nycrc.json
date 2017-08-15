@@ -1,7 +1,8 @@
 {
   "reporter": [
     "lcov",
-    "text"
+    "text",
+    "html"
   ],
   "exclude": [
     "node_modules",
