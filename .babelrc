@@ -3,14 +3,14 @@
   "comments": false,
   "sourceMaps": true,
   "plugins": [
+    ["transform-runtime", {
+      "polyfill": false,
+      "regenerator": false
+    }],
     ["transform-es2015-modules-commonjs", {
       "allowTopLevelThis": false
     }],
     "transform-class-properties",
-    "transform-function-bind",
-    ["transform-runtime", {
-      "polyfill": false,
-      "regenerator": false
-    }]
+    "transform-function-bind"
   ]
 }
