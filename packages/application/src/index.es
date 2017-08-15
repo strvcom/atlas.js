@@ -3,7 +3,10 @@
 
 import path from 'path'
 import pino from 'pino'
-import _, { defaultsDeep as defaults } from 'lodash'
+import {
+  defaultsDeep as defaults,
+  merge,
+} from 'lodash'
 import hidden from 'local-scope/create'
 import { FrameworkError } from '@atlas.js/errors'
 import { ComponentContainer } from './private'
@@ -69,7 +72,7 @@ class Application {
       services: {},
     })
 
-    const config = _.merge({}, modules.config, modules.env)
+    const config = merge({}, modules.config, modules.env)
     const app = new this({ env, root, config })
 
     // Hooks
