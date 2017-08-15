@@ -489,22 +489,6 @@ const lifecycle = {
       this.log.debug({ service: alias }, 'service:stop:after')
     },
   },
-
-  hook: {
-    /**
-     * Prepare a hook
-     *
-     * @private
-     * @param     {String}    alias     The Service's alias
-     * @param     {Object}    hook      The hook implementation
-     * @return    {Promise<void>}
-     */
-    async prepare(alias, hook) {
-      this.log.debug({ hook: alias }, 'hook:prepare:before')
-      await hook.prepare()
-      this.log.debug({ hook: alias }, 'hook:prepare:after')
-    },
-  },
 }
 
 export default Application
