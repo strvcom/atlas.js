@@ -424,7 +424,9 @@ function expose(collection, property, value) {
  * @return    {Promise<void>}
  */
 async function dispatch(events, subject) {
-  events = Array.isArray(events) ? events : [events]
+  events = Array.isArray(events)
+    ? events
+    : [events]
 
   const { hooks } = this::hidden().catalog
   const tasks = []
