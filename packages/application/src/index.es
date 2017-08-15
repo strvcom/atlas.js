@@ -57,8 +57,6 @@ class Application {
     // Got all we need, start loading the modules
     const modules = {
       /* eslint-disable global-require */
-      config: require(path.resolve(root, options.config)),
-      env: require(path.resolve(root, options.config, 'env', options.env)),
       hooks: require(path.resolve(root, options.hooks)),
       services: require(path.resolve(root, options.services)),
       actions: require(path.resolve(root, options.actions)),
@@ -72,8 +70,8 @@ class Application {
       services: {},
     })
 
-    const config = merge({}, modules.config, modules.env)
-    const app = new this({ env, root, config })
+    // Loading the config is supported at the constructor level, no need to do anything special here
+    const app = new this({ env, root, config: options.config })
 
     // Hooks
     for (const [alias, Hook] of Object.entries(modules.hooks)) {
@@ -196,8 +194,7 @@ class Application {
       throw new FrameworkError(`root must be explicitly specified, got ${options.root}`)
     }
 
-    // Default configuration keys
-    this.config = defaults(options.config, {
+    this.config = this::mkconfig(options.config, {
       application: {},
       services: {},
       hooks: {},
@@ -445,6 +442,57 @@ async function dispatch(events, subject) {
   }
 
   await Promise.all(tasks)
+}
+
+/**
+ * Create the configuration object from inputs
+ *
+ * For path-based configs, we additionally want to support:
+ * - loading and applying environment overrides on top of the base config
+ * - loading and applying local (per-machine) overrides on top of the config
+ *
+ * This pattern is frequent-enough that it warrants explicit support in core.
+ *
+ * @private
+ * @param     {Object}    config        Base config object, or a string (path) to a module where
+ *                                      the config should be loded from, relative to root
+ * @param     {Object}    base          Default values to be added to the config object if they are
+ *                                      missing from the input config
+ * @return    {Object}
+ */
+function mkconfig(config = {}, base = {}) {
+  if (typeof config === 'string') {
+    const modules = {
+      // eslint-disable-next-line global-require
+      config: require(path.resolve(this.root, config)),
+      env: optrequire(path.resolve(this.root, config, 'env', this.env)),
+      local: optrequire(path.resolve(this.root, config, 'local')),
+    }
+
+    modules.config = merge(modules.config, modules.env, modules.local)
+    modules.config = defaults(modules.config, base)
+
+    return modules.config
+  }
+
+  // It's just an object, apply defaults and GTFO
+  return defaults(config, base)
+}
+
+/**
+ * Optionally require a module, returning null if the module cannot be required
+ *
+ * @private
+ * @param     {String}    module    Path to the module to require
+ * @return    {mixed}               The module's contents
+ */
+function optrequire(module) {
+  try {
+    // eslint-disable-next-line global-require
+    return require(module)
+  } catch (err) {
+    return null
+  }
 }
 
 const lifecycle = {

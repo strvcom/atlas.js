@@ -27,6 +27,34 @@ describe('Application: basics and API', () => {
     expect(() => new Application(opts)).to.throw(FrameworkError, /env not specified/)
   })
 
+  it('supports loading the config from module path relative to root', () => {
+    // Sanity check
+    const modules = {
+      /* eslint-disable global-require */
+      base: require('./democonfig'),
+      env: require('./democonfig/env/lolenv'),
+      local: require('./democonfig/local'),
+      /* eslint-enable global-require */
+    }
+    expect(modules.base.application).to.have.property('fromBase', true)
+    expect(modules.base.application).to.have.property('fromEnv', false)
+    expect(modules.base.application).to.have.property('fromLocal', false)
+    expect(modules.env.application).to.have.property('fromEnv', true)
+    expect(modules.env.application).to.have.property('fromLocal', false)
+    expect(modules.local.application).to.have.property('fromLocal', true)
+
+    const app = new Application({
+      root: __dirname,
+      env: 'lolenv',
+      config: 'democonfig',
+    })
+    const config = app.config.application
+
+    expect(config).to.have.property('fromBase', true)
+    expect(config).to.have.property('fromEnv', true)
+    expect(config).to.have.property('fromLocal', true)
+  })
+
   it('responds to known methods', () => {
     const app = new Application(opts)
 
