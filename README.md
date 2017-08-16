@@ -42,6 +42,10 @@ Here is a list of available components. You can also find a changelog for each c
 |@atlas.js/nodemailer|[![@atlas.js/core][nodemailer-npm-version]][nodemailer-npm-home]|[packages/nodemailer](packages/nodemailer)|
 |@atlas.js/repl|[![@atlas.js/core][repl-npm-version]][repl-npm-home]|[packages/repl](packages/repl)|
 
+## Tutorials
+
+Need help? Check out the [tutorials](tutorials) folder for... well... tutorials. 🤓
+
 ## About
 
 This project aims to reduce code duplication when working on backend APIs by moving some boilerplate code into "packages". Most projects require some kind of database, maybe a remote datastore, some authentication mechanism, perhaps an interface to a 3rd party service and a bunch of other things - why implement the basics over and over again for all projects? Just install a package, add it into the main Application and let it configure the service for you. It will also make sure that the service is shut down properly when the process needs to be terminated so you do not lose important progress or keep your http clients hanging without response (as is the case when stopping a running server with `process.exit()`).
