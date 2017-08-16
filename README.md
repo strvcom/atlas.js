@@ -2,6 +2,8 @@
 [travis-url]: https://travis-ci.com/strvcom/atlas.js
 [make-badge]: https://img.shields.io/badge/Built%20with-GNU%20Make-brightgreen.svg?style=flat-square
 [node-badge]: https://img.shields.io/badge/Node.js-8.3-brightgreen.svg?style=flat-square
+[coveralls-badge]: https://img.shields.io/coveralls/strvcom/atlas.js.svg?style=flat-square
+[coveralls-url]: https://coveralls.io/github/strvcom/atlas.js
 [strv-home]: https://www.strv.com
 [core-npm-version]: https://img.shields.io/npm/v/@atlas.js/core.svg?style=flat-square
 [aws-npm-version]: https://img.shields.io/npm/v/@atlas.js/aws.svg?style=flat-square
@@ -21,6 +23,7 @@
 # @atlas.js
 
 [![Build Status][travis-badge]][travis-url]
+[![Coverage Status][coveralls-badge]][coveralls-url]
 ![Built with GNU Make][make-badge]
 ![Required Node.js version][node-badge]
 
