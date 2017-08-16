@@ -12,8 +12,8 @@ describe('Service: Koa', () => {
 
   it('defines its defaults', () => {
     expect(Koa.defaults).to.have.all.keys([
+      'listen',
       'server',
-      'http',
       'koa',
     ])
   })

@@ -24,8 +24,8 @@ describe('Koa::start(instance)', () => {
         info: () => {},
       },
       config: {
-        http: { timeout: 20000 },
-        server: {
+        server: { timeout: 20000 },
+        listen: {
           port: 1234,
           hostname: '127.0.0.2',
         },
@@ -59,15 +59,15 @@ describe('Koa::start(instance)', () => {
     await service.start(instance)
     const { server } = instance
 
-    expect(server).to.have.property('timeout', opts.config.http.timeout)
+    expect(server).to.have.property('timeout', opts.config.server.timeout)
   })
 
   it('binds to specified hostname and port', async () => {
     await service.start(instance)
     const [port, host] = http.Server.prototype.listen.getCall(0).args
 
-    expect(port).to.equal(opts.config.server.port)
-    expect(host).to.equal(opts.config.server.hostname)
+    expect(port).to.equal(opts.config.listen.port)
+    expect(host).to.equal(opts.config.listen.hostname)
   })
 
   it('throws if the server emits `error` while binding to a host/port', () => {

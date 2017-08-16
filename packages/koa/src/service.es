@@ -5,12 +5,12 @@ import Koa from 'koa'
 
 class KoaService extends Service {
   static defaults = {
-    server: {
+    listen: {
       port: 3000,
       hostname: '127.0.0.1',
     },
 
-    http: {
+    server: {
       // Overriden in this implementation to have lower value
       // These days most of the people deploy to Heroku and they have a request timeout of 30s
       timeout: 30000,
@@ -46,7 +46,7 @@ class KoaService extends Service {
     koa.server = server
 
     // Apply server configuration
-    Object.assign(server, config.http)
+    Object.assign(server, config.server)
 
     // Ugh, events to Promise mapping is so ugly... 🤦
     await new Promise((resolve, reject) => {
@@ -62,7 +62,7 @@ class KoaService extends Service {
       server.once('error', fail)
 
       // Listen already!
-      koa.server.listen(config.server.port, config.server.hostname)
+      koa.server.listen(config.listen.port, config.listen.hostname)
     })
 
     this.log.info({ addrinfo: server.address() }, 'listening')
