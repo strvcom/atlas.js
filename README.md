@@ -1,8 +1,22 @@
-[travis-badge]: https://travis-ci.com/strvcom/atlas.js.svg?token=vpBhQ7GACx5Nze8Y9Ju6
+[travis-badge]: https://img.shields.io/travis/strvcom/atlas.js?style=flat-square
 [travis-url]: https://travis-ci.com/strvcom/atlas.js
-[make-badge]: https://img.shields.io/badge/Built%20with-GNU%20Make-brightgreen.svg
-[node-badge]: https://img.shields.io/badge/Node.js-8.3-brightgreen.svg
+[make-badge]: https://img.shields.io/badge/Built%20with-GNU%20Make-brightgreen.svg?style=flat-square
+[node-badge]: https://img.shields.io/badge/Node.js-8.3-brightgreen.svg?style=flat-square
 [strv-home]: https://www.strv.com
+[core-npm-version]: https://img.shields.io/npm/v/@atlas.js/core.svg?style=flat-square
+[aws-npm-version]: https://img.shields.io/npm/v/@atlas.js/aws.svg?style=flat-square
+[firebase-npm-version]: https://img.shields.io/npm/v/@atlas.js/firebase.svg?style=flat-square
+[koa-npm-version]: https://img.shields.io/npm/v/@atlas.js/koa.svg?style=flat-square
+[mongoose-npm-version]: https://img.shields.io/npm/v/@atlas.js/mongoose.svg?style=flat-square
+[nodemailer-npm-version]: https://img.shields.io/npm/v/@atlas.js/nodemailer.svg?style=flat-square
+[repl-npm-version]: https://img.shields.io/npm/v/@atlas.js/repl.svg?style=flat-square
+[core-npm-home]: https://npmjs.org/package/@atlas.js/core
+[aws-npm-home]: https://npmjs.org/package/@atlas.js/aws
+[firebase-npm-home]: https://npmjs.org/package/@atlas.js/firebase
+[koa-npm-home]: https://npmjs.org/package/@atlas.js/koa
+[mongoose-npm-home]: https://npmjs.org/package/@atlas.js/mongoose
+[nodemailer-npm-home]: https://npmjs.org/package/@atlas.js/nodemailer
+[repl-npm-home]: https://npmjs.org/package/@atlas.js/repl
 
 # @atlas.js
 
@@ -12,6 +26,21 @@
 
 > An awesome component-based Node.js framework for all kinds of use cases 🚀<br>
 > Built with ❤️ at [STRV][strv-home]
+
+
+## Available components
+
+Here is a list of available components. You can also find a changelog for each component in the component's repository.
+
+|Component|Version|Repository|
+|:-:|:-:|:-:|
+|@atlas.js/core|[![@atlas.js/core][core-npm-version]][core-npm-home]|[packages/core](packages/core)|
+|@atlas.js/aws|[![@atlas.js/core][aws-npm-version]][aws-npm-home]|[packages/aws](packages/aws)|
+|@atlas.js/firebase|[![@atlas.js/core][firebase-npm-version]][firebase-npm-home]|[packages/firebase](packages/firebase)|
+|@atlas.js/koa|[![@atlas.js/core][koa-npm-version]][koa-npm-home]|[packages/koa](packages/koa)|
+|@atlas.js/mongoose|[![@atlas.js/core][mongoose-npm-version]][mongoose-npm-home]|[packages/mongoose](packages/mongoose)|
+|@atlas.js/nodemailer|[![@atlas.js/core][nodemailer-npm-version]][nodemailer-npm-home]|[packages/nodemailer](packages/nodemailer)|
+|@atlas.js/repl|[![@atlas.js/core][repl-npm-version]][repl-npm-home]|[packages/repl](packages/repl)|
 
 ## About
 
