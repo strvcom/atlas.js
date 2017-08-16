@@ -1,7 +1,7 @@
 {
   "name": "@atlas.js/application",
   "description": "The main Application orchestrator of @atlas.js",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "author": "Robert Rossmann <robert.rossmann@strv.com>",
   "bugs": "https://github.com/strvcom/atlas.js/issues",
   "contributors": [],
