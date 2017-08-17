@@ -45,6 +45,8 @@ Here is a list of available components. You can also find a changelog for each c
 |@atlas.js/nodemailer|[![@atlas.js/core][nodemailer-npm-version]][nodemailer-npm-home]|[packages/nodemailer](packages/nodemailer)|
 |@atlas.js/repl|[![@atlas.js/core][repl-npm-version]][repl-npm-home]|[packages/repl](packages/repl)|
 
+> Did not find what you were looking for? Write your own! Check the tutorials linked below.
+
 ## Tutorials
 
 Need help? Check out the [tutorials](tutorials) folder for... well... tutorials. 🤓
