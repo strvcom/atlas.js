@@ -18,6 +18,8 @@ const app = new Application({
       email: {
         // The transport module to be used
         transport: require('nodemailer-ses-transport'),
+        // Alternatively, just pass the module's name
+        transport: 'nodemailer-ses-transport',
         // These options are passed to the transport module unmodified, so go
         // read the transport's docs as to what you can set here!
         options: {},
@@ -27,6 +29,8 @@ const app = new Application({
           event: 'compile',
           // The plugin module to use
           plugin: require('nodemailer-html-to-text'),
+          // Alternatively, just pass the module's name
+          plugin: 'nodemailer-html-to-text',
           // These options are passed directly to the plugin function
           options: {},
         }]

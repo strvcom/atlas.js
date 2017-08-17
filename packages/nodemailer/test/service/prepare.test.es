@@ -1,5 +1,7 @@
+import path from 'path'
 import nodemailer from 'nodemailer'
 import { Service as Nodemailer } from '../..'
+import dummytransport from './dummytransport'
 
 describe('Nodemailer::prepare()', () => {
   let service
@@ -71,6 +73,10 @@ describe('Nodemailer::prepare()', () => {
       plugin: sinon.stub(),
       event: 'stream',
       options: {},
+    }, {
+      plugin: path.resolve(__dirname, 'dummyplugin'),
+      event: 'compile',
+      options: {},
     }]
     service = new Nodemailer({
       log: {
@@ -83,11 +89,31 @@ describe('Nodemailer::prepare()', () => {
 
     expect(transport.use).to.have.callCount(config.plugins.length)
 
-    config.plugins.forEach((plugin, index) => {
+    config.plugins.forEach((definition, index) => {
       const call = transport.use.getCall(index)
-      expect(call.args[0]).to.equal(plugin.event)
-      expect(plugin.plugin).to.have.callCount(1)
-      expect(plugin.plugin).to.have.been.calledWith(plugin.options)
+      expect(call.args[0]).to.equal(definition.event)
+      // if the plugin was specified as string, reauire it; otherwise check the function
+      const plugin = typeof definition.plugin === 'string'
+        // eslint-disable-next-line global-require
+        ? require(path.resolve(__dirname, definition.plugin))
+        : definition.plugin
+      expect(plugin).to.have.callCount(1)
+      expect(plugin).to.have.been.calledWith(definition.options)
     })
+  })
+
+  it('allows specifying the transport as string which will be required', async () => {
+    // Sanity check
+    expect(dummytransport).to.have.callCount(0)
+
+    config.transport = path.resolve(__dirname, 'dummytransport')
+    service = new Nodemailer({
+      log: { child: sinon.stub() },
+      config,
+    })
+
+    await service.prepare()
+    expect(dummytransport).to.have.callCount(1)
+    expect(dummytransport).to.have.been.calledWith(config.options)
   })
 })

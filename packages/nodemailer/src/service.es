@@ -16,8 +16,12 @@ class Nodemailer extends Service {
   }
 
   async prepare() {
+    const transport = typeof this.config.transport === 'string'
+      // eslint-disable-next-line global-require
+      ? require(this.config.transport)
+      : this.config.transport
     const instance = nodemailer.createTransport(
-      await this.config.transport(this.config.options),
+      await transport(this.config.options),
       this.config.defaults,
     )
 
@@ -25,8 +29,12 @@ class Nodemailer extends Service {
     instance.logger = this.log.child({ transport: instance.transporter.name })
 
     // Apply plugins
-    for (const plugin of this.config.plugins || []) {
-      instance.use(plugin.event, plugin.plugin(plugin.options))
+    for (const definition of this.config.plugins || []) {
+      const plugin = typeof definition.plugin === 'string'
+        // eslint-disable-next-line global-require
+        ? require(definition.plugin)
+        : definition.plugin
+      instance.use(definition.event, plugin(definition.options))
     }
 
     // Attach a promisified version of the sendMail function
