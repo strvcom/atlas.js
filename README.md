@@ -22,6 +22,8 @@
 
 # @atlas.js
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/strvcom/atlas.js.svg)](https://greenkeeper.io/)
+
 [![Build Status][travis-badge]][travis-url]
 [![Coverage Status][coveralls-badge]][coveralls-url]
 ![Built with GNU Make][make-badge]
