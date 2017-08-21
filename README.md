@@ -4,6 +4,8 @@
 [node-badge]: https://img.shields.io/badge/Node.js-8.3-brightgreen.svg?style=flat-square
 [coveralls-badge]: https://img.shields.io/coveralls/strvcom/atlas.js.svg?style=flat-square
 [coveralls-url]: https://coveralls.io/github/strvcom/atlas.js
+[greenkeeper-badge]: https://badges.greenkeeper.io/strvcom/atlas.js.svg
+[greenkeeper-url]: https://greenkeeper.io
 [strv-home]: https://www.strv.com
 [core-npm-version]: https://img.shields.io/npm/v/@atlas.js/core.svg?style=flat-square
 [aws-npm-version]: https://img.shields.io/npm/v/@atlas.js/aws.svg?style=flat-square
@@ -26,6 +28,8 @@
 [![Coverage Status][coveralls-badge]][coveralls-url]
 ![Built with GNU Make][make-badge]
 ![Required Node.js version][node-badge]
+
+[![Greenkeeper badge][greenkeeper-badge]][greenkeeper-url]
 
 > An awesome component-based Node.js framework for all kinds of use cases 🚀<br>
 > Built with ❤️ at [STRV][strv-home]
