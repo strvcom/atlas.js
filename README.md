@@ -1,7 +1,7 @@
 [travis-badge]: https://img.shields.io/travis/strvcom/atlas.js.svg?style=flat-square
 [travis-url]: https://travis-ci.org/strvcom/atlas.js
 [make-badge]: https://img.shields.io/badge/Built%20with-GNU%20Make-brightgreen.svg?style=flat-square
-[node-badge]: https://img.shields.io/badge/Node.js-8.3-brightgreen.svg?style=flat-square
+[node-badge]: https://img.shields.io/badge/Node.js-8.0-brightgreen.svg?style=flat-square
 [coveralls-badge]: https://img.shields.io/coveralls/strvcom/atlas.js.svg?style=flat-square
 [coveralls-url]: https://coveralls.io/github/strvcom/atlas.js
 [greenkeeper-badge]: https://badges.greenkeeper.io/strvcom/atlas.js.svg
