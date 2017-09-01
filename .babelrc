@@ -3,6 +3,7 @@
   "comments": false,
   "sourceMaps": true,
   "plugins": [
+    "syntax-object-rest-spread",
     ["transform-runtime", {
       "polyfill": false,
       "regenerator": false
