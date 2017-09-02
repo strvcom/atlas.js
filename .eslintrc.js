@@ -4,7 +4,7 @@ module.exports = {
   parser: 'babel-eslint',
 
   extends: [
-    '@strv/javascript/environments/nodejs/v8',
+    '@strv/javascript/environments/nodejs/v8-3',
     '@strv/javascript/environments/nodejs/optional',
     '@strv/javascript/coding-styles/recommended',
   ],
@@ -24,14 +24,5 @@ module.exports = {
       sinon: true,
       expect: true,
     },
-
-    env: {
-      mocha: true
-    },
-
-    rules: {
-      // Do not require function names in test files
-      'func-names': 'off',
-    }
   }]
 }
