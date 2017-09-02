@@ -41,7 +41,7 @@
 Here is a list of available components. You can also find a changelog for each component in the component's repository.
 
 |Component|Version|Repository|
-|:-:|:-:|:-:|
+|-|-|-|
 |@atlas.js/core|[![@atlas.js/core][core-npm-version]][core-npm-home]|[packages/core](packages/core)|
 |@atlas.js/aws|[![@atlas.js/core][aws-npm-version]][aws-npm-home]|[packages/aws](packages/aws)|
 |@atlas.js/firebase|[![@atlas.js/core][firebase-npm-version]][firebase-npm-home]|[packages/firebase](packages/firebase)|
