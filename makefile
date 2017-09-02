@@ -49,6 +49,10 @@ publish: compile lint test
 clean:
 	rm -rf {.nyc_output,coverage,docs}
 
+outdated:
+	npm outdated || true
+	lerna exec "npm outdated || true"
+
 unlock:
 	rm -rf packages/*/node_modules
 	find packages -name package-lock.json -print -delete
