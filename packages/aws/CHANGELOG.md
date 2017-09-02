@@ -1,7 +1,15 @@
 # Change Log
 
 All notable changes to this project will be documented in this file.
-See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+<a name="0.1.2"></a>
+## [0.1.2](https://github.com/strvcom/atlas.js/compare/@atlas.js/aws@0.1.1...@atlas.js/aws@0.1.2) (2017-09-02)
+
+
+
+
+**Note:** Version bump only for package @atlas.js/aws
 
 <a name="0.1.1"></a>
 ## [0.1.1](https://github.com/strvcom/atlas.js/compare/@atlas.js/aws@0.1.0...@atlas.js/aws@0.1.1) (2017-08-16)

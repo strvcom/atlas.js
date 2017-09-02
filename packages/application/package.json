@@ -1,21 +1,21 @@
 {
   "name": "@atlas.js/application",
   "description": "The main Application orchestrator of @atlas.js",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": "Robert Rossmann <robert.rossmann@strv.com>",
   "bugs": "https://github.com/strvcom/atlas.js/issues",
   "contributors": [],
   "dependencies": {
-    "@atlas.js/errors": "^0.0.2",
+    "@atlas.js/errors": "^0.0.3",
     "babel-runtime": "^6.23.0",
     "local-scope": "^1.2.0",
     "lodash": "^4.17.4",
     "pino": "^4.7.0"
   },
   "devDependencies": {
-    "@atlas.js/action": "^0.0.2",
-    "@atlas.js/hook": "^0.0.2",
-    "@atlas.js/service": "^0.0.2"
+    "@atlas.js/action": "^0.0.3",
+    "@atlas.js/hook": "^0.0.3",
+    "@atlas.js/service": "^0.0.3"
   },
   "engines": {
     "node": "^8.3.0",
