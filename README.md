@@ -12,6 +12,7 @@
 [firebase-npm-version]: https://img.shields.io/npm/v/@atlas.js/firebase.svg?style=flat-square
 [koa-npm-version]: https://img.shields.io/npm/v/@atlas.js/koa.svg?style=flat-square
 [mongoose-npm-version]: https://img.shields.io/npm/v/@atlas.js/mongoose.svg?style=flat-square
+[sequelize-npm-version]: https://img.shields.io/npm/v/@atlas.js/sequelize.svg?style=flat-square
 [nodemailer-npm-version]: https://img.shields.io/npm/v/@atlas.js/nodemailer.svg?style=flat-square
 [repl-npm-version]: https://img.shields.io/npm/v/@atlas.js/repl.svg?style=flat-square
 [core-npm-home]: https://npmjs.org/package/@atlas.js/core
@@ -19,6 +20,7 @@
 [firebase-npm-home]: https://npmjs.org/package/@atlas.js/firebase
 [koa-npm-home]: https://npmjs.org/package/@atlas.js/koa
 [mongoose-npm-home]: https://npmjs.org/package/@atlas.js/mongoose
+[sequelize-npm-home]: https://npmjs.org/package/@atlas.js/sequelize
 [nodemailer-npm-home]: https://npmjs.org/package/@atlas.js/nodemailer
 [repl-npm-home]: https://npmjs.org/package/@atlas.js/repl
 
@@ -46,6 +48,7 @@ Here is a list of available components. You can also find a changelog for each c
 |@atlas.js/firebase|[![@atlas.js/core][firebase-npm-version]][firebase-npm-home]|[packages/firebase](packages/firebase)|
 |@atlas.js/koa|[![@atlas.js/core][koa-npm-version]][koa-npm-home]|[packages/koa](packages/koa)|
 |@atlas.js/mongoose|[![@atlas.js/core][mongoose-npm-version]][mongoose-npm-home]|[packages/mongoose](packages/mongoose)|
+|@atlas.js/sequelize|[![@atlas.js/core][sequelize-npm-version]][sequelize-npm-home]|[packages/sequelize](packages/sequelize)|
 |@atlas.js/nodemailer|[![@atlas.js/core][nodemailer-npm-version]][nodemailer-npm-home]|[packages/nodemailer](packages/nodemailer)|
 |@atlas.js/repl|[![@atlas.js/core][repl-npm-version]][repl-npm-home]|[packages/repl](packages/repl)|
 
