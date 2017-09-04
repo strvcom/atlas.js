@@ -6,7 +6,8 @@
   "commands": {
     "publish": {
       "ignore": [
-        "test/**"
+        "test/**",
+        "package-lock.json"
       ]
     }
   },
