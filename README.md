@@ -9,6 +9,7 @@
 [strv-home]: https://www.strv.com
 [core-npm-version]: https://img.shields.io/npm/v/@atlas.js/core.svg?style=flat-square
 [aws-npm-version]: https://img.shields.io/npm/v/@atlas.js/aws.svg?style=flat-square
+[braintree-npm-version]: https://img.shields.io/npm/v/@atlas.js/braintree.svg?style=flat-square
 [firebase-npm-version]: https://img.shields.io/npm/v/@atlas.js/firebase.svg?style=flat-square
 [koa-npm-version]: https://img.shields.io/npm/v/@atlas.js/koa.svg?style=flat-square
 [mongoose-npm-version]: https://img.shields.io/npm/v/@atlas.js/mongoose.svg?style=flat-square
@@ -17,6 +18,7 @@
 [repl-npm-version]: https://img.shields.io/npm/v/@atlas.js/repl.svg?style=flat-square
 [core-npm-home]: https://npmjs.org/package/@atlas.js/core
 [aws-npm-home]: https://npmjs.org/package/@atlas.js/aws
+[braintree-npm-home]: https://npmjs.org/package/@atlas.js/braintree
 [firebase-npm-home]: https://npmjs.org/package/@atlas.js/firebase
 [koa-npm-home]: https://npmjs.org/package/@atlas.js/koa
 [mongoose-npm-home]: https://npmjs.org/package/@atlas.js/mongoose
@@ -44,6 +46,7 @@ Here is a list of available components. You can also find a changelog for each c
 |-|-|-|
 |@atlas.js/core|[![@atlas.js/core][core-npm-version]][core-npm-home]|[packages/core](packages/core)|
 |@atlas.js/aws|[![@atlas.js/core][aws-npm-version]][aws-npm-home]|[packages/aws](packages/aws)|
+|@atlas.js/braintree|[![@atlas.js/core][braintree-npm-version]][braintree-npm-home]|[packages/braintree](packages/braintree)|
 |@atlas.js/firebase|[![@atlas.js/core][firebase-npm-version]][firebase-npm-home]|[packages/firebase](packages/firebase)|
 |@atlas.js/koa|[![@atlas.js/core][koa-npm-version]][koa-npm-home]|[packages/koa](packages/koa)|
 |@atlas.js/mongoose|[![@atlas.js/core][mongoose-npm-version]][mongoose-npm-home]|[packages/mongoose](packages/mongoose)|
