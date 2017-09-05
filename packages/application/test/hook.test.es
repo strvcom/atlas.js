@@ -87,7 +87,7 @@ describe('Application::hook()', () => {
     hook.requires = ['service:dummy', 'action:dummy']
     expect(() => {
       app.hook('dummy', hook)
-    }).to.throw(FrameworkError, /Unsatisfied component requirements/)
+    }).to.throw(FrameworkError, /Missing aliases for component dummy/)
   })
 
   it('throws when extraneous aliases are specified', () => {
@@ -96,7 +96,7 @@ describe('Application::hook()', () => {
       app.hook('dummy', hook, { aliases: {
         'service:dummy': 'dummy',
       } })
-    }).to.throw(FrameworkError, /Extraneous aliases provided/)
+    }).to.throw(FrameworkError, /Unneeded aliases for component dummy/)
   })
 
   it('works when all requirements are specified', () => {

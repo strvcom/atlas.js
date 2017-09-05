@@ -87,7 +87,7 @@ describe('Application::service()', () => {
     service.requires = ['service:dummy', 'action:dummy']
     expect(() => {
       app.service('dummy', service)
-    }).to.throw(FrameworkError, /Unsatisfied component requirements/)
+    }).to.throw(FrameworkError, /Missing aliases for component dummy/)
   })
 
   it('throws when extraneous aliases are specified', () => {
@@ -96,7 +96,7 @@ describe('Application::service()', () => {
       app.service('dummy', service, { aliases: {
         'action:dummy': 'dummy',
       } })
-    }).to.throw(FrameworkError, /Extraneous aliases provided/)
+    }).to.throw(FrameworkError, /Unneeded aliases for component dummy/)
   })
 
   it('works when all requirements are specified', () => {
