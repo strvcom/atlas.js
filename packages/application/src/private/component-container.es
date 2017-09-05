@@ -42,11 +42,11 @@ class ComponentContainer {
     const extra = difference(aliases.provided, aliases.required)
 
     if (missing.length) {
-      throw new FrameworkError(`Unsatisfied component requirements: ${missing.join(', ')}`)
+      throw new FrameworkError(`Missing aliases for component ${this.alias}: ${missing.join(', ')}`)
     }
 
     if (extra.length) {
-      throw new FrameworkError(`Extraneous aliases provided: ${extra.join(', ')}`)
+      throw new FrameworkError(`Unneeded aliases for component ${this.alias}: ${extra.join(', ')}`)
     }
 
     this.component = new this.Component({
@@ -65,7 +65,7 @@ function resolve(name) {
   const resolved = this::hidden().aliases[name]
 
   if (!resolved) {
-    throw new FrameworkError(`Binding for ${name} not defined`)
+    throw new FrameworkError(`Alias for ${name} not defined`)
   }
 
   const [type] = name.split(':')
@@ -73,7 +73,7 @@ function resolve(name) {
   const component = this.app[`${type}s`][resolved]
 
   if (!component) {
-    throw new FrameworkError(`Unable to find ${type} ${resolved} bound as ${name}`)
+    throw new FrameworkError(`Unable to find ${type} ${resolved} aliased as ${name}`)
   }
 
   return component
