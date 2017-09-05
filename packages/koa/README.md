@@ -135,7 +135,51 @@ export default function mkforcehttps(config) {
     await next()
   }
 }
+```
 
+### ContextHook
+
+This hook allows you to extend the Koa context object prototype with custom functions or properties. It might be useful to define response type aliases, such as `ctx.ok()`, or `ctx.forbidden()`.
+
+#### Dependencies
+
+- `service:koa`: A Koa service on which to extend the context
+
+```js
+const app = new Application({
+  config: {
+    hooks: {
+      context: {
+        // The path to the module, relative to root, which should be loaded and
+        // properties/functions from that module added to koa.context
+        module: 'server/context',
+      }
+    }
+  }
+})
+
+app.service('http', Koa.Service)
+app.hook('context', Koa.ContextHook, {
+  aliases: {
+    'service:koa': 'http'
+  }
+})
+await app.start()
+
+// server/context.js
+export default {
+  ok(body = {}) {
+    this.status = 200
+    this.body = body
+  },
+
+  forbidden() {
+    this.status = 403
+    this.body = {
+      error: 'Forbidden'
+    }
+  }
+}
 ```
 
 ## License
