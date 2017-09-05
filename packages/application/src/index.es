@@ -435,7 +435,7 @@ async function dispatch(events, subject) {
     for (const event of events) {
       // Is this hook listening for the event being dispatched?
       if (typeof hook.component[event] === 'function') {
-        this.log.debug({ hook: alias, event }, 'event:dispatch')
+        this.log.debug({ hook: alias, event }, 'hook:event')
         tasks.push(hook.component[event](subject))
       }
     }
