@@ -138,7 +138,7 @@ const app = new Application({
       // (see the `app.service()` call below)
       http: {
         // This goes to the `listen()` function call
-        server: {
+        listen: {
           port: 3000,
         },
         // Any properties which Koa supports can be set here
