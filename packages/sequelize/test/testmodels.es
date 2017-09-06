@@ -33,8 +33,11 @@ class Session extends Model {
   static config = {}
 }
 
+class Empty extends Model {}
+
 export {
   User,
   Session,
   Purchase,
+  Empty,
 }

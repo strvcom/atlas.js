@@ -13,7 +13,7 @@ class AssociationsHook extends Hook {
     for (const [name, Model] of Object.entries(models)) {
       // Each type of relation can associate to multiple models. Iterate on the definition and
       // run the relation for each of the target models
-      for (const [type, relations] of Object.entries(Model.relations)) {
+      for (const [type, relations] of Object.entries(Model.relations || {})) {
         // If the type of the relation does not have a respective function on the source model
         // it is not a valid relation!
         if (typeof Model[type] !== 'function') {

@@ -90,4 +90,10 @@ describe('Sequelize: RelationsHook', () => {
 
     delete User.relations.hasMany.Problems
   })
+
+  it('does not throw when the model has no relations defined', () => {
+    expect(() => {
+      hook['application:prepare:after']()
+    }).to.not.throw()
+  })
 })
