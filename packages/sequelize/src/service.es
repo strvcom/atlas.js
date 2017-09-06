@@ -28,8 +28,10 @@ class Sequelize extends Service {
   }
 }
 
-function strace(...args) {
-  this.log.trace({ args }, 'sequelize activity')
+function strace(sql) {
+  // Remove the initial "Executing (default): prefix to keep only the SQL statement"
+  sql = sql.slice(sql.indexOf(':') + 1)
+  this.log.trace({ sql }, 'sequelize activity')
 }
 
 export default Sequelize
