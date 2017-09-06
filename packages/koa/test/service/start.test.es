@@ -9,7 +9,7 @@ describe('Koa::start(instance)', () => {
 
   before(() => {
     sandbox.stub(Object.getPrototypeOf(http.Server.prototype), 'address').callsFake(() => ({
-      port: opts.config.server.port,
+      port: opts.config.listen.port,
     }))
   })
 
@@ -64,7 +64,7 @@ describe('Koa::start(instance)', () => {
 
   it('binds to specified hostname and port', async () => {
     await service.start(instance)
-    const [port, host] = http.Server.prototype.listen.getCall(0).args
+    const [port, host] = http.Server.prototype.listen.lastCall.args
 
     expect(port).to.equal(opts.config.listen.port)
     expect(host).to.equal(opts.config.listen.hostname)
