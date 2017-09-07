@@ -54,8 +54,8 @@ outdated:
 	lerna exec "npm outdated || true"
 
 unlock:
-	rm -rf packages/*/node_modules
-	find packages -name package-lock.json -print -delete
+	rm -rf node_modules packages/*/node_modules
+	find . -name package-lock.json -print -delete
 	touch package.json
 
 # Delete all the .js and .js.map files (excluding any potential dotfiles with .js extension)
