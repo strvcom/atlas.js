@@ -180,6 +180,61 @@ class User extends Model {
 
 Because all those properties already exist on a standard sequelize Model object, and adding them in your own model definition would overwrite them, causing all kinds of issues. Therefore new names had to be chosen.
 
+### MigrationAction
+
+This action contains methods for applying and rolling back your sequelize migrations. The migration files are written exactly like standard Sequelize migrations. In addition to using plain JavaScript migration files, you may also organise your migrations into a folder with an _index.js_ file inside, if the migration requires more data or you simply wish to organise the migration in a different way than a single script.
+
+#### Dependencies
+
+- `service:sequelize`: A sequelize service to use with which to apply/undo the migrations
+
+```js
+// index.js
+import * as sequelize from '@atlas.js/sequelize'
+import { Application } from '@atlas.js/core'
+
+const app = new Application({
+  root: __dirname,
+  config: {
+    actions: {
+      migration: {
+        // The path to the module from which all the migrations should be
+        // loaded, relative to app.root
+        module: 'migrations'
+      }
+    }
+  }
+})
+
+app.action('migration', sequelize.MigrationAction, {
+  aliases: {
+    'service:sequelize': 'database'
+  }
+})
+await app.start()
+
+// Available actions:
+await app.actions.migration.up() // Applies all pending migrations
+await app.actions.migration.down() // Rolls back last applied migration
+await app.actions.migration.pending() // Returns names of pending migrations
+```
+
+#### Running migrations on start
+
+Migrations are not applied automatically on application start. You will need to implement your own hook which implements the `application:start:before` event handler and run the `up()` method from there.
+
+A simple hook doing just that:
+
+```js
+import Hook from '@atlas.js/hook'
+
+export default MigrateHook extends Hook {
+  async 'application:start:before'() {
+    await this.app.actions.migrate.up()
+  }
+}
+```
+
 ## License
 
 See the [LICENSE](LICENSE) file for information.
