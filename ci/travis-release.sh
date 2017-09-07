@@ -17,7 +17,6 @@ git remote add pushback "https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git"
 git checkout "${TRAVIS_BRANCH}"
 
 # Publish!
-npx lerna outdated
 npx lerna publish \
   --sort \
   --conventional-commits \
