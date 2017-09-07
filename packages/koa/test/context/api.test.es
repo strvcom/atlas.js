@@ -51,9 +51,8 @@ describe('Koa: ContextHook', () => {
 
     it('throws when the property already exists on koa.context', () => {
       server.context.testmethod = () => {}
-      expect(() =>
-        hook['application:prepare:after']()
-      ).to.throw(FrameworkError, /Unable to extend koa.context/)
+      expect(() => hook['application:prepare:after']())
+        .to.throw(FrameworkError, /Unable to extend koa.context/)
     })
   })
 })

@@ -11,8 +11,7 @@ describe('Sequelize: ModelsHook', () => {
   })
 
   after(() =>
-    database.close()
-  )
+    database.close())
 
   beforeEach(() => {
     hook = new ModelsHook({

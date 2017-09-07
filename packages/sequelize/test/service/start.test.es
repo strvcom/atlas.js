@@ -20,8 +20,7 @@ describe('Sequelize::start()', () => {
   })
 
   afterEach(() =>
-    service.stop(instance)
-  )
+    service.stop(instance))
 
 
   it('exists', () => {

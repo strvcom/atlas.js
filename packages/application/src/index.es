@@ -288,8 +288,7 @@ class Application {
     // Prepare all services, in parallel 💪
     await Promise.all(Array.from(services).map(([alias, service]) =>
       // eslint-disable-next-line no-use-before-define
-      this::lifecycle.service.prepare(alias, service.component)
-    ))
+      this::lifecycle.service.prepare(alias, service.component)))
 
     this::hidden().prepared = true
     this::dispatch('application:prepare:after', this)

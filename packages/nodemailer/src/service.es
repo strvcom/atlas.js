@@ -51,10 +51,7 @@ class Nodemailer extends Service {
 function send(...args) {
   return new Promise((resolve, reject) => {
     this.sendMail(...args, (err, info) => void (
-      err
-        ? reject(err)
-        : resolve(info))
-    )
+      err ? reject(err) : resolve(info)))
   })
 }
 

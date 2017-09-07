@@ -22,8 +22,7 @@ describe('Sequelize: RelationsHook', () => {
 
 
   after(() =>
-    database.close()
-  )
+    database.close())
 
   beforeEach(() => {
     hook = new RelationsHook({
@@ -73,8 +72,7 @@ describe('Sequelize: RelationsHook', () => {
 
     User.relations.hasAProblem = { Purchase: {} }
     expect(() =>
-      hook['application:prepare:after']()
-    ).to.throw(FrameworkError, /Invalid relation type/)
+      hook['application:prepare:after']()).to.throw(FrameworkError, /Invalid relation type/)
 
     delete User.relations.hasAProblem
   })
@@ -85,8 +83,7 @@ describe('Sequelize: RelationsHook', () => {
     User.relations.hasMany.Problems = {}
 
     expect(() =>
-      hook['application:prepare:after']()
-    ).to.throw(FrameworkError, /Invalid relation target/)
+      hook['application:prepare:after']()).to.throw(FrameworkError, /Invalid relation target/)
 
     delete User.relations.hasMany.Problems
   })

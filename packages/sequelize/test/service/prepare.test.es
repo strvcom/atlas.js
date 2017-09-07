@@ -19,8 +19,7 @@ describe('Sequelize::prepare()', () => {
   })
 
   afterEach(() =>
-    service.stop(instance)
-  )
+    service.stop(instance))
 
 
   it('exists', () => {
