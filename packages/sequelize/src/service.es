@@ -18,6 +18,7 @@ class Sequelize extends Service {
     // Allow models to use the Atlas instance
     for (const Model of Object.values(instance.models)) {
       Model.atlas = this.app
+      Model.prototype.atlas = this.app
     }
 
     await instance.authenticate()

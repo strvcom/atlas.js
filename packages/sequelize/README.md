@@ -83,9 +83,19 @@ class User extends Model {
     timestamps: true,
   }
 
-  static staticMethod() {}
+  static staticMethod() {
+    // You can access the Atlas application instance as a property on the
+    // Model class:
+    // this refers to the model class itself
+    this.atlas
+  }
 
-  async instanceMethod() {}
+  async instanceMethod() {
+    // On instance methods, you can also access the Atlas application instance
+    // directly on the model's instance
+    // this refers to the model class' instance
+    this.atlas
+  }
 }
 
 export default User

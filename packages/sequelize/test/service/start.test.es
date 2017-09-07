@@ -35,13 +35,15 @@ describe('Sequelize::start()', () => {
 
   it('exposes the Application instance to the models', async () => {
     // Pretend we have some models...
-    instance.models.First = {}
-    instance.models.Second = {}
+    instance.models.First = class {}
+    instance.models.Second = class {}
 
     await service.start(instance)
 
 
     expect(instance.models.First).to.have.property('atlas')
     expect(instance.models.Second).to.have.property('atlas')
+    expect(instance.models.First.prototype).to.have.property('atlas')
+    expect(instance.models.Second.prototype).to.have.property('atlas')
   })
 })
