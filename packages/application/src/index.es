@@ -5,11 +5,15 @@ import path from 'path'
 import pino from 'pino'
 import {
   defaultsDeep as defaults,
-  merge,
 } from 'lodash'
 import hidden from 'local-scope/create'
 import { FrameworkError } from '@atlas.js/errors'
-import { ComponentContainer } from './private'
+import {
+  expose,
+  dispatch,
+  component,
+  mkconfig,
+} from './private'
 
 /**
  * This class represents your application and aggregates all components together
@@ -278,7 +282,7 @@ class Application {
       return this
     }
 
-    const { services, actions } = this::hidden().catalog
+    const { services, actions, hooks } = this::hidden().catalog
 
     // Prepare actions
     for (const [alias, action] of actions) {
@@ -291,7 +295,7 @@ class Application {
       this::lifecycle.service.prepare(alias, service.component)))
 
     this::hidden().prepared = true
-    this::dispatch('application:prepare:after', this)
+    this::dispatch('application:prepare:after', this, hooks)
 
     return this
   }
@@ -306,8 +310,10 @@ class Application {
       return this
     }
 
+    const hooks = this::hidden().catalog.hooks
+
     await this.prepare()
-    await this::dispatch('application:start:before', this)
+    await this::dispatch('application:start:before', this, hooks)
 
     const { services } = this::hidden().catalog
 
@@ -321,7 +327,7 @@ class Application {
     }
 
     this::hidden().started = true
-    await this::dispatch('application:start:after', this)
+    await this::dispatch('application:start:after', this, hooks)
     this.log.info('app:ready')
 
     return this
@@ -340,9 +346,9 @@ class Application {
       return this
     }
 
-    const { services, actions } = this::hidden().catalog
+    const { services, actions, hooks } = this::hidden().catalog
 
-    await this::dispatch('application:stop:before', this)
+    await this::dispatch('application:stop:before', this, hooks)
 
     // Stop all services, in the reverse order they were added to the app 💪
     // This will make sure the most important services are stopped first.
@@ -359,138 +365,10 @@ class Application {
     this::hidden().started = false
     this::hidden().prepared = false
 
-    await this::dispatch('application:stop:after')
+    await this::dispatch('application:stop:after', null, hooks)
     this.log.info('app:stopped')
 
     return this
-  }
-}
-
-/**
- * Register a component into the given catalog
- *
- * @private
- * @param     {Object}    info              Component information
- * @param     {String}    info.type         The component's type (service, hook, action)
- * @param     {String}    info.alias        The component's user-specified name/alias
- * @param     {Class}     info.Component    The component class
- * @param     {Object}    info.aliases      Binding information to other defined components
- * @param     {Map}       catalog           The catalog to which to save the component
- * @return    {this}
- */
-function component(info, catalog) {
-  // Safety checks first
-  if (catalog.has(info.alias)) {
-    throw new FrameworkError(`Component with alias ${info.alias} (${info.type}) already used`)
-  }
-
-  // Pull user-provided config for this component
-  // Use a plural form of the component type, ie., action -> actions, service -> services etc.
-  info.config = this.config[`${info.type}s`][info.alias]
-
-  catalog.set(info.alias, new ComponentContainer(info, this))
-  this.log.debug({ [info.type]: info.alias }, `${info.type}:add`)
-
-  return this
-}
-
-/**
- * Expose a getter on the application instance under the specified collection (object)
- *
- * @private
- * @param     {String}    collection    The collection (object) onto which to attach the getter
- * @param     {String}    property      The getter's name/key
- * @param     {mixed}     value       The value to return from the getter
- * @return    {void}
- */
-function expose(collection, property, value) {
-  Object.defineProperty(this[collection], property, {
-    enumerable: true,
-    configurable: true,
-    get: () => value,
-  })
-}
-
-/**
- * Dispatch an event to all registered hooks
- *
- * This function takes variable number of events to be dispatched to hooks
- *
- * @private
- * @param     {String|Array}    events    The events' names
- * @param     {mixed}           subject   The thing that is related to the event (ie. a component)
- *                                        It is given to the event handler on input.
- * @return    {Promise<void>}
- */
-async function dispatch(events, subject) {
-  events = Array.isArray(events)
-    ? events
-    : [events]
-
-  const { hooks } = this::hidden().catalog
-  const tasks = []
-
-  for (const [alias, hook] of hooks) {
-    for (const event of events) {
-      // Is this hook listening for the event being dispatched?
-      if (typeof hook.component[event] === 'function') {
-        this.log.debug({ hook: alias, event }, 'hook:event')
-        tasks.push(hook.component[event](subject))
-      }
-    }
-  }
-
-  await Promise.all(tasks)
-}
-
-/**
- * Create the configuration object from inputs
- *
- * For path-based configs, we additionally want to support:
- * - loading and applying environment overrides on top of the base config
- * - loading and applying local (per-machine) overrides on top of the config
- *
- * This pattern is frequent-enough that it warrants explicit support in core.
- *
- * @private
- * @param     {Object}    config        Base config object, or a string (path) to a module where
- *                                      the config should be loded from, relative to root
- * @param     {Object}    base          Default values to be added to the config object if they are
- *                                      missing from the input config
- * @return    {Object}
- */
-function mkconfig(config = {}, base = {}) {
-  if (typeof config === 'string') {
-    const modules = {
-      // eslint-disable-next-line global-require
-      config: require(path.resolve(this.root, config)),
-      env: optrequire(path.resolve(this.root, config, 'env', this.env)),
-      local: optrequire(path.resolve(this.root, config, 'local')),
-    }
-
-    modules.config = merge(modules.config, modules.env, modules.local)
-    modules.config = defaults(modules.config, base)
-
-    return modules.config
-  }
-
-  // It's just an object, apply defaults and GTFO
-  return defaults(config, base)
-}
-
-/**
- * Optionally require a module, returning null if the module cannot be required
- *
- * @private
- * @param     {String}    module    Path to the module to require
- * @return    {mixed}               The module's contents
- */
-function optrequire(module) {
-  try {
-    // eslint-disable-next-line global-require
-    return require(module)
-  } catch (err) {
-    return null
   }
 }
 

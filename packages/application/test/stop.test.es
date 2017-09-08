@@ -128,13 +128,13 @@ describe('Application::stop()', () => {
       expect(proto['application:stop:before']).to.have.been.calledWith(app)
     })
 
-    it('calls the application:stop:after hook with no arguments', async () => {
+    it('calls the application:stop:after hook with null', async () => {
       const proto = DummyHook.prototype
       await app.stop()
       const args = proto['application:stop:after'].lastCall.args
 
       expect(args).to.have.length(1)
-      expect(args[0]).to.equal(void 0)
+      expect(args[0]).to.equal(null)
     })
   })
 
