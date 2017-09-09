@@ -88,6 +88,16 @@ describe('objection: modelsHook', () => {
       }
     })
 
+    it('checks custom prototype methods - snake_case - camelCase transform', async () => {
+      await hook['application:prepare:after']()
+      const user = database.models.user
+      // eslint-disable-next-line camelcase
+      const dbRow = { user_type_id: 1 }
+      const appRow = { userTypeId: 1 }
+      expect(user.prototype.$parseDatabaseJson(dbRow)).to.eql(appRow)
+      expect(user.prototype.$formatDatabaseJson(appRow)).to.eql(dbRow)
+    })
+
     it('throws FrameworkError when user sets unknown relation', () => {
       models.movie.relationMappings.likers.relation = 'UnknownRelation'
       expect(() => hook['application:prepare:after']())
