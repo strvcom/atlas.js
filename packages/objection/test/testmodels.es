@@ -4,12 +4,15 @@
  */
 const user = {
   tableName: 'users',
+  timestamps: true,
   jsonSchema: {
     type: 'object',
     required: ['name'],
     properties: {
       id: { type: 'integer' },
       name: { type: 'string' },
+      updatedAt: { type: 'string' },
+      createdAt: { type: 'string' },
     },
   },
   relationMappings: {

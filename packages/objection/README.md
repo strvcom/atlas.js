@@ -43,6 +43,9 @@ This hook allows you to import and build models from a config file without any d
 
 The hook also provides a simple translation between snake-case database field names and camelCase model properties. Any fetched models will have camelCased properties. Please note that in relations definitions (basically everywhere in joins) fields and table names must stay in the snake_case form. These names are directly fed to the database. This is unfortunately how the `objection` library works - you are just closer to the actual database :)
 
+The hook can also handle automatic updates of timestamps. It assumes that timestamps named `created_at` and `updated_at` exist in the database - then
+model properties `createdAt` and `updatedAt` will be set when model instance is created and `updatedAt` will be ..well, updated on every `update` or `patch` call. This functionality works per-model and is disabled by default. It must be enabled in your model config - see `models/user.js` file example.
+
 ##### Dependencies
 
 - `service:objection`: the service you load models into
@@ -58,12 +61,15 @@ Two related models - `user` and `userType` (typical 1:n relation). For all curre
 
 const user = {
   tableName: 'users',
+  timestamps: true,
   jsonSchema: {
     type: 'object',
     required: ['name'],
     properties: {
       id: { type: 'integer' },
       name: { type: 'string' },
+      createdAt: { type: 'string' },
+      updatedAt: { type: 'string' },
     },
   },
   relationMappings: {

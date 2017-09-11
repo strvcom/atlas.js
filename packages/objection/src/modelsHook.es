@@ -1,20 +1,9 @@
 import path from 'path'
 import Hook from '@atlas.js/hook'
-import { mapKeys, snakeCase, camelCase, has, cloneDeep } from 'lodash'
+import { has, cloneDeep } from 'lodash'
 import { FrameworkError } from '@atlas.js/errors'
-
-function makeTransformerClassFrom(model) {
-  return class extends model {
-    $parseDatabaseJson(json) {
-      json = mapKeys(json, (value, key) => camelCase(key))
-      return super.$parseDatabaseJson(json)
-    }
-    $formatDatabaseJson(json) {
-      json = super.$formatDatabaseJson(json)
-      return mapKeys(json, (value, key) => snakeCase(key))
-    }
-  }
-}
+import { mixin } from 'objection'
+import { CamelCaseTransformMixin, makeTimestampsMixin } from './mixins'
 
 class ModelsHook extends Hook {
   static defaults = {
@@ -33,9 +22,12 @@ class ModelsHook extends Hook {
     const models = {}
 
     const Model = database.objection.Model
-    const CamelCaseTransformer = makeTransformerClassFrom(Model)
     for (const [name, params] of Object.entries(modelConfigs)) {
-      models[name] = class extends CamelCaseTransformer {
+      const ExtendedModel = mixin(
+        Model,
+        [CamelCaseTransformMixin, makeTimestampsMixin({ timestamps: params.timestamps })]
+      )
+      models[name] = class extends ExtendedModel {
         static tableName = params.tableName
         static jsonSchema = params.jsonSchema
       }
