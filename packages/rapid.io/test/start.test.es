@@ -63,6 +63,23 @@ describe('RapidIO::start()', () => {
     return expect(service.start(rapidClient)).to.be.eventually.rejected
   })
 
+  it('should throw with invalid auth token', async () => {
+    const rapidClient = await service.prepare()
+    service = new RapidIO({
+      app: {},
+      log: {
+        info: () => {},
+      },
+      config: {
+        apiKey: 'rapidApiKey',
+        withAuthorization: true,
+        authToken: 'invalid',
+      },
+    })
+
+    return expect(service.start(rapidClient)).to.be.eventually.rejected
+  })
+
   it('should not call authorize on rapid client when "withAuthorization" is set to false',
     async () => {
       service = new RapidIO({
@@ -78,11 +95,52 @@ describe('RapidIO::start()', () => {
       fakeRapidClient.authorize = sinon.spy()
       fakeRapidClient.onConnectionStateChanged = callback => {
         fakeRapidClient.connected = true
-        callback()
+        setTimeout(callback, 500)
       }
 
       const rapidClient = await service.prepare()
       await service.start(rapidClient)
       expect(fakeRapidClient.authorize).to.have.callCount(0)
+    })
+
+  it('should fail to initialize if connection fails',
+    async () => {
+      service = new RapidIO({
+        app: {},
+        log: {
+          info: () => {},
+        },
+        config: {
+          apiKey: 'rapidApiKey',
+          withAuthorization: false,
+        },
+      })
+      fakeRapidClient.onConnectionStateChanged = callback => {
+        fakeRapidClient.connected = false
+        setTimeout(callback, 500)
+      }
+
+      const rapidClient = await service.prepare()
+      return expect(service.start(rapidClient)).to.be.eventually.rejected
+    })
+
+  it('should successfully initialize if rapid client is already connected',
+    async () => {
+      service = new RapidIO({
+        app: {},
+        log: {
+          info: () => {},
+        },
+        config: {
+          apiKey: 'rapidApiKey',
+          withAuthorization: false,
+        },
+      })
+
+      // should fulfill Promise immediately
+      fakeRapidClient.connected = true
+
+      const rapidClient = await service.prepare()
+      return expect(service.start(rapidClient)).to.be.eventually.fulfilled
     })
 })

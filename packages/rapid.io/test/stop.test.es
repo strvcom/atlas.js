@@ -37,7 +37,17 @@ describe('RapidIO::stop()', () => {
     expect(fakeRapidClient.disconnect).to.have.callCount(1)
   })
 
-  it('successfully stops Rapid service', () =>
+  it('successfully stops Rapid service when connection is closed imemdiately', () =>
     expect(service.stop(fakeRapidClient)).to.eventually.be.fulfilled
   )
+
+  it('successfully stops Rapid service when connection is closed after some time', () => {
+    fakeRapidClient.disconnect = () => {}
+    fakeRapidClient.onConnectionStateChanged = callback => {
+      fakeRapidClient.connected = false
+      callback()
+    }
+
+    return expect(service.stop(fakeRapidClient)).to.eventually.be.fulfilled
+  })
 })
