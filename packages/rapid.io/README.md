@@ -28,7 +28,7 @@ const app = new Application({
 })
 
 app.service('rapid', RapidIO.Service)
-app.start().then(() => {
+app.start().then(async() => {
   
   // Your rapid.io service is now available here:
   app.services.rapid
@@ -36,7 +36,7 @@ app.start().then(() => {
   // example usage:
   const todosList = app.services.rapid.collection('my-todo-list')
   const todo = await todosList.newDocument().mutate({
-    title: 'Don't forget to write documentation!',
+    title: 'Do not forget to write documentation!',
     completed: false,
     assignee: {
       name: 'John',
