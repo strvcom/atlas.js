@@ -37,6 +37,7 @@ describe('RapidIO::stop()', () => {
     expect(fakeRapidClient.disconnect).to.have.callCount(1)
   })
 
-  it('successfully stops Rapid service', () => expect(service.stop(fakeRapidClient)).to.eventually.be.fulfilled)
-
+  it('successfully stops Rapid service', () =>
+    expect(service.stop(fakeRapidClient)).to.eventually.be.fulfilled
+  )
 })

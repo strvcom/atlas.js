@@ -18,6 +18,7 @@ const app = new Application({
       rapid: {
         apiKey: 'rapidApiKey',
         authToken: 'rapidSecret',
+        // optional, will authorize protected collections with authToken
         withAuthorization: true,
       }
     }
@@ -28,20 +29,19 @@ const app = new Application({
 
 app.service('rapid', RapidIO.Service)
 app.start().then(() => {
-  console.log(app.services.rapid)
-  // Your rapid app is now available here:
+  
+  // Your rapid.io service is now available here:
+  app.services.rapid
+  
+  // example usage:
   const todosList = app.services.rapid.collection('my-todo-list')
-  todosList.newDocument().mutate({
-    title: 'Something I need to do',
+  const todo = await todosList.newDocument().mutate({
+    title: 'Don't forget to write documentation!',
     completed: false,
     assignee: {
       name: 'John',
-      nick: '@john123'
+      email: 'john@example.com'
     }
-  }).then(() => {
-    console.log('success')
-  }, err => {
-    console.log(err)
   })
 
 })

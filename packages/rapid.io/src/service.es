@@ -14,7 +14,8 @@ class Rapid extends Service {
 
   async start(rapidClient) {
     if (this.config.withAuthorization) {
-      return this.authorize(rapidClient)
+      await this.authorize(rapidClient)
+      return rapidClient
     }
 
     await new Promise((resolve, reject) => {
@@ -33,6 +34,7 @@ class Rapid extends Service {
     })
 
     this.log.info('Rapid client successfully connected.')
+    return rapidClient
   }
 
   stop(rapidClient) {
@@ -52,7 +54,7 @@ class Rapid extends Service {
 
   /**
    * Authorizes client's access rights to work with protected collections.
-   * @param rapidClient
+   * @param {Object} rapidClient Rapid client to be authorized
    * @return {Promise.<void>}
    */
   async authorize(rapidClient) {

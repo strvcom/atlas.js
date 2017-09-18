@@ -7,7 +7,6 @@ describe('RapidIO::start()', () => {
   const VALID_AUTH_TOKEN = 'rapid-secret'
 
   beforeEach(function() {
-
     fakeRapidClient = {
       authorize(authToken, callback) {
         if (authToken === VALID_AUTH_TOKEN) {
@@ -15,7 +14,7 @@ describe('RapidIO::start()', () => {
         }
         const err = new Error('Invalid auth token')
         return callback(err)
-      }
+      },
     }
 
     this.sb.each.stub(rapid, 'createClient').returns(fakeRapidClient)
@@ -64,26 +63,26 @@ describe('RapidIO::start()', () => {
     return expect(service.start(rapidClient)).to.be.eventually.rejected
   })
 
-  it('should not call authorize on rapid client when "withAuthorization" is set to false', async () => {
-    service = new RapidIO({
-      app: {},
-      log: {
-        info: () => {},
-      },
-      config: {
-        apiKey: 'rapidApiKey',
-        withAuthorization: false,
-      },
+  it('should not call authorize on rapid client when "withAuthorization" is set to false',
+    async () => {
+      service = new RapidIO({
+        app: {},
+        log: {
+          info: () => {},
+        },
+        config: {
+          apiKey: 'rapidApiKey',
+          withAuthorization: false,
+        },
+      })
+      fakeRapidClient.authorize = sinon.spy()
+      fakeRapidClient.onConnectionStateChanged = callback => {
+        fakeRapidClient.connected = true
+        callback()
+      }
+
+      const rapidClient = await service.prepare()
+      await service.start(rapidClient)
+      expect(fakeRapidClient.authorize).to.have.callCount(0)
     })
-    fakeRapidClient.authorize = sinon.spy()
-    fakeRapidClient.onConnectionStateChanged = (callback) => {
-      fakeRapidClient.connected = true
-      callback()
-    }
-
-    const rapidClient = await service.prepare()
-    await service.start(rapidClient)
-    expect(fakeRapidClient.authorize).to.have.callCount(0)
-  })
-
 })
