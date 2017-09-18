@@ -6,8 +6,6 @@
   "bugs": "https://github.com/strvcom/atlas.js/issues",
   "contributors": [],
   "dependencies": {
-    "@atlas.js/component": "0.0.3",
-    "@atlas.js/core": "^0.1.1",
     "@atlas.js/service": "0.0.3",
     "babel-runtime": "^6.26.0",
     "rapid-io": "^0.4.2"
