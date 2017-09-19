@@ -1,6 +1,6 @@
 {
   "name": "@atlas.js/rapid.io",
-  "description": "A rapid service for @atlas.js",
+  "description": "A Rapid.io service for @atlas.js",
   "version": "0.0.0",
   "author": "Martin Galajda <martin.galajda@strv.com>",
   "bugs": "https://github.com/strvcom/atlas.js/issues",
