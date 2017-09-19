@@ -1,4 +1,4 @@
-import { Service as DbService } from '../../src'
+import { Service as Objection } from '../../src'
 
 const serviceConfig = {
   knex: {
@@ -16,7 +16,7 @@ describe('objection.start()', () => {
   let instance
 
   beforeEach(async function() {
-    service = new DbService({
+    service = new Objection({
       app: {},
       config: serviceConfig,
     })

@@ -1,4 +1,4 @@
-import { Service as DbService } from '../../src'
+import { Service as Objection } from '../../src'
 import objection from 'objection'
 
 const serviceConfig = {
@@ -17,7 +17,7 @@ describe('objection.prepare()', () => {
   let instance
 
   beforeEach(async () => {
-    service = new DbService({
+    service = new Objection({
       app: {},
       config: serviceConfig,
     })
