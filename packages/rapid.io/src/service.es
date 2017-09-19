@@ -1,5 +1,5 @@
 import Service from '@atlas.js/service'
-import rapid from 'rapid-io'
+import rapidio from 'rapid-io'
 
 class Rapid extends Service {
   static defaults = {
@@ -9,43 +9,43 @@ class Rapid extends Service {
   }
 
   prepare() {
-    return rapid.createClient(this.config.apiKey)
+    return rapidio.createClient(this.config.apiKey)
   }
 
-  async start(rapidClient) {
+  async start(instance) {
     if (this.config.withAuthorization) {
-      await this.authorize(rapidClient)
-      return rapidClient
+      await this.authorize(instance)
+      return instance
     }
 
     await new Promise((resolve, reject) => {
-      if (rapidClient.connected) {
+      if (instance.connected) {
         resolve()
       }
 
-      rapidClient.onConnectionStateChanged(() => {
-        if (rapidClient.connected) {
+      instance.onConnectionStateChanged(() => {
+        if (instance.connected) {
           resolve()
         } else {
-          const err = new Error('Rapid client was unable to initialize a connection.')
+          const err = new Error('Rapid instance was unable to initialize a connection.')
           reject(err)
         }
       })
     })
 
-    this.log.info('Rapid client successfully connected.')
-    return rapidClient
+    this.log.info('Rapid instance successfully connected.')
+    return instance
   }
 
-  stop(rapidClient) {
-    rapidClient.disconnect()
+  stop(instance) {
+    instance.disconnect()
     return new Promise(resolve => {
-      if (!rapidClient.connected) {
+      if (!instance.connected) {
         resolve()
       }
 
-      rapidClient.onConnectionStateChanged(() => {
-        if (!rapidClient.connected) {
+      instance.onConnectionStateChanged(() => {
+        if (!instance.connected) {
           resolve()
         }
       })
@@ -53,13 +53,13 @@ class Rapid extends Service {
   }
 
   /**
-   * Authorizes client's access rights to work with protected collections.
-   * @param {Object} rapidClient Rapid client to be authorized
+   * Authorizes instance's access rights to work with protected collections.
+   * @param {Object} instance Rapid instance to be authorized
    * @return {Promise.<void>}
    */
-  async authorize(rapidClient) {
+  async authorize(instance) {
     await new Promise((resolve, reject) => {
-      rapidClient.authorize(this.config.authToken, err => {
+      instance.authorize(this.config.authToken, err => {
         if (err) {
           reject(err)
         }
@@ -67,7 +67,7 @@ class Rapid extends Service {
       })
     })
 
-    this.log.info('Rapid client successfully connected and authorized.')
+    this.log.info('Rapid instance successfully connected and authorized.')
   }
 }
 
