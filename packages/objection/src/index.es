@@ -1,5 +1,5 @@
 import Service from './service'
-import ModelsHook from './modelsHook'
+import ModelsHook from './models-hook'
 
 export {
   Service,
