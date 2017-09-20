@@ -5,7 +5,6 @@ import crypto from 'crypto'
 import path from 'path'
 import os from 'os'
 import fsp from 'promisified-core/fs'
-import Application from '@atlas.js/application'
 import { Action as Repl } from '../..'
 
 function waitForCall(spy, callCount) {
@@ -21,15 +20,26 @@ function waitForCall(spy, callCount) {
 
 
 describe('Repl::enter()', () => {
-  let app
   let terminal
   let action
+  let config
   let opts
 
-  beforeEach(async function() {
+  beforeEach(function() {
     // Prepare default options for the `enter()` method
     opts = {
       output: new PassThrough(),
+    }
+    // Prepare default config for the action
+    config = {
+      historyFile: null,
+      username: 'trolley',
+      prompt: '✏️ ',
+      greet: true,
+      newlines: {
+        unix: '\n',
+        win32: '\r\n',
+      },
     }
 
     // Simulate the return value of repl.start()
@@ -39,18 +49,11 @@ describe('Repl::enter()', () => {
     this.sb.each.spy(terminal, 'once')
     this.sb.each.stub(repl, 'start').returns(terminal)
 
-    // Prepare the app
-    app = new Application({
-      root: __dirname,
-      config: { actions: { repl: {
-        // Disable history loading/saving
-        historyFile: null,
-      } } },
+    action = new Repl({
+      app: {},
+      log: {},
+      config,
     })
-    app.action('repl', Repl)
-
-    await app.prepare()
-    action = app.actions.repl
   })
 
 
@@ -59,19 +62,8 @@ describe('Repl::enter()', () => {
   })
 
   it('does not throw TypeError when no options are given', async () => {
-    app = new Application({
-      root: __dirname,
-      config: { actions: { repl: {
-        // Disable history loading/saving
-        historyFile: null,
-        // Disable greeting in this test case
-        greet: false,
-      } } },
-    })
-    app.action('repl', Repl)
-
-    await app.prepare()
-    action = app.actions.repl
+    // Disable greeting in this test case
+    config.greet = false
     const ret = action.enter()
     await waitForCall(terminal.once, 2)
     terminal.emit('exit')
@@ -96,7 +88,8 @@ describe('Repl::enter()', () => {
     await waitForCall(terminal.once, 2)
     terminal.emit('exit')
 
-    expect(terminal.context).to.have.property('app', app)
+    expect(terminal.context).to.have.property('app')
+    expect(terminal.context.app).to.be.an('object')
 
     return ret
   })
@@ -120,7 +113,7 @@ describe('Repl::enter()', () => {
 
     expect(args.input).to.equal(process.stdin)
     // Ignoring default for `args.output` because I don't want to have anything printed to stdout 😇
-    expect(args.prompt).to.equal('✏️ ')
+    expect(args.prompt).to.equal(config.prompt)
     expect(args.useGlobal).to.equal(true)
     expect(args.ignoreUndefined).to.equal(true)
     expect(args.breakEvalOnSigint).to.equal(true)
@@ -130,44 +123,26 @@ describe('Repl::enter()', () => {
   })
 
   it('allows overriding the prompt via config', async () => {
-    app = new Application({
-      root: __dirname,
-      config: { actions: { repl: {
-        historyFile: null,
-        prompt: '$ ',
-      } } },
-    })
-    app.action('repl', Repl)
-    await app.prepare()
-    const ret = app.actions.repl.enter(opts)
+    config.prompt = '$ '
+    const ret = action.enter(opts)
 
     await waitForCall(terminal.once, 2)
     terminal.emit('exit')
 
-    const args = repl.start.getCall(0).args[0]
-
-    expect(args.prompt).to.equal('$ ')
+    expect(repl.start.getCall(0).args[0].prompt).to.equal('$ ')
 
     return ret
   })
 
   it('allows disabling the welcome message via config', async () => {
-    app = new Application({
-      root: __dirname,
-      config: { actions: { repl: {
-        greet: false,
-      } } },
-    })
-    app.action('repl', Repl)
-    await app.prepare()
-    const ret = app.actions.repl.enter(opts)
+    config.greet = false
+
+    const ret = action.enter(opts)
 
     await waitForCall(terminal.once, 2)
     terminal.emit('exit')
 
-    const out = opts.output.read()
-
-    expect(out).to.equal(null)
+    expect(opts.output.read()).to.equal(null)
 
     return ret
   })
@@ -187,18 +162,11 @@ describe('Repl::enter()', () => {
   })
 
   it('allows defining custom newline sequences through configuration alias', async () => {
-    app = new Application({
-      root: __dirname,
-      config: { actions: { repl: {
-        newlines: {
-          lolnl: '<EOL>',
-        },
-      } } },
-    })
-    app.action('repl', Repl)
-    await app.prepare()
+    config.newlines.lolnl = '<EOL>'
     opts.nl = 'lolnl'
-    const ret = app.actions.repl.enter(opts)
+
+    const ret = action.enter(opts)
+
     await waitForCall(terminal.once, 2)
     terminal.emit('exit')
     await ret
@@ -246,19 +214,11 @@ describe('Repl::enter()', () => {
       'void 0',
       os.EOL,
     ]
-
+    config.historyFile = historyFile
     await fsp.writeFile(historyFile, history.join(os.EOL, 'utf8'))
 
-    app = new Application({
-      root: __dirname,
-      config: { actions: { repl: {
-        historyFile,
-      } } },
-    })
-    app.action('repl', Repl)
-    await app.prepare()
     opts.input = new PassThrough()
-    const ret = app.actions.repl.enter(opts)
+    const ret = action.enter(opts)
     await waitForCall(terminal.once, 2)
 
     terminal.lines.push('123')
@@ -281,16 +241,10 @@ describe('Repl::enter()', () => {
     const tmpname = `.atlas-${crypto.randomBytes(6).toString('hex')}`
     const historyFile = path.resolve(os.tmpdir(), tmpname)
 
-    app = new Application({
-      root: __dirname,
-      config: { actions: { repl: {
-        historyFile,
-      } } },
-    })
-    app.action('repl', Repl)
-    await app.prepare()
+    config.historyFile = historyFile
     opts.input = new PassThrough()
-    const ret = app.actions.repl.enter(opts)
+
+    const ret = action.enter(opts)
 
     await waitForCall(terminal.once, 2)
     terminal.emit('exit')
