@@ -33,7 +33,7 @@ env:
 deploy:
   skip_cleanup: true
   provider: script
-  script: ci/travis-release.sh
+  script: ci/release.sh
   on:
     repo: strvcom/atlas.js
     branch: release
