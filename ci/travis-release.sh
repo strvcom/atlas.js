@@ -13,7 +13,7 @@ NPMRC
 echo packages/* | xargs -t -n 1 cp .npmrc
 
 # Set up git remote
-git remote add pushback "https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git"
+git remote add pushable-origin "https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git"
 git checkout "${TRAVIS_BRANCH}"
 
 # Publish!
@@ -21,5 +21,5 @@ npx lerna publish \
   --sort \
   --conventional-commits \
   --yes \
-  --git-remote pushback \
+  --git-remote pushable-origin \
   --message "chore: release [ci skip]"
