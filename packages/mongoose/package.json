@@ -8,7 +8,6 @@
   "dependencies": {
     "@atlas.js/hook": "^0.0.3",
     "@atlas.js/service": "^0.0.3",
-    "babel-runtime": "^6.23.0",
     "lodash": "^4.17.4",
     "mongoose": "^4.11.6"
   },

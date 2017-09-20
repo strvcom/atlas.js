@@ -8,7 +8,6 @@
   "dependencies": {
     "@atlas.js/service": "^0.0.3",
     "aws-sdk": "^2.94.0",
-    "babel-runtime": "^6.23.0",
     "lodash": "^4.17.4"
   },
   "engines": {

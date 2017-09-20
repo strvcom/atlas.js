@@ -7,7 +7,6 @@
   "contributors": [],
   "dependencies": {
     "@atlas.js/service": "^0.0.3",
-    "babel-runtime": "^6.23.0",
     "nodemailer": "^4.0.1"
   },
   "engines": {

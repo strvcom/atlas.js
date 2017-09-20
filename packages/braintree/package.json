@@ -7,7 +7,6 @@
   "contributors": [],
   "dependencies": {
     "@atlas.js/service": "^0.0.3",
-    "babel-runtime": "^6.23.0",
     "braintree": "^2.2.0"
   },
   "engines": {

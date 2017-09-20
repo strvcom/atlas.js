@@ -9,7 +9,6 @@
     "@atlas.js/errors": "^0.0.3",
     "@atlas.js/hook": "^0.0.3",
     "@atlas.js/service": "^0.0.3",
-    "babel-runtime": "^6.23.0",
     "koa": "^2.3.0",
     "local-scope": "^1.2.0"
   },

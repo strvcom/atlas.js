@@ -4,10 +4,6 @@
   "sourceMaps": true,
   "plugins": [
     "syntax-object-rest-spread",
-    ["transform-runtime", {
-      "polyfill": false,
-      "regenerator": false
-    }],
     ["transform-es2015-modules-commonjs", {
       "allowTopLevelThis": false
     }],

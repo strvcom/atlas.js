@@ -7,7 +7,6 @@
   "contributors": [],
   "dependencies": {
     "@atlas.js/errors": "^0.0.3",
-    "babel-runtime": "^6.23.0",
     "local-scope": "^1.2.0",
     "lodash": "^4.17.4",
     "pino": "^4.7.0"
