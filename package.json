@@ -25,7 +25,8 @@
     "mocha": "^3.5.0",
     "nyc": "^11.1.0",
     "sinon": "^3.0.0",
-    "source-map-support": "^0.4.15"
+    "source-map-support": "^0.4.15",
+    "validate-commit-msg": "^2.14.0"
   },
   "engines": {
     "node": "^8.3.0",
@@ -38,5 +39,8 @@
   "repository": {
     "type": "git",
     "url": "git://github.com/strvcom/atlas.js.git"
+  },
+  "scripts": {
+    "postinstall": "utils/install-githooks.sh"
   }
 }

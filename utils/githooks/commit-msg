@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+# Validate commit message to adhere to conventional-commits standard
+# This is necessary to facilitate automated package publishing.
+
+# This utility's configuration resides in .vcmrc file.
+node_modules/.bin/validate-commit-msg "$(<"$1")"

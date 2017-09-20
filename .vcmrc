@@ -1,0 +1,35 @@
+{
+  "autoFix": true,
+  "types": [
+    "feat",
+    "fix",
+    "docs",
+    "perf",
+    "build",
+    "chore",
+    "revert"
+  ],
+  "scope": {
+    "required": false,
+    "validate": true,
+    "multiple": true,
+    "allowed": [
+      "action",
+      "application",
+      "aws",
+      "braintree",
+      "component",
+      "core",
+      "errors",
+      "firebase",
+      "hook",
+      "koa",
+      "mongoose",
+      "nodemailer",
+      "objection",
+      "repl",
+      "sequelize",
+      "service"
+    ]
+  }
+}
