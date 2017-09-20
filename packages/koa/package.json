@@ -13,9 +13,7 @@
     "koa": "^2.3.0",
     "local-scope": "^1.2.0"
   },
-  "devDependencies": {
-    "@atlas.js/application": "^0.1.4"
-  },
+  "devDependencies": {},
   "engines": {
     "node": "^8.3.0",
     "npm": "^5.3.0"
