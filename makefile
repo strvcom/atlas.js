@@ -15,7 +15,7 @@ installflags :=
 all: compile
 
 compile: install
-	babel . -q --extensions .es --source-maps both --out-dir . --ignore node_modules $(compileflags)
+	babel . -q --extensions .es --out-dir . --ignore node_modules $(compileflags)
 
 # Note about `touch`:
 # npm does not update the timestamp of the node_modules folder itself. This confuses Make as it
