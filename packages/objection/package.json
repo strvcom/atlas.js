@@ -1,0 +1,32 @@
+{
+  "name": "@atlas.js/objection",
+  "version": "0.2.0",
+  "description": "Objection service for @atlas.js",
+  "author": "behalka <kaja.behalova@strv.com>",
+  "bugs": "https://github.com/strvcom/atlas.js/issues",
+  "license": "BSD-3-Clause",
+  "engines": {
+    "node": "^8.3.0",
+    "npm": "^5.3.0"
+  },
+  "homepage": "https://github.com/strvcom/atlas.js/tree/master/packages/objection",
+  "keywords": [],
+  "main": "src",
+  "dependencies": {
+    "@atlas.js/errors": "0.0.3",
+    "@atlas.js/hook": "0.0.3",
+    "@atlas.js/service": "0.0.3",
+    "knex": "^0.13.0",
+    "moment-timezone": "^0.5.13",
+    "lodash": "^4.17.4",
+    "objection": "^0.8.9"
+  },
+  "devDependencies": {
+    "moment-timezone": "^0.5.13",
+    "sqlite3": "^3.1.10"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/strvcom/atlas.js.git"
+  }
+}
