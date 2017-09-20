@@ -10,7 +10,7 @@ cat <<NPMRC >> .npmrc
 //registry.npmjs.org/:_authToken=${NPM_TOKEN}
 access=public
 NPMRC
-echo packages/* | xargs -n 1 cp .npmrc
+echo packages/* | xargs -t -n 1 cp .npmrc
 
 # Set up git remote
 git remote add pushback "https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git"
