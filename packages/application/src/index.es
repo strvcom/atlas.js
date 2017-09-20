@@ -295,7 +295,7 @@ class Application {
       this::lifecycle.service.prepare(alias, service.component)))
 
     this::hidden().prepared = true
-    this::dispatch('application:prepare:after', this, hooks)
+    await this::dispatch('application:prepare:after', this, hooks)
 
     return this
   }
