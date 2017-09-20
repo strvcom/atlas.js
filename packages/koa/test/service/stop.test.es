@@ -19,7 +19,7 @@ describe('Koa::stop(instance)', () => {
   })
 
   beforeEach(async function() {
-    this.sb.each
+    this.sandbox
       .stub(Object.getPrototypeOf(http.Server.prototype), 'close')
       .callsArgWithAsync(0, null)
 

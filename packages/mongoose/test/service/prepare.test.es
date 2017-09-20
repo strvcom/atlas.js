@@ -29,7 +29,7 @@ describe('Mongoose::prepare()', () => {
   })
 
   it('sets a debug function to log model events', async function() {
-    this.sb.each.stub(Object.getPrototypeOf(instance), 'set')
+    this.sandbox.stub(Object.getPrototypeOf(instance), 'set')
 
     await service.prepare()
 

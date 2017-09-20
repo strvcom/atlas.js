@@ -13,7 +13,7 @@ describe('Mongoose::start()', () => {
     })
     instance = await service.prepare()
 
-    this.sb.each.stub(mongoose.Mongoose.prototype, 'connect').resolves()
+    this.sandbox.stub(mongoose.Mongoose.prototype, 'connect').resolves()
   })
 
   it('exists', () => {

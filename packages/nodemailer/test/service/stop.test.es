@@ -10,7 +10,7 @@ describe('Nodemailer::stop()', () => {
       transporter: { name: 'loltransport' },
       close: sinon.stub(),
     }
-    this.sb.each.stub(nodemailer, 'createTransport').returns(transport)
+    this.sandbox.stub(nodemailer, 'createTransport').returns(transport)
 
     service = new Nodemailer({
       log: {

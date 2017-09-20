@@ -8,9 +8,9 @@ import * as testaliases from './demoapp/aliases'
 
 describe('Application::init()', () => {
   beforeEach(function() {
-    this.sb.each.stub(Application.prototype, 'action').returnsThis()
-    this.sb.each.stub(Application.prototype, 'hook').returnsThis()
-    this.sb.each.stub(Application.prototype, 'service').returnsThis()
+    this.sandbox.stub(Application.prototype, 'action').returnsThis()
+    this.sandbox.stub(Application.prototype, 'hook').returnsThis()
+    this.sandbox.stub(Application.prototype, 'service').returnsThis()
   })
 
 

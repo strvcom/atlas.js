@@ -16,7 +16,7 @@ describe('Sequelize::start()', () => {
     })
     instance = await service.prepare()
 
-    this.sb.each.stub(Sequelize.prototype, 'authenticate').resolves()
+    this.sandbox.stub(Sequelize.prototype, 'authenticate').resolves()
   })
 
   afterEach(() =>

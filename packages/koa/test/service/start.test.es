@@ -36,7 +36,7 @@ describe('Koa::start(instance)', () => {
   })
 
   beforeEach(function() {
-    this.sb.each
+    this.sandbox
       .stub(Object.getPrototypeOf(http.Server.prototype), 'listen')
       .callsFake(function stubbedListen() {
         setImmediate(() => void this.emit('listening'))

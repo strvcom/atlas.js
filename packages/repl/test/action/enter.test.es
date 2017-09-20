@@ -46,8 +46,8 @@ describe('Repl::enter()', () => {
     terminal = new EventEmitter()
     terminal.context = {}
     terminal.lines = []
-    this.sb.each.spy(terminal, 'once')
-    this.sb.each.stub(repl, 'start').returns(terminal)
+    this.sandbox.spy(terminal, 'once')
+    this.sandbox.stub(repl, 'start').returns(terminal)
 
     action = new Repl({
       app: {},

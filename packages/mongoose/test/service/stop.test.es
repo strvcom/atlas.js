@@ -13,7 +13,7 @@ describe('Mongoose::stop()', () => {
 
     instance = await service.prepare()
 
-    this.sb.each.stub(Object.getPrototypeOf(instance), 'disconnect').resolves()
+    this.sandbox.stub(Object.getPrototypeOf(instance), 'disconnect').resolves()
   })
 
   it('exists', () => {

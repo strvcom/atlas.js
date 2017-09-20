@@ -17,7 +17,7 @@ describe('Sequelize::stop()', () => {
 
     instance = await service.prepare()
 
-    this.sb.each.stub(Sequelize.prototype, 'close').resolves()
+    this.sandbox.stub(Sequelize.prototype, 'close').resolves()
   })
 
   it('exists', () => {

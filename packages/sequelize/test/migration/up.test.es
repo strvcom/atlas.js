@@ -7,7 +7,7 @@ describe('Migration::up()', () => {
   let database
 
   beforeEach(function() {
-    this.sb.each.stub(Umzug.prototype, 'up').resolves([])
+    this.sandbox.stub(Umzug.prototype, 'up').resolves([])
     database = mksequelizemock()
     migration = new Migration({
       app: {

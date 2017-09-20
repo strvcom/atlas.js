@@ -56,7 +56,7 @@ describe('Sequelize: ModelsHook', () => {
       expect(Object.values(testmodels).length).to.be.greaterThan(0)
 
       for (const Model of Object.values(testmodels)) {
-        this.sb.each.stub(Model, 'init').returns()
+        this.sandbox.stub(Model, 'init').returns()
       }
 
       await hook['application:prepare:after']()

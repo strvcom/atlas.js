@@ -10,8 +10,8 @@ describe('Firebase::stop()', () => {
       delete: sinon.spy(),
     }
 
-    this.sb.each.stub(Admin.credential, 'cert').returns({})
-    this.sb.each.stub(Object.getPrototypeOf(Admin), 'initializeApp').returns(fakeFb)
+    this.sandbox.stub(Admin.credential, 'cert').returns({})
+    this.sandbox.stub(Object.getPrototypeOf(Admin), 'initializeApp').returns(fakeFb)
 
     service = new Firebase({
       config: {

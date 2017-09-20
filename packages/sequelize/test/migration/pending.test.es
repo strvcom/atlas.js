@@ -7,7 +7,7 @@ describe('Migration::pending()', () => {
   let database
 
   beforeEach(function() {
-    this.sb.each.stub(Umzug.prototype, 'pending').resolves(['001-first', '002-second'])
+    this.sandbox.stub(Umzug.prototype, 'pending').resolves(['001-first', '002-second'])
     database = mksequelizemock()
     migration = new Migration({
       app: {

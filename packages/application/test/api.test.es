@@ -23,7 +23,7 @@ describe('Application: basics and API', () => {
 
   it('throws when env is not provided and NODE_ENV is not set', function() {
     // eslint-disable-next-line no-process-env
-    this.sb.each.stub(process.env, 'NODE_ENV').value('')
+    this.sandbox.stub(process.env, 'NODE_ENV').value('')
     expect(() => new Application(opts)).to.throw(FrameworkError, /env not specified/)
   })
 

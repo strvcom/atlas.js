@@ -54,8 +54,8 @@ describe('Sequelize: RelationsHook', () => {
 
   it('runs all the relations on all the models', async function() {
     const { User, Purchase, Session } = testmodels
-    this.sb.each.stub(User, 'hasMany')
-    this.sb.each.stub(Purchase, 'belongsTo')
+    this.sandbox.stub(User, 'hasMany')
+    this.sandbox.stub(Purchase, 'belongsTo')
 
     await hook['application:prepare:after']()
 

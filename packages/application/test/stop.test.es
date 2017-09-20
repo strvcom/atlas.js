@@ -72,7 +72,7 @@ describe('Application::stop()', () => {
 
     it('passes the exposed instance to the stop() method on the service', async function() {
       const instance = { test: true }
-      this.sb.each.stub(DummyService.prototype, 'prepare').resolves(instance)
+      this.sandbox.stub(DummyService.prototype, 'prepare').resolves(instance)
 
       app = new Application(options)
       app.service('dummy', DummyService)
