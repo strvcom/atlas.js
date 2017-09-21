@@ -24,5 +24,14 @@ module.exports = {
       sinon: true,
       expect: true,
     },
-  }]
+  }, {
+    files: [
+      '*.js',
+      '.*.js',
+    ],
+
+    parserOptions: {
+      sourceType: 'script',
+    },
+  }],
 }
