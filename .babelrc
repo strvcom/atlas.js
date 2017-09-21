@@ -9,5 +9,8 @@
     }],
     "transform-class-properties",
     "transform-function-bind"
+  ],
+  "ignore": [
+    "**/node_modules"
   ]
 }
