@@ -10,7 +10,7 @@ function optrequire(module) {
     // eslint-disable-next-line global-require
     return require(module)
   } catch (err) {
-    return null
+    return {}
   }
 }
 

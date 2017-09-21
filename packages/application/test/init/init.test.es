@@ -83,4 +83,16 @@ describe('Application::init()', () => {
     // Should not throw
     return app.prepare()
   })
+
+  it('does not throw when some of the modules do not exist', () => {
+    Application.init({
+      root: __dirname,
+      env: 'test',
+      config: 'lolconf',
+      services: 'lolserv',
+      actions: 'lolactions',
+      hooks: 'lolhooks',
+      aliases: 'lolaliases',
+    })
+  })
 })

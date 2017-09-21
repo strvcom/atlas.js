@@ -13,6 +13,7 @@ import {
   dispatch,
   component,
   mkconfig,
+  optrequire,
 } from './private'
 
 /**
@@ -58,24 +59,43 @@ class Application {
       throw new FrameworkError(`root must be explicitly specified, got ${root}`)
     }
 
-    // Got all we need, start loading the modules
+    const paths = {
+      hooks: path.resolve(root, options.hooks),
+      services: path.resolve(root, options.services),
+      actions: path.resolve(root, options.actions),
+      aliases: path.resolve(root, options.aliases),
+    }
     const modules = {
-      /* eslint-disable global-require */
-      hooks: require(path.resolve(root, options.hooks)),
-      services: require(path.resolve(root, options.services)),
-      actions: require(path.resolve(root, options.actions)),
-      aliases: require(path.resolve(root, options.aliases)),
-      /* eslint-enable global-require */
+      hooks: optrequire(paths.hooks),
+      services: optrequire(paths.services),
+      actions: optrequire(paths.actions),
+      aliases: optrequire(paths.aliases),
     }
 
-    defaults(modules.aliases, {
-      actions: {},
+    defaults(modules, {
       hooks: {},
       services: {},
+      actions: {},
+      aliases: {
+        actions: {},
+        hooks: {},
+        services: {},
+      },
     })
 
     // Loading the config is supported at the constructor level, no need to do anything special here
     const app = new this({ env, root, config: options.config })
+
+    app.log.debug({
+      env,
+      root,
+      paths,
+      counts: {
+        actions: Object.keys(modules.actions).length,
+        hooks: Object.keys(modules.hooks).length,
+        services: Object.keys(modules.services).length,
+      },
+    }, 'atlas:init')
 
     // Hooks
     for (const [alias, Hook] of Object.entries(modules.hooks)) {

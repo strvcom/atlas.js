@@ -25,7 +25,7 @@ function mkconfig(config = {}, base = {}) {
   if (typeof config === 'string') {
     const modules = {
       // eslint-disable-next-line global-require
-      config: require(path.resolve(this.root, config)),
+      config: optrequire(path.resolve(this.root, config)),
       env: optrequire(path.resolve(this.root, config, 'env', this.env)),
       local: optrequire(path.resolve(this.root, config, 'local')),
     }
