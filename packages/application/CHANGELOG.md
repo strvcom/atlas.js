@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.2.0"></a>
+# [0.2.0](https://github.com/strvcom/atlas.js/compare/@atlas.js/application@0.1.4...@atlas.js/application@0.2.0) (2017-09-22)
+
+
+### Bug Fixes
+
+* **application:** Ensure application:prepare:after is awaited 🤦 ([c0ced7c](https://github.com/strvcom/atlas.js/commit/c0ced7c))
+
+
+### Features
+
+* **application:** All modules in .init() are now optional ([0c532a0](https://github.com/strvcom/atlas.js/commit/0c532a0))
+* **application:** Config files now prefer default exports ([019622b](https://github.com/strvcom/atlas.js/commit/019622b))
+* **application:** init() now logs component names, not just counts ([f4e6acd](https://github.com/strvcom/atlas.js/commit/f4e6acd))
+
+
+
+
 <a name="0.1.4"></a>
 ## [0.1.4](https://github.com/strvcom/atlas.js/compare/@atlas.js/application@0.1.3...@atlas.js/application@0.1.4) (2017-09-07)
 

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.1.5"></a>
+## [0.1.5](https://github.com/strvcom/atlas.js/compare/@atlas.js/core@0.1.4...@atlas.js/core@0.1.5) (2017-09-22)
+
+
+
+
+**Note:** Version bump only for package @atlas.js/core
+
 <a name="0.1.4"></a>
 ## [0.1.4](https://github.com/strvcom/atlas.js/compare/@atlas.js/core@0.1.3...@atlas.js/core@0.1.4) (2017-09-07)
 

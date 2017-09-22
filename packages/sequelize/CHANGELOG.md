@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.2.1"></a>
+## [0.2.1](https://github.com/strvcom/atlas.js/compare/@atlas.js/sequelize@0.2.0...@atlas.js/sequelize@0.2.1) (2017-09-22)
+
+
+
+
+**Note:** Version bump only for package @atlas.js/sequelize
+
 <a name="0.2.0"></a>
 # [0.2.0](https://github.com/strvcom/atlas.js/compare/@atlas.js/sequelize@0.1.1...@atlas.js/sequelize@0.2.0) (2017-09-07)
 

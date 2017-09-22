@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.2.3"></a>
+## [0.2.3](https://github.com/strvcom/atlas.js/compare/@atlas.js/nodemailer@0.2.2...@atlas.js/nodemailer@0.2.3) (2017-09-22)
+
+
+
+
+**Note:** Version bump only for package @atlas.js/nodemailer
+
 <a name="0.2.2"></a>
 ## [0.2.2](https://github.com/strvcom/atlas.js/compare/@atlas.js/nodemailer@0.2.1...@atlas.js/nodemailer@0.2.2) (2017-09-07)
 

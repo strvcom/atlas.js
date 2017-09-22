@@ -1,11 +1,10 @@
 {
   "name": "@atlas.js/errors",
   "description": "The parent class for all errors thrown by @atlas.js",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "author": "Robert Rossmann <robert.rossmann@strv.com>",
   "bugs": "https://github.com/strvcom/atlas.js/issues",
   "contributors": [],
-  "dependencies": {},
   "engines": {
     "node": "^8.3.0",
     "npm": "^5.3.0"

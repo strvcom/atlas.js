@@ -1,12 +1,12 @@
 {
   "name": "@atlas.js/action",
   "description": "The base Action class all actions should inherit from for @atlas.js",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "author": "Robert Rossmann <robert.rossmann@strv.com>",
   "bugs": "https://github.com/strvcom/atlas.js/issues",
   "contributors": [],
   "dependencies": {
-    "@atlas.js/component": "^0.0.3"
+    "@atlas.js/component": "^0.0.4"
   },
   "engines": {
     "node": "^8.3.0",
