@@ -1,5 +1,5 @@
 /**
- * Optionally require a module, returning null if the module cannot be required
+ * Optionally require a module, returning an empty object if the module cannot be required
  *
  * @private
  * @param     {String}    module    Path to the module to require
