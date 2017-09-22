@@ -90,10 +90,10 @@ class Application {
       env,
       root,
       paths,
-      counts: {
-        actions: Object.keys(modules.actions).length,
-        hooks: Object.keys(modules.hooks).length,
-        services: Object.keys(modules.services).length,
+      components: {
+        actions: Object.keys(modules.actions),
+        hooks: Object.keys(modules.hooks),
+        services: Object.keys(modules.services),
       },
     }, 'atlas:init')
 
