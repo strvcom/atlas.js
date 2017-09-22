@@ -55,6 +55,27 @@ describe('Application: basics and API', () => {
     expect(config).to.have.property('fromLocal', true)
   })
 
+  it('prefers ES module default export in the config files', () => {
+    const modules = {
+      // eslint-disable-next-line global-require
+      env: require('./democonfig/env/modenv').default,
+    }
+
+    expect(modules.env.application).to.have.property('fromEnv', true)
+    expect(modules.env.application).to.have.property('fromLocal', false)
+
+    const app = new Application({
+      root: __dirname,
+      env: 'modenv',
+      config: 'democonfig',
+    })
+    const config = app.config.application
+
+    expect(config).to.have.property('fromBase', true)
+    expect(config).to.have.property('fromEnv', true)
+    expect(config).to.have.property('fromLocal', true)
+  })
+
   it('responds to known methods', () => {
     const app = new Application(opts)
 

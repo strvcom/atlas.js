@@ -25,9 +25,9 @@ function mkconfig(config = {}, base = {}) {
   if (typeof config === 'string') {
     const modules = {
       // eslint-disable-next-line global-require
-      config: optrequire(path.resolve(this.root, config)),
-      env: optrequire(path.resolve(this.root, config, 'env', this.env)),
-      local: optrequire(path.resolve(this.root, config, 'local')),
+      config: normalise(optrequire(path.resolve(this.root, config))),
+      env: normalise(optrequire(path.resolve(this.root, config, 'env', this.env))),
+      local: normalise(optrequire(path.resolve(this.root, config, 'local'))),
     }
 
     modules.config = merge(modules.config, modules.env, modules.local)
@@ -38,6 +38,19 @@ function mkconfig(config = {}, base = {}) {
 
   // It's just an object, apply defaults and GTFO
   return defaults(config, base)
+}
+
+/**
+ * Normalise a module into either a default export or all the rest
+ *
+ * @private
+ * @param     {Object}    module    The module to be normalised
+ * @return    {Object}              The normalised module
+ */
+function normalise(module) {
+  return module.hasOwnProperty('default') && typeof module.default === 'object' && module.default
+    ? module.default
+    : module
 }
 
 export default mkconfig
