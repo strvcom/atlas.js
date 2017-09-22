@@ -1,0 +1,11 @@
+{
+  "name": "noop",
+  "version": "1.0.0",
+  "description": "A noop component for Atlas.js",
+  "keywords": [],
+  "main": "src",
+  "dependencies": {
+    "@atlas.js/service": "^.0.0.4"
+  },
+  "devDependencies": {}
+}

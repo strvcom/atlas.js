@@ -1,0 +1,36 @@
+# Dependencies
+node_modules
+
+# Local configuration
+.env
+src/config/local.es
+
+# Generated files
+docs
+coverage
+
+# Generated files
+.nvmrc
+docs
+coverage
+gh-pages
+
+# Garbage
+*.log
+*~
+*#
+.DS_Store
+.nyc_output
+.eslintcache
+
+# IDE stuff
+.netbeans
+nbproject
+.idea
+.node_history
+*.sublime-*
+*.atom-*
+.vscode
+.tern-*
+.languagebabel
+jsconfig.json

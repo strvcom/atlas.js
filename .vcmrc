@@ -22,6 +22,7 @@
       "core",
       "errors",
       "firebase",
+      "generator",
       "hook",
       "koa",
       "mongoose",
