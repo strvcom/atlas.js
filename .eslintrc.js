@@ -24,6 +24,12 @@ module.exports = {
       sinon: true,
       expect: true,
     },
+
+    rules: {
+      'import/no-extraneous-dependencies': ['error', {
+        packageDir: ['.', __dirname],
+      }],
+    },
   }, {
     files: [
       '*.js',
