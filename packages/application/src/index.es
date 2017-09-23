@@ -210,11 +210,11 @@ class Application {
     }
 
     // Safety checks
-    if (!this::hidden().env) {
+    if (!this.env) {
       throw new FrameworkError('env not specified and NODE_ENV was not set')
     }
 
-    if (typeof this::hidden().root !== 'string') {
+    if (typeof this.root !== 'string') {
       throw new FrameworkError(`root must be explicitly specified, got ${options.root}`)
     }
 
