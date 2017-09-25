@@ -6,7 +6,7 @@
   "contributors": [],
   "dependencies": {},
   "devDependencies": {
-    "@strv/eslint-config-javascript": "^7.5.0",
+    "@strv/eslint-config-javascript": "^7.7.0",
     "babel-cli": "^7.0.0-beta.0",
     "babel-eslint": "^8.0.0",
     "babel-plugin-syntax-object-rest-spread": "^7.0.0-beta.0",
@@ -20,7 +20,7 @@
     "esdoc": "^1.0.1",
     "esdoc-ecmascript-proposal-plugin": "^1.0.0",
     "esdoc-standard-plugin": "^1.0.0",
-    "eslint": "^4.3.0",
+    "eslint": "^4.7.2",
     "lerna": "^2.1.0",
     "mocha": "^3.5.0",
     "nyc": "^11.1.0",
