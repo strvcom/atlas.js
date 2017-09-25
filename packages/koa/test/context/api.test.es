@@ -1,3 +1,4 @@
+import path from 'path'
 import { ContextHook } from '../..'
 import { FrameworkError } from '@atlas.js/errors'
 import testcontext from './testcontext'
@@ -11,6 +12,8 @@ describe('Koa: ContextHook', () => {
     hook = new ContextHook({
       app: {
         root: __dirname,
+        // eslint-disable-next-line global-require
+        require: location => require(path.resolve(__dirname, location)),
       },
       config: {
         module: 'testcontext',

@@ -1,3 +1,4 @@
+import path from 'path'
 import { ModelsHook } from '../..'
 import Sequelize from 'sequelize'
 import * as testmodels from '../testmodels'
@@ -17,6 +18,8 @@ describe('Sequelize: ModelsHook', () => {
     hook = new ModelsHook({
       app: {
         root: __dirname,
+        // eslint-disable-next-line global-require
+        require: location => require(path.resolve(__dirname, location)),
       },
       log: { debug() {} },
       config: {

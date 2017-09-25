@@ -1,3 +1,4 @@
+import path from 'path'
 import { ModelsHook } from '../..'
 import * as testmodels from './testmodels'
 
@@ -10,6 +11,8 @@ describe('Mongoose: ModelsHook', () => {
     hook = new ModelsHook({
       app: {
         root: __dirname,
+        // eslint-disable-next-line global-require
+        require: location => require(path.resolve(__dirname, location)),
       },
       log: { debug: () => {} },
       config: {

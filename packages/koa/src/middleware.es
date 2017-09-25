@@ -1,4 +1,3 @@
-import path from 'path'
 import Hook from '@atlas.js/hook'
 import hidden from 'local-scope/create'
 
@@ -13,8 +12,7 @@ class MiddlewareHook extends Hook {
 
   'application:prepare:after'() {
     // Load the middleware module from the user-specified directory, relative to root
-    // eslint-disable-next-line global-require
-    this::hidden().middleware = require(path.resolve(this.app.root, this.config.module))
+    this::hidden().middleware = this.app.require(this.config.module)
   }
 
   'application:start:before'() {

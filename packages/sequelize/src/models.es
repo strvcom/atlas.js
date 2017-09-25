@@ -1,4 +1,3 @@
-import path from 'path'
 import Hook from '@atlas.js/hook'
 
 class ModelsHook extends Hook {
@@ -12,10 +11,7 @@ class ModelsHook extends Hook {
 
   'application:prepare:after'() {
     const sequelize = this.component('service:sequelize')
-
-    // Load all models
-    // eslint-disable-next-line global-require
-    const models = require(path.resolve(this.app.root, this.config.module))
+    const models = this.app.require(this.config.module)
 
     for (const [name, Model] of Object.entries(models)) {
       const config = {

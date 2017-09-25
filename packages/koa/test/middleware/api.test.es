@@ -1,16 +1,21 @@
+import path from 'path'
 import { MiddlewareHook } from '../..'
 import * as testmiddleware from './testmiddleware'
 
 describe('Koa: MiddlewareHook', () => {
+  let app
   let hook
   let server
 
   beforeEach(() => {
+    app = {
+      root: __dirname,
+      // eslint-disable-next-line global-require
+      require: location => require(path.resolve(__dirname, location)),
+    }
     server = { use: sinon.spy() }
     hook = new MiddlewareHook({
-      app: {
-        root: __dirname,
-      },
+      app,
       config: {
         module: 'testmiddleware',
         middleware: {},
@@ -54,9 +59,7 @@ describe('Koa: MiddlewareHook', () => {
 
     it('passes the provided middleware config to the middleware', async () => {
       hook = new MiddlewareHook({
-        app: {
-          root: __dirname,
-        },
+        app,
         config: {
           module: 'testmiddleware',
           middleware: {

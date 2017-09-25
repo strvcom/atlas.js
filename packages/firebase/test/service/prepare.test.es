@@ -1,3 +1,4 @@
+import path from 'path'
 import Admin from 'firebase-admin'
 import { Service as Firebase } from '../..'
 
@@ -42,7 +43,11 @@ describe('Firebase::prepare()', () => {
   it('loads the credentials from file if the credential is a string', async () => {
     Admin.credential.cert.returnsArg(0)
     service = new Firebase({
-      app: { root: __dirname },
+      app: {
+        root: __dirname,
+        // eslint-disable-next-line global-require
+        require: location => require(path.resolve(__dirname, location)),
+      },
       config: {
         name: 'test',
         credential: 'test-credential.json',

@@ -1,4 +1,3 @@
-import path from 'path'
 import Hook from '@atlas.js/hook'
 import { FrameworkError } from '@atlas.js/errors'
 
@@ -13,8 +12,7 @@ class ContextHook extends Hook {
 
   'application:prepare:after'() {
     const koa = this.component('service:koa')
-    // eslint-disable-next-line global-require
-    const mod = require(path.resolve(this.app.root, this.config.module))
+    const mod = this.app.require(this.config.module)
     // Prefer default export or a standard CommonJS module
     const context = mod.default
       ? mod.default

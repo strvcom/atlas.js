@@ -1,4 +1,3 @@
-import path from 'path'
 import Service from '@atlas.js/service'
 import * as Admin from 'firebase-admin'
 
@@ -13,8 +12,7 @@ class Firebase extends Service {
     const config = this.config
     // Either load the credentials from the file (if it's a string) or just pass it as is (object?)
     const credential = typeof config.credential === 'string'
-      // eslint-disable-next-line global-require
-      ? require(path.resolve(this.app.root, config.credential))
+      ? this.app.require(config.credential)
       : config.credential
 
     return Admin.initializeApp({

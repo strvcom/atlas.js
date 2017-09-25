@@ -45,8 +45,6 @@ class Application {
    * @return    {Application}
    */
   static init(options = {}) {
-    const { env, root } = options
-
     defaults(options, {
       config: 'config',
       hooks: 'hooks',
@@ -55,21 +53,22 @@ class Application {
       aliases: 'aliases',
     })
 
-    if (!root) {
-      throw new FrameworkError(`root must be explicitly specified, got ${root}`)
-    }
-
+    const app = new this({
+      env: options.env,
+      root: options.root,
+      config: options.config,
+    })
     const paths = {
-      hooks: path.resolve(root, options.hooks),
-      services: path.resolve(root, options.services),
-      actions: path.resolve(root, options.actions),
-      aliases: path.resolve(root, options.aliases),
+      hooks: path.resolve(options.root, options.hooks),
+      services: path.resolve(options.root, options.services),
+      actions: path.resolve(options.root, options.actions),
+      aliases: path.resolve(options.root, options.aliases),
     }
     const modules = {
-      hooks: optrequire(paths.hooks),
-      services: optrequire(paths.services),
-      actions: optrequire(paths.actions),
-      aliases: optrequire(paths.aliases),
+      hooks: app.require(options.hooks, { optional: true }),
+      services: app.require(options.services, { optional: true }),
+      actions: app.require(options.actions, { optional: true }),
+      aliases: app.require(options.aliases, { optional: true }),
     }
 
     defaults(modules, {
@@ -83,12 +82,9 @@ class Application {
       },
     })
 
-    // Loading the config is supported at the constructor level, no need to do anything special here
-    const app = new this({ env, root, config: options.config })
-
     app.log.debug({
-      env,
-      root,
+      env: app.env,
+      root: app.root,
       paths,
       components: {
         actions: Object.keys(modules.actions),
@@ -227,6 +223,24 @@ class Application {
     this.config.application = defaults(this.config.application, Application.defaults)
     // Logger 🌲
     this.log = pino(this.config.application.log)
+  }
+
+  /**
+   * Require a module by path, relative to the project root
+   *
+   * @param     {String}    location          The module's location, relative to root
+   * @param     {Object}    options={}        Options
+   * @param     {Boolean}   options.optional  If true, will not throw if the module does not exist
+   * @return    {mixed}                       The module's contents
+   */
+  require(location, options = {}) {
+    location = path.resolve(this.root, location)
+
+    const loader = options.optional
+      ? optrequire
+      : require
+
+    return loader(location)
   }
 
   /**
