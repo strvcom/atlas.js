@@ -1,4 +1,4 @@
-import Service from '@atlas.js/service'
+import Service from '@atlas.js/core'
 
 class Noop extends Service {
   prepare() {
