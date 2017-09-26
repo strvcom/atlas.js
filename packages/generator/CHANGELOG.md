@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.1.2"></a>
+## [0.1.2](https://github.com/strvcom/atlas.js/compare/@atlas.js/generator-atlas@0.1.1...@atlas.js/generator-atlas@0.1.2) (2017-09-26)
+
+
+### Bug Fixes
+
+* **generator:** Fix path to components' README.md ([aafbf0a](https://github.com/strvcom/atlas.js/commit/aafbf0a))
+
+
+
+
 <a name="0.1.1"></a>
 ## [0.1.1](https://github.com/strvcom/atlas.js/compare/@atlas.js/generator-atlas@0.1.0...@atlas.js/generator-atlas@0.1.1) (2017-09-26)
 
