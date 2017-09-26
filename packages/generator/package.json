@@ -6,7 +6,6 @@
   "bugs": "https://github.com/strvcom/atlas.js/issues",
   "contributors": [],
   "dependencies": {
-    "@atlas.js/core": "^0.1.6",
     "generator-git-init": "^1.1.3",
     "generator-npm-init": "^1.4.0",
     "yeoman-generator": "^2.0.0"
