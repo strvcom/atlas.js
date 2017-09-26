@@ -1,7 +1,7 @@
 {
   "name": "@atlas.js/application",
   "description": "The main Application orchestrator of @atlas.js",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "author": "Robert Rossmann <robert.rossmann@strv.com>",
   "bugs": "https://github.com/strvcom/atlas.js/issues",
   "contributors": [],
@@ -12,7 +12,7 @@
     "pino": "^4.7.0"
   },
   "devDependencies": {
-    "@atlas.js/action": "^0.0.4",
+    "@atlas.js/action": "^0.0.5",
     "@atlas.js/hook": "^0.0.4",
     "@atlas.js/service": "^0.0.4"
   },

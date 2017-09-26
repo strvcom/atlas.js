@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.0.5"></a>
+## [0.0.5](https://github.com/strvcom/atlas.js/compare/@atlas.js/action@0.0.4...@atlas.js/action@0.0.5) (2017-09-26)
+
+
+### Bug Fixes
+
+* **action:** Do not re-implement config handling ([6f4c7ee](https://github.com/strvcom/atlas.js/commit/6f4c7ee))
+
+
+
+
 <a name="0.0.4"></a>
 ## 0.0.4 (2017-09-22)
 
