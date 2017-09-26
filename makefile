@@ -15,7 +15,7 @@ installflags :=
 all: compile
 
 compile: install
-	babel . -q --extensions .es --out-dir . $(compileflags)
+	babel . -q --extensions .mjs --out-dir . $(compileflags)
 
 # Note about `touch`:
 # npm does not update the timestamp of the node_modules folder itself. This confuses Make as it
@@ -27,7 +27,7 @@ node_modules: package.json
 install: node_modules
 
 lint: install
-	eslint --ext .es $(lintflags) .
+	eslint --ext .mjs $(lintflags) .
 
 test: compile
 	mocha $(testflags)

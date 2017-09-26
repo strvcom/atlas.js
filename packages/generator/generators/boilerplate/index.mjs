@@ -1,18 +1,18 @@
 import Generator from 'yeoman-generator'
 
 const templates = [
-  'src/index.es',
-  'src/app.es',
-  'src/actions.es',
-  'src/hooks.es',
-  'src/services.es',
-  'src/config/index.es',
-  'src/config/local.es',
-  'src/config/env/development.es',
-  'src/config/env/production.es',
+  'src/index.mjs',
+  'src/app.mjs',
+  'src/actions.mjs',
+  'src/hooks.mjs',
+  'src/services.mjs',
+  'src/config/index.mjs',
+  'src/config/local.mjs',
+  'src/config/env/development.mjs',
+  'src/config/env/production.mjs',
   'src/components/README.md',
-  'src/components/noop/src/index.es',
-  'src/components/noop/src/service.es',
+  'src/components/noop/src/index.mjs',
+  'src/components/noop/src/service.mjs',
   'src/components/noop/package.json',
 ]
 
@@ -33,7 +33,7 @@ class Boilerplate extends Generator {
     const files = templates
       .map(file => ({
         source: file,
-        target: file.replace(/\.es$/, this.options.extension),
+        target: file.replace(/\.mjs$/, this.options.extension),
       }))
 
     for (const template of files) {

@@ -17,7 +17,7 @@ module.exports = {
   overrides: [{
     files: [
       'test/**',
-      'packages/*/test/**/*.test.es',
+      'packages/*/test/**/*.test.mjs',
     ],
 
     globals: {
