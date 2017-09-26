@@ -10,10 +10,10 @@ const templates = [
   'src/config/local.es',
   'src/config/env/development.es',
   'src/config/env/production.es',
+  'src/components/README.md',
   'src/components/noop/src/index.es',
   'src/components/noop/src/service.es',
   'src/components/noop/package.json',
-  'src/components/noop/README.md',
 ]
 
 class Boilerplate extends Generator {
