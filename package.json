@@ -24,7 +24,7 @@
     "lerna": "^2.1.0",
     "mocha": "^3.5.0",
     "nyc": "^11.1.0",
-    "sinon": "^3.0.0",
+    "sinon": "^4.0.0",
     "source-map-support": "^0.4.15",
     "validate-commit-msg": "^2.14.0"
   },
