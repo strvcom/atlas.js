@@ -26,7 +26,7 @@ node_modules: package.json
 
 install: node_modules
 
-lint:
+lint: install
 	eslint --ext .es $(lintflags) .
 
 test: compile
