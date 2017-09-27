@@ -16,6 +16,7 @@ const app = Application.init({
   services: 'services',
   actions: 'actions',
   hooks: 'hooks',
+  aliases: 'aliases',
   config: 'config',
 })
 

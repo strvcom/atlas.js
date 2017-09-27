@@ -4,6 +4,7 @@ const templates = [
   'src/index.mjs',
   'src/app.mjs',
   'src/actions.mjs',
+  'src/aliases.mjs',
   'src/hooks.mjs',
   'src/services.mjs',
   'src/config/index.mjs',
