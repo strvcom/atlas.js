@@ -1,16 +1,16 @@
 {
   "name": "@atlas.js/core",
   "description": "A meta-package for @atlas.js with all the important components to get you up and running",
-  "version": "0.1.6",
+  "version": "0.2.0",
   "author": "Robert Rossmann <robert.rossmann@strv.com>",
   "bugs": "https://github.com/strvcom/atlas.js/issues",
   "contributors": [],
   "dependencies": {
-    "@atlas.js/action": "^0.0.5",
-    "@atlas.js/application": "^0.3.0",
-    "@atlas.js/errors": "^0.0.4",
-    "@atlas.js/hook": "^0.0.4",
-    "@atlas.js/service": "^0.0.4"
+    "@atlas.js/action": "^0.1.0",
+    "@atlas.js/application": "^0.4.0",
+    "@atlas.js/errors": "^0.1.0",
+    "@atlas.js/hook": "^0.1.0",
+    "@atlas.js/service": "^0.1.0"
   },
   "engines": {
     "node": "^8.3.0",

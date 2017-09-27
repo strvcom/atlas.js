@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.2.0"></a>
+# [0.2.0](https://github.com/strvcom/atlas.js/compare/@atlas.js/generator-atlas@0.1.2...@atlas.js/generator-atlas@0.2.0) (2017-09-27)
+
+
+### Bug Fixes
+
+* **generator:** Add missing aliases config file ([37de848](https://github.com/strvcom/atlas.js/commit/37de848))
+* **generator:** Remove void from Application.init() 🤦 ([0cf5466](https://github.com/strvcom/atlas.js/commit/0cf5466))
+
+
+### Features
+
+* Switch to .mjs file extension ([0ee25cd](https://github.com/strvcom/atlas.js/commit/0ee25cd))
+
+
+
+
 <a name="0.1.2"></a>
 ## [0.1.2](https://github.com/strvcom/atlas.js/compare/@atlas.js/generator-atlas@0.1.1...@atlas.js/generator-atlas@0.1.2) (2017-09-26)
 
