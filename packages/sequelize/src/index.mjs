@@ -6,6 +6,7 @@ import {
   Model,
   DataTypes,
   Deferrable,
+  Op,
 } from 'sequelize'
 
 export {
@@ -16,4 +17,5 @@ export {
   Model,
   DataTypes,
   Deferrable,
+  Op,
 }
