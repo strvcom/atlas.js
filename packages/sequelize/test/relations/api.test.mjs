@@ -8,7 +8,7 @@ describe('Sequelize: RelationsHook', () => {
   let database
 
   before(() => {
-    database = new Sequelize('sqlite://test-db.sqlite')
+    database = new Sequelize('sqlite://test-db.sqlite', { operatorsAliases: {} })
 
     for (const Model of Object.values(testmodels)) {
       const config = {

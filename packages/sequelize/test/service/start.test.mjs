@@ -11,7 +11,9 @@ describe('Sequelize::start()', () => {
       log: {},
       config: {
         uri: 'sqlite://test-db.sqlite',
-        options: {},
+        options: {
+          operatorsAliases: {},
+        },
       },
     })
     instance = await service.prepare()

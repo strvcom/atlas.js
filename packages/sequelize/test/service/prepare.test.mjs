@@ -11,7 +11,9 @@ describe('Sequelize::prepare()', () => {
       log: {},
       config: {
         uri: 'sqlite://test-db.sqlite',
-        options: {},
+        options: {
+          operatorsAliases: {},
+        },
       },
     })
 
