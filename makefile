@@ -22,12 +22,12 @@ compile: install
 # thinks node_modules is not up to date and tries to constantly install pacakges. Touching
 # node_modules after installation fixes that.
 node_modules: package.json
-	npm install $(installflags) && lerna bootstrap --loglevel success && touch node_modules
+	npm install $(installflags) && lerna bootstrap && touch node_modules
 
 install: node_modules
 
 lint: install
-	eslint --ext .mjs $(lintflags) .
+	eslint --ext .mjs --report-unused-disable-directives $(lintflags) .
 
 test: compile
 	mocha $(testflags)
