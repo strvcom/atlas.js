@@ -14,5 +14,11 @@ max_line_length = 100
 [{makefile,Makefile,**.mk}]
 indent_style = tab
 
+[package-lock.json]
+indent_style = tab
+
+[{**.md,**.json}]
+max_line_length = off
+
 [COMMIT_EDITMSG]
 max_line_length = 70
