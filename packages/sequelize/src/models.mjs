@@ -9,7 +9,7 @@ class ModelsHook extends Hook {
     'service:sequelize',
   ]
 
-  'application:prepare:after'() {
+  afterPrepare() {
     const sequelize = this.component('service:sequelize')
     const models = this.atlas.require(this.config.module)
 

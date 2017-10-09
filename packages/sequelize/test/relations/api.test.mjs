@@ -48,8 +48,8 @@ describe('Sequelize: RelationsHook', () => {
     ])
   })
 
-  it('implements `application:prepare:after`', () => {
-    expect(hook).to.respondTo('application:prepare:after')
+  it('implements `afterPrepare`', () => {
+    expect(hook).to.respondTo('afterPrepare')
   })
 
   it('runs all the relations on all the models', async function() {
@@ -57,7 +57,7 @@ describe('Sequelize: RelationsHook', () => {
     this.sandbox.stub(User, 'hasMany')
     this.sandbox.stub(Purchase, 'belongsTo')
 
-    await hook['application:prepare:after']()
+    await hook.afterPrepare()
 
     expect(User.hasMany).to.have.callCount(2)
     expect(User.hasMany.getCall(0).args).to.eql([Purchase, User.relations.hasMany.Purchase])
@@ -72,7 +72,7 @@ describe('Sequelize: RelationsHook', () => {
 
     User.relations.hasAProblem = { Purchase: {} }
     expect(() =>
-      hook['application:prepare:after']()).to.throw(FrameworkError, /Invalid relation type/)
+      hook.afterPrepare()).to.throw(FrameworkError, /Invalid relation type/)
 
     delete User.relations.hasAProblem
   })
@@ -83,14 +83,14 @@ describe('Sequelize: RelationsHook', () => {
     User.relations.hasMany.Problems = {}
 
     expect(() =>
-      hook['application:prepare:after']()).to.throw(FrameworkError, /Invalid relation target/)
+      hook.afterPrepare()).to.throw(FrameworkError, /Invalid relation target/)
 
     delete User.relations.hasMany.Problems
   })
 
   it('does not throw when the model has no relations defined', () => {
     expect(() => {
-      hook['application:prepare:after']()
+      hook.afterPrepare()
     }).to.not.throw()
   })
 })

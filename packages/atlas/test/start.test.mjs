@@ -82,8 +82,8 @@ describe('Atlas::start()', () => {
 
   describe('Hook interactions - dispatching events', () => {
     const events = [
-      'application:start:before',
-      'application:start:after',
+      'beforeStart',
+      'afterStart',
     ]
 
     beforeEach(() => {

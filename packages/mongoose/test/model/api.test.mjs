@@ -39,14 +39,14 @@ describe('Mongoose: ModelsHook', () => {
     ])
   })
 
-  it('implements `application:prepare:after`', () => {
-    expect(hook).to.respondTo('application:prepare:after')
+  it('implements `afterPrepare`', () => {
+    expect(hook).to.respondTo('afterPrepare')
   })
 
 
-  describe('application:prepare:after', () => {
+  describe('afterPrepare', () => {
     it('loads all models from the specified module location', async () => {
-      await hook['application:prepare:after']()
+      await hook.afterPrepare()
 
       expect(database.model).to.have.callCount(2)
       expect(database.model.getCall(0).args[0]).to.equal('User')

@@ -179,13 +179,13 @@ Hooks are a piece of code designed to react to some lifecycle events that the fr
 
 The following events are currently supported:
 
-- `application:prepare:after` - Use this event to modify or otherwise enhance your components with extra functionality
-- `application:start:before` - Use this event to further configure the service with custom middleware, or register database models or perform other important tasks to prepare the service for handling requests.
-- `application:start:after` - The application is ready for prime time at this moment and services which accept connections are accepting them now. Use this to ie. start workers or schedule jobs.
-- `application:stop:before` - The application has been requested to be shut down (by calling `atlas.stop()`) - use this to stop workers or perform other important tasks. Note, however, that at this moment all services are still accepting requests, so do not shut down anything important!
-- `application:stop:after` - All services have been stopped or disconnected and the components are no longer available - use this to save important information to disk or perform other important cleanup.
+- `afterPrepare` - Use this event to modify or otherwise enhance your components with extra functionality
+- `beforeStart` - Use this event to further configure the service with custom middleware, or register database models or perform other important tasks to prepare the service for handling requests.
+- `afterStart` - The application is ready for prime time at this moment and services which accept connections are accepting them now. Use this to ie. start workers or schedule jobs.
+- `beforeStop` - The application has been requested to be shut down (by calling `atlas.stop()`) - use this to stop workers or perform other important tasks. Note, however, that at this moment all services are still accepting requests, so do not shut down anything important!
+- `afterStop` - All services have been stopped or disconnected and the components are no longer available - use this to save important information to disk or perform other important cleanup.
 
-To add middleware to our Koa service, it seems the best fit would be to listen for the `application:start:before` event. But it turns out that this is such a common use case that the `@atlas.js/koa` package already bundles a middleware loader hook! So let's use it!
+To add middleware to our Koa service, it seems the best fit would be to listen for the `beforeStart` event. But it turns out that this is such a common use case that the `@atlas.js/koa` package already bundles a middleware loader hook! So let's use it!
 
 ```js
 atlas.hook('middleware', Koa.MiddlewareHook, {

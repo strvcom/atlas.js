@@ -329,7 +329,7 @@ class Atlas {
       this::lifecycle.service.prepare(alias, service.component)))
 
     this::hidden().prepared = true
-    await this::dispatch('application:prepare:after', this, hooks)
+    await this::dispatch('afterPrepare', this, hooks)
 
     return this
   }
@@ -347,7 +347,7 @@ class Atlas {
     const hooks = this::hidden().catalog.hooks
 
     await this.prepare()
-    await this::dispatch('application:start:before', this, hooks)
+    await this::dispatch('beforeStart', this, hooks)
 
     const { services } = this::hidden().catalog
 
@@ -361,7 +361,7 @@ class Atlas {
     }
 
     this::hidden().started = true
-    await this::dispatch('application:start:after', this, hooks)
+    await this::dispatch('afterStart', this, hooks)
     this.log.info('atlas:ready')
 
     return this
@@ -382,7 +382,7 @@ class Atlas {
 
     const { services, actions, hooks } = this::hidden().catalog
 
-    await this::dispatch('application:stop:before', this, hooks)
+    await this::dispatch('beforeStop', this, hooks)
 
     // Stop all services, in the reverse order they were added to the instance 💪
     // This will make sure the most important services are stopped first.
@@ -399,7 +399,7 @@ class Atlas {
     this::hidden().started = false
     this::hidden().prepared = false
 
-    await this::dispatch('application:stop:after', null, hooks)
+    await this::dispatch('afterStop', null, hooks)
     this.log.info('atlas:stopped')
 
     return this

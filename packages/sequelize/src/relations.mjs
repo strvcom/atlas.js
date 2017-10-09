@@ -6,7 +6,7 @@ class AssociationsHook extends Hook {
     'service:sequelize',
   ]
 
-  'application:prepare:after'() {
+  afterPrepare() {
     const { models } = this.component('service:sequelize')
     // Go through all the registered models and execute the relations per type (hasOne, hasMany,
     // belongsTo etc.)

@@ -27,8 +27,8 @@ describe('Koa: ContextHook', () => {
     expect(ContextHook).to.be.a('function')
   })
 
-  it('implements `application:prepare:after`', () => {
-    expect(hook).to.respondTo('application:prepare:after')
+  it('implements `afterPrepare`', () => {
+    expect(hook).to.respondTo('afterPrepare')
   })
 
   it('defines its defaults', () => {
@@ -39,7 +39,7 @@ describe('Koa: ContextHook', () => {
   })
 
 
-  describe('application:prepare:after', () => {
+  describe('afterPrepare', () => {
     it('adds all properties from the module to koa.context', async () => {
       const names = Object.keys(testcontext)
 
@@ -47,14 +47,14 @@ describe('Koa: ContextHook', () => {
       expect(names.length).to.be.above(0)
       expect(server.context).to.not.have.all.keys(names)
 
-      await hook['application:prepare:after']()
+      await hook.afterPrepare()
 
       expect(server.context).to.have.all.keys(names)
     })
 
     it('throws when the property already exists on koa.context', () => {
       server.context.testmethod = () => {}
-      expect(() => hook['application:prepare:after']())
+      expect(() => hook.afterPrepare())
         .to.throw(FrameworkError, /Unable to extend koa.context/)
     })
   })

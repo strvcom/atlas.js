@@ -97,7 +97,7 @@ describe('Atlas::prepare()', () => {
   describe('Hook interactions - dispatching events', () => {
     beforeEach(() => {
       DummyService.prototype.prepare = sinon.stub().resolves()
-      DummyHook.prototype['application:prepare:after'] = sinon.stub().resolves()
+      DummyHook.prototype.afterPrepare = sinon.stub().resolves()
 
       atlas.service('dummy', DummyService)
       atlas.hook('dummy', DummyHook)
@@ -106,14 +106,14 @@ describe('Atlas::prepare()', () => {
     it('calls the prepare hooks', async () => {
       await atlas.prepare()
 
-      expect(DummyHook.prototype['application:prepare:after']).to.have.callCount(1)
+      expect(DummyHook.prototype.afterPrepare).to.have.callCount(1)
     })
 
-    it('calls the application:prepare:after hook with the atlas instance', async () => {
+    it('calls the afterPrepare hook with the atlas instance', async () => {
       const proto = DummyHook.prototype
       await atlas.prepare()
 
-      expect(proto['application:prepare:after']).to.have.been.calledWith(atlas)
+      expect(proto.afterPrepare).to.have.been.calledWith(atlas)
     })
 
     it('can handle hooks which do not implement any listeners', async () => {

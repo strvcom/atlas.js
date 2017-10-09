@@ -40,14 +40,14 @@ describe('Sequelize: ModelsHook', () => {
     ])
   })
 
-  it('implements `application:prepare:after`', () => {
-    expect(hook).to.respondTo('application:prepare:after')
+  it('implements `afterPrepare`', () => {
+    expect(hook).to.respondTo('afterPrepare')
   })
 
 
-  describe('application:prepare:after', () => {
+  describe('afterPrepare', () => {
     it('loads all models from the specified module location', async () => {
-      await hook['application:prepare:after']()
+      await hook.afterPrepare()
 
       for (const [name, Model] of Object.entries(testmodels)) {
         expect(database.models).to.have.property(name, Model)
@@ -62,7 +62,7 @@ describe('Sequelize: ModelsHook', () => {
         this.sandbox.stub(Model, 'init').returns()
       }
 
-      await hook['application:prepare:after']()
+      await hook.afterPrepare()
 
       for (const Model of Object.values(testmodels)) {
         expect(Model.init).to.have.callCount(1)

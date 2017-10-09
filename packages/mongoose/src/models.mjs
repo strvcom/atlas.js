@@ -9,7 +9,7 @@ class ModelsHook extends Hook {
     'service:mongoose',
   ]
 
-  'application:prepare:after'() {
+  afterPrepare() {
     const instance = this.component('service:mongoose')
     const schemas = this.atlas.require(this.config.module)
 

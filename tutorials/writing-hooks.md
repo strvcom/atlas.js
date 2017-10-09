@@ -16,11 +16,11 @@ A hook may implement some or all event handlers currently supported by the frame
 
 The following events are currently supported:
 
-- **`application:prepare:after`** - Use this event to modify or otherwise enhance your components with extra functionality
-- **`application:start:before`** - Use this event to further configure your services with custom middleware, or register database models or perform other important tasks to prepare the service for handling requests.
-- **`application:start:after`** - The application is ready for prime time at this moment and services which accept connections are accepting them now. Use this to ie. start workers or schedule jobs.
-- **`application:stop:before`** - The application has been requested to be shut down (by calling `atlas.stop()`) - use this to stop workers or perform other important tasks. Note, however, that at this moment all services are still accepting requests, so do not shut down anything which could disrupt their normal operations!
-- **`application:stop:after`** - All services have been stopped or disconnected and the components are no longer available - use this to save important information to disk or perform other important cleanup.
+- **`afterPrepare`** - Use this event to modify or otherwise enhance your components with extra functionality
+- **`beforeStart`** - Use this event to further configure your services with custom middleware, or register database models or perform other important tasks to prepare the service for handling requests.
+- **`afterStart`** - The application is ready for prime time at this moment and services which accept connections are accepting them now. Use this to ie. start workers or schedule jobs.
+- **`beforeStop`** - The application has been requested to be shut down (by calling `atlas.stop()`) - use this to stop workers or perform other important tasks. Note, however, that at this moment all services are still accepting requests, so do not shut down anything which could disrupt their normal operations!
+- **`afterStop`** - All services have been stopped or disconnected and the components are no longer available - use this to save important information to disk or perform other important cleanup.
 
 Here is a bare class which implements all currently supported event handlers.
 
@@ -31,19 +31,19 @@ import Hook from '@atlas.js/hook'
 
 class LifecycleLogger extends Hook {
 
-  async 'application:prepare:after'() {
+  async afterPrepare() {
     this.log.info('done preparing!')
   }
-  async 'application:start:before'() {
+  async beforeStart() {
     this.log.info('about to start!')
   }
-  async 'application:start:after'() {
+  async afterStart() {
     this.log.info('started, woohoo!')
   }
-  async 'application:stop:before'() {
+  async beforeStop() {
     this.log.info('about to stop')
   }
-  async 'application:stop:after'() {
+  async afterStop() {
     this.log.info('see you later!')
   }
 }

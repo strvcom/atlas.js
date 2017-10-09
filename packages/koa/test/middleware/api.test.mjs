@@ -23,7 +23,7 @@ describe('Koa: MiddlewareHook', () => {
       resolve() { return server },
     })
 
-    return hook['application:prepare:after']()
+    return hook.afterPrepare()
   })
 
 
@@ -31,12 +31,12 @@ describe('Koa: MiddlewareHook', () => {
     expect(MiddlewareHook).to.be.a('function')
   })
 
-  it('implements `application:prepare:after`', () => {
-    expect(hook).to.respondTo('application:prepare:after')
+  it('implements `afterPrepare`', () => {
+    expect(hook).to.respondTo('afterPrepare')
   })
 
-  it('implements `application:start:before`', () => {
-    expect(hook).to.respondTo('application:start:before')
+  it('implements `beforeStart`', () => {
+    expect(hook).to.respondTo('beforeStart')
   })
 
   it('defines its defaults', () => {
@@ -48,9 +48,9 @@ describe('Koa: MiddlewareHook', () => {
   })
 
 
-  describe('application:start:before', () => {
+  describe('beforeStart', () => {
     it('loads all exported middleware from the specified module into Koa', async () => {
-      await hook['application:start:before']()
+      await hook.beforeStart()
 
       expect(testmiddleware.first).to.have.callCount(1)
       expect(testmiddleware.second).to.have.callCount(1)
@@ -70,8 +70,8 @@ describe('Koa: MiddlewareHook', () => {
         resolve() { return server },
       })
 
-      await hook['application:prepare:after']()
-      await hook['application:start:before']()
+      await hook.afterPrepare()
+      await hook.beforeStart()
 
       const args = {
         first: testmiddleware.first.lastCall.args[0],

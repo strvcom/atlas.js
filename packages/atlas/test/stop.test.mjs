@@ -100,8 +100,8 @@ describe('Atlas::stop()', () => {
 
   describe('Service interactions - dispatching events', () => {
     const events = [
-      'application:stop:before',
-      'application:stop:after',
+      'beforeStop',
+      'afterStop',
     ]
 
     beforeEach(() => {
@@ -121,17 +121,17 @@ describe('Atlas::stop()', () => {
       }
     })
 
-    it('calls the application:stop:before hook with the application instance', async () => {
+    it('calls the beforeStop hook with the application instance', async () => {
       const proto = DummyHook.prototype
       await atlas.stop()
 
-      expect(proto['application:stop:before']).to.have.been.calledWith(atlas)
+      expect(proto.beforeStop).to.have.been.calledWith(atlas)
     })
 
-    it('calls the application:stop:after hook with null', async () => {
+    it('calls the afterStop hook with null', async () => {
       const proto = DummyHook.prototype
       await atlas.stop()
-      const args = proto['application:stop:after'].lastCall.args
+      const args = proto.afterStop.lastCall.args
 
       expect(args).to.have.length(1)
       expect(args[0]).to.equal(null)

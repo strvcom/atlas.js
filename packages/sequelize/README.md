@@ -221,7 +221,7 @@ await atlas.actions.migration.pending() // Returns names of pending migrations
 
 #### Running migrations on start
 
-Migrations are not applied automatically on application start. You will need to implement your own hook which implements the `application:start:before` event handler and run the `up()` method from there.
+Migrations are not applied automatically on application start. You will need to implement your own hook which implements the `beforeStart` event handler and run the `up()` method from there.
 
 A simple hook doing just that:
 
@@ -229,7 +229,7 @@ A simple hook doing just that:
 import Hook from '@atlas.js/hook'
 
 export default MigrateHook extends Hook {
-  async 'application:start:before'() {
+  async beforeStart() {
     await this.atlas.actions.migrate.up()
   }
 }

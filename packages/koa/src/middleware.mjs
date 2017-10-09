@@ -10,12 +10,12 @@ class MiddlewareHook extends Hook {
     'service:koa',
   ]
 
-  'application:prepare:after'() {
+  afterPrepare() {
     // Load the middleware module from the user-specified directory, relative to root
     this::hidden().middleware = this.atlas.require(this.config.module)
   }
 
-  'application:start:before'() {
+  beforeStart() {
     // Register all loaded middleware into the Koa instance
     const config = this.config
     const middleware = this::hidden().middleware

@@ -10,7 +10,7 @@ class ContextHook extends Hook {
     'service:koa',
   ]
 
-  'application:prepare:after'() {
+  afterPrepare() {
     const koa = this.component('service:koa')
     const mod = this.atlas.require(this.config.module)
     // Prefer default export or a standard CommonJS module
