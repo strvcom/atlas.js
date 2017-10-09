@@ -15,7 +15,7 @@
  * same as the alias you gave to that component.
  */
 export default {
-  application: {},
+  atlas: {},
   actions: {},
   services: {},
   hooks: {},

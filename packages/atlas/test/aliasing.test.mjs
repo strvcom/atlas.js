@@ -37,7 +37,7 @@ describe('Atlas: cross-component communication', () => {
   beforeEach(() => {
     atlas = new Atlas({
       root: __dirname,
-      config: { application: { log: {
+      config: { atlas: { log: {
         level: 'warn',
       } } },
     })

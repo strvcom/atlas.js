@@ -1,8 +1,8 @@
 // Useful for providing local, per-machine configuration which is never commited to the repo.
-const application = {
+const atlas = {
   fromLocal: true,
 }
 
 export {
-  application,
+  atlas,
 }

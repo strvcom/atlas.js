@@ -9,7 +9,7 @@
  * This file's structure is the same as the main configuration module.
  */
 export default {
-  application: {},
+  atlas: {},
   actions: {},
   services: {},
   hooks: {},

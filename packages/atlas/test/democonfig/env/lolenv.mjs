@@ -1,9 +1,9 @@
 // env-specific configuration.
-const application = {
+const atlas = {
   fromEnv: true,
   fromLocal: false,
 }
 
 export {
-  application,
+  atlas,
 }

@@ -36,19 +36,19 @@ describe('Atlas: basics and API', () => {
       local: require('./democonfig/local'),
       /* eslint-enable global-require */
     }
-    expect(modules.base.application).to.have.property('fromBase', true)
-    expect(modules.base.application).to.have.property('fromEnv', false)
-    expect(modules.base.application).to.have.property('fromLocal', false)
-    expect(modules.env.application).to.have.property('fromEnv', true)
-    expect(modules.env.application).to.have.property('fromLocal', false)
-    expect(modules.local.application).to.have.property('fromLocal', true)
+    expect(modules.base.atlas).to.have.property('fromBase', true)
+    expect(modules.base.atlas).to.have.property('fromEnv', false)
+    expect(modules.base.atlas).to.have.property('fromLocal', false)
+    expect(modules.env.atlas).to.have.property('fromEnv', true)
+    expect(modules.env.atlas).to.have.property('fromLocal', false)
+    expect(modules.local.atlas).to.have.property('fromLocal', true)
 
     const atlas = new Atlas({
       root: __dirname,
       env: 'lolenv',
       config: 'democonfig',
     })
-    const config = atlas.config.application
+    const config = atlas.config.atlas
 
     expect(config).to.have.property('fromBase', true)
     expect(config).to.have.property('fromEnv', true)
@@ -61,15 +61,15 @@ describe('Atlas: basics and API', () => {
       env: require('./democonfig/env/modenv').default,
     }
 
-    expect(modules.env.application).to.have.property('fromEnv', true)
-    expect(modules.env.application).to.have.property('fromLocal', false)
+    expect(modules.env.atlas).to.have.property('fromEnv', true)
+    expect(modules.env.atlas).to.have.property('fromLocal', false)
 
     const atlas = new Atlas({
       root: __dirname,
       env: 'modenv',
       config: 'democonfig',
     })
-    const config = atlas.config.application
+    const config = atlas.config.atlas
 
     expect(config).to.have.property('fromBase', true)
     expect(config).to.have.property('fromEnv', true)

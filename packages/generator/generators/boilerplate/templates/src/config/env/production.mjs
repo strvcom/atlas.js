@@ -5,7 +5,7 @@
  * when you start Atlas.js with the `env` constructor option set to 'production'.
  */
 export default {
-  application: {},
+  atlas: {},
   actions: {},
   services: {},
   hooks: {},

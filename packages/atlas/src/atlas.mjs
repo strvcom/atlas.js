@@ -215,14 +215,14 @@ class Atlas {
     }
 
     this.config = this::mkconfig(options.config, {
-      application: {},
+      atlas: {},
       services: {},
       hooks: {},
       actions: {},
     })
-    this.config.application = defaults(this.config.application, Atlas.defaults)
+    this.config.atlas = defaults(this.config.atlas, Atlas.defaults)
     // Logger 🌲
-    this.log = pino(this.config.application.log)
+    this.log = pino(this.config.atlas.log)
   }
 
   /**

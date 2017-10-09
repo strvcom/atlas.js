@@ -1,6 +1,6 @@
 // env-specific configuration.
 export default {
-  application: {
+  atlas: {
     fromEnv: true,
     fromLocal: false,
   },

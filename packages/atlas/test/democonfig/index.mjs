@@ -1,10 +1,10 @@
 // Base configuration module.
-const application = {
+const atlas = {
   fromBase: true,
   fromEnv: false,
   fromLocal: false,
 }
 
 export {
-  application,
+  atlas,
 }

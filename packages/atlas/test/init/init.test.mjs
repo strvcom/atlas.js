@@ -57,8 +57,8 @@ describe('Atlas::init()', () => {
     }
 
     // Stuff directly on atlas
-    expect(atlas.config).to.have.all.keys(['application', 'services', 'hooks', 'actions'])
-    expect(atlas.config.application).to.include.keys(['test', 'override'])
+    expect(atlas.config).to.have.all.keys(['atlas', 'services', 'hooks', 'actions'])
+    expect(atlas.config.atlas).to.include.keys(['test', 'override'])
     expect(atlas.config.services).to.eql({ dummy: {
       test: true,
       override: true,

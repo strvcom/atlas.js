@@ -16,7 +16,7 @@ describe('Atlas::stop()', () => {
     options = {
       root: __dirname,
       config: {
-        application: {
+        atlas: {
           log: {
             level: 'warn',
           },

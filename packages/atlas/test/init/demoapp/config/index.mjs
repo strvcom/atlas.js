@@ -1,10 +1,10 @@
-const application = { test: true }
+const atlas = { test: true }
 const actions = { dummy: { test: true } }
 const services = { dummy: { test: true } }
 const hooks = { dummy: { test: true } }
 
 export {
-  application,
+  atlas,
   actions,
   services,
   hooks,

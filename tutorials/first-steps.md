@@ -36,7 +36,7 @@ const atlas = new Atlas({
     actions: {},
     services: {},
     hooks: {},
-    application: {},
+    atlas: {},
   },
 })
 ```
@@ -73,7 +73,7 @@ const atlas = new Atlas({
     // Configuration for all hooks
     hooks: {},
     // Configuration for the Atlas instance itself
-    application: {}
+    atlas: {}
   }
 })
 ```
