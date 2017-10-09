@@ -19,7 +19,7 @@ The following events are currently supported:
 - **`application:prepare:after`** - Use this event to modify or otherwise enhance your components with extra functionality
 - **`application:start:before`** - Use this event to further configure your services with custom middleware, or register database models or perform other important tasks to prepare the service for handling requests.
 - **`application:start:after`** - The application is ready for prime time at this moment and services which accept connections are accepting them now. Use this to ie. start workers or schedule jobs.
-- **`application:stop:before`** - The application has been requested to be shut down (by calling `app.stop()`) - use this to stop workers or perform other important tasks. Note, however, that at this moment all services are still accepting requests, so do not shut down anything which could disrupt their normal operations!
+- **`application:stop:before`** - The application has been requested to be shut down (by calling `atlas.stop()`) - use this to stop workers or perform other important tasks. Note, however, that at this moment all services are still accepting requests, so do not shut down anything which could disrupt their normal operations!
 - **`application:stop:after`** - All services have been stopped or disconnected and the components are no longer available - use this to save important information to disk or perform other important cleanup.
 
 Here is a bare class which implements all currently supported event handlers.
@@ -59,7 +59,7 @@ Once you have your hook class ready, it's time to add it to your app!
 import { Atlas } from '@atlas.js/atlas'
 import LifecycleLogger from './lifecycle-logger'
 
-const app = new Atlas({
+const atlas = new Atlas({
   root: __dirname,
   env: process.env.NODE_ENV,
   hooks: {
@@ -70,8 +70,8 @@ const app = new Atlas({
 
 // Now add the component to the app! Remember to use the same name for the component
 // as you used in your configuration!
-app.hook('lifecycle', LifecycleLogger)
+atlas.hook('lifecycle', LifecycleLogger)
 // Time to start the app!
-app.start()
+atlas.start()
 // You will notice a bunch of log entries appearing in your console!
 ```

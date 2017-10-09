@@ -12,7 +12,7 @@ AWS SDK service for @atlas.js.
 import * as aws from '@atlas.js/aws'
 import { Atlas } from '@atlas.js/atlas'
 
-const app = new Atlas({
+const atlas = new Atlas({
   config: {
     services: {
       myaws: {
@@ -42,12 +42,12 @@ const app = new Atlas({
   }
 })
 
-app.service('myaws', aws.Service)
-await app.start()
+atlas.service('myaws', aws.Service)
+await atlas.start()
 // myaws has all the configured services
-app.services.myaws.s3
-app.services.myaws.cloudwatch
-app.services.myaws.lambda
+atlas.services.myaws.s3
+atlas.services.myaws.cloudwatch
+atlas.services.myaws.lambda
 ```
 
 ## License

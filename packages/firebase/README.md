@@ -12,7 +12,7 @@ A Firebase-admin service for @atlas.js.
 import { Atlas } from '@atlas.js/atlas'
 import * as Firebase from '@atlas.js/firebase'
 
-const app = new Atlas({
+const atlas = new Atlas({
   config: {
     services: {
       firebase: {
@@ -29,14 +29,14 @@ const app = new Atlas({
     }
   }
 })
-app.service('firebase', Firebase.Service)
-await app.start()
+atlas.service('firebase', Firebase.Service)
+await atlas.start()
 
 // Your firebase app is now available here:
-app.services.firebase
+atlas.services.firebase
 
 // ie.
-const users = await app.services.firebase.database()
+const users = await atlas.services.firebase.database()
   .ref('/users')
   .once('value')
 ```

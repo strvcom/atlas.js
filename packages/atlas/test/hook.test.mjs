@@ -5,7 +5,7 @@ import { FrameworkError } from '@atlas.js/errors'
 class DummyHook extends Hook {}
 
 describe('Atlas::hook()', () => {
-  let app
+  let atlas
   let options
 
   beforeEach(() => {
@@ -19,34 +19,34 @@ describe('Atlas::hook()', () => {
         },
       },
     }
-    app = new Atlas(options)
+    atlas = new Atlas(options)
   })
 
   it('returns this', () => {
-    expect(app.hook('dummy', DummyHook)).to.equal(app)
+    expect(atlas.hook('dummy', DummyHook)).to.equal(atlas)
   })
 
   it('throws when the alias has already been used by another hook', () => {
-    app.hook('dummy', DummyHook)
-    expect(() => app.hook('dummy', DummyHook)).to.throw(FrameworkError)
+    atlas.hook('dummy', DummyHook)
+    expect(() => atlas.hook('dummy', DummyHook)).to.throw(FrameworkError)
   })
 
   it('throws when the hook is not a class/function', () => {
-    expect(() => app.hook('dummy', {})).to.throw(FrameworkError)
+    expect(() => atlas.hook('dummy', {})).to.throw(FrameworkError)
   })
 
-  it('provides the app on hook constructor argument', () => {
+  it('provides the atlas on hook constructor argument', () => {
     const hook = sinon.spy()
-    app.hook('dummy', hook)
+    atlas.hook('dummy', hook)
     const args = hook.getCall(0).args[0]
 
-    expect(args).to.have.property('app')
-    expect(args.app).to.equal(app)
+    expect(args).to.have.property('atlas')
+    expect(args.atlas).to.equal(atlas)
   })
 
   it('provides a logger instance on hook constructor argument', () => {
     const hook = sinon.spy()
-    app.hook('dummy', hook)
+    atlas.hook('dummy', hook)
     const args = hook.getCall(0).args[0]
 
     expect(args).to.have.property('log')
@@ -56,7 +56,7 @@ describe('Atlas::hook()', () => {
 
   it('provides config object on hook constructor argument', () => {
     const hook = sinon.spy()
-    app.hook('dummy', hook)
+    atlas.hook('dummy', hook)
     const args = hook.getCall(0).args[0]
 
     expect(args).to.have.property('config')
@@ -66,7 +66,7 @@ describe('Atlas::hook()', () => {
 
   it('provides the resolve function on hook constructor argument', () => {
     const hook = sinon.spy()
-    app.hook('dummy', hook)
+    atlas.hook('dummy', hook)
     const args = hook.getCall(0).args[0]
 
     expect(args).to.have.property('resolve')
@@ -76,7 +76,7 @@ describe('Atlas::hook()', () => {
   it('applies defaults defined on hook on top of user-provided config', () => {
     const hook = sinon.spy()
     hook.defaults = { default: true }
-    app.hook('dummy', hook)
+    atlas.hook('dummy', hook)
     const args = hook.getCall(0).args[0]
 
     expect(args.config).to.have.property('default', true)
@@ -86,14 +86,14 @@ describe('Atlas::hook()', () => {
     const hook = sinon.spy()
     hook.requires = ['service:dummy', 'action:dummy']
     expect(() => {
-      app.hook('dummy', hook)
+      atlas.hook('dummy', hook)
     }).to.throw(FrameworkError, /Missing aliases for component dummy/)
   })
 
   it('throws when extraneous aliases are specified', () => {
     const hook = sinon.spy()
     expect(() => {
-      app.hook('dummy', hook, { aliases: {
+      atlas.hook('dummy', hook, { aliases: {
         'service:dummy': 'dummy',
       } })
     }).to.throw(FrameworkError, /Unneeded aliases for component dummy/)
@@ -103,7 +103,7 @@ describe('Atlas::hook()', () => {
     const hook = sinon.spy()
     hook.requires = ['service:dummy', 'action:dummy']
     expect(() => {
-      app.hook('dummy', hook, { aliases: {
+      atlas.hook('dummy', hook, { aliases: {
         'service:dummy': 'dummy',
         'action:dummy': 'dummy',
       } })

@@ -7,7 +7,7 @@
 
 import { Atlas } from '@atlas.js/atlas'
 
-const app = Atlas.init({
+const atlas = Atlas.init({
   // All paths will be relative to this directory
   root: __dirname,
   // Components will be loaded from the following modules. Atlas will try to `require()` these from
@@ -20,4 +20,4 @@ const app = Atlas.init({
   config: 'config',
 })
 
-export default app
+export default atlas

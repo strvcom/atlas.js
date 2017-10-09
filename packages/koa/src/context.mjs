@@ -12,7 +12,7 @@ class ContextHook extends Hook {
 
   'application:prepare:after'() {
     const koa = this.component('service:koa')
-    const mod = this.app.require(this.config.module)
+    const mod = this.atlas.require(this.config.module)
     // Prefer default export or a standard CommonJS module
     const context = mod.default
       ? mod.default

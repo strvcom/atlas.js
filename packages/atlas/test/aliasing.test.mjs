@@ -32,44 +32,44 @@ class DummyService extends Service {
 }
 
 describe('Atlas: cross-component communication', () => {
-  let app
+  let atlas
 
   beforeEach(() => {
-    app = new Atlas({
+    atlas = new Atlas({
       root: __dirname,
       config: { application: { log: {
         level: 'warn',
       } } },
     })
 
-    app.action('action', DummyAction, { aliases: {
+    atlas.action('action', DummyAction, { aliases: {
       'service:dummy': 'service',
     } })
-    app.service('service', DummyService, { aliases: {
+    atlas.service('service', DummyService, { aliases: {
       'action:dummy': 'action',
     } })
 
-    return app.start()
+    return atlas.start()
   })
 
   it('service can find action', () => {
-    app.services.service.sendPing('action:dummy')
+    atlas.services.service.sendPing('action:dummy')
 
-    expect(app.actions.action.ping).to.have.callCount(1)
-    expect(app.actions.action.ping).to.have.been.calledWith('action:dummy')
+    expect(atlas.actions.action.ping).to.have.callCount(1)
+    expect(atlas.actions.action.ping).to.have.been.calledWith('action:dummy')
   })
 
   it('action can find service', () => {
-    app.actions.action.sendPing('service:dummy')
+    atlas.actions.action.sendPing('service:dummy')
 
-    expect(app.services.service.ping).to.have.callCount(1)
-    expect(app.services.service.ping).to.have.been.calledWith('service:dummy')
+    expect(atlas.services.service.ping).to.have.callCount(1)
+    expect(atlas.services.service.ping).to.have.been.calledWith('service:dummy')
   })
 
   xit('hook can find action', () => {})
   xit('hook can find service', () => {})
 
   it('requesting unknown component throws', () => {
-    expect(() => app.services.service.sendPing('service:lolsvc')).to.throw(FrameworkError)
+    expect(() => atlas.services.service.sendPing('service:lolsvc')).to.throw(FrameworkError)
   })
 })

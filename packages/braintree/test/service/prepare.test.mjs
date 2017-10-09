@@ -14,7 +14,7 @@ describe('Braintree::prepare()', () => {
       merchantId: 'dummy-id',
     }
     service = new Braintree({
-      app: {},
+      atlas: {},
       log: {},
       config,
     })
@@ -36,7 +36,7 @@ describe('Braintree::prepare()', () => {
     let triggered = false
 
     service = new Braintree({
-      app: {},
+      atlas: {},
       log: {},
       get config() {
         triggered = true

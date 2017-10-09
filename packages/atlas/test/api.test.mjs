@@ -43,12 +43,12 @@ describe('Atlas: basics and API', () => {
     expect(modules.env.application).to.have.property('fromLocal', false)
     expect(modules.local.application).to.have.property('fromLocal', true)
 
-    const app = new Atlas({
+    const atlas = new Atlas({
       root: __dirname,
       env: 'lolenv',
       config: 'democonfig',
     })
-    const config = app.config.application
+    const config = atlas.config.application
 
     expect(config).to.have.property('fromBase', true)
     expect(config).to.have.property('fromEnv', true)
@@ -64,12 +64,12 @@ describe('Atlas: basics and API', () => {
     expect(modules.env.application).to.have.property('fromEnv', true)
     expect(modules.env.application).to.have.property('fromLocal', false)
 
-    const app = new Atlas({
+    const atlas = new Atlas({
       root: __dirname,
       env: 'modenv',
       config: 'democonfig',
     })
-    const config = app.config.application
+    const config = atlas.config.application
 
     expect(config).to.have.property('fromBase', true)
     expect(config).to.have.property('fromEnv', true)
@@ -77,17 +77,17 @@ describe('Atlas: basics and API', () => {
   })
 
   it('responds to known methods', () => {
-    const app = new Atlas(opts)
+    const atlas = new Atlas(opts)
 
-    expect(app).to.respondTo('prepare')
-    expect(app).to.respondTo('start')
-    expect(app).to.respondTo('stop')
+    expect(atlas).to.respondTo('prepare')
+    expect(atlas).to.respondTo('start')
+    expect(atlas).to.respondTo('stop')
   })
 
   it('has known public properties', () => {
-    const app = new Atlas(opts)
+    const atlas = new Atlas(opts)
 
-    expect(app).to.include.all.keys([
+    expect(atlas).to.include.all.keys([
       'actions',
       'services',
       'config',
@@ -95,35 +95,35 @@ describe('Atlas: basics and API', () => {
     ])
     // Implemented as getters, and Chai does not seem to work with them when checking for .keys()
     // eslint-disable-next-line no-process-env
-    expect(app.env).to.equal(process.env.NODE_ENV).and.to.be.a('string')
-    expect(app.root).to.equal(__dirname)
-    expect(app.prepared).to.equal(false)
-    expect(app.started).to.equal(false)
+    expect(atlas.env).to.equal(process.env.NODE_ENV).and.to.be.a('string')
+    expect(atlas.root).to.equal(__dirname)
+    expect(atlas.prepared).to.equal(false)
+    expect(atlas.started).to.equal(false)
   })
 
   it('constructs a log object on this.log', () => {
-    const app = new Atlas(opts)
+    const atlas = new Atlas(opts)
 
-    expect(app).to.have.property('log')
-    expect(app.log).to.respondTo('debug')
-    expect(app.log).to.respondTo('info')
-    expect(app.log).to.respondTo('warn')
-    expect(app.log).to.respondTo('error')
+    expect(atlas).to.have.property('log')
+    expect(atlas.log).to.respondTo('debug')
+    expect(atlas.log).to.respondTo('info')
+    expect(atlas.log).to.respondTo('warn')
+    expect(atlas.log).to.respondTo('error')
   })
 
-  it('prevents setting app.prepared', () => {
-    const app = new Atlas(opts)
+  it('prevents setting atlas.prepared', () => {
+    const atlas = new Atlas(opts)
 
     expect(() => {
-      app.prepared = true
+      atlas.prepared = true
     }).to.throw()
   })
 
-  it('prevents setting app.started', () => {
-    const app = new Atlas(opts)
+  it('prevents setting atlas.started', () => {
+    const atlas = new Atlas(opts)
 
     expect(() => {
-      app.started = true
+      atlas.started = true
     }).to.throw()
   })
 })

@@ -24,7 +24,7 @@ describe('Koa::stop(instance)', () => {
       .callsArgWithAsync(0, null)
 
     service = new Koa({
-      app: {},
+      atlas: {},
       log: {
         info: () => {},
       },

@@ -7,7 +7,7 @@ class DummyService extends Service {}
 class DummyHook extends Hook {}
 
 describe('Atlas::start()', () => {
-  let app
+  let atlas
   let options
 
   beforeEach(() => {
@@ -26,54 +26,54 @@ describe('Atlas::start()', () => {
         },
       },
     }
-    app = new Atlas(options)
-    app.prepare = sinon.stub().resolves()
+    atlas = new Atlas(options)
+    atlas.prepare = sinon.stub().resolves()
   })
 
 
   it('is async', () => {
-    expect(app.start()).to.be.instanceof(Promise)
+    expect(atlas.start()).to.be.instanceof(Promise)
   })
 
   it('returns this', async () => {
-    expect(await app.start()).to.equal(app)
+    expect(await atlas.start()).to.equal(atlas)
   })
 
-  it('sets app.started to true', async () => {
-    expect(app.started).to.equal(false)
-    await app.start()
-    expect(app.started).to.equal(true)
+  it('sets atlas.started to true', async () => {
+    expect(atlas.started).to.equal(false)
+    await atlas.start()
+    expect(atlas.started).to.equal(true)
   })
 
-  it('calls app.prepare()', async () => {
-    await app.start()
-    expect(app.prepare).to.have.callCount(1)
+  it('calls atlas.prepare()', async () => {
+    await atlas.start()
+    expect(atlas.prepare).to.have.callCount(1)
   })
 
 
   describe('Service interactions', () => {
     beforeEach(() => {
       DummyService.prototype.start = sinon.stub().resolves()
-      app.service('dummy', DummyService)
+      atlas.service('dummy', DummyService)
     })
 
 
     it('calls start on the service', async () => {
-      await app.start()
+      await atlas.start()
       expect(DummyService.prototype.start).to.have.callCount(1)
     })
 
     it('calls start with the instance returned from prepare() step', async () => {
       const instance = { test: true }
-      app.services.dummy = instance
-      await app.start()
+      atlas.services.dummy = instance
+      await atlas.start()
 
       expect(DummyService.prototype.start).to.have.been.calledWith(instance)
     })
 
     it('calls the method only once for each service for multiple .start() calls', async () => {
-      await app.start()
-      await app.start()
+      await atlas.start()
+      await atlas.start()
 
       expect(DummyService.prototype.start).to.have.callCount(1)
     })
@@ -94,33 +94,33 @@ describe('Atlas::start()', () => {
         DummyHook.prototype[event] = sinon.stub().resolves()
       }
 
-      app.service('dummy', DummyService)
-      app.hook('dummy', DummyHook)
+      atlas.service('dummy', DummyService)
+      atlas.hook('dummy', DummyHook)
     })
 
     it('calls the start hooks', async () => {
-      await app.start()
+      await atlas.start()
 
       for (const event of events) {
         expect(DummyHook.prototype[event]).to.have.callCount(1)
       }
     })
 
-    it('calls the hooks with the application instance', async () => {
+    it('calls the hooks with the atlas instance', async () => {
       const proto = DummyHook.prototype
-      await app.start()
+      await atlas.start()
 
       for (const event of events) {
-        expect(proto[event]).to.have.been.calledWith(app)
+        expect(proto[event]).to.have.been.calledWith(atlas)
       }
     })
 
     it('can handle hooks which do not implement any listeners', async () => {
       class Empty {}
 
-      app.hook('empty', Empty)
+      atlas.hook('empty', Empty)
       // This not throwing will suffice 😎
-      await app.start()
+      await atlas.start()
     })
   })
 })

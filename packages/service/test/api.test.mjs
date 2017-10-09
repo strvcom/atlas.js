@@ -34,15 +34,15 @@ describe('Service: basics and API', () => {
     expect(service.stop()).to.not.be.a('promise')
   })
 
-  it('saves app and log objects given on constructor to itself', () => {
-    const app = { app: true }
+  it('saves atlas and log objects given on constructor to itself', () => {
+    const atlas = { atlas: true }
     const log = { log: true }
     const service = new Service({
-      app,
+      atlas,
       log,
     })
 
-    expect(service).to.have.property('app', app)
+    expect(service).to.have.property('atlas', atlas)
     expect(service).to.have.property('log', log)
   })
 })

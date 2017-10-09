@@ -18,17 +18,17 @@ describe('Action: basics and API', () => {
     expect(Action.type).to.equal('action')
   })
 
-  it('saves app, log and config objects given on constructor to itself', () => {
-    const app = { app: true }
+  it('saves atlas, log and config objects given on constructor to itself', () => {
+    const atlas = { atlas: true }
     const log = { log: true }
     const config = { config: true }
     const action = new Action({
-      app,
+      atlas,
       log,
       config,
     })
 
-    expect(action).to.have.property('app', app)
+    expect(action).to.have.property('atlas', atlas)
     expect(action).to.have.property('log', log)
     expect(action).to.have.property('config', config)
   })

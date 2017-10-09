@@ -9,7 +9,7 @@ describe('Mongoose: ModelsHook', () => {
   beforeEach(() => {
     database = { model: sinon.spy() }
     hook = new ModelsHook({
-      app: {
+      atlas: {
         root: __dirname,
         // eslint-disable-next-line global-require
         require: location => require(path.resolve(__dirname, location)),

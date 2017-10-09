@@ -12,7 +12,7 @@ class MiddlewareHook extends Hook {
 
   'application:prepare:after'() {
     // Load the middleware module from the user-specified directory, relative to root
-    this::hidden().middleware = this.app.require(this.config.module)
+    this::hidden().middleware = this.atlas.require(this.config.module)
   }
 
   'application:start:before'() {

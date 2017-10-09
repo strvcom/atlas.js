@@ -21,9 +21,9 @@ class ComponentContainer {
    *                                              components
    * @param     {Class}         info.Component    The component class
    * @param     {Object}        info.config       The component's user-specified configuration
-   * @param     {Atlas}         app               The Atlas instance
+   * @param     {Atlas}         atlas             The Atlas instance
    */
-  constructor(info, app) {
+  constructor(info, atlas) {
     this.type = info.type
     this.alias = info.alias
     this.aliases = info.aliases || {}
@@ -50,8 +50,8 @@ class ComponentContainer {
     }
 
     this.component = new this.Component({
-      app,
-      log: app.log.child({ [this.type]: this.alias }),
+      atlas,
+      log: atlas.log.child({ [this.type]: this.alias }),
       config: defaults(info.config, this.Component.defaults),
       resolve,
     })
@@ -70,7 +70,7 @@ function resolve(name) {
 
   const [type] = name.split(':')
   // Use a plural form of the component type, ie., action -> actions, service -> services etc.
-  const component = this.app[`${type}s`][resolved]
+  const component = this.atlas[`${type}s`][resolved]
 
   if (!component) {
     throw new FrameworkError(`Unable to find ${type} ${resolved} aliased as ${name}`)

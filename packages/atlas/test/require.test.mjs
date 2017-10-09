@@ -2,35 +2,35 @@ import { Atlas } from '..'
 import * as democonfig from './democonfig'
 
 describe('Atlas::require()', () => {
-  let app
+  let atlas
 
   beforeEach(() => {
-    app = new Atlas({ root: __dirname })
+    atlas = new Atlas({ root: __dirname })
   })
 
 
   it('exists', () => {
-    expect(app).to.respondTo('require')
+    expect(atlas).to.respondTo('require')
   })
 
   it('requires a module relative to the root', () => {
-    const config = app.require('democonfig')
+    const config = atlas.require('democonfig')
 
     expect(config).to.equal(democonfig)
   })
 
   it('throws if the module does not exist', () => {
-    expect(() => app.require('lolmodule')).to.throw(/Cannot find module/)
+    expect(() => atlas.require('lolmodule')).to.throw(/Cannot find module/)
   })
 
 
   describe('optional: true', () => {
     it('does not throw', () => {
-      expect(() => app.require('lolmodule', { optional: true })).to.not.throw()
+      expect(() => atlas.require('lolmodule', { optional: true })).to.not.throw()
     })
 
     it('returns empty object', () => {
-      const contents = app.require('lolmodule', { optional: true })
+      const contents = atlas.require('lolmodule', { optional: true })
 
       expect(contents).to.be.an('object')
       expect(Object.keys(contents)).to.have.length(0)

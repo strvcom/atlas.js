@@ -78,7 +78,7 @@ Once you have your service class ready, it's time to add it to your app!
 import { Atlas } from '@atlas.js/atlas'
 import GithubApi from './github-api'
 
-const app = new Atlas({
+const atlas = new Atlas({
   root: __dirname,
   env: process.env.NODE_ENV,
   config: {
@@ -96,14 +96,14 @@ const app = new Atlas({
 
 // Now add the component to the app! Remember to use the same name for the component
 // as you used in your configuration!
-app.service('githubapi', GithubApi)
+atlas.service('githubapi', GithubApi)
 
 // Time to start the app!
-app.start()
+atlas.start()
 .then(async () => {
   // You can now access the interface you exposed in your component's
   // `prepare()` method this way:
-  const githubapi = app.services.githubapi
+  const githubapi = atlas.services.githubapi
   // Calls the github API and fetches the users (imaginary endpoint, don't use!)
   const res = await githubapi.get({ uri: '/v1/users' })
 })

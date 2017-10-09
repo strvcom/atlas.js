@@ -10,7 +10,7 @@ describe('Migration::pending()', () => {
     this.sandbox.stub(Umzug.prototype, 'pending').resolves(['001-first', '002-second'])
     database = mksequelizemock()
     migration = new Migration({
-      app: {
+      atlas: {
         root: __dirname,
       },
       log: {},

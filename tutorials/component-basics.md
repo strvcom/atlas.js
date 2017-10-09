@@ -16,7 +16,7 @@ While each component serves a different purpose, they do share some similarities
 
 When implementing components, the following properties are available as soon as the class is constructed:
 
-- `app`: The main `Atlas` instance - useful to get information about the `root` path, `env` selected or whether the app is `started` or `prepared`.
+- `atlas`: The main `Atlas` instance - useful to get information about the `root` path, `env` selected or whether the instance is `started` or `prepared`.
 - `config`: Your component's configuration options as supplied by the user, with your component's default values already applied.
 - `log`: A [pino][pino-home] instance with some pre-defined keys set so that it's clear that the logs are coming from this component. You can pass this logger instance down to your sub-components, if you like.
 - `component`: Use this function to obtain another component
@@ -44,13 +44,13 @@ console.log(this.config)
 ### Inspect the current environment
 
 ```js
-console.log(this.app.env)
+console.log(this.atlas.env)
 ```
 
 ### Get the path to the application folder
 
 ```js
-console.log(this.app.root)
+console.log(this.atlas.root)
 ```
 
 ### Log something to the console

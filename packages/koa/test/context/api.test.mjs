@@ -10,7 +10,7 @@ describe('Koa: ContextHook', () => {
   beforeEach(() => {
     server = { context: {} }
     hook = new ContextHook({
-      app: {
+      atlas: {
         root: __dirname,
         // eslint-disable-next-line global-require
         require: location => require(path.resolve(__dirname, location)),

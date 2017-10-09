@@ -123,8 +123,8 @@ That's it! Nothing else needs to be installed. 🎉
 import { Atlas } from '@atlas.js/atlas'
 import * as Koa from '@atlas.js/koa'
 
-// Now we need an instance of the app, so let's make one
-const app = new Atlas({
+// Now we need an instance of Atlas, so let's make one
+const atlas = new Atlas({
   // We MUST specify the root folder where our app resides
   // This should usually point to the folder where your package.json resides
   root: __dirname,
@@ -135,7 +135,7 @@ const app = new Atlas({
     // Configuration for services
     services: {
       // The `http` configuration will be given to the service which we will name as `http`
-      // (see the `app.service()` call below)
+      // (see the `atlas.service()` call below)
       http: {
         // This goes to the `listen()` function call
         listen: {
@@ -156,15 +156,15 @@ const app = new Atlas({
 
 // We need to add the components we want to use to the application
 // The first argument is the component's name - it will be used to locate the component's configuration and also the service will be exposed on that property:
-// `app.services.http`, or from another component, `this.component('service:http')`
-app.service('http', Koa.Service)
+// `atlas.services.http`, or from another component, `this.component('service:http')`
+atlas.service('http', Koa.Service)
 
 // Great, we can finally start the app!
-app.start()
+atlas.start()
 .then(() => console.log('ready!'))
 .catch(err => console.error(err))
 
-export { app }
+export default atlas
 ```
 
 The configuration options each component accepts are documented in their own package repository/folder.
@@ -182,13 +182,13 @@ The following events are currently supported:
 - `application:prepare:after` - Use this event to modify or otherwise enhance your components with extra functionality
 - `application:start:before` - Use this event to further configure the service with custom middleware, or register database models or perform other important tasks to prepare the service for handling requests.
 - `application:start:after` - The application is ready for prime time at this moment and services which accept connections are accepting them now. Use this to ie. start workers or schedule jobs.
-- `application:stop:before` - The application has been requested to be shut down (by calling `app.stop()`) - use this to stop workers or perform other important tasks. Note, however, that at this moment all services are still accepting requests, so do not shut down anything important!
+- `application:stop:before` - The application has been requested to be shut down (by calling `atlas.stop()`) - use this to stop workers or perform other important tasks. Note, however, that at this moment all services are still accepting requests, so do not shut down anything important!
 - `application:stop:after` - All services have been stopped or disconnected and the components are no longer available - use this to save important information to disk or perform other important cleanup.
 
 To add middleware to our Koa service, it seems the best fit would be to listen for the `application:start:before` event. But it turns out that this is such a common use case that the `@atlas.js/koa` package already bundles a middleware loader hook! So let's use it!
 
 ```js
-app.hook('middleware', Koa.MiddlewareHook, {
+atlas.hook('middleware', Koa.MiddlewareHook, {
   aliases: {
     'service:koa': 'http',
   },

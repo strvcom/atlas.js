@@ -30,7 +30,7 @@ class Repl extends Action {
 
     if (this.config.greet) {
       this::say(`${this.io.nl}Hello, ${this.config.username}`)
-      this::say('Type `app` to play around. Have fun!')
+      this::say('Type `atlas` to play around. Have fun!')
     }
 
     const history = await this::readHistory()
@@ -45,7 +45,7 @@ class Repl extends Action {
     })
 
     terminal.history = history
-    terminal.context.app = this.app
+    terminal.context.atlas = this.atlas
     terminal.once('exit', () => {
       if (this.config.greet) {
         this::say('Bye 👋')

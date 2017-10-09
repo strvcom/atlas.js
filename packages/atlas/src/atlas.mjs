@@ -31,7 +31,7 @@ class Atlas {
   }
 
   /**
-   * Initialise a brand-new app from the given module locations
+   * Initialise a brand-new atlas instance from the given module locations
    *
    * @param     {Object}      options                       Configuration options
    * @param     {String}      options.env                   The environment under which to operate
@@ -53,7 +53,7 @@ class Atlas {
       aliases: 'aliases',
     })
 
-    const app = new this({
+    const atlas = new this({
       env: options.env,
       root: options.root,
       config: options.config,
@@ -65,10 +65,10 @@ class Atlas {
       aliases: path.resolve(options.root, options.aliases),
     }
     const modules = {
-      hooks: app.require(options.hooks, { optional: true }),
-      services: app.require(options.services, { optional: true }),
-      actions: app.require(options.actions, { optional: true }),
-      aliases: app.require(options.aliases, { optional: true }),
+      hooks: atlas.require(options.hooks, { optional: true }),
+      services: atlas.require(options.services, { optional: true }),
+      actions: atlas.require(options.actions, { optional: true }),
+      aliases: atlas.require(options.aliases, { optional: true }),
     }
 
     defaults(modules, {
@@ -82,9 +82,9 @@ class Atlas {
       },
     })
 
-    app.log.debug({
-      env: app.env,
-      root: app.root,
+    atlas.log.debug({
+      env: atlas.env,
+      root: atlas.root,
       paths,
       components: {
         actions: Object.keys(modules.actions),
@@ -96,27 +96,27 @@ class Atlas {
     // Hooks
     for (const [alias, Hook] of Object.entries(modules.hooks)) {
       const aliases = modules.aliases.hooks[alias]
-      app.hook(alias, Hook, { aliases })
+      atlas.hook(alias, Hook, { aliases })
     }
 
     // Services
     for (const [alias, Service] of Object.entries(modules.services)) {
       const aliases = modules.aliases.services[alias]
-      app.service(alias, Service, { aliases })
+      atlas.service(alias, Service, { aliases })
     }
 
     // Actions
     for (const [alias, Action] of Object.entries(modules.actions)) {
       const aliases = modules.aliases.actions[alias]
-      app.action(alias, Action, { aliases })
+      atlas.action(alias, Action, { aliases })
     }
 
-    return app
+    return atlas
   }
 
 
   /**
-   * The current environment under which this app operates
+   * The current environment under which this instance operates
    *
    * Defaults to NODE_ENV from the environment.
    *
@@ -140,7 +140,7 @@ class Atlas {
   }
 
   /**
-   * Is this app in a prepared state?
+   * Is this instance in a prepared state?
    *
    * @readonly
    * @return    {boolean}
@@ -150,7 +150,7 @@ class Atlas {
   }
 
   /**
-   * Is this app in a started state?
+   * Is this instance in a started state?
    *
    * @readonly
    * @return    {boolean}
@@ -167,28 +167,28 @@ class Atlas {
   config = {}
 
   /**
-   * All services added to this application
+   * All services added to this instance
    *
    * @type    {Object}
    */
   services = {}
 
   /**
-   * All actions added to this application
+   * All actions added to this instance
    *
    * @type    {Object}
    */
   actions = {}
 
   /**
-   * Create a new application
+   * Create a new instance
    *
-   * @param     {Object}    options             Options for the app
-   * @param     {Object}    options.config      Configuration object for the app and for all
+   * @param     {Object}    options             Options for the instance
+   * @param     {Object}    options.config      Configuration object for the instance and for all
    *                                            services or other components which will be added to
-   *                                            the app
-   * @param     {String}    options.root        The root directory of the application
-   * @param     {String}    options.env         The environment under which this app operates.
+   *                                            the instance
+   * @param     {String}    options.root        The root directory of the instance
+   * @param     {String}    options.env         The environment under which this instance operates.
    *                                            Components may use this value for various purposes.
    *                                            Defaults to NODE_ENV.
    */
@@ -244,10 +244,10 @@ class Atlas {
   }
 
   /**
-   * Register a service into this app at given alias
+   * Register a service into this atlas at given alias
    *
    * @param     {String}    alias           The alias for the service - it will be used for exposing
-   *                                        the service's API on the app.services object and for
+   *                                        the service's API on the atlas.services object and for
    *                                        passing configuration data to it
    * @param     {class}     Component       The service class
    * @param     {Object}    opts            Runtime options for the service
@@ -264,7 +264,7 @@ class Atlas {
   }
 
   /**
-   * Register a hook into this app using given alias
+   * Register a hook into this atlas using given alias
    *
    * @param     {String}    alias           The alias for the hook - it will be used for passing
    *                                        configuration data to it
@@ -283,10 +283,10 @@ class Atlas {
   }
 
   /**
-   * Register an action into this app at given alias
+   * Register an action into this atlas at given alias
    *
    * @param     {String}    alias           The alias for the action - it will be used for exposing
-   *                                        the action's API on the app.actions object and for
+   *                                        the action's API on the atlas.actions object and for
    *                                        passing configuration data to it
    * @param     {class}     Component       The action class
    * @param     {Object}    opts            Runtime options for the action
@@ -305,7 +305,7 @@ class Atlas {
   /**
    * Prepare all services and hooks for use
    *
-   * Generally you should use `app.start()` instead to get your app up and running. However,
+   * Generally you should use `atlas.start()` instead to get your instance up and running. However,
    * sometimes it is necessary to get all the services into a "get-ready" state before they start
    * connecting to remote resources or doing any intensive I/O operations.
    *
@@ -351,7 +351,7 @@ class Atlas {
 
     const { services } = this::hidden().catalog
 
-    // Start all services, in the order they were added to the app 💪
+    // Start all services, in the order they were added to the instance 💪
     // Ordering is important here! Some services should be started as the last ones because they
     // expose some functionality to the outside world and starting those before ie. a database
     // service is started might break stuff!
@@ -362,7 +362,7 @@ class Atlas {
 
     this::hidden().started = true
     await this::dispatch('application:start:after', this, hooks)
-    this.log.info('app:ready')
+    this.log.info('atlas:ready')
 
     return this
   }
@@ -370,8 +370,8 @@ class Atlas {
   /**
    * Stop all services, unregister all actions and hooks and unpublish any APIs exposed by them
    *
-   * This puts the whole application into a state as it was before `app.prepare()` and/or
-   * `app.start()` was called.
+   * This puts the whole application into a state as it was before `atlas.prepare()` and/or
+   * `atlas.start()` was called.
    *
    * @return    {Promise<this>}
    */
@@ -384,7 +384,7 @@ class Atlas {
 
     await this::dispatch('application:stop:before', this, hooks)
 
-    // Stop all services, in the reverse order they were added to the app 💪
+    // Stop all services, in the reverse order they were added to the instance 💪
     // This will make sure the most important services are stopped first.
     for (const [alias, service] of Array.from(services).reverse()) {
       // eslint-disable-next-line no-use-before-define
@@ -400,7 +400,7 @@ class Atlas {
     this::hidden().prepared = false
 
     await this::dispatch('application:stop:after', null, hooks)
-    this.log.info('app:stopped')
+    this.log.info('atlas:stopped')
 
     return this
   }

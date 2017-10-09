@@ -19,17 +19,17 @@ describe('Component: basics and API', () => {
     expect(Component.requires).to.have.length(0)
   })
 
-  it('saves app, log and config objects given on constructor to itself', () => {
-    const app = { app: true }
+  it('saves atlas, log and config objects given on constructor to itself', () => {
+    const atlas = { atlas: true }
     const log = { log: true }
     const config = { config: true }
     const component = new Component({
-      app,
+      atlas,
       log,
       config,
     })
 
-    expect(component).to.have.property('app', app)
+    expect(component).to.have.property('atlas', atlas)
     expect(component).to.have.property('log', log)
     expect(component).to.have.property('config', config)
   })

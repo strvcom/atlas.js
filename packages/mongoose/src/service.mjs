@@ -21,7 +21,7 @@ class Mongoose extends Service {
   async start(instance) {
     for (const name of instance.modelNames()) {
       // Allow models to use the Atlas instance
-      instance.models[name].atlas = this.app
+      instance.models[name].atlas = this.atlas
     }
 
     await instance.connect(this.config.uri, this.config.options)

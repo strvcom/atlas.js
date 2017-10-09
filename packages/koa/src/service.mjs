@@ -30,8 +30,8 @@ class KoaService extends Service {
 
     // Prepare Koa instance
     const koa = new Koa()
-    koa.env = this.app.env
-    koa.context.atlas = this.app
+    koa.env = this.atlas.env
+    koa.context.atlas = this.atlas
     koa.context.log = this.log
 
     // Apply Koa settings

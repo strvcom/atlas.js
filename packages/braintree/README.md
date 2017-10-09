@@ -14,7 +14,7 @@ In addition to the Atlas.js Service, you can access all the objects and properti
 import * as braintree from '@atlas.js/braintree'
 import { Atlas } from '@atlas.js/atlas'
 
-const app = new Atlas({
+const atlas = new Atlas({
   config: {
     services: {
       payments: {
@@ -27,13 +27,13 @@ const app = new Atlas({
   }
 })
 
-app.service('payments', braintree.Service)
-await app.start()
+atlas.service('payments', braintree.Service)
+await atlas.start()
 
 // The braintree service is now available here:
-app.services.payments
+atlas.services.payments
 // Example use
-await app.services.payments.transaction.sale({
+await atlas.services.payments.transaction.sale({
   amount: '5.00',
   paymentMethodNonce: 'nonce-from-the-client',
 })

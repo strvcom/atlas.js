@@ -12,7 +12,7 @@ class Firebase extends Service {
     const config = this.config
     // Either load the credentials from the file (if it's a string) or just pass it as is (object?)
     const credential = typeof config.credential === 'string'
-      ? this.app.require(config.credential)
+      ? this.atlas.require(config.credential)
       : config.credential
 
     return Admin.initializeApp({

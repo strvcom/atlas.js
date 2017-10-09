@@ -30,7 +30,7 @@ describe('Atlas::init()', () => {
   it('loads all actions, hooks and services from the specified locations', () => {
     const proto = Atlas.prototype
     const root = path.resolve(__dirname, 'demoapp')
-    const app = Atlas.init({
+    const atlas = Atlas.init({
       root,
       env: 'test',
       config: 'config',
@@ -56,18 +56,18 @@ describe('Atlas::init()', () => {
       expect(proto.hook).to.have.been.calledWith(name, Component, { aliases })
     }
 
-    // Stuff directly on app
-    expect(app.config).to.have.all.keys(['application', 'services', 'hooks', 'actions'])
-    expect(app.config.application).to.include.keys(['test', 'override'])
-    expect(app.config.services).to.eql({ dummy: {
+    // Stuff directly on atlas
+    expect(atlas.config).to.have.all.keys(['application', 'services', 'hooks', 'actions'])
+    expect(atlas.config.application).to.include.keys(['test', 'override'])
+    expect(atlas.config.services).to.eql({ dummy: {
       test: true,
       override: true,
     } })
-    expect(app.config.hooks).to.eql({ dummy: {
+    expect(atlas.config.hooks).to.eql({ dummy: {
       test: true,
       override: true,
     } })
-    expect(app.config.actions).to.eql({ dummy: {
+    expect(atlas.config.actions).to.eql({ dummy: {
       test: true,
       override: true,
     } })
@@ -75,13 +75,13 @@ describe('Atlas::init()', () => {
 
   it('provides defaults for paths to services, hooks, actions, aliases and config dirs', () => {
     const root = path.resolve(__dirname, 'demoapp')
-    const app = Atlas.init({
+    const atlas = Atlas.init({
       root,
       env: 'test',
     })
 
     // Should not throw
-    return app.prepare()
+    return atlas.prepare()
   })
 
   it('does not throw when some of the modules do not exist', () => {

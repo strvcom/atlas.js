@@ -55,7 +55,7 @@ function mkmigrator() {
       sequelize,
     },
     migrations: {
-      path: path.resolve(this.app.root, this.config.module),
+      path: path.resolve(this.atlas.root, this.config.module),
       // Match only filenames without extension (directory with index.js), or plain .js files
       pattern: /^[^.]+(\.js)?$/i,
       params: [

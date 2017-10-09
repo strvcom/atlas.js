@@ -19,7 +19,7 @@ describe('Koa::start(instance)', () => {
 
   beforeEach(async () => {
     opts = {
-      app: {},
+      atlas: {},
       log: {
         info: () => {},
       },

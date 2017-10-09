@@ -50,7 +50,7 @@ describe('Repl::enter()', () => {
     this.sandbox.stub(repl, 'start').returns(terminal)
 
     action = new Repl({
-      app: {},
+      atlas: {},
       log: {},
       config,
     })
@@ -80,16 +80,16 @@ describe('Repl::enter()', () => {
     return ret
   })
 
-  it('exposes `app` as global variable on the repl', async () => {
+  it('exposes `atlas` as global variable on the repl', async () => {
     // Sanity check
-    expect(terminal.context).to.not.have.property('app')
+    expect(terminal.context).to.not.have.property('atlas')
 
     const ret = action.enter(opts)
     await waitForCall(terminal.once, 2)
     terminal.emit('exit')
 
-    expect(terminal.context).to.have.property('app')
-    expect(terminal.context.app).to.be.an('object')
+    expect(terminal.context).to.have.property('atlas')
+    expect(terminal.context.atlas).to.be.an('object')
 
     return ret
   })

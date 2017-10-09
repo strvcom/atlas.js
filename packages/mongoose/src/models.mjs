@@ -11,7 +11,7 @@ class ModelsHook extends Hook {
 
   'application:prepare:after'() {
     const instance = this.component('service:mongoose')
-    const schemas = this.app.require(this.config.module)
+    const schemas = this.atlas.require(this.config.module)
 
     for (const name of Object.keys(schemas)) {
       instance.model(name, schemas[name])

@@ -7,7 +7,7 @@ describe('Koa::prepare()', () => {
 
   beforeEach(async () => {
     service = new Koa({
-      app: {},
+      atlas: {},
       log: {},
       config: {},
     })
@@ -24,29 +24,29 @@ describe('Koa::prepare()', () => {
     expect(await service.prepare()).to.be.instanceof(koa)
   })
 
-  it('sets env on the koa instance based on the env of the app', async () => {
+  it('sets env on the koa instance based on the env of the atlas instance', async () => {
     service = new Koa({
-      app: { env: 'dummy' },
+      atlas: { env: 'dummy' },
     })
     instance = await service.prepare()
 
     expect(instance.env).to.equal('dummy')
   })
 
-  it('sets @atlas.js/application instance on the context as `atlas`', async () => {
-    const app = {}
+  it('sets the Atlas instance on the context as `atlas`', async () => {
+    const atlas = {}
     service = new Koa({
-      app,
+      atlas,
     })
     instance = await service.prepare()
 
-    expect(instance.context).to.have.property('atlas', app)
+    expect(instance.context).to.have.property('atlas', atlas)
   })
 
   it('sets the service log instance on the context as `log`', async () => {
     const log = {}
     service = new Koa({
-      app: {},
+      atlas: {},
       log,
     })
     instance = await service.prepare()

@@ -43,7 +43,7 @@ describe('Firebase::prepare()', () => {
   it('loads the credentials from file if the credential is a string', async () => {
     Admin.credential.cert.returnsArg(0)
     service = new Firebase({
-      app: {
+      atlas: {
         root: __dirname,
         // eslint-disable-next-line global-require
         require: location => require(path.resolve(__dirname, location)),

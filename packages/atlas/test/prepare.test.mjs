@@ -16,7 +16,7 @@ class DummyAction extends Action {
 }
 
 describe('Atlas::prepare()', () => {
-  let app
+  let atlas
   let options
 
   beforeEach(() => {
@@ -35,49 +35,49 @@ describe('Atlas::prepare()', () => {
         },
       },
     }
-    app = new Atlas(options)
+    atlas = new Atlas(options)
   })
 
 
   it('is async', () => {
-    expect(app.prepare()).to.be.instanceof(Promise)
+    expect(atlas.prepare()).to.be.instanceof(Promise)
   })
 
   it('returns this', async () => {
-    expect(await app.prepare()).to.equal(app)
+    expect(await atlas.prepare()).to.equal(atlas)
   })
 
-  it('sets app.prepared to true', async () => {
-    expect(app.prepared).to.equal(false)
-    await app.prepare()
-    expect(app.prepared).to.equal(true)
+  it('sets atlas.prepared to true', async () => {
+    expect(atlas.prepared).to.equal(false)
+    await atlas.prepare()
+    expect(atlas.prepared).to.equal(true)
   })
 
 
   describe('Service interactions', () => {
     beforeEach(() => {
       DummyService.prototype.prepare = sinon.stub().resolves()
-      app.service('dummy', DummyService)
+      atlas.service('dummy', DummyService)
     })
 
 
     it('calls prepare on the service', async () => {
-      await app.prepare()
+      await atlas.prepare()
       expect(DummyService.prototype.prepare).to.have.callCount(1)
     })
 
-    it('exposes the returned instance on app.services', async () => {
+    it('exposes the returned instance on atlas.services', async () => {
       const instance = { api: true }
       DummyService.prototype.prepare.resolves(instance)
-      await app.prepare()
+      await atlas.prepare()
 
-      expect(app.services).to.have.property('dummy')
-      expect(app.services.dummy).to.equal(instance)
+      expect(atlas.services).to.have.property('dummy')
+      expect(atlas.services.dummy).to.equal(instance)
     })
 
     it('calls the method only once for each service for multiple .prepare() calls', async () => {
-      await app.prepare()
-      await app.prepare()
+      await atlas.prepare()
+      await atlas.prepare()
 
       expect(DummyService.prototype.prepare).to.have.callCount(1)
     })
@@ -86,11 +86,11 @@ describe('Atlas::prepare()', () => {
 
   describe('Action interactions', () => {
     it('exposes all actions on this.actions', async () => {
-      app.action('dummy', DummyAction)
-      await app.prepare()
+      atlas.action('dummy', DummyAction)
+      await atlas.prepare()
 
-      expect(app.actions).to.have.property('dummy')
-      expect(app.actions.dummy).to.respondTo('dummyMethod')
+      expect(atlas.actions).to.have.property('dummy')
+      expect(atlas.actions.dummy).to.respondTo('dummyMethod')
     })
   })
 
@@ -99,21 +99,21 @@ describe('Atlas::prepare()', () => {
       DummyService.prototype.prepare = sinon.stub().resolves()
       DummyHook.prototype['application:prepare:after'] = sinon.stub().resolves()
 
-      app.service('dummy', DummyService)
-      app.hook('dummy', DummyHook)
+      atlas.service('dummy', DummyService)
+      atlas.hook('dummy', DummyHook)
     })
 
     it('calls the prepare hooks', async () => {
-      await app.prepare()
+      await atlas.prepare()
 
       expect(DummyHook.prototype['application:prepare:after']).to.have.callCount(1)
     })
 
-    it('calls the application:prepare:after hook with the application instance', async () => {
+    it('calls the application:prepare:after hook with the atlas instance', async () => {
       const proto = DummyHook.prototype
-      await app.prepare()
+      await atlas.prepare()
 
-      expect(proto['application:prepare:after']).to.have.been.calledWith(app)
+      expect(proto['application:prepare:after']).to.have.been.calledWith(atlas)
     })
 
     it('can handle hooks which do not implement any listeners', async () => {
@@ -121,9 +121,9 @@ describe('Atlas::prepare()', () => {
         prepare() {}
       }
 
-      app.hook('empty', Empty)
+      atlas.hook('empty', Empty)
       // This not throwing will suffice 😎
-      await app.prepare()
+      await atlas.prepare()
     })
   })
 })

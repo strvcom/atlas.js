@@ -7,7 +7,7 @@ describe('Mongoose::prepare()', () => {
 
   beforeEach(async () => {
     service = new Mongoose({
-      app: {},
+      atlas: {},
       log: {},
       config: {},
     })

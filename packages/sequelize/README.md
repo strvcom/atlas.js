@@ -21,7 +21,7 @@ The service configuration only accepts two properties: `uri` and `options` which
 import * as sequelize from '@atlas.js/sequelize'
 import { Atlas } from '@atlas.js/atlas'
 
-const app = new Atlas({
+const atlas = new Atlas({
   config: {
     services: {
       database: {
@@ -37,11 +37,11 @@ const app = new Atlas({
   }
 })
 
-app.service('database', sequelize.Service)
-await app.start()
+atlas.service('database', sequelize.Service)
+await atlas.start()
 
 // You have your sequelize client available here:
-app.services.database
+atlas.services.database
 ```
 
 Note that by default, the service does not load your models which means you will either have to load them up yourself or use the `ModelsHook` documented below.
@@ -84,14 +84,14 @@ class User extends Model {
   }
 
   static staticMethod() {
-    // You can access the Atlas application instance as a property on the
+    // You can access the Atlas instance as a property on the
     // Model class:
     // this refers to the model class itself
     this.atlas
   }
 
   async instanceMethod() {
-    // On instance methods, you can also access the Atlas application instance
+    // On instance methods, you can also access the Atlas instance
     // directly on the model's instance
     // this refers to the model class' instance
     this.atlas
@@ -117,31 +117,31 @@ module.exports = {
 import * as sequelize from '@atlas.js/sequelize'
 import { Atlas } from '@atlas.js/atlas'
 
-const app = new Atlas({
+const atlas = new Atlas({
   root: __dirname,
   config: {
     hooks: {
       models: {
         // The path to the module from which all the database models should be
-        // loaded, relative to app.root
+        // loaded, relative to atlas.root
         module: 'models'
       }
     }
   }
 })
 
-app.service('database', sequelize.Service)
-app.hook('models', sequelize.ModelsHook, {
+atlas.service('database', sequelize.Service)
+atlas.hook('models', sequelize.ModelsHook, {
   aliases: {
     'service:sequelize': 'database',
   }
 })
-await app.start()
+await atlas.start()
 
 // Now your models from the models/index.js module are loaded up!
-const User = app.services.database.model('User')
+const User = atlas.services.database.model('User')
 // or
-const User = app.services.database.models.User
+const User = atlas.services.database.models.User
 ```
 
 ### RelationsHook
@@ -193,30 +193,30 @@ This action contains methods for applying and rolling back your sequelize migrat
 import * as sequelize from '@atlas.js/sequelize'
 import { Atlas } from '@atlas.js/atlas'
 
-const app = new Atlas({
+const atlas = new Atlas({
   root: __dirname,
   config: {
     actions: {
       migration: {
         // The path to the module from which all the migrations should be
-        // loaded, relative to app.root
+        // loaded, relative to atlas.root
         module: 'migrations'
       }
     }
   }
 })
 
-app.action('migration', sequelize.MigrationAction, {
+atlas.action('migration', sequelize.MigrationAction, {
   aliases: {
     'service:sequelize': 'database'
   }
 })
-await app.start()
+await atlas.start()
 
 // Available actions:
-await app.actions.migration.up() // Applies all pending migrations
-await app.actions.migration.down() // Rolls back last applied migration
-await app.actions.migration.pending() // Returns names of pending migrations
+await atlas.actions.migration.up() // Applies all pending migrations
+await atlas.actions.migration.down() // Rolls back last applied migration
+await atlas.actions.migration.pending() // Returns names of pending migrations
 ```
 
 #### Running migrations on start
@@ -230,7 +230,7 @@ import Hook from '@atlas.js/hook'
 
 export default MigrateHook extends Hook {
   async 'application:start:before'() {
-    await this.app.actions.migrate.up()
+    await this.atlas.actions.migrate.up()
   }
 }
 ```

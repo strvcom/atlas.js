@@ -19,7 +19,7 @@ The service configuration only accepts two properties: `uri` and `options` which
 import * as mongoose from '@atlas.js/mongoose'
 import { Atlas } from '@atlas.js/atlas'
 
-const app = new Atlas({
+const atlas = new Atlas({
   config: {
     services: {
       database: {
@@ -30,11 +30,11 @@ const app = new Atlas({
   }
 })
 
-app.service('database', mongoose.Service)
-await app.start()
+atlas.service('database', mongoose.Service)
+await atlas.start()
 
 // You have your mongoose client available here:
-app.services.database
+atlas.services.database
 ```
 
 ### ModelsHook
@@ -70,29 +70,29 @@ export {
 import * as mongoose from '@atlas.js/mongoose'
 import { Atlas } from '@atlas.js/atlas'
 
-const app = new Atlas({
+const atlas = new Atlas({
   root: __dirname,
   config: {
     hooks: {
       models: {
         // The path to the module from which all the database models should be
-        // loaded, relative to app.root
+        // loaded, relative to atlas.root
         module: 'models'
       }
     }
   }
 })
 
-app.service('database', mongoose.Service)
-app.hook('models', mongoose.ModelsHook, {
+atlas.service('database', mongoose.Service)
+atlas.hook('models', mongoose.ModelsHook, {
   aliases: {
     'service:mongoose': 'database',
   }
 })
-await app.start()
+await atlas.start()
 
 // Now your models from the models/index.js module are loaded up!
-const User = app.services.database.model('User')
+const User = atlas.services.database.model('User')
 ```
 
 ## License

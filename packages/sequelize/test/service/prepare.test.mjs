@@ -7,7 +7,7 @@ describe('Sequelize::prepare()', () => {
 
   beforeEach(async () => {
     service = new Database({
-      app: {},
+      atlas: {},
       log: {},
       config: {
         uri: 'sqlite://test-db.sqlite',

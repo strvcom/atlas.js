@@ -24,7 +24,7 @@ The service configuration allows you to define three things:
 import { Atlas } from '@atlas.js/atlas'
 import * as Koa from '@atlas.js/koa'
 
-const app = new Atlas({
+const atlas = new Atlas({
   config: {
     services: {
       http: {
@@ -45,13 +45,13 @@ const app = new Atlas({
     }
   }
 })
-app.service('http', Koa.Service)
-await app.start()
+atlas.service('http', Koa.Service)
+await atlas.start()
 
 // The Koa instance is now available here:
-app.services.http
+atlas.services.http
 // And the http.Server instance is also exposed:
-app.services.http.server
+atlas.services.http.server
 ```
 
 ### MiddlewareHook
@@ -66,7 +66,7 @@ To add middleware to the Koa instance, it is recommended that this hook is used 
 import { Atlas } from '@atlas.js/atlas'
 import * as Koa from '@atlas.js/koa'
 
-const app = new Atlas({
+const atlas = new Atlas({
   config: {
     hooks: {
       middleware: {
@@ -82,13 +82,13 @@ const app = new Atlas({
   }
 })
 
-app.service('http', Koa.Service)
-app.hook('middleware', Koa.MiddlewareHook, {
+atlas.service('http', Koa.Service)
+atlas.hook('middleware', Koa.MiddlewareHook, {
   aliases: {
     'service:koa': 'http'
   }
 })
-await app.start()
+await atlas.start()
 ```
 
 #### Example middleware module
@@ -146,7 +146,7 @@ This hook allows you to extend the Koa context object prototype with custom func
 - `service:koa`: A Koa service on which to extend the context
 
 ```js
-const app = new Atlas({
+const atlas = new Atlas({
   config: {
     hooks: {
       context: {
@@ -158,13 +158,13 @@ const app = new Atlas({
   }
 })
 
-app.service('http', Koa.Service)
-app.hook('context', Koa.ContextHook, {
+atlas.service('http', Koa.Service)
+atlas.hook('context', Koa.ContextHook, {
   aliases: {
     'service:koa': 'http'
   }
 })
-await app.start()
+await atlas.start()
 
 // server/context.js
 export default {

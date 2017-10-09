@@ -10,7 +10,7 @@ describe('Migration::up()', () => {
     this.sandbox.stub(Umzug.prototype, 'up').resolves([])
     database = mksequelizemock()
     migration = new Migration({
-      app: {
+      atlas: {
         root: __dirname,
       },
       log: {

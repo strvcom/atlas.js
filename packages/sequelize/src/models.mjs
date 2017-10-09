@@ -11,7 +11,7 @@ class ModelsHook extends Hook {
 
   'application:prepare:after'() {
     const sequelize = this.component('service:sequelize')
-    const models = this.app.require(this.config.module)
+    const models = this.atlas.require(this.config.module)
 
     for (const [name, Model] of Object.entries(models)) {
       const config = {

@@ -10,33 +10,33 @@
  */
 
 import cluster from 'cluster'
-import app from './app'
+import atlas from './atlas'
 
-// We are the main entry point of a Node.js app or we are in a cluster worker -> start the app.
+// We are the main entry point of a Node.js app or we are in a cluster worker -> start the atlas.
 // Otherwise, someone require()d this file - let's leave the actual startup to the caller.
 if (require.main === module || cluster.isWorker) {
   process.once('SIGINT', exit)
   process.once('SIGTERM', exit)
 
-  app.start()
+  atlas.start()
     .catch(fatal)
 }
 
 /**
- * Cleanly shut down the Atlas app so that the process may exit
+ * Cleanly shut down the Atlas instance so that the process may exit
  *
  * @private
  * @return    {void}
  */
 function exit() {
-  // Prevent calling app.stop() multiple times when repeatedly pressing ctrl-c. Next time you press
-  // ctrl+c, we'll just brute-force-quit the whole thing. 🔥
+  // Prevent calling atlas.stop() multiple times when repeatedly pressing ctrl-c. Next time you
+  // press ctrl+c, we'll just brute-force-quit the whole thing. 🔥
   process.removeListener('SIGINT', exit)
   process.removeListener('SIGTERM', exit)
   process.once('SIGINT', forcequit)
   process.once('SIGTERM', forcequit)
 
-  app.stop()
+  atlas.stop()
     .catch(fatal)
 }
 
@@ -51,7 +51,7 @@ function forcequit() {
 }
 
 /**
- * Handle a fatal error in the start/stop methods of the Atlas app
+ * Handle a fatal error in the start/stop methods of the Atlas instance
  *
  * @private
  * @param     {Error}    err    The error object which caused the fatal error
@@ -62,12 +62,12 @@ function fatal(err) {
   // eslint-disable-next-line no-console
   console.error(err.stack)
 
-  // A fatal error occured. We have no guarantee that the app will shut down properly. We will wait
-  // 10 seconds to see if it manages to shut down gracefully, then we will use brute force to stop
-  // the process. 💣
+  // A fatal error occured. We have no guarantee that the instance will shut down properly. We will
+  // wait 10 seconds to see if it manages to shut down gracefully, then we will use brute force to
+  // stop the process. 💣
   // eslint-disable-next-line no-process-exit
   setTimeout(() => process.exit(), 10000)
     .unref()
 }
 
-export default app
+export default atlas

@@ -26,7 +26,7 @@ describe('Sequelize: RelationsHook', () => {
 
   beforeEach(() => {
     hook = new RelationsHook({
-      app: {
+      atlas: {
         root: __dirname,
       },
       log: { debug() {} },

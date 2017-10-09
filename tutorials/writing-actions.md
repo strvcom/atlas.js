@@ -12,7 +12,7 @@ Some common traits of an action:
 - They frequently contain business-specific logic or accomplish a very specific task
 - They do not need to keep any kind of state (they are stateless - it's just input params->returning results)
 
-> **NOTE**: Contrary to services and hooks, the Action class you implement **is** what you will interface with - when you register an Action into the Atlas instance, the class is instantiated and exposed to you via `app.actions.*`.
+> **NOTE**: Contrary to services and hooks, the Action class you implement **is** what you will interface with - when you register an Action into the Atlas instance, the class is instantiated and exposed to you via `atlas.actions.*`.
 
 ## Structure of an action
 
@@ -55,7 +55,7 @@ Once you have your action class ready, it's time to add it to your app!
 import { Atlas } from '@atlas.js/atlas'
 import User from './user'
 
-const app = new Atlas({
+const atlas = new Atlas({
   root: __dirname,
   env: process.env.NODE_ENV,
   actions: {
@@ -64,11 +64,11 @@ const app = new Atlas({
   }
 })
 
-app.action('user', User)
-app.start()
+atlas.action('user', User)
+atlas.start()
 .then(async () => {
   // We can now call the action's methods this way:
-  const user = await app.actions.user.create({
+  const user = await atlas.actions.user.create({
     name: 'test',
     password: 'lolpwd'
   })

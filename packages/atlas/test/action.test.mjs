@@ -5,7 +5,7 @@ import { FrameworkError } from '@atlas.js/errors'
 class DummyAction extends Action {}
 
 describe('Atlas::action()', () => {
-  let app
+  let atlas
   let options
 
   beforeEach(() => {
@@ -19,34 +19,34 @@ describe('Atlas::action()', () => {
         },
       },
     }
-    app = new Atlas(options)
+    atlas = new Atlas(options)
   })
 
   it('returns this', () => {
-    expect(app.action('dummy', DummyAction)).to.equal(app)
+    expect(atlas.action('dummy', DummyAction)).to.equal(atlas)
   })
 
   it('throws when the alias has already been used by another action', () => {
-    app.action('dummy', DummyAction)
-    expect(() => app.action('dummy', DummyAction)).to.throw(FrameworkError)
+    atlas.action('dummy', DummyAction)
+    expect(() => atlas.action('dummy', DummyAction)).to.throw(FrameworkError)
   })
 
   it('throws when the action is not a class/function', () => {
-    expect(() => app.action('dummy', {})).to.throw(FrameworkError)
+    expect(() => atlas.action('dummy', {})).to.throw(FrameworkError)
   })
 
-  it('provides the app on action constructor argument', () => {
+  it('provides the atlas on action constructor argument', () => {
     const action = sinon.spy()
-    app.action('dummy', action)
+    atlas.action('dummy', action)
     const args = action.getCall(0).args[0]
 
-    expect(args).to.have.property('app')
-    expect(args.app).to.equal(app)
+    expect(args).to.have.property('atlas')
+    expect(args.atlas).to.equal(atlas)
   })
 
   it('provides a logger instance on action constructor argument', () => {
     const action = sinon.spy()
-    app.action('dummy', action)
+    atlas.action('dummy', action)
     const args = action.getCall(0).args[0]
 
     expect(args).to.have.property('log')
@@ -56,7 +56,7 @@ describe('Atlas::action()', () => {
 
   it('provides the config object on action constructor argument', () => {
     const action = sinon.spy()
-    app.action('dummy', action)
+    atlas.action('dummy', action)
     const args = action.getCall(0).args[0]
 
     expect(args).to.have.property('config')
@@ -66,7 +66,7 @@ describe('Atlas::action()', () => {
 
   it('provides the resolve function on action constructor argument', () => {
     const action = sinon.spy()
-    app.action('dummy', action)
+    atlas.action('dummy', action)
     const args = action.getCall(0).args[0]
 
     expect(args).to.have.property('resolve')
@@ -76,7 +76,7 @@ describe('Atlas::action()', () => {
   it('applies defaults defined on action on top of user-provided config', () => {
     const action = sinon.spy()
     action.defaults = { default: true }
-    app.action('dummy', action)
+    atlas.action('dummy', action)
     const args = action.getCall(0).args[0]
 
     expect(args.config).to.have.property('default', true)
@@ -86,14 +86,14 @@ describe('Atlas::action()', () => {
     const action = sinon.spy()
     action.requires = ['service:dummy']
     expect(() => {
-      app.action('dummy', action)
+      atlas.action('dummy', action)
     }).to.throw(FrameworkError, /Missing aliases for component dummy/)
   })
 
   it('throws when extraneous aliases are specified', () => {
     const action = sinon.spy()
     expect(() => {
-      app.action('dummy', action, { aliases: {
+      atlas.action('dummy', action, { aliases: {
         'service:dummy': 'dummy',
       } })
     }).to.throw(FrameworkError, /Unneeded aliases for component dummy/)
@@ -103,7 +103,7 @@ describe('Atlas::action()', () => {
     const action = sinon.spy()
     action.requires = ['service:dummy']
     expect(() => {
-      app.action('dummy', action, { aliases: {
+      atlas.action('dummy', action, { aliases: {
         'service:dummy': 'dummy',
       } })
     }).to.not.throw()

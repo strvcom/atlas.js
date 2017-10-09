@@ -18,15 +18,15 @@ describe('Hook: basics and API', () => {
     expect(Hook.type).to.equal('hook')
   })
 
-  it('saves app and log objects given on constructor to itself', () => {
-    const app = { app: true }
+  it('saves atlas and log objects given on constructor to itself', () => {
+    const atlas = { atlas: true }
     const log = { log: true }
     const hook = new Hook({
-      app,
+      atlas,
       log,
     })
 
-    expect(hook).to.have.property('app', app)
+    expect(hook).to.have.property('atlas', atlas)
     expect(hook).to.have.property('log', log)
   })
 })

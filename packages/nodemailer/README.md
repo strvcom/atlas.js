@@ -12,7 +12,7 @@ A nodemailer-based mailing service for @atlas.js.
 import { Atlas } from '@atlas.js/atlas'
 import * as Nodemailer from '@atlas.js/nodemailer'
 
-const app = new Atlas({
+const atlas = new Atlas({
   config: {
     services: {
       email: {
@@ -38,17 +38,17 @@ const app = new Atlas({
     }
   }
 })
-app.service('email', Nodemailer.Service)
-await app.start()
+atlas.service('email', Nodemailer.Service)
+await atlas.start()
 
 // The email service is now available here:
-app.services.email
+atlas.services.email
 ```
 
 In addition to having the standard, callback-based `sendMail()` function available, you can use a custom async `send()` method:
 
 ```js
-await app.services.email.send({ to: 'test@example.com' })
+await atlas.services.email.send({ to: 'test@example.com' })
 ```
 
 ## License
