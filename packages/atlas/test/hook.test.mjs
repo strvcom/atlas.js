@@ -1,10 +1,10 @@
-import Application from '..'
+import { Atlas } from '..'
 import Hook from '@atlas.js/hook'
 import { FrameworkError } from '@atlas.js/errors'
 
 class DummyHook extends Hook {}
 
-describe('Application::hook()', () => {
+describe('Atlas::hook()', () => {
   let app
   let options
 
@@ -19,7 +19,7 @@ describe('Application::hook()', () => {
         },
       },
     }
-    app = new Application(options)
+    app = new Atlas(options)
   })
 
   it('returns this', () => {

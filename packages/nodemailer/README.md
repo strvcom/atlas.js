@@ -9,10 +9,10 @@ A nodemailer-based mailing service for @atlas.js.
 ## Usage
 
 ```js
-import { Application } from '@atlas.js/core'
+import { Atlas } from '@atlas.js/atlas'
 import * as Nodemailer from '@atlas.js/nodemailer'
 
-const app = new Application({
+const app = new Atlas({
   config: {
     services: {
       email: {

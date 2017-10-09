@@ -10,9 +10,9 @@ AWS SDK service for @atlas.js.
 
 ```js
 import * as aws from '@atlas.js/aws'
-import { Application } from '@atlas.js/core'
+import { Atlas } from '@atlas.js/atlas'
 
-const app = new Application({
+const app = new Atlas({
   config: {
     services: {
       myaws: {

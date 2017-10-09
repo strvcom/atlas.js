@@ -1,4 +1,4 @@
-import Application from '..'
+import { Atlas } from '..'
 import Service from '@atlas.js/service'
 import Hook from '@atlas.js/hook'
 
@@ -8,7 +8,7 @@ class DummyAction {}
 
 class DummyHook extends Hook {}
 
-describe('Application::stop()', () => {
+describe('Atlas::stop()', () => {
   let app
   let options
 
@@ -33,7 +33,7 @@ describe('Application::stop()', () => {
         },
       },
     }
-    app = new Application(options)
+    app = new Atlas(options)
     app.service('dummy', DummyService)
     app.action('dummy', DummyAction)
     app.hook('dummy', DummyHook)
@@ -74,7 +74,7 @@ describe('Application::stop()', () => {
       const instance = { test: true }
       this.sandbox.stub(DummyService.prototype, 'prepare').resolves(instance)
 
-      app = new Application(options)
+      app = new Atlas(options)
       app.service('dummy', DummyService)
 
       await app.start()

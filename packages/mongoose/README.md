@@ -17,9 +17,9 @@ The service configuration only accepts two properties: `uri` and `options` which
 
 ```js
 import * as mongoose from '@atlas.js/mongoose'
-import { Application } from '@atlas.js/core'
+import { Atlas } from '@atlas.js/atlas'
 
-const app = new Application({
+const app = new Atlas({
   config: {
     services: {
       database: {
@@ -68,9 +68,9 @@ export {
 
 // index.js
 import * as mongoose from '@atlas.js/mongoose'
-import { Application } from '@atlas.js/core'
+import { Atlas } from '@atlas.js/atlas'
 
-const app = new Application({
+const app = new Atlas({
   root: __dirname,
   config: {
     hooks: {

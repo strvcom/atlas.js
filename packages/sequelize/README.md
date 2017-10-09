@@ -19,9 +19,9 @@ The service configuration only accepts two properties: `uri` and `options` which
 
 ```js
 import * as sequelize from '@atlas.js/sequelize'
-import { Application } from '@atlas.js/core'
+import { Atlas } from '@atlas.js/atlas'
 
-const app = new Application({
+const app = new Atlas({
   config: {
     services: {
       database: {
@@ -115,9 +115,9 @@ module.exports = {
 
 // index.js
 import * as sequelize from '@atlas.js/sequelize'
-import { Application } from '@atlas.js/core'
+import { Atlas } from '@atlas.js/atlas'
 
-const app = new Application({
+const app = new Atlas({
   root: __dirname,
   config: {
     hooks: {
@@ -191,9 +191,9 @@ This action contains methods for applying and rolling back your sequelize migrat
 ```js
 // index.js
 import * as sequelize from '@atlas.js/sequelize'
-import { Application } from '@atlas.js/core'
+import { Atlas } from '@atlas.js/atlas'
 
-const app = new Application({
+const app = new Atlas({
   root: __dirname,
   config: {
     actions: {

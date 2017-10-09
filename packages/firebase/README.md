@@ -9,10 +9,10 @@ A Firebase-admin service for @atlas.js.
 ## Usage
 
 ```js
-import { Application } from '@atlas.js/core'
+import { Atlas } from '@atlas.js/atlas'
 import * as Firebase from '@atlas.js/firebase'
 
-const app = new Application({
+const app = new Atlas({
   config: {
     services: {
       firebase: {

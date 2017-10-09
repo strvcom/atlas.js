@@ -1,4 +1,4 @@
-import Application from '..'
+import { Atlas } from '..'
 import Service from '@atlas.js/service'
 import Action from '@atlas.js/action'
 import { FrameworkError } from '@atlas.js/errors'
@@ -31,11 +31,11 @@ class DummyService extends Service {
   }
 }
 
-describe('Application: cross-component communication', () => {
+describe('Atlas: cross-component communication', () => {
   let app
 
   beforeEach(() => {
-    app = new Application({
+    app = new Atlas({
       root: __dirname,
       config: { application: { log: {
         level: 'warn',

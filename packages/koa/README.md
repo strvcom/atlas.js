@@ -21,10 +21,10 @@ The service configuration allows you to define three things:
 - `server`: http configuration, ie. all the [properties you can set on the http server instance][http-settings]
 
 ```js
-import { Application } from '@atlas.js/core'
+import { Atlas } from '@atlas.js/atlas'
 import * as Koa from '@atlas.js/koa'
 
-const app = new Application({
+const app = new Atlas({
   config: {
     services: {
       http: {
@@ -63,10 +63,10 @@ To add middleware to the Koa instance, it is recommended that this hook is used 
 - `service:koa`: A koa service to load the middleware into
 
 ```js
-import { Application } from '@atlas.js/core'
+import { Atlas } from '@atlas.js/atlas'
 import * as Koa from '@atlas.js/koa'
 
-const app = new Application({
+const app = new Atlas({
   config: {
     hooks: {
       middleware: {
@@ -108,17 +108,17 @@ export {
 }
 ```
 
-#### Accessing the Application instance
+#### Accessing the Atlas instance
 
-> The Application instance can be accessed through `ctx.atlas` in middleware or routes.
+> The Atlas instance can be accessed through `ctx.atlas` in middleware or routes.
 
-Here is an example middleware that makes use of the @atlas.js Application class inside the route handler. It returns 400 status code with a custom message when the request is made on an insecure protocol.
+Here is an example middleware that makes use of the Atlas instance inside the route handler. It returns 400 status code with a custom message when the request is made on an insecure protocol.
 
 ```js
 // middleware/forcehttps.js
 export default function mkforcehttps(config) {
   return function forcehttps(ctx, next) {
-    // Here you can access the Application instance via `ctx.atlas`
+    // Here you can access the Atlas instance via `ctx.atlas`
     if (ctx.atlas.env === 'production' && !ctx.secure) {
       ctx.response.status = 426
       ctx.response.set({
@@ -146,7 +146,7 @@ This hook allows you to extend the Koa context object prototype with custom func
 - `service:koa`: A Koa service on which to extend the context
 
 ```js
-const app = new Application({
+const app = new Atlas({
   config: {
     hooks: {
       context: {

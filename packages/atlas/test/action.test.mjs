@@ -1,10 +1,10 @@
-import Application from '..'
+import { Atlas } from '..'
 import Action from '@atlas.js/action'
 import { FrameworkError } from '@atlas.js/errors'
 
 class DummyAction extends Action {}
 
-describe('Application::action()', () => {
+describe('Atlas::action()', () => {
   let app
   let options
 
@@ -19,7 +19,7 @@ describe('Application::action()', () => {
         },
       },
     }
-    app = new Application(options)
+    app = new Atlas(options)
   })
 
   it('returns this', () => {

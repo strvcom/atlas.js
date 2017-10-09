@@ -1,4 +1,4 @@
-import Application from '..'
+import { Atlas } from '..'
 import Service from '@atlas.js/service'
 import Hook from '@atlas.js/hook'
 import Action from '@atlas.js/action'
@@ -15,7 +15,7 @@ class DummyAction extends Action {
   dummyMethod() {}
 }
 
-describe('Application::prepare()', () => {
+describe('Atlas::prepare()', () => {
   let app
   let options
 
@@ -35,7 +35,7 @@ describe('Application::prepare()', () => {
         },
       },
     }
-    app = new Application(options)
+    app = new Atlas(options)
   })
 
 

@@ -15,11 +15,10 @@
     "multiple": true,
     "allowed": [
       "action",
-      "application",
+      "atlas",
       "aws",
       "braintree",
       "component",
-      "core",
       "errors",
       "firebase",
       "generator",

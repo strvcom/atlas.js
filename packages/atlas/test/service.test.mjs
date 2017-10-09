@@ -1,10 +1,10 @@
-import Application from '..'
+import { Atlas } from '..'
 import { FrameworkError } from '@atlas.js/errors'
 import Service from '@atlas.js/service'
 
 class DummyService extends Service {}
 
-describe('Application::service()', () => {
+describe('Atlas::service()', () => {
   let app
   let options
 
@@ -19,7 +19,7 @@ describe('Application::service()', () => {
         },
       },
     }
-    app = new Application(options)
+    app = new Atlas(options)
   })
 
   it('returns this', () => {

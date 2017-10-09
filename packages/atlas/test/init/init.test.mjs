@@ -1,36 +1,36 @@
 import path from 'path'
-import Application from '../..'
+import { Atlas } from '../..'
 import { FrameworkError } from '@atlas.js/errors'
 import * as testservices from './demoapp/services'
 import * as testactions from './demoapp/actions'
 import * as testhooks from './demoapp/hooks'
 import * as testaliases from './demoapp/aliases'
 
-describe('Application::init()', () => {
+describe('Atlas::init()', () => {
   beforeEach(function() {
-    this.sandbox.stub(Application.prototype, 'action').returnsThis()
-    this.sandbox.stub(Application.prototype, 'hook').returnsThis()
-    this.sandbox.stub(Application.prototype, 'service').returnsThis()
+    this.sandbox.stub(Atlas.prototype, 'action').returnsThis()
+    this.sandbox.stub(Atlas.prototype, 'hook').returnsThis()
+    this.sandbox.stub(Atlas.prototype, 'service').returnsThis()
   })
 
 
   it('exists', () => {
-    expect(Application).itself.to.respondTo('init')
+    expect(Atlas).itself.to.respondTo('init')
   })
 
   it('throws when no root is provided', () => {
-    expect(() => Application.init({ env: 'test' }))
+    expect(() => Atlas.init({ env: 'test' }))
       .to.throw(FrameworkError, /root must be explicitly specified/)
   })
 
   it('does not throw TypeError when options is not provided', () => {
-    expect(() => Application.init()).to.not.throw(TypeError)
+    expect(() => Atlas.init()).to.not.throw(TypeError)
   })
 
   it('loads all actions, hooks and services from the specified locations', () => {
-    const proto = Application.prototype
+    const proto = Atlas.prototype
     const root = path.resolve(__dirname, 'demoapp')
-    const app = Application.init({
+    const app = Atlas.init({
       root,
       env: 'test',
       config: 'config',
@@ -75,7 +75,7 @@ describe('Application::init()', () => {
 
   it('provides defaults for paths to services, hooks, actions, aliases and config dirs', () => {
     const root = path.resolve(__dirname, 'demoapp')
-    const app = Application.init({
+    const app = Atlas.init({
       root,
       env: 'test',
     })
@@ -85,7 +85,7 @@ describe('Application::init()', () => {
   })
 
   it('does not throw when some of the modules do not exist', () => {
-    Application.init({
+    Atlas.init({
       root: __dirname,
       env: 'test',
       config: 'lolconf',

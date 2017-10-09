@@ -21,7 +21,7 @@ class ComponentContainer {
    *                                              components
    * @param     {Class}         info.Component    The component class
    * @param     {Object}        info.config       The component's user-specified configuration
-   * @param     {Application}   app               The Application instance
+   * @param     {Atlas}         app               The Atlas instance
    */
   constructor(info, app) {
     this.type = info.type

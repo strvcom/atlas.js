@@ -21,7 +21,7 @@ import {
  *
  * You should generally create only one instance of this class in a program.
  */
-class Application {
+class Atlas {
   static defaults = {
     log: {
       name: path.basename(process.cwd()),
@@ -42,7 +42,7 @@ class Application {
    * @param     {String}      options.services='services'   Module location for the services
    * @param     {String}      options.actions='actions'     Module location for the actions
    * @param     {String}      options.aliases='aliases'     Module location for the aliases
-   * @return    {Application}
+   * @return    {Atlas}
    */
   static init(options = {}) {
     defaults(options, {
@@ -160,7 +160,7 @@ class Application {
   }
 
   /**
-   * Application configuration, as passed in to the constructor
+   * Atlas configuration, as passed in to the constructor
    *
    * @type    {Object}
    */
@@ -220,7 +220,7 @@ class Application {
       hooks: {},
       actions: {},
     })
-    this.config.application = defaults(this.config.application, Application.defaults)
+    this.config.application = defaults(this.config.application, Atlas.defaults)
     // Logger 🌲
     this.log = pino(this.config.application.log)
   }
@@ -453,4 +453,4 @@ const lifecycle = {
   },
 }
 
-export default Application
+export default Atlas

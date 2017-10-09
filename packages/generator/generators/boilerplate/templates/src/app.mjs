@@ -5,9 +5,9 @@
  * this file.
  */
 
-import { Application } from '@atlas.js/core'
+import { Atlas } from '@atlas.js/atlas'
 
-const app = Application.init({
+const app = Atlas.init({
   // All paths will be relative to this directory
   root: __dirname,
   // Components will be loaded from the following modules. Atlas will try to `require()` these from

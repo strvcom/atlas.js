@@ -24,7 +24,7 @@ The following events are currently supported:
 
 Here is a bare class which implements all currently supported event handlers.
 
-> **NOTE**: A hook is not directly accessible from other components! The functionality each hook implements is called upon by the Application class. If you need to run the code in a hook multiple times or re-use it frequently, it is best to implement it as an Action.
+> **NOTE**: A hook is not directly accessible from other components! The functionality each hook implements is called upon by the Atlas class. If you need to run the code in a hook multiple times or re-use it frequently, it is best to implement it as an Action.
 
 ```js
 import Hook from '@atlas.js/hook'
@@ -56,10 +56,10 @@ export default LifecycleLogger
 Once you have your hook class ready, it's time to add it to your app!
 
 ```js
-import { Application } from '@atlas.js/core'
+import { Atlas } from '@atlas.js/atlas'
 import LifecycleLogger from './lifecycle-logger'
 
-const app = new Application({
+const app = new Atlas({
   root: __dirname,
   env: process.env.NODE_ENV,
   hooks: {

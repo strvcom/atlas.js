@@ -35,7 +35,7 @@ describe('Sequelize::start()', () => {
     expect(instance.authenticate).to.have.callCount(1)
   })
 
-  it('exposes the Application instance to the models', async () => {
+  it('exposes the Atlas instance to the models', async () => {
     // Pretend we have some models...
     instance.models.First = class {}
     instance.models.Second = class {}

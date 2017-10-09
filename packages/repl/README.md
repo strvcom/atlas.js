@@ -5,7 +5,7 @@ This package contains an action which allows you to drop into an interactive she
 ## Usage
 
 ```js
-import { Application } from '@atlas.js/core'
+import { Atlas } from '@atlas.js/atlas'
 import { Action as Repl } from '@atlas.js/repl'
 
 app.action('repl', Repl)

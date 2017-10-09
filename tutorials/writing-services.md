@@ -75,10 +75,10 @@ export default GithubApi
 Once you have your service class ready, it's time to add it to your app!
 
 ```js
-import { Application } from '@atlas.js/core'
+import { Atlas } from '@atlas.js/atlas'
 import GithubApi from './github-api'
 
-const app = new Application({
+const app = new Atlas({
   root: __dirname,
   env: process.env.NODE_ENV,
   config: {

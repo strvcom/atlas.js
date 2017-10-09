@@ -7,7 +7,7 @@
 [greenkeeper-badge]: https://badges.greenkeeper.io/strvcom/atlas.js.svg
 [greenkeeper-url]: https://greenkeeper.io
 [strv-home]: https://www.strv.com
-[core-npm-version]: https://img.shields.io/npm/v/@atlas.js/core.svg?style=flat-square
+[atlas-npm-version]: https://img.shields.io/npm/v/@atlas.js/atlas.svg?style=flat-square
 [aws-npm-version]: https://img.shields.io/npm/v/@atlas.js/aws.svg?style=flat-square
 [braintree-npm-version]: https://img.shields.io/npm/v/@atlas.js/braintree.svg?style=flat-square
 [firebase-npm-version]: https://img.shields.io/npm/v/@atlas.js/firebase.svg?style=flat-square
@@ -16,7 +16,7 @@
 [sequelize-npm-version]: https://img.shields.io/npm/v/@atlas.js/sequelize.svg?style=flat-square
 [nodemailer-npm-version]: https://img.shields.io/npm/v/@atlas.js/nodemailer.svg?style=flat-square
 [repl-npm-version]: https://img.shields.io/npm/v/@atlas.js/repl.svg?style=flat-square
-[core-npm-home]: https://npmjs.org/package/@atlas.js/core
+[atlas-npm-home]: https://npmjs.org/package/@atlas.js/atlas
 [aws-npm-home]: https://npmjs.org/package/@atlas.js/aws
 [braintree-npm-home]: https://npmjs.org/package/@atlas.js/braintree
 [firebase-npm-home]: https://npmjs.org/package/@atlas.js/firebase
@@ -44,15 +44,15 @@ Here is a list of available components. You can also find a changelog for each c
 
 |Component|Version|Repository|
 |-|-|-|
-|@atlas.js/core|[![@atlas.js/core][core-npm-version]][core-npm-home]|[packages/core](packages/core)|
-|@atlas.js/aws|[![@atlas.js/core][aws-npm-version]][aws-npm-home]|[packages/aws](packages/aws)|
-|@atlas.js/braintree|[![@atlas.js/core][braintree-npm-version]][braintree-npm-home]|[packages/braintree](packages/braintree)|
-|@atlas.js/firebase|[![@atlas.js/core][firebase-npm-version]][firebase-npm-home]|[packages/firebase](packages/firebase)|
-|@atlas.js/koa|[![@atlas.js/core][koa-npm-version]][koa-npm-home]|[packages/koa](packages/koa)|
-|@atlas.js/mongoose|[![@atlas.js/core][mongoose-npm-version]][mongoose-npm-home]|[packages/mongoose](packages/mongoose)|
-|@atlas.js/sequelize|[![@atlas.js/core][sequelize-npm-version]][sequelize-npm-home]|[packages/sequelize](packages/sequelize)|
-|@atlas.js/nodemailer|[![@atlas.js/core][nodemailer-npm-version]][nodemailer-npm-home]|[packages/nodemailer](packages/nodemailer)|
-|@atlas.js/repl|[![@atlas.js/core][repl-npm-version]][repl-npm-home]|[packages/repl](packages/repl)|
+|@atlas.js/atlas|[![@atlas.js/atlas][atlas-npm-version]][atlas-npm-home]|[packages/atlas](packages/atlas)|
+|@atlas.js/aws|[![@atlas.js/atlas][aws-npm-version]][aws-npm-home]|[packages/aws](packages/aws)|
+|@atlas.js/braintree|[![@atlas.js/atlas][braintree-npm-version]][braintree-npm-home]|[packages/braintree](packages/braintree)|
+|@atlas.js/firebase|[![@atlas.js/atlas][firebase-npm-version]][firebase-npm-home]|[packages/firebase](packages/firebase)|
+|@atlas.js/koa|[![@atlas.js/atlas][koa-npm-version]][koa-npm-home]|[packages/koa](packages/koa)|
+|@atlas.js/mongoose|[![@atlas.js/atlas][mongoose-npm-version]][mongoose-npm-home]|[packages/mongoose](packages/mongoose)|
+|@atlas.js/sequelize|[![@atlas.js/atlas][sequelize-npm-version]][sequelize-npm-home]|[packages/sequelize](packages/sequelize)|
+|@atlas.js/nodemailer|[![@atlas.js/atlas][nodemailer-npm-version]][nodemailer-npm-home]|[packages/nodemailer](packages/nodemailer)|
+|@atlas.js/repl|[![@atlas.js/atlas][repl-npm-version]][repl-npm-home]|[packages/repl](packages/repl)|
 
 > Did not find what you were looking for? Write your own! Check the tutorials linked below.
 
@@ -62,7 +62,7 @@ Need help? Check out the [tutorials](tutorials) folder for... well... tutorials.
 
 ## About
 
-This project aims to reduce code duplication when working on backend APIs by moving some boilerplate code into "packages". Most projects require some kind of database, maybe a remote datastore, some authentication mechanism, perhaps an interface to a 3rd party service and a bunch of other things - why implement the basics over and over again for all projects? Just install a package, add it into the main Application and let it configure the service for you. It will also make sure that the service is shut down properly when the process needs to be terminated so you do not lose important progress or keep your http clients hanging without response (as is the case when stopping a running server with `process.exit()`).
+This project aims to reduce code duplication when working on backend APIs by moving some boilerplate code into "packages". Most projects require some kind of database, maybe a remote datastore, some authentication mechanism, perhaps an interface to a 3rd party service and a bunch of other things - why implement the basics over and over again for all projects? Just install a package, add it into the main Atlas instance and let it configure the service for you. It will also make sure that the service is shut down properly when the process needs to be terminated so you do not lose important progress or keep your http clients hanging without response (as is the case when stopping a running server with `process.exit()`).
 
 ## Core ideas
 
@@ -81,9 +81,9 @@ This project aims to reduce code duplication when working on backend APIs by mov
 
 ## Components
 
-### Application
+### Atlas
 
-The `Application` class is the primary container holding and managing your services. It provides a very basic functionality which consists of:
+The `Atlas` class is the primary container holding and managing your services. It provides a very basic functionality which consists of:
 
 - Gathering and distributing all of your configuration to all registered components
 - Managing your components' lifecycle (starting/stopping services, executing hooks etc.)
@@ -94,7 +94,7 @@ A Service is a component which usually connects or interacts with an external se
 
 ### Hook
 
-A hook is basically an event listener which can react to various application lifecycle events (ie. when the application is about to start or just before stopping). A hook is a great way to perform custom actions when particular things happen with the `Application` container.
+A hook is basically an event listener which can react to various application lifecycle events (ie. when the application is about to start or just before stopping). A hook is a great way to perform custom actions when particular things happen with the `Atlas` container.
 
 ### Action
 
@@ -102,9 +102,9 @@ An action is basically a controller in the MVC architecture - it is a group of r
 
 ## Installation
 
-You always need to install the core package:
+You always need to install the main `atlas` package:
 
-`npm i --save @atlas.js/core`
+`npm i --save @atlas.js/atlas`
 
 If you want, you can install any of the official services (you can always write your own if none of them suit your needs). Let's install the `koa` service:
 
@@ -116,15 +116,15 @@ That's it! Nothing else needs to be installed. 🎉
 
 > This is a complete usage example. Real world apps would split at least the configuration part out into its own module instead of writing it inline like this.
 
-> Also, you may want to check out `Application.init()`, which initialises all the components for you based on file/folder layout you specify. 💪
+> Also, you may want to check out `Atlas.init()`, which initialises all the components for you based on file/folder layout you specify. 💪
 
 ```js
 // We start by importing the required components...
-import { Application } from '@atlas.js/core'
+import { Atlas } from '@atlas.js/atlas'
 import * as Koa from '@atlas.js/koa'
 
 // Now we need an instance of the app, so let's make one
-const app = new Application({
+const app = new Atlas({
   // We MUST specify the root folder where our app resides
   // This should usually point to the folder where your package.json resides
   root: __dirname,

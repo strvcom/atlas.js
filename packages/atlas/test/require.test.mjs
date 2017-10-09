@@ -1,11 +1,11 @@
-import Application from '..'
+import { Atlas } from '..'
 import * as democonfig from './democonfig'
 
-describe('Application::require()', () => {
+describe('Atlas::require()', () => {
   let app
 
   beforeEach(() => {
-    app = new Application({ root: __dirname })
+    app = new Atlas({ root: __dirname })
   })
 
 

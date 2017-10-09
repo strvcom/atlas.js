@@ -12,9 +12,9 @@ In addition to the Atlas.js Service, you can access all the objects and properti
 
 ```js
 import * as braintree from '@atlas.js/braintree'
-import { Application } from '@atlas.js/core'
+import { Atlas } from '@atlas.js/atlas'
 
-const app = new Application({
+const app = new Atlas({
   config: {
     services: {
       payments: {

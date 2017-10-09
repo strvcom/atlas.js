@@ -1,4 +1,4 @@
-import Application from '..'
+import { Atlas } from '..'
 import Service from '@atlas.js/service'
 import Hook from '@atlas.js/hook'
 
@@ -6,7 +6,7 @@ class DummyService extends Service {}
 
 class DummyHook extends Hook {}
 
-describe('Application::start()', () => {
+describe('Atlas::start()', () => {
   let app
   let options
 
@@ -26,7 +26,7 @@ describe('Application::start()', () => {
         },
       },
     }
-    app = new Application(options)
+    app = new Atlas(options)
     app.prepare = sinon.stub().resolves()
   })
 
