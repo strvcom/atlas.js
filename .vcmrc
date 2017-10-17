@@ -18,6 +18,7 @@
       "atlas",
       "aws",
       "braintree",
+      "cli",
       "component",
       "errors",
       "firebase",

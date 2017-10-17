@@ -1,0 +1,8 @@
+🔎 PREREQUISITES
+
+      • This utility should be run from a working directory with
+        @atlas.js/application installed (you can specify alternate location via
+        '--root' flag)
+      • Make sure you export a configured Atlas instance either as default
+        ES2015 module or a CommonJS module and the module is importable from
+        the current working directory or from the path given via '--root'
