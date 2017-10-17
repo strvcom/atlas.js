@@ -71,7 +71,7 @@ describe('Koa::stop(instance)', () => {
 
     return expect(service.stop(instance)).to.eventually.be.rejectedWith(
       Error,
-      new RegExp(err.message)
+      new RegExp(err.message),
     )
   })
 })

@@ -1,4 +1,4 @@
-/*
+/**
  * Application's main entry point.
  *
  * Since Atlas.js needs to be started and stopped, this script ensures these happen at the

@@ -1,4 +1,4 @@
-/*
+/**
  * Atlas.js hook catalog
  *
  * To add a hook to Atlas.js, import the component here and export it under a unique alias.

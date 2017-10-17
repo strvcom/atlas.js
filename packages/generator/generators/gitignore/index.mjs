@@ -4,7 +4,7 @@ class Gitignore extends Generator {
   writing() {
     this.fs.copyTpl(
       this.templatePath('gitignore'),
-      this.destinationPath('.gitignore')
+      this.destinationPath('.gitignore'),
     )
   }
 }

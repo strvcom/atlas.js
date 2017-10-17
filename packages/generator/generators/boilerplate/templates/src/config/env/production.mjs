@@ -1,4 +1,4 @@
-/*
+/**
  * env-specific configuration overrides (production)
  *
  * This configuration is applied on top of the main configuration when NODE_ENV is 'production' or

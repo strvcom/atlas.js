@@ -1,4 +1,4 @@
-/*
+/**
  * Configuration module
  *
  * Atlas.js loads this file and expects it to find either

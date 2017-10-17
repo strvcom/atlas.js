@@ -1,4 +1,4 @@
-/*
+/**
  * Atlas.js action catalog
  *
  * To add a action to Atlas.js, import the component here and export it under an alias you wish to

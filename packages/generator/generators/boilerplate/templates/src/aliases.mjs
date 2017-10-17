@@ -1,4 +1,4 @@
-/*
+/**
  * Atlas.js aliases
  *
  * Aliases are a way for components to use other components. Usually, a component will declare that

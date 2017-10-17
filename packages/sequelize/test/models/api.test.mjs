@@ -68,7 +68,7 @@ describe('Sequelize: ModelsHook', () => {
         expect(Model.init).to.have.callCount(1)
         expect(Model.init).to.have.been.calledWith(
           Model.fields,
-          { sequelize: database, ...Model.config }
+          { sequelize: database, ...Model.config },
         )
       }
     })

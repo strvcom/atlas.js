@@ -77,7 +77,7 @@ describe('Koa::start(instance)', () => {
 
     return expect(service.start(instance)).to.eventually.be.rejectedWith(
       Error,
-      /simulated bind error/
+      /simulated bind error/,
     )
   })
 })

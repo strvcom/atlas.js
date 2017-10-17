@@ -1,4 +1,4 @@
-/*
+/**
  * Atlas.js application instance initialisation
  *
  * Unless you would like to use a different folder structure for your project, you need not modify

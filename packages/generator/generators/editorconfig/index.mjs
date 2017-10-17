@@ -16,7 +16,7 @@ class EditorConfig extends Generator {
     this.fs.copyTpl(
       this.templatePath('editorconfig.ini'),
       this.destinationPath('.editorconfig'),
-      { root: this.options.root }
+      { root: this.options.root },
     )
   }
 }

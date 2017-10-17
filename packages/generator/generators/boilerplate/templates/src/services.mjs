@@ -1,4 +1,4 @@
-/*
+/**
  * Atlas.js service catalog
  *
  * To add a service to Atlas.js, import the component here and export it under an alias you wish to

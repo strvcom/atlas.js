@@ -1,4 +1,4 @@
-/*
+/**
  * Local, per-developer configuration
  *
  * This file is ignored by git. Its purpose is to allow individual developers working on the same

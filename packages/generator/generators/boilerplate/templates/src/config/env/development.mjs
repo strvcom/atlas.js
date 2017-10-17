@@ -1,4 +1,4 @@
-/*
+/**
  * env-specific configuration overrides (development)
  *
  * This configuration is applied on top of the main configuration when NODE_ENV is 'development' or
