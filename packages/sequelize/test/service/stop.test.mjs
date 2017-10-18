@@ -19,11 +19,12 @@ describe('Sequelize::stop()', () => {
 
     instance = await service.prepare()
 
-    this.sandbox.stub(Sequelize.prototype, 'close').resolves()
+    this.sandbox.spy(Sequelize.prototype, 'close')
   })
 
   it('exists', () => {
     expect(service).to.respondTo('stop')
+    return service.stop(instance)
   })
 
   it('calls close() on the underlying sequelize client', async () => {

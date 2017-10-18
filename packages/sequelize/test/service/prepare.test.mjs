@@ -28,8 +28,8 @@ describe('Sequelize::prepare()', () => {
     expect(service).to.respondTo('prepare')
   })
 
-  it('returns Sequelize instance', async () => {
-    expect(await service.prepare()).to.be.instanceof(Sequelize)
+  it('returns Sequelize instance', () => {
+    expect(instance).to.be.instanceof(Sequelize)
   })
 
   it('sets a debug function to log sequelize events', () => {
