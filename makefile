@@ -35,6 +35,9 @@ test: compile
 test-debug: compile
 	mocha --inspect --inspect-brk $(testflags)
 
+watch: compile
+	mocha $(testflags) --reporter min --watch
+
 coverage: compile
 	nyc mocha $(testflags)
 
