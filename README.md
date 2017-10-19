@@ -8,6 +8,7 @@
 [greenkeeper-url]: https://greenkeeper.io
 [strv-home]: https://www.strv.com
 [atlas-npm-version]: https://img.shields.io/npm/v/@atlas.js/atlas.svg?style=flat-square
+[cli-npm-version]: https://img.shields.io/npm/v/@atlas.js/cli.svg?style=flat-square
 [aws-npm-version]: https://img.shields.io/npm/v/@atlas.js/aws.svg?style=flat-square
 [braintree-npm-version]: https://img.shields.io/npm/v/@atlas.js/braintree.svg?style=flat-square
 [firebase-npm-version]: https://img.shields.io/npm/v/@atlas.js/firebase.svg?style=flat-square
@@ -17,6 +18,7 @@
 [nodemailer-npm-version]: https://img.shields.io/npm/v/@atlas.js/nodemailer.svg?style=flat-square
 [repl-npm-version]: https://img.shields.io/npm/v/@atlas.js/repl.svg?style=flat-square
 [atlas-npm-home]: https://npmjs.org/package/@atlas.js/atlas
+[cli-npm-home]: https://npmjs.org/package/@atlas.js/cli
 [aws-npm-home]: https://npmjs.org/package/@atlas.js/aws
 [braintree-npm-home]: https://npmjs.org/package/@atlas.js/braintree
 [firebase-npm-home]: https://npmjs.org/package/@atlas.js/firebase
@@ -45,6 +47,7 @@ Here is a list of available components. You can also find a changelog for each c
 |Component|Version|Repository|
 |-|-|-|
 |@atlas.js/atlas|[![@atlas.js/atlas][atlas-npm-version]][atlas-npm-home]|[packages/atlas](packages/atlas)|
+|@atlas.js/cli|[![@atlas.js/cli][cli-npm-version]][cli-npm-home]|[packages/cli](packages/cli)|
 |@atlas.js/aws|[![@atlas.js/atlas][aws-npm-version]][aws-npm-home]|[packages/aws](packages/aws)|
 |@atlas.js/braintree|[![@atlas.js/atlas][braintree-npm-version]][braintree-npm-home]|[packages/braintree](packages/braintree)|
 |@atlas.js/firebase|[![@atlas.js/atlas][firebase-npm-version]][firebase-npm-home]|[packages/firebase](packages/firebase)|
