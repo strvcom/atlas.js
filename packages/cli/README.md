@@ -13,6 +13,7 @@ Once installed, you will have `atlas` command available in your _node_modules/.b
 ## Prerequisites
 
 - The `atlas` CLI should be invoked from the working directory where you have your Atlas application code. Optionally, you can specify another path by providing the `--root /path/to/project` flag.
+
 - It must be possible to call `require()` or `import` on the root/current working directory and get a configured and unstarted instance of the Atlas class. To achieve this, your project's entry point should look something like this:
     ```js
     import { Atlas } from '@atlas.js/atlas'

@@ -20,7 +20,7 @@ import { Atlas } from '@atlas.js/atlas'
 
 Then, you will need to create an instance of the `Atlas` class and provide some information to it:
 
-- `root`: The path to where all other paths will be relative to. This is usually the folder where your *package.json* is located or the *src/* folder. It is safe to generally use the `__dirname` variable when specifying `root`.
+- `root`: The path to where all other paths will be relative to. This is usually the folder where your _package.json_ is located or the _src/_ folder. It is safe to generally use the `__dirname` variable when specifying `root`.
 - `env`: The environment name under which the app will run. This defaults to whatever is set in `NODE_ENV` env var, but if it is not set an exception will be thrown.
 - `config`: The configuration for the application. It must contain configuration for all services, actions and hooks you plan on adding to the application in next steps. This can either be an object with all the config options or, it may be a path to a module from where the configuration will be loaded.
 
@@ -46,8 +46,8 @@ const atlas = new Atlas({
 It is recommended to use a path in the `config` parameter instead of passing the configuration object directly - this brings some extra functionality for free:
 
 - The base config will be loaded from the module at the location you specify
-- An environment-specific config will be loaded from within that directory's *env/* dir, so if our main config resides in *config/index.js* and we set `env` to *development*, *config/env/development.js* will be loaded and merged into the base config as well
-- One extra config file, *local.js*, in the config directory, will be loaded and merged on top of the config object. This file **should be in your _.gitignore_** - its purpose is to allow developers to customise the application configuration to suit their local development workflow without modifying the global configuration.
+- An environment-specific config will be loaded from within that directory's _env/_ dir, so if our main config resides in _config/index.js_ and we set `env` to _development_, _config/env/development.js_ will be loaded and merged into the base config as well
+- One extra config file, _local.js_, in the config directory, will be loaded and merged on top of the config object. This file **should be in your _.gitignore_** - its purpose is to allow developers to customise the application configuration to suit their local development workflow without modifying the global configuration.
 
 ```js
 const atlas = new Atlas({

@@ -1,7 +1,3 @@
-[koa-settings]: http://koajs.com/#settings
-[http-settings]: https://nodejs.org/api/http.html#http_class_http_server
-
-
 # @atlas.js/koa
 
 Koa.js service and a Middleware hook loader for @atlas.js.
@@ -58,7 +54,7 @@ atlas.services.http.server
 
 To add middleware to the Koa instance, it is recommended that this hook is used for that. It allows you to specify from which module the middleware should be loaded and adds it to Koa for you when the application starts.
 
-#### Dependencies
+#### MiddlewareHook Dependencies
 
 - `service:koa`: A koa service to load the middleware into
 
@@ -141,7 +137,7 @@ export default function mkforcehttps(config) {
 
 This hook allows you to extend the Koa context object prototype with custom functions or properties. It might be useful to define response type aliases, such as `ctx.ok()`, or `ctx.forbidden()`.
 
-#### Dependencies
+#### ContextHook Dependencies
 
 - `service:koa`: A Koa service on which to extend the context
 
@@ -185,3 +181,6 @@ export default {
 ## License
 
 See the [LICENSE](LICENSE) file for information.
+
+[koa-settings]: http://koajs.com/#settings
+[http-settings]: https://nodejs.org/api/http.html#http_class_http_server

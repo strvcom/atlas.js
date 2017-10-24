@@ -28,6 +28,7 @@ install: node_modules
 
 lint: install
 	eslint --ext .mjs --report-unused-disable-directives $(lintflags) .
+	remark --quiet .
 
 test: compile
 	mocha $(testflags)

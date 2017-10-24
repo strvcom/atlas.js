@@ -1,6 +1,3 @@
-[sequelize-db-drivers]: http://docs.sequelizejs.com/manual/installation/getting-started.html#installation
-[sequelize-constructor]: http://docs.sequelizejs.com/class/lib/sequelize.js~Sequelize.html#instance-constructor-constructor
-
 # @atlas.js/sequelize
 
 Sequelize service for @atlas.js.
@@ -50,7 +47,7 @@ Note that by default, the service does not load your models which means you will
 
 This hook allows you to import your Sequelize models from a particular module location into the sequelize service.
 
-#### Dependencies
+#### ModelsHook Dependencies
 
 - `service:sequelize`: A sequelize service to load the models into
 
@@ -184,7 +181,7 @@ Because all those properties already exist on a standard sequelize Model object,
 
 This action contains methods for applying and rolling back your sequelize migrations. The migration files are written exactly like standard Sequelize migrations. In addition to using plain JavaScript migration files, you may also organise your migrations into a folder with an _index.js_ file inside, if the migration requires more data or you simply wish to organise the migration in a different way than a single script.
 
-#### Dependencies
+#### MigrationAction Dependencies
 
 - `service:sequelize`: A sequelize service to use with which to apply/undo the migrations
 
@@ -238,3 +235,6 @@ export default MigrateHook extends Hook {
 ## License
 
 See the [LICENSE](LICENSE) file for information.
+
+[sequelize-db-drivers]: http://docs.sequelizejs.com/manual/installation/getting-started.html#installation
+[sequelize-constructor]: http://docs.sequelizejs.com/class/lib/sequelize.js~Sequelize.html#instance-constructor-constructor

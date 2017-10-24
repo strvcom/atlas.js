@@ -1,35 +1,3 @@
-[travis-badge]: https://img.shields.io/travis/strvcom/atlas.js.svg?style=flat-square
-[travis-url]: https://travis-ci.org/strvcom/atlas.js
-[make-badge]: https://img.shields.io/badge/Built%20with-GNU%20Make-brightgreen.svg?style=flat-square
-[node-badge]: https://img.shields.io/badge/Node.js-8.3-brightgreen.svg?style=flat-square
-[coveralls-badge]: https://img.shields.io/coveralls/strvcom/atlas.js.svg?style=flat-square
-[coveralls-url]: https://coveralls.io/github/strvcom/atlas.js
-[greenkeeper-badge]: https://badges.greenkeeper.io/strvcom/atlas.js.svg
-[greenkeeper-url]: https://greenkeeper.io
-[strv-home]: https://www.strv.com
-[atlas-npm-version]: https://img.shields.io/npm/v/@atlas.js/atlas.svg?style=flat-square
-[cli-npm-version]: https://img.shields.io/npm/v/@atlas.js/cli.svg?style=flat-square
-[aws-npm-version]: https://img.shields.io/npm/v/@atlas.js/aws.svg?style=flat-square
-[braintree-npm-version]: https://img.shields.io/npm/v/@atlas.js/braintree.svg?style=flat-square
-[generator-npm-version]: https://img.shields.io/npm/v/@atlas.js/generator-atlas.svg?style=flat-square
-[firebase-npm-version]: https://img.shields.io/npm/v/@atlas.js/firebase.svg?style=flat-square
-[koa-npm-version]: https://img.shields.io/npm/v/@atlas.js/koa.svg?style=flat-square
-[mongoose-npm-version]: https://img.shields.io/npm/v/@atlas.js/mongoose.svg?style=flat-square
-[sequelize-npm-version]: https://img.shields.io/npm/v/@atlas.js/sequelize.svg?style=flat-square
-[nodemailer-npm-version]: https://img.shields.io/npm/v/@atlas.js/nodemailer.svg?style=flat-square
-[repl-npm-version]: https://img.shields.io/npm/v/@atlas.js/repl.svg?style=flat-square
-[atlas-npm-home]: https://npmjs.org/package/@atlas.js/atlas
-[cli-npm-home]: https://npmjs.org/package/@atlas.js/cli
-[aws-npm-home]: https://npmjs.org/package/@atlas.js/aws
-[braintree-npm-home]: https://npmjs.org/package/@atlas.js/braintree
-[generator-npm-home]: https://npmjs.org/package/@atlas.js/generator-atlas
-[firebase-npm-home]: https://npmjs.org/package/@atlas.js/firebase
-[koa-npm-home]: https://npmjs.org/package/@atlas.js/koa
-[mongoose-npm-home]: https://npmjs.org/package/@atlas.js/mongoose
-[sequelize-npm-home]: https://npmjs.org/package/@atlas.js/sequelize
-[nodemailer-npm-home]: https://npmjs.org/package/@atlas.js/nodemailer
-[repl-npm-home]: https://npmjs.org/package/@atlas.js/repl
-
 # @atlas.js
 
 [![Build Status][travis-badge]][travis-url]
@@ -114,9 +82,9 @@ That's it! Nothing else needs to be installed. 🎉
 ## Usage
 
 > This is a complete usage example. Real world apps would split at least the configuration part out into its own module instead of writing it inline like this.
-
+>
 > Also, you may want to check out `Atlas.init()`, which initialises all the components for you based on file/folder layout you specify. 💪
-
+>
 > If you would like to take the easy road, check out our [Yeoman generator][generator-npm-home] to quickly generate the basic folder structure and install all the needed things.
 
 ```js
@@ -170,10 +138,42 @@ export default atlas
 
 The configuration options each component accepts are documented in their own package repository/folder.
 
-#### Great... what now?
+### Great... what now?
 
 So you have an app with a Koa service configured and running... Great! But you probably wonder where to define your middleware and routes and all the other important things? You should check out the [tutorials](tutorials) folder for much more info!
 
 ## License
 
 See the [LICENSE](LICENSE) file for information.
+
+[travis-badge]: https://img.shields.io/travis/strvcom/atlas.js.svg?style=flat-square
+[travis-url]: https://travis-ci.org/strvcom/atlas.js
+[make-badge]: https://img.shields.io/badge/Built%20with-GNU%20Make-brightgreen.svg?style=flat-square
+[node-badge]: https://img.shields.io/badge/Node.js-8.3-brightgreen.svg?style=flat-square
+[coveralls-badge]: https://img.shields.io/coveralls/strvcom/atlas.js.svg?style=flat-square
+[coveralls-url]: https://coveralls.io/github/strvcom/atlas.js
+[greenkeeper-badge]: https://badges.greenkeeper.io/strvcom/atlas.js.svg
+[greenkeeper-url]: https://greenkeeper.io
+[strv-home]: https://www.strv.com
+[atlas-npm-version]: https://img.shields.io/npm/v/@atlas.js/atlas.svg?style=flat-square
+[cli-npm-version]: https://img.shields.io/npm/v/@atlas.js/cli.svg?style=flat-square
+[aws-npm-version]: https://img.shields.io/npm/v/@atlas.js/aws.svg?style=flat-square
+[braintree-npm-version]: https://img.shields.io/npm/v/@atlas.js/braintree.svg?style=flat-square
+[generator-npm-version]: https://img.shields.io/npm/v/@atlas.js/generator-atlas.svg?style=flat-square
+[firebase-npm-version]: https://img.shields.io/npm/v/@atlas.js/firebase.svg?style=flat-square
+[koa-npm-version]: https://img.shields.io/npm/v/@atlas.js/koa.svg?style=flat-square
+[mongoose-npm-version]: https://img.shields.io/npm/v/@atlas.js/mongoose.svg?style=flat-square
+[sequelize-npm-version]: https://img.shields.io/npm/v/@atlas.js/sequelize.svg?style=flat-square
+[nodemailer-npm-version]: https://img.shields.io/npm/v/@atlas.js/nodemailer.svg?style=flat-square
+[repl-npm-version]: https://img.shields.io/npm/v/@atlas.js/repl.svg?style=flat-square
+[atlas-npm-home]: https://npmjs.org/package/@atlas.js/atlas
+[cli-npm-home]: https://npmjs.org/package/@atlas.js/cli
+[aws-npm-home]: https://npmjs.org/package/@atlas.js/aws
+[braintree-npm-home]: https://npmjs.org/package/@atlas.js/braintree
+[generator-npm-home]: https://npmjs.org/package/@atlas.js/generator-atlas
+[firebase-npm-home]: https://npmjs.org/package/@atlas.js/firebase
+[koa-npm-home]: https://npmjs.org/package/@atlas.js/koa
+[mongoose-npm-home]: https://npmjs.org/package/@atlas.js/mongoose
+[sequelize-npm-home]: https://npmjs.org/package/@atlas.js/sequelize
+[nodemailer-npm-home]: https://npmjs.org/package/@atlas.js/nodemailer
+[repl-npm-home]: https://npmjs.org/package/@atlas.js/repl

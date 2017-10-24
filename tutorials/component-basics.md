@@ -1,5 +1,3 @@
-[pino-home]: https://www.npmjs.com/package/pino
-
 # Component basics
 
 ## What is a component?
@@ -58,3 +56,5 @@ console.log(this.atlas.root)
 ```js
 this.log.info({ data: true }, 'log entry with data')
 ```
+
+[pino-home]: https://www.npmjs.com/package/pino

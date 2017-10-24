@@ -1,6 +1,3 @@
-[mongoose-connect]: http://mongoosejs.com/docs/api.html#index_Mongoose-connect
-
-
 # @atlas.js/mongoose
 
 Mongoose service for @atlas.js.
@@ -98,3 +95,5 @@ const User = atlas.services.database.model('User')
 ## License
 
 See the [LICENSE](LICENSE) file for information.
+
+[mongoose-connect]: http://mongoosejs.com/docs/api.html#index_Mongoose-connect
