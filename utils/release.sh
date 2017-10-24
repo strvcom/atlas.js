@@ -22,4 +22,5 @@ npx lerna publish \
   --conventional-commits \
   --yes \
   --git-remote pushable-origin \
+  --npm-tag "${NPM_DISTTAG}"
   --message "chore: release [ci skip]"
