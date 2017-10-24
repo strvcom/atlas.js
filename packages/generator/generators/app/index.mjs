@@ -37,6 +37,7 @@ class Atlas extends Generator {
 
   install() {
     this.npmInstall('@atlas.js/atlas', { save: true })
+    this.npmInstall('@atlas.js/cli', { 'save-dev': true })
   }
 }
 

@@ -2,7 +2,6 @@ import Generator from 'yeoman-generator'
 
 const templates = [
   'src/index.mjs',
-  'src/atlas.mjs',
   'src/actions.mjs',
   'src/aliases.mjs',
   'src/hooks.mjs',
