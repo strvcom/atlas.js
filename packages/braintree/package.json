@@ -1,12 +1,12 @@
 {
   "name": "@atlas.js/braintree",
   "description": "Braintree client as a component for @atlas.js",
-  "version": "0.2.0",
+  "version": "1.0.0",
   "author": "Robert Rossmann <robert.rossmann@strv.com>",
   "bugs": "https://github.com/strvcom/atlas.js/issues",
   "contributors": [],
   "dependencies": {
-    "@atlas.js/service": "^0.1.0",
+    "@atlas.js/service": "^1.0.0",
     "braintree": "^2.2.0"
   },
   "engines": {

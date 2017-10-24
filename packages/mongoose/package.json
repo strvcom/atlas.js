@@ -1,13 +1,13 @@
 {
   "name": "@atlas.js/mongoose",
   "description": "Mongoose service for @atlas.js",
-  "version": "0.3.0",
+  "version": "1.0.0",
   "author": "Robert Rossmann <robert.rossmann@strv.com>",
   "bugs": "https://github.com/strvcom/atlas.js/issues",
   "contributors": [],
   "dependencies": {
-    "@atlas.js/hook": "^0.1.0",
-    "@atlas.js/service": "^0.1.0",
+    "@atlas.js/hook": "^1.0.0",
+    "@atlas.js/service": "^1.0.0",
     "lodash": "^4.17.4",
     "mongoose": "^4.11.6"
   },

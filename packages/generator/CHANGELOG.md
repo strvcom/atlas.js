@@ -3,6 +3,32 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.0.0"></a>
+# [1.0.0](https://github.com/strvcom/atlas.js/compare/@atlas.js/generator-atlas@0.2.0...@atlas.js/generator-atlas@1.0.0) (2017-10-24)
+
+
+### Bug Fixes
+
+* **generator:** Add missing README 😱 ([26de253](https://github.com/strvcom/atlas.js/commit/26de253))
+
+
+### Features
+
+* Ditch [@atlas](https://github.com/atlas).js/core,application, add [@atlas](https://github.com/atlas).js/atlas ([1ce02bb](https://github.com/strvcom/atlas.js/commit/1ce02bb)), closes [#23](https://github.com/strvcom/atlas.js/issues/23)
+* Expose the atlas instance as this.atlas inside components ([34b0778](https://github.com/strvcom/atlas.js/commit/34b0778)), closes [#24](https://github.com/strvcom/atlas.js/issues/24)
+* The Atlas config is now passed via `atlas` key, not `application` ([51b15d6](https://github.com/strvcom/atlas.js/commit/51b15d6)), closes [#26](https://github.com/strvcom/atlas.js/issues/26)
+* **generator:** Update boilerplate to use CLI 🍻 ([bf45af0](https://github.com/strvcom/atlas.js/commit/bf45af0))
+
+
+### BREAKING CHANGES
+
+* 🔥
+* 🔥
+* 🔥
+
+
+
+
 <a name="0.2.0"></a>
 # [0.2.0](https://github.com/strvcom/atlas.js/compare/@atlas.js/generator-atlas@0.1.2...@atlas.js/generator-atlas@0.2.0) (2017-09-27)
 
