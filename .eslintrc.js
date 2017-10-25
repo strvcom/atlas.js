@@ -32,6 +32,16 @@ module.exports = {
     },
   }, {
     files: [
+      'packages/generator/generators/boilerplate/templates/src/**/*.mjs',
+    ],
+
+    rules: {
+      'import/no-extraneous-dependencies': ['error', {
+        packageDir: ['.', __dirname],
+      }],
+    },
+  }, {
+    files: [
       '*.js',
       '.*.js',
     ],
