@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.0.1"></a>
+## [1.0.1](https://github.com/strvcom/atlas.js/compare/@atlas.js/atlas@1.0.0...@atlas.js/atlas@1.0.1) (2017-10-30)
+
+
+### Bug Fixes
+
+* **atlas:** Do not mask errors thrown in component modules ([73127aa](https://github.com/strvcom/atlas.js/commit/73127aa))
+
+
+
+
 <a name="1.0.0"></a>
 # 1.0.0 (2017-10-24)
 
