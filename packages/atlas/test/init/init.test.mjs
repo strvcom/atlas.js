@@ -84,15 +84,39 @@ describe('Atlas::init()', () => {
     return atlas.prepare()
   })
 
-  it('does not throw when some of the modules do not exist', () => {
-    Atlas.init({
-      root: __dirname,
-      env: 'test',
-      config: 'lolconf',
-      services: 'lolserv',
-      actions: 'lolactions',
-      hooks: 'lolhooks',
-      aliases: 'lolaliases',
-    })
+
+  describe('Exception handling', () => {
+    const root = path.resolve(__dirname, 'demoapp')
+    const types = [
+      'config',
+      'services',
+      'actions',
+      'hooks',
+      'aliases',
+    ]
+
+    for (const type of types) {
+      it(`does not throw when ${type} module does not exist`, () => {
+        Atlas.init({
+          root,
+          env: 'test',
+          config: 'lolconf',
+          services: 'lolserv',
+          actions: 'lolactions',
+          hooks: 'lolhooks',
+          aliases: 'lolaliases',
+        })
+      })
+
+      it(`throws when ${type} module contains errors`, () => {
+        expect(() => {
+          Atlas.init({
+            root,
+            env: 'test',
+            [type]: 'will-throw',
+          })
+        }).to.throw()
+      })
+    }
   })
 })
