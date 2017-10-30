@@ -58,23 +58,21 @@ class Atlas {
       root: options.root,
       config: options.config,
     })
-    const paths = {
-      hooks: path.resolve(options.root, options.hooks),
-      services: path.resolve(options.root, options.services),
-      actions: path.resolve(options.root, options.actions),
-      aliases: path.resolve(options.root, options.aliases),
-    }
-    const modules = {
-      hooks: atlas.require(options.hooks, { optional: true }),
-      services: atlas.require(options.services, { optional: true }),
-      actions: atlas.require(options.actions, { optional: true }),
-      aliases: atlas.require(options.aliases, { optional: true }),
+    const types = [
+      'hooks',
+      'services',
+      'actions',
+      'aliases',
+    ]
+    const paths = {}
+    const modules = {}
+
+    for (const type of types) {
+      paths[type] = path.resolve(options.root, options[type])
+      modules[type] = atlas.require(options[type], { optional: true })
     }
 
     defaults(modules, {
-      hooks: {},
-      services: {},
-      actions: {},
       aliases: {
         actions: {},
         hooks: {},
