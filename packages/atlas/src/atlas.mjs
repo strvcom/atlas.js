@@ -229,10 +229,15 @@ class Atlas {
    * @param     {String}    location          The module's location, relative to root
    * @param     {Object}    options={}        Options
    * @param     {Boolean}   options.optional  If true, will not throw if the module does not exist
+   * @param     {Boolean}   options.absolute  If true, will try to load the module without
+   *                                          resolving the module's name to the project root (it
+   *                                          will load the module using standard Node's mechanism)
    * @return    {mixed}                       The module's contents
    */
   require(location, options = {}) {
-    location = path.resolve(this.root, location)
+    location = options.absolute
+      ? location
+      : path.resolve(this.root, location)
 
     const loader = options.optional
       ? optrequire

@@ -36,4 +36,13 @@ describe('Atlas::require()', () => {
       expect(Object.keys(contents)).to.have.length(0)
     })
   })
+
+
+  describe('absolute: true', () => {
+    it('loads the module from node_modules', () => {
+      const contents = atlas.require('chai', { absolute: true })
+
+      expect(contents).to.be.an('object')
+    })
+  })
 })
