@@ -38,5 +38,4 @@ nbproject
 *.sublime-*
 *.atom-*
 .tern-*
-.languagebabel
 jsconfig.json
