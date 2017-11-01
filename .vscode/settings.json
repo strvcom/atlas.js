@@ -1,0 +1,24 @@
+{
+  // Do not show compiled JavaScript files in the file tree
+  "files.exclude": {
+    "**/.git": true,
+    "**/.DS_Store": true,
+    "{packages,test}/**/*.js": true,
+    "**/*.log": true,
+    "**/node_modules": true
+  },
+  // Custom Application window title ❤️
+  "window.title": "Atlas.js",
+
+  // These should be set up through .editorconfig, but just in case...
+  "editor.wordWrapColumn": 100,
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true,
+  "files.trimFinalNewlines": true,
+
+  // Disable built-in JS validator due to unsupported language syntax being used
+  "javascript.validate.enable": false,
+  // Enable ESLint and its auto-fixer
+  "eslint.enable": true,
+  "eslint.autoFixOnSave": true
+}
