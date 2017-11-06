@@ -7,7 +7,10 @@ describe('Nodemailer::stop()', () => {
 
   beforeEach(function() {
     transport = {
-      transporter: { name: 'loltransport' },
+      transporter: {
+        name: 'loltransport',
+        close: sinon.stub(),
+      },
       close: sinon.stub(),
     }
     this.sandbox.stub(nodemailer, 'createTransport').returns(transport)
@@ -33,5 +36,13 @@ describe('Nodemailer::stop()', () => {
     await service.stop(transport)
 
     expect(transport.close).to.have.callCount(1)
+  })
+
+  it('only calls close if the transporter supports the method', async () => {
+    transport.transporter.close = null
+
+    await service.stop(transport)
+
+    expect(transport.close).to.have.callCount(0)
   })
 })

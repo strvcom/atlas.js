@@ -44,6 +44,11 @@ class Nodemailer extends Service {
   }
 
   async stop(instance) {
+    // Only close the instance if the transporter supports it
+    if (typeof instance.transporter.close !== 'function') {
+      return
+    }
+
     await instance.close()
   }
 }
