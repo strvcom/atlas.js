@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.0.1"></a>
+## [1.0.1](https://github.com/strvcom/atlas.js/compare/@atlas.js/nodemailer@1.0.0...@atlas.js/nodemailer@1.0.1) (2017-11-06)
+
+
+### Bug Fixes
+
+* **nodemailer:** Only close the transport if the transport supports it ([eb7360c](https://github.com/strvcom/atlas.js/commit/eb7360c))
+
+
+
+
 <a name="1.0.0"></a>
 # [1.0.0](https://github.com/strvcom/atlas.js/compare/@atlas.js/nodemailer@0.3.0...@atlas.js/nodemailer@1.0.0) (2017-10-24)
 
