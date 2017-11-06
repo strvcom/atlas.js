@@ -1,9 +1,7 @@
-const sandbox = sinon.sandbox.create()
-
-beforeEach(function() {
-  this.sandbox = sandbox
+before(function() {
+  this.sandbox = sinon.sandbox.create()
 })
 
-afterEach(() => {
-  sandbox.restore()
+afterEach(function() {
+  this.sandbox.restore()
 })
