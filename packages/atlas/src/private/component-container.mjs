@@ -30,7 +30,8 @@ class ComponentContainer {
     this.Component = info.Component
 
     if (typeof this.Component !== 'function') {
-      throw new FrameworkError(`Component must be a class, got ${typeof this.Component}`)
+      const type = typeof this.Component
+      throw new FrameworkError(`Component ${this.type}:${this.alias} must be class, not ${type}`)
     }
 
     // Check if the component received all the aliases it requires
