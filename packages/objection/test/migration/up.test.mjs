@@ -7,7 +7,9 @@ describe('Migration::up()', () => {
 
   beforeEach(function() {
     this.sandbox.stub(Umzug.prototype, 'up').resolves([])
-    database = {}
+    database = {
+      connection: {},
+    }
     migration = new Migration({
       atlas: {
         root: __dirname,

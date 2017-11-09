@@ -1,6 +1,5 @@
 import path from 'path'
 import Umzug from 'umzug'
-import KnexUmzug from 'knex-umzug'
 import Action from '@atlas.js/action'
 
 class Migration extends Action {
@@ -50,7 +49,7 @@ function mkmigrator() {
   const connection = this.component('service:objection').connection
 
   return new Umzug({
-    storage: KnexUmzug,
+    storage: 'knex-umzug',
     storageOptions: {
       connection,
 

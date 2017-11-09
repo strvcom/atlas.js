@@ -7,7 +7,9 @@ describe('Migration::pending()', () => {
 
   beforeEach(function() {
     this.sandbox.stub(Umzug.prototype, 'pending').resolves(['001-first', '002-second'])
-    database = {}
+    database = {
+      connection: {},
+    }
     migration = new Migration({
       atlas: {
         root: __dirname,
