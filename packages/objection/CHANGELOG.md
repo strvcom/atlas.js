@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.1.2"></a>
+## [0.1.2](https://github.com/strvcom/atlas.js/compare/@atlas.js/objection@0.1.1...@atlas.js/objection@0.1.2) (2017-11-14)
+
+
+### Bug Fixes
+
+* **objection:** Resolve relations to already known models ([300ef3e](https://github.com/strvcom/atlas.js/commit/300ef3e))
+
+
+
+
 <a name="0.1.1"></a>
 ## [0.1.1](https://github.com/strvcom/atlas.js/compare/@atlas.js/objection@0.1.0...@atlas.js/objection@0.1.1) (2017-11-09)
 
