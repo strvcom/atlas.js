@@ -1,6 +1,6 @@
-import path from 'path'
 import knex from 'knex'
 import Service from '@atlas.js/service'
+import { FrameworkError } from '@atlas.js/errors'
 
 class Objection extends Service {
   static defaults = {
@@ -21,11 +21,17 @@ class Objection extends Service {
     // complain
     for (const Model of Object.values(models)) {
       for (const relation of Object.values(Model.relationMappings)) {
-        if (typeof relation.modelClass !== 'string') {
+        const target = relation.modelClass
+
+        if (typeof target !== 'string') {
           continue
         }
 
-        relation.modelClass = require.resolve(path.resolve(this.config.models, relation.modelClass))
+        if (!(target in models)) {
+          throw new FrameworkError(`Unable to find relation ${target} defined in ${Model.name}`)
+        }
+
+        relation.modelClass = models[target]
       }
     }
 

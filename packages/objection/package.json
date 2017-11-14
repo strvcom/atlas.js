@@ -8,6 +8,7 @@
   "dependencies": {
     "@atlas.js/action": "^1.0.0",
     "@atlas.js/service": "^1.0.0",
+    "@atlas.js/errors": "^0.1.0",
     "knex": "^0.14.0",
     "knex-umzug": "^2.0.0",
     "objection": "^0.9.0",

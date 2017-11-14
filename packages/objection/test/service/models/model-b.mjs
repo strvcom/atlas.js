@@ -5,7 +5,7 @@ export default class ModelB extends Model {
   static relationMappings = {
     modela: {
       relation: Model.BelongsToOneRelation,
-      modelClass: './model-a',
+      modelClass: 'ModelA',
       join: {
         from: 'modelb.modela',
         to: 'modela.id',

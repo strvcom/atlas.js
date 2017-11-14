@@ -45,14 +45,14 @@ describe('Objection::prepare()', () => {
     ])
   })
 
-  it('resolves relative paths in relationship mappings to absolute paths', () => {
+  it('resolves model names in relationship mappings to actual model classes', () => {
     for (const Model of Object.values(instance.models)) {
       // Sanity check
       expect(Model).to.have.property('relationMappings')
       expect(Object.keys(Model.relationMappings).length).to.be.greaterThan(0)
 
       for (const relation of Object.values(Model.relationMappings)) {
-        expect(relation.modelClass).to.contain(service.config.models)
+        expect(relation.modelClass).to.be.a('function')
       }
     }
   })
