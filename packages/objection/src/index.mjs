@@ -1,15 +1,21 @@
 import Service from './service'
 import MigrationAction from './migration'
 import {
-  Model,
   compose,
   mixin,
+  Model,
+  NotFoundError,
+  transaction,
+  ValidationError,
 } from 'objection'
 
 export {
-  Service,
-  Model,
   compose,
-  mixin,
   MigrationAction,
+  mixin,
+  Model,
+  NotFoundError,
+  Service,
+  transaction,
+  ValidationError,
 }
