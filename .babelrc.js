@@ -5,12 +5,12 @@ module.exports = {
   comments: false,
   sourceMaps: 'inline',
   plugins: [
-    'syntax-object-rest-spread',
-    ['transform-es2015-modules-commonjs', {
+    '@babel/syntax-object-rest-spread',
+    ['@babel/transform-modules-commonjs', {
       allowTopLevelThis: false,
     }],
-    'transform-class-properties',
-    'transform-function-bind',
+    '@babel/proposal-class-properties',
+    '@babel/proposal-function-bind',
   ],
   ignore: [
     '**/node_modules',
