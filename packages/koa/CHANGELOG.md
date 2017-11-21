@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.1.0"></a>
+# [1.1.0](https://github.com/strvcom/atlas.js/compare/@atlas.js/koa@1.0.0...@atlas.js/koa@1.1.0) (2017-11-21)
+
+
+### Features
+
+* **koa:** Prefer `PORT` env var when binding ([edcc5cd](https://github.com/strvcom/atlas.js/commit/edcc5cd))
+
+
+
+
 <a name="1.0.0"></a>
 # [1.0.0](https://github.com/strvcom/atlas.js/compare/@atlas.js/koa@0.5.0...@atlas.js/koa@1.0.0) (2017-10-24)
 
