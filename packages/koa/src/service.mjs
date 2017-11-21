@@ -6,7 +6,10 @@ import Koa from 'koa'
 class KoaService extends Service {
   static defaults = {
     listen: {
-      port: 3000,
+      // It is a general best practice in the Node.js ecosystem to use the PORT env var to specify
+      // the port to which the web server should bind to -> let's respect that
+      // eslint-disable-next-line no-process-env
+      port: process.env.PORT || 3000,
       hostname: '127.0.0.1',
     },
 
