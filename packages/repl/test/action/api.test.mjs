@@ -3,7 +3,7 @@ import Action from '@atlas.js/action'
 
 describe('Action: Repl', () => {
   it('exists', () => {
-    expect(Action).to.be.a('function')
+    expect(Repl).to.be.a('function')
   })
 
   it('extends @atlas.js/action', () => {
