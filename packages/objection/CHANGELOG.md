@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.3.0"></a>
+# [0.3.0](https://github.com/strvcom/atlas.js/compare/@atlas.js/objection@0.2.0...@atlas.js/objection@0.3.0) (2017-11-24)
+
+
+### Features
+
+* **objection:** Expose ref, lit functions ([3612c28](https://github.com/strvcom/atlas.js/commit/3612c28))
+
+
+
+
 <a name="0.2.0"></a>
 # [0.2.0](https://github.com/strvcom/atlas.js/compare/@atlas.js/objection@0.1.2...@atlas.js/objection@0.2.0) (2017-11-15)
 
