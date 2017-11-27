@@ -1,13 +1,13 @@
 {
   "name": "@atlas.js/templates",
   "description": "An action to render a template file into HTML using consolidate.js for @atlas.js",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": "Robert Rossmann <robert.rossmann@strv.com>",
   "bugs": "https://github.com/strvcom/atlas.js/issues",
   "contributors": [],
   "dependencies": {
-    "@atlas.js/action": "^1.0.0",
-    "@atlas.js/errors": "^0.1.0",
+    "@atlas.js/action": "^1.0.1",
+    "@atlas.js/errors": "^0.1.1",
     "consolidate": "^0.15.0"
   },
   "devDependencies": {

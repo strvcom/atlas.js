@@ -1,12 +1,12 @@
 {
   "name": "@atlas.js/nodemailer",
   "description": "A nodemailer-based mailing service for @atlas.js",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "author": "Robert Rossmann <robert.rossmann@strv.com>",
   "bugs": "https://github.com/strvcom/atlas.js/issues",
   "contributors": [],
   "dependencies": {
-    "@atlas.js/service": "^1.0.0",
+    "@atlas.js/service": "^1.0.1",
     "nodemailer": "^4.0.1"
   },
   "engines": {

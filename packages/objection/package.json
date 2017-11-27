@@ -1,14 +1,14 @@
 {
   "name": "@atlas.js/objection",
   "description": "Objection.js service for @atlas.js",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "author": "Robert Rossmann <robert.rossmann@strv.com>",
   "bugs": "https://github.com/strvcom/atlas.js/issues",
   "contributors": [],
   "dependencies": {
-    "@atlas.js/action": "^1.0.0",
-    "@atlas.js/errors": "^0.1.0",
-    "@atlas.js/service": "^1.0.0",
+    "@atlas.js/action": "^1.0.1",
+    "@atlas.js/errors": "^0.1.1",
+    "@atlas.js/service": "^1.0.1",
     "knex": "^0.14.0",
     "knex-umzug": "^2.0.0",
     "objection": "^0.9.0",

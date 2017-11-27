@@ -1,7 +1,7 @@
 {
   "name": "@atlas.js/generator-atlas",
   "description": "Yeoman generator for Atlas.js library",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "Robert Rossmann <robert.rossmann@strv.com>",
   "bugs": "https://github.com/strvcom/atlas.js/issues",
   "contributors": [],

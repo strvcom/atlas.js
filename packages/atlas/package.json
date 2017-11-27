@@ -1,15 +1,15 @@
 {
   "name": "@atlas.js/atlas",
   "description": "The main package containing the core functionality of @atlas.js",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "author": "Robert Rossmann <robert.rossmann@strv.com>",
   "bugs": "https://github.com/strvcom/atlas.js/issues",
   "contributors": [],
   "dependencies": {
-    "@atlas.js/action": "^1.0.0",
-    "@atlas.js/errors": "^0.1.0",
-    "@atlas.js/hook": "^1.0.0",
-    "@atlas.js/service": "^1.0.0",
+    "@atlas.js/action": "^1.0.1",
+    "@atlas.js/errors": "^0.1.1",
+    "@atlas.js/hook": "^1.0.1",
+    "@atlas.js/service": "^1.0.1",
     "local-scope": "^1.2.0",
     "lodash": "^4.17.4",
     "pino": "^4.7.0"
