@@ -24,6 +24,7 @@ Here is a list of STRV-maintained components.
 |[@atlas.js/firebase](packages/firebase)|[![@atlas.js/atlas][firebase-npm-version]][firebase-npm-home]|For interfacing with Firebase services|
 |[@atlas.js/koa](packages/koa)|[![@atlas.js/atlas][koa-npm-version]][koa-npm-home]|Service and hooks for implementing Koa-based HTTP APIs|
 |[@atlas.js/mongoose](packages/mongoose)|[![@atlas.js/atlas][mongoose-npm-version]][mongoose-npm-home]|Service and hooks for working with MongoDB and Mongoose models|
+|[@atlas.js/objection](packages/objection)|[![@atlas.js/atlas][objection-npm-version]][objection-npm-home]|Service and hooks for working with Objection.js|
 |[@atlas.js/sequelize](packages/sequelize)|[![@atlas.js/atlas][sequelize-npm-version]][sequelize-npm-home]|Service and hooks for working with Sequelize|
 |[@atlas.js/nodemailer](packages/nodemailer)|[![@atlas.js/atlas][nodemailer-npm-version]][nodemailer-npm-home]|Generic emailing service with support for multiple providers|
 |[@atlas.js/repl](packages/repl)|[![@atlas.js/atlas][repl-npm-version]][repl-npm-home]|A component to drop into an interactive shell with Atlas loaded|
@@ -163,6 +164,7 @@ See the [LICENSE](LICENSE) file for information.
 [firebase-npm-version]: https://img.shields.io/npm/v/@atlas.js/firebase.svg?style=flat-square
 [koa-npm-version]: https://img.shields.io/npm/v/@atlas.js/koa.svg?style=flat-square
 [mongoose-npm-version]: https://img.shields.io/npm/v/@atlas.js/mongoose.svg?style=flat-square
+[objection-npm-version]: https://img.shields.io/npm/v/@atlas.js/objection.svg?style=flat-square
 [sequelize-npm-version]: https://img.shields.io/npm/v/@atlas.js/sequelize.svg?style=flat-square
 [nodemailer-npm-version]: https://img.shields.io/npm/v/@atlas.js/nodemailer.svg?style=flat-square
 [repl-npm-version]: https://img.shields.io/npm/v/@atlas.js/repl.svg?style=flat-square
@@ -176,4 +178,5 @@ See the [LICENSE](LICENSE) file for information.
 [mongoose-npm-home]: https://npmjs.org/package/@atlas.js/mongoose
 [sequelize-npm-home]: https://npmjs.org/package/@atlas.js/sequelize
 [nodemailer-npm-home]: https://npmjs.org/package/@atlas.js/nodemailer
+[objection-npm-home]: https://npmjs.org/package/@atlas.js/objection
 [repl-npm-home]: https://npmjs.org/package/@atlas.js/repl
