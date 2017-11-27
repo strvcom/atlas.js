@@ -28,6 +28,7 @@ Here is a list of STRV-maintained components.
 |[@atlas.js/sequelize](packages/sequelize)|[![@atlas.js/atlas][sequelize-npm-version]][sequelize-npm-home]|Service and hooks for working with Sequelize|
 |[@atlas.js/nodemailer](packages/nodemailer)|[![@atlas.js/atlas][nodemailer-npm-version]][nodemailer-npm-home]|Generic emailing service with support for multiple providers|
 |[@atlas.js/repl](packages/repl)|[![@atlas.js/atlas][repl-npm-version]][repl-npm-home]|A component to drop into an interactive shell with Atlas loaded|
+|[@atlas.js/templates](packages/templates)|[![@atlas.js/atlas][templates-npm-version]][templates-npm-home]|Action for rendering templates into html strings using consolidate.js|
 
 > Did not find what you were looking for? Write your own! Check the tutorials linked below.
 
@@ -168,6 +169,7 @@ See the [LICENSE](LICENSE) file for information.
 [sequelize-npm-version]: https://img.shields.io/npm/v/@atlas.js/sequelize.svg?style=flat-square
 [nodemailer-npm-version]: https://img.shields.io/npm/v/@atlas.js/nodemailer.svg?style=flat-square
 [repl-npm-version]: https://img.shields.io/npm/v/@atlas.js/repl.svg?style=flat-square
+[templates-npm-version]: https://img.shields.io/npm/v/@atlas.js/templates.svg?style=flat-square
 [atlas-npm-home]: https://npmjs.org/package/@atlas.js/atlas
 [cli-npm-home]: https://npmjs.org/package/@atlas.js/cli
 [aws-npm-home]: https://npmjs.org/package/@atlas.js/aws
@@ -180,3 +182,4 @@ See the [LICENSE](LICENSE) file for information.
 [nodemailer-npm-home]: https://npmjs.org/package/@atlas.js/nodemailer
 [objection-npm-home]: https://npmjs.org/package/@atlas.js/objection
 [repl-npm-home]: https://npmjs.org/package/@atlas.js/repl
+[templates-npm-home]: https://npmjs.org/package/@atlas.js/templates
