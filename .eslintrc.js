@@ -20,6 +20,10 @@ module.exports = {
       'packages/*/test/**/*.test.mjs',
     ],
 
+    env: {
+      mocha: true,
+    },
+
     globals: {
       sinon: true,
       expect: true,
