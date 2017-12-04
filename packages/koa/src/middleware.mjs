@@ -24,7 +24,7 @@ class MiddlewareHook extends Hook {
 
     for (const [name, handler] of Object.entries(middleware)) {
       const options = config.middleware[name]
-      koa.use(handler(options))
+      koa.use(handler(options, this))
     }
   }
 }

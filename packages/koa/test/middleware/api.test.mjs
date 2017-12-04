@@ -81,5 +81,17 @@ describe('Koa: MiddlewareHook', () => {
       expect(args.first).to.eql({ firsttest: true })
       expect(args.second).to.eql({ secondtest: true })
     })
+
+    it('passes the component instance to the middleware as second argument', async () => {
+      await hook.beforeStart()
+
+      const args = {
+        first: testmiddleware.first.lastCall.args[1],
+        second: testmiddleware.second.lastCall.args[1],
+      }
+
+      expect(args.first).to.equal(hook)
+      expect(args.second).to.equal(hook)
+    })
   })
 })
