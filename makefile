@@ -68,6 +68,10 @@ distclean: clean
 		\) \
 		-not -path "*/node_modules/*" -not -name '.*.js' \
 		-print -delete
+	find . \
+    -type d -empty \
+    -not -path './.git/*' \
+    -print -delete
 
 pristine: distclean
 	rm -rf node_modules packages/*/node_modules
