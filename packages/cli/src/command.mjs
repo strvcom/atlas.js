@@ -1,6 +1,6 @@
 import path from 'path'
 
-export default class Command {
+class Command {
   static args = []
   static options = [
     ['--root <path>', 'Use the Atlas.js app at the given <path>', null, process.cwd()],
@@ -51,3 +51,5 @@ function normalise(module) {
     ? module.default
     : module
 }
+
+export default Command

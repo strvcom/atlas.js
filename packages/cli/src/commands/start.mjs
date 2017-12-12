@@ -1,6 +1,6 @@
 import Command from '../command'
 
-export default class Start extends Command {
+class Start extends Command {
   static command = 'start'
   static description = 'Start the Atlas.js app'
   static options = [
@@ -71,3 +71,5 @@ function fatal(err) {
   setTimeout(() => process.exit(), 10000)
     .unref()
 }
+
+export default Start
