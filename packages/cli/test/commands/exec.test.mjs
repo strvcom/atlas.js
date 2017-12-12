@@ -67,5 +67,17 @@ describe('CLI: exec', () => {
         { second: true },
       )
     })
+
+    it('does not throw if the arguments are not JSON-parseable', async () => {
+      await exec.run({
+        action: 'testaction',
+        method: 'testmethod',
+        args: [
+          'string',
+          123,
+          true,
+        ],
+      })
+    })
   })
 })
