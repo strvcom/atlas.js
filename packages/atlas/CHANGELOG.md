@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.2.0"></a>
+# [1.2.0](https://github.com/strvcom/atlas.js/compare/@atlas.js/atlas@1.1.2...@atlas.js/atlas@1.2.0) (2017-12-13)
+
+
+### Features
+
+* **component:** The resolve() function is now passed as `component` ([dd034d6](https://github.com/strvcom/atlas.js/commit/dd034d6))
+
+
+
+
 <a name="1.1.1"></a>
 ## [1.1.1](https://github.com/strvcom/atlas.js/compare/@atlas.js/atlas@1.1.0...@atlas.js/atlas@1.1.1) (2017-11-09)
 
