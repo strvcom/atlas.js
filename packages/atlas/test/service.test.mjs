@@ -64,13 +64,13 @@ describe('Atlas::service()', () => {
     expect(args.config).to.equal(options.config.services.dummy)
   })
 
-  it('provides the resolve function on service constructor argument', () => {
+  it('provides the resolve function on service constructor argument as `component`', () => {
     const service = sinon.spy()
     atlas.service('dummy', service)
     const args = service.getCall(0).args[0]
 
-    expect(args).to.have.property('resolve')
-    expect(args.resolve).to.be.a('function')
+    expect(args).to.have.property('component')
+    expect(args.component).to.be.a('function')
   })
 
   it('applies defaults defined on service on top of user-provided config', () => {

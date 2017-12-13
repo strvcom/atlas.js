@@ -20,7 +20,7 @@ describe('Koa: MiddlewareHook', () => {
         module: 'testmiddleware',
         middleware: {},
       },
-      resolve() { return server },
+      component() { return server },
     })
 
     return hook.afterPrepare()
@@ -67,7 +67,7 @@ describe('Koa: MiddlewareHook', () => {
             second: { secondtest: true },
           },
         },
-        resolve() { return server },
+        component() { return server },
       })
 
       await hook.afterPrepare()

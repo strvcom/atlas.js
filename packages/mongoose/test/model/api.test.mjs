@@ -18,7 +18,7 @@ describe('Mongoose: ModelsHook', () => {
       config: {
         module: 'testmodels',
       },
-      resolve() { return database },
+      component() { return database },
     })
   })
 

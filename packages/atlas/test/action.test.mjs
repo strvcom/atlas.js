@@ -64,13 +64,13 @@ describe('Atlas::action()', () => {
     expect(args.config).to.equal(options.config.actions.dummy)
   })
 
-  it('provides the resolve function on action constructor argument', () => {
+  it('provides the resolve function on action constructor argument as `component`', () => {
     const action = sinon.spy()
     atlas.action('dummy', action)
     const args = action.getCall(0).args[0]
 
-    expect(args).to.have.property('resolve')
-    expect(args.resolve).to.be.a('function')
+    expect(args).to.have.property('component')
+    expect(args.component).to.be.a('function')
   })
 
   it('applies defaults defined on action on top of user-provided config', () => {

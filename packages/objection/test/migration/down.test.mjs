@@ -20,7 +20,7 @@ describe('Migration::down()', () => {
       config: {
         module: 'testmigrations',
       },
-      resolve() { return database },
+      component() { return database },
     })
   })
 

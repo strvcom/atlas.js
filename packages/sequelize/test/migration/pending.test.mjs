@@ -17,7 +17,7 @@ describe('Migration::pending()', () => {
       config: {
         module: 'testmigrations',
       },
-      resolve() { return database },
+      component() { return database },
     })
   })
 

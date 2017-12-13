@@ -54,7 +54,7 @@ class ComponentContainer {
       atlas,
       log: atlas.log.child({ [this.type]: this.alias }),
       config: defaults(info.config, this.Component.defaults),
-      resolve,
+      component: resolve,
     })
 
     // Save the aliases for this component

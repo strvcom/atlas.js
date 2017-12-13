@@ -18,7 +18,7 @@ describe('Koa: ContextHook', () => {
       config: {
         module: 'testcontext',
       },
-      resolve() { return server },
+      component() { return server },
     })
   })
 

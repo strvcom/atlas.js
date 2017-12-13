@@ -64,13 +64,13 @@ describe('Atlas::hook()', () => {
     expect(args.config).to.equal(options.config.hooks.dummy)
   })
 
-  it('provides the resolve function on hook constructor argument', () => {
+  it('provides the resolve function on hook constructor argument as `component`', () => {
     const hook = sinon.spy()
     atlas.hook('dummy', hook)
     const args = hook.getCall(0).args[0]
 
-    expect(args).to.have.property('resolve')
-    expect(args.resolve).to.be.a('function')
+    expect(args).to.have.property('component')
+    expect(args.component).to.be.a('function')
   })
 
   it('applies defaults defined on hook on top of user-provided config', () => {

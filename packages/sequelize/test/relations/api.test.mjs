@@ -33,7 +33,7 @@ describe('Sequelize: RelationsHook', () => {
       config: {
         module: '../testmodels',
       },
-      resolve() { return database },
+      component() { return database },
     })
   })
 

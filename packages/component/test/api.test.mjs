@@ -34,10 +34,10 @@ describe('Component: basics and API', () => {
     expect(component).to.have.property('config', config)
   })
 
-  it('saves the resolve function given on constructor to itself', () => {
+  it('saves the component function given on constructor to itself', () => {
     const resolve = () => {}
     const component = new Component({
-      resolve,
+      component: resolve,
     })
 
     expect(component).itself.to.respondTo('component')
