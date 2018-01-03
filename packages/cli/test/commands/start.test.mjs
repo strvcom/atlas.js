@@ -1,3 +1,4 @@
+import cluster from 'cluster'
 import Start from '../../src/commands/start'
 
 describe('CLI: start', () => {
@@ -69,6 +70,20 @@ describe('CLI: start', () => {
       await start.doExit()
 
       expect(start.atlas.stop).to.have.callCount(1)
+    })
+
+    it('disconnects from cluster master upon exit', async () => {
+      const disconnect = sinon.stub()
+      cluster.isWorker = true
+      cluster.worker = { disconnect }
+
+      await start.run()
+      await start.doExit()
+
+      cluster.isWorker = false
+      delete cluster.worker
+
+      expect(disconnect).to.have.callCount(1)
     })
   })
 })

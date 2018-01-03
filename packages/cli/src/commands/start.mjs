@@ -1,3 +1,4 @@
+import cluster from 'cluster'
 import Command from '../command'
 
 class Start extends Command {
@@ -36,6 +37,12 @@ class Start extends Command {
       .then(() => {
         process.removeListener('SIGINT', forcequit)
         process.removeListener('SIGTERM', forcequit)
+
+        // If this is a clusterised worker, disconnect the worker from the master once we are done
+        // here so the process can exit gracefully without the master having to do anything special.
+        if (cluster.isWorker) {
+          cluster.worker.disconnect()
+        }
       })
       .catch(fatal)
   }
