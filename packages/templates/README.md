@@ -18,7 +18,7 @@ const atlas = new Atlas({
       templates: {
         engine: 'pug',
         templates: 'path/to/templates',
-        ext: '.pug',
+        extension: '.pug',
       },
     },
   },
