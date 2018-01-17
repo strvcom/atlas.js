@@ -1,32 +1,15 @@
-import Hook from '@atlas.js/hook'
-import hidden from 'local-scope/create'
-
-class MiddlewareHook extends Hook {
-  static defaults = {
-    module: 'middleware',
-    middleware: {},
-  }
-
-  static requires = [
-    'service:koa',
-  ]
-
-  afterPrepare() {
-    // Load the middleware module from the user-specified directory, relative to root
-    this::hidden().middleware = this.atlas.require(this.config.module)
-  }
-
-  beforeStart() {
-    // Register all loaded middleware into the Koa instance
-    const config = this.config
-    const middleware = this::hidden().middleware
-    const koa = this.component('service:koa')
-
-    for (const [name, handler] of Object.entries(middleware)) {
-      const options = config.middleware[name]
-      koa.use(handler(options, this))
-    }
+/**
+ * Register the given middleware functions into the given Koa-compatible instance
+ *
+ * @param     {Object}    instance        Koa-compatible instance. Must implement `.use()`.
+ * @param     {Object}    handlers={}     Object where keys are the middlewares' names and the
+ *                                        values are the actual middleware functions.
+ * @param     {Object}    config={}       Configuration for individual middlewares. The keys should
+ *                                        match the middleware names.
+ * @return    {void}
+ */
+export default function middleware(instance, handlers = {}, config = {}) {
+  for (const [name, handler] of Object.entries(handlers)) {
+    instance.use(handler(config[name]))
   }
 }
-
-export default MiddlewareHook

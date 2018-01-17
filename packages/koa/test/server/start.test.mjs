@@ -1,4 +1,4 @@
-import { Service as Koa } from '../..'
+import { Server as Koa } from '../..'
 import http from 'http'
 
 describe('Koa::start(instance)', () => {

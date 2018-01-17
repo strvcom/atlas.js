@@ -1,9 +1,7 @@
-import Service from './service'
-import MiddlewareHook from './middleware'
+import Server from './server'
 import ContextHook from './context'
 
 export {
-  Service,
-  MiddlewareHook,
+  Server,
   ContextHook,
 }

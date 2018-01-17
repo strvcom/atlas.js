@@ -1,5 +1,5 @@
 import Service from '@atlas.js/service'
-import { Service as Koa } from '../..'
+import { Server as Koa } from '../..'
 
 describe('Service: Koa', () => {
   it('exists', () => {
@@ -15,6 +15,7 @@ describe('Service: Koa', () => {
       'listen',
       'server',
       'koa',
+      'middleware',
     ])
   })
 })

@@ -2,9 +2,15 @@ import http from 'http'
 import Service from '@atlas.js/service'
 import { FrameworkError } from '@atlas.js/errors'
 import Koa from 'koa'
+import middleware from './middleware'
 
 class KoaService extends Service {
   static defaults = {
+    middleware: {
+      module: 'middleware',
+      config: {},
+    },
+
     listen: {
       // It is a general best practice in the Node.js ecosystem to use the PORT env var to specify
       // the port to which the web server should bind to -> let's respect that
@@ -40,16 +46,24 @@ class KoaService extends Service {
     // Apply Koa settings
     Object.assign(koa, this.config.koa)
 
+    // Apply middleware
+    if (this.config.middleware) {
+      middleware(
+        koa,
+        this.atlas.require(this.config.middleware.module),
+        this.config.middleware.config,
+      )
+    }
+
     return koa
   }
 
   async start(koa) {
-    const config = this.config
     const server = http.createServer(koa.callback())
     koa.server = server
 
     // Apply server configuration
-    Object.assign(server, config.server)
+    Object.assign(server, this.config.server)
 
     // Ugh, events to Promise mapping is so ugly... 🤦
     await new Promise((resolve, reject) => {
@@ -65,7 +79,7 @@ class KoaService extends Service {
       server.once('error', fail)
 
       // Listen already!
-      koa.server.listen(config.listen.port, config.listen.hostname)
+      koa.server.listen(this.config.listen.port, this.config.listen.hostname)
     })
 
     this.log.info({ addrinfo: server.address() }, 'listening')
