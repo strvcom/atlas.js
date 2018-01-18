@@ -37,6 +37,15 @@ const atlas = new Atlas({
         koa: {
           proxy: true,
         },
+        // If set to an object, will be used to load all middleware found in this module into the
+        // Koa instance
+        middleware: {
+          module: 'path/to/middleware',
+          config: {
+            bodyparser: {},
+            // ...
+          }
+        }
       }
     }
   }
@@ -50,46 +59,9 @@ atlas.services.http
 atlas.services.http.server
 ```
 
-### MiddlewareHook
-
-To add middleware to the Koa instance, it is recommended that this hook is used for that. It allows you to specify from which module the middleware should be loaded and adds it to Koa for you when the application starts.
-
-#### MiddlewareHook Dependencies
-
-- `service:koa`: A koa service to load the middleware into
-
-```js
-import { Atlas } from '@atlas.js/atlas'
-import * as Koa from '@atlas.js/koa'
-
-const atlas = new Atlas({
-  config: {
-    hooks: {
-      middleware: {
-        // The path to the module, relative to root, which should be loaded and
-        // the exported middleware added to the Koa service
-        module: 'middleware',
-        middleware: {
-          // You can define configuration options for your middleware here.
-          // The key must match the exported middleware name.
-        }
-      }
-    }
-  }
-})
-
-atlas.service('http', Koa.Service)
-atlas.hook('middleware', Koa.MiddlewareHook, {
-  aliases: {
-    'service:koa': 'http'
-  }
-})
-await atlas.start()
-```
-
 #### Example middleware module
 
-Here is an example middleware module that the `MiddlewareHook` expects to find.
+Here is an example middleware module that the service supports.
 
 ```js
 // middleware.js
@@ -178,9 +150,46 @@ export default {
 }
 ```
 
+### WebsocketHook
+
+This hook extends the Koa instance with websocket protocol support, using [koa-websocket][koa-websocket].
+
+#### WebsocketHook Dependencies
+
+- `service:koa`: A Koa service on which to add the websocket protocol support
+
+```js
+const atlas = new Atlas({
+  config: {
+    hooks: {
+      websocket: {
+        // This has the same structure and purpose as the Koa service's middleware config: it allows
+        // you to add websocket-specific middleware to the server.
+        middleware: {
+          module: 'path/to/websocket/middleware',
+          config: {}
+        },
+        // This goes directly to the websocket protocol's constructor. Note that you should not
+        // use `host`, `port` or `server` options since the server instance is re-used from the
+        // underlying Koa server and creating a new http server could cause unwanted side-effects.
+        // See: https://github.com/websockets/ws/blob/master/doc/ws.md#new-websocketserveroptions-callback
+        listen: {},
+      }
+    }
+  }
+})
+```
+
+Once attached to a Koa servise, the websocket interface is accessible as per the library's definition via `koa.ws`, which in Atlas it would be:
+
+```js
+atlas.services.http.ws
+```
+
 ## License
 
 See the [LICENSE](LICENSE) file for information.
 
 [koa-settings]: http://koajs.com/#settings
 [http-settings]: https://nodejs.org/api/http.html#http_class_http_server
+[koa-websocket]: https://www.npmjs.com/package/koa-websocket
