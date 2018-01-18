@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.1.3"></a>
+## [0.1.3](https://github.com/strvcom/atlas.js/compare/@atlas.js/templates@0.1.2...@atlas.js/templates@0.1.3) (2018-01-18)
+
+
+### Bug Fixes
+
+* **templates:** Fix wrong configuration example in README ([82321a9](https://github.com/strvcom/atlas.js/commit/82321a9))
+
+
+
+
 <a name="0.1.2"></a>
 ## [0.1.2](https://github.com/strvcom/atlas.js/compare/@atlas.js/templates@0.1.1...@atlas.js/templates@0.1.2) (2017-12-13)
 

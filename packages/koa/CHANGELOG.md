@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.0.0"></a>
+# [2.0.0](https://github.com/strvcom/atlas.js/compare/@atlas.js/koa@1.2.0...@atlas.js/koa@2.0.0) (2018-01-18)
+
+
+### Features
+
+* **koa:** Add websocket support via WebsocketHook ([3cdb05a](https://github.com/strvcom/atlas.js/commit/3cdb05a))
+* **koa:** MiddlewareHook is now part of the main service ([e85353b](https://github.com/strvcom/atlas.js/commit/e85353b))
+
+
+### BREAKING CHANGES
+
+* **koa:** - Remove MiddlewareHook
+- Rename Service to Server
+
+
+
+
 <a name="1.2.0"></a>
 # [1.2.0](https://github.com/strvcom/atlas.js/compare/@atlas.js/koa@1.1.1...@atlas.js/koa@1.2.0) (2017-12-13)
 
