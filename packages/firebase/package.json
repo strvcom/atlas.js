@@ -1,7 +1,7 @@
 {
   "name": "@atlas.js/firebase",
   "description": "A Firebase-admin service for @atlas.js",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "author": "Robert Rossmann <robert.rossmann@strv.com>",
   "bugs": "https://github.com/strvcom/atlas.js/issues",
   "contributors": [],
