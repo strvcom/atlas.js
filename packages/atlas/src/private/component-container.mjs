@@ -50,6 +50,12 @@ class ComponentContainer {
       throw new FrameworkError(`Unneeded aliases for component ${this.alias}: ${extra.join(', ')}`)
     }
 
+    atlas.log.trace({
+      component: this.alias,
+      config: info.config,
+      defaults: this.Component.defaults,
+    }, 'component:config')
+
     this.component = new this.Component({
       atlas,
       log: atlas.log.child({ [this.type]: this.alias }),
