@@ -24,7 +24,7 @@ function component(info, catalog) {
   info.config = this.config[`${info.type}s`][info.alias]
 
   catalog.set(info.alias, new ComponentContainer(info, this))
-  this.log.debug({ [info.type]: info.alias }, `${info.type}:add`)
+  this.log.trace({ [info.type]: info.alias }, `${info.type}:add`)
 
   return this
 }

@@ -420,10 +420,10 @@ const lifecycle = {
      * @return    {Promise<void>}
      */
     async prepare(alias, service) {
-      this.log.debug({ service: alias }, 'service:prepare:before')
+      this.log.trace({ service: alias }, 'service:prepare:before')
       const instance = await service.prepare()
       this::expose('services', alias, instance)
-      this.log.debug({ service: alias }, 'service:prepare:after')
+      this.log.trace({ service: alias }, 'service:prepare:after')
     },
     /**
      * Start a service
@@ -434,9 +434,9 @@ const lifecycle = {
      * @return    {Promise<void>}
      */
     async start(alias, service) {
-      this.log.debug({ service: alias }, 'service:start:before')
+      this.log.trace({ service: alias }, 'service:start:before')
       await service.start(this.services[alias])
-      this.log.debug({ service: alias }, 'service:start:after')
+      this.log.trace({ service: alias }, 'service:start:after')
     },
     /**
      * Stop a service
@@ -447,11 +447,11 @@ const lifecycle = {
      * @return    {Promise<void>}
      */
     async stop(alias, service) {
-      this.log.debug({ service: alias }, 'service:stop:before')
+      this.log.trace({ service: alias }, 'service:stop:before')
       const instance = this.services[alias]
       delete this.services[alias]
       await service.stop(instance)
-      this.log.debug({ service: alias }, 'service:stop:after')
+      this.log.trace({ service: alias }, 'service:stop:after')
     },
   },
 }
