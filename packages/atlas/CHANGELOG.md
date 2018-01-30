@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.2.1"></a>
+## [1.2.1](https://github.com/strvcom/atlas.js/compare/@atlas.js/atlas@1.2.0...@atlas.js/atlas@1.2.1) (2018-01-30)
+
+
+### Bug Fixes
+
+* **atlas:** Log about the config provided to the component ([861c3b4](https://github.com/strvcom/atlas.js/commit/861c3b4))
+* **atlas:** Lower log level to trace for some log messages ([cd6c52f](https://github.com/strvcom/atlas.js/commit/cd6c52f))
+
+
+
+
 <a name="1.2.0"></a>
 # [1.2.0](https://github.com/strvcom/atlas.js/compare/@atlas.js/atlas@1.1.2...@atlas.js/atlas@1.2.0) (2017-12-13)
 

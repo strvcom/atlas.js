@@ -1,7 +1,7 @@
 {
   "name": "@atlas.js/atlas",
   "description": "The main package containing the core functionality of @atlas.js",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "author": "Robert Rossmann <robert.rossmann@strv.com>",
   "bugs": "https://github.com/strvcom/atlas.js/issues",
   "contributors": [],
