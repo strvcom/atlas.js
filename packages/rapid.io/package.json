@@ -1,0 +1,25 @@
+{
+  "name": "@atlas.js/rapid.io",
+  "description": "A Rapid.io service for @atlas.js",
+  "version": "0.0.0",
+  "author": "Martin Galajda <martin.galajda@strv.com>",
+  "bugs": "https://github.com/strvcom/atlas.js/issues",
+  "contributors": [],
+  "dependencies": {
+    "@atlas.js/service": "^0.0.3",
+    "babel-runtime": "^6.26.0",
+    "rapid-io": "^0.4.2"
+  },
+  "engines": {
+    "node": "^8.3.0",
+    "npm": "^5.3.0"
+  },
+  "homepage": "https://github.com/strvcom/atlas.js/tree/master/packages/rapid.io",
+  "keywords": [],
+  "license": "BSD-3-Clause",
+  "main": "src",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/strvcom/atlas.js.git"
+  }
+}
