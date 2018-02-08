@@ -76,6 +76,29 @@ describe('Atlas: basics and API', () => {
     expect(config).to.have.property('fromLocal', true)
   })
 
+  it('supports loading Pino log serialisers from module path relative to root', () => {
+    const atlas = new Atlas({
+      root: __dirname,
+      env: 'lolenv',
+      config: {
+        atlas: {
+          log: {
+            serializers: 'democonfig/serialisers',
+          },
+        },
+      },
+    })
+    const config = atlas.config.atlas
+
+    expect(config.log.serializers).to.be.an('object')
+    expect(config.log.serializers).to.have.all.keys([
+      'req',
+      'res',
+      'err',
+      'custom',
+    ])
+  })
+
   it('responds to known methods', () => {
     const atlas = new Atlas(opts)
 

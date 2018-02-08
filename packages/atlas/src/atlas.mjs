@@ -14,6 +14,7 @@ import {
   dispatch,
   component,
   mkconfig,
+  mklog,
   optrequire,
 } from './private'
 
@@ -220,7 +221,7 @@ class Atlas {
       actions: {},
     })
     // Logger 🌲
-    this.log = pino(this.config.atlas.log)
+    this.log = this::mklog(this.config.atlas.log)
   }
 
   /**
