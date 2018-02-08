@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.3.0"></a>
+# [1.3.0](https://github.com/strvcom/atlas.js/compare/@atlas.js/atlas@1.2.1...@atlas.js/atlas@1.3.0) (2018-02-08)
+
+
+### Features
+
+* **atlas:** Allow Pino's serializers to be loaded from a module ([cca2429](https://github.com/strvcom/atlas.js/commit/cca2429))
+* **atlas:** Atlas.require() can normalise default and named exports ([76e1f74](https://github.com/strvcom/atlas.js/commit/76e1f74))
+
+
+
+
 <a name="1.2.1"></a>
 ## [1.2.1](https://github.com/strvcom/atlas.js/compare/@atlas.js/atlas@1.2.0...@atlas.js/atlas@1.2.1) (2018-01-30)
 
