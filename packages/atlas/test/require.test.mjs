@@ -45,4 +45,20 @@ describe('Atlas::require()', () => {
       expect(contents).to.be.an('object')
     })
   })
+
+
+  describe('normalise: true', () => {
+    it('returns the `default` export if it exists', () => {
+      const contents = atlas.require('democonfig/mixed-exports', { normalise: true })
+
+      expect(contents).to.have.property('default', true)
+    })
+
+    it('returns the named exports if `default` export does not exist', () => {
+      const contents = atlas.require('democonfig', { normalise: true })
+
+      expect(contents).to.have.property('atlas')
+      expect(contents.atlas).to.be.an('object')
+    })
+  })
 })

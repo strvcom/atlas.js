@@ -1,9 +1,7 @@
-import path from 'path'
 import {
   defaultsDeep as defaults,
   merge,
 } from 'lodash'
-import { optrequire } from '.'
 
 /**
  * Create the configuration object from inputs
@@ -23,10 +21,11 @@ import { optrequire } from '.'
  */
 function mkconfig(config = {}, base = {}) {
   if (typeof config === 'string') {
+    const options = { optional: true, normalise: true }
     const modules = {
-      config: normalise(optrequire(path.resolve(this.root, config))),
-      env: normalise(optrequire(path.resolve(this.root, config, 'env', this.env))),
-      local: normalise(optrequire(path.resolve(this.root, config, 'local'))),
+      config: this.require(config, options),
+      env: this.require(`${config}/env/${this.env}`, options),
+      local: this.require(`${config}/local`, options),
     }
 
     modules.config = merge(modules.config, modules.env, modules.local)
@@ -37,19 +36,6 @@ function mkconfig(config = {}, base = {}) {
 
   // It's just an object, apply defaults and GTFO
   return defaults(config, base)
-}
-
-/**
- * Normalise a module into either a default export or all the rest
- *
- * @private
- * @param     {Object}    module    The module to be normalised
- * @return    {Object}              The normalised module
- */
-function normalise(module) {
-  return module.hasOwnProperty('default') && typeof module.default === 'object' && module.default
-    ? module.default
-    : module
 }
 
 export default mkconfig

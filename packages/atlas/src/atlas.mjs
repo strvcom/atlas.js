@@ -5,6 +5,7 @@ import path from 'path'
 import pino from 'pino'
 import {
   defaultsDeep as defaults,
+  isPlainObject,
 } from 'lodash'
 import hidden from 'local-scope/create'
 import { FrameworkError } from '@atlas.js/errors'
@@ -213,12 +214,11 @@ class Atlas {
     }
 
     this.config = this::mkconfig(options.config, {
-      atlas: {},
+      atlas: Atlas.defaults,
       services: {},
       hooks: {},
       actions: {},
     })
-    this.config.atlas = defaults(this.config.atlas, Atlas.defaults)
     // Logger 🌲
     this.log = pino(this.config.atlas.log)
   }
@@ -229,6 +229,8 @@ class Atlas {
    * @param     {String}    location          The module's location, relative to root
    * @param     {Object}    options={}        Options
    * @param     {Boolean}   options.optional  If true, will not throw if the module does not exist
+   * @param     {Boolean}   options.normalise If true, it will prefer the ES modules' default export
+   *                                          over named exports or the CommonJS exports
    * @param     {Boolean}   options.absolute  If true, will try to load the module without
    *                                          resolving the module's name to the project root (it
    *                                          will load the module using standard Node's mechanism)
@@ -239,11 +241,14 @@ class Atlas {
       ? location
       : path.resolve(this.root, location)
 
-    const loader = options.optional
+    const load = options.optional
       ? optrequire
       : require
+    const contents = load(location)
 
-    return loader(location)
+    return options.normalise && isPlainObject(contents.default)
+      ? contents.default
+      : contents
   }
 
   /**
