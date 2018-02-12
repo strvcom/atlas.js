@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="0.4.0"></a>
+# [0.4.0](https://github.com/strvcom/atlas.js/compare/@atlas.js/cli@0.3.1...@atlas.js/cli@0.4.0) (2018-02-12)
+
+
+### Features
+
+* **cli:** The CLI now declares [@atlas](https://github.com/atlas).js/atlas as peer dependency ([eedd584](https://github.com/strvcom/atlas.js/commit/eedd584)), closes [#27](https://github.com/strvcom/atlas.js/issues/27)
+
+
+
+
 <a name="0.3.1"></a>
 ## [0.3.1](https://github.com/strvcom/atlas.js/compare/@atlas.js/cli@0.3.0...@atlas.js/cli@0.3.1) (2018-01-18)
 
