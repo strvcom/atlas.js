@@ -12,6 +12,12 @@ import {
  */
 class ComponentContainer {
   /**
+   * Is this component already started?
+   * @type    {Boolean}
+   */
+  started = false
+
+  /**
    * Create new container for a component
    *
    * @param     {Object}        info              Component information
