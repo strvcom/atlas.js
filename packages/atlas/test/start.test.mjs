@@ -11,12 +11,16 @@ describe('Atlas::start()', () => {
   let options
 
   beforeEach(() => {
+    DummyService.prototype.prepare = sinon.stub().resolves()
+    DummyService.prototype.start = sinon.stub().resolves()
+    DummyService.prototype.stop = sinon.stub().resolves()
+
     options = {
       root: __dirname,
       config: {
         atlas: {
           log: {
-            level: 'warn',
+            level: 'fatal',
           },
         },
         services: {
@@ -53,7 +57,6 @@ describe('Atlas::start()', () => {
 
   describe('Service interactions', () => {
     beforeEach(() => {
-      DummyService.prototype.start = sinon.stub().resolves()
       atlas.service('dummy', DummyService)
     })
 
@@ -77,6 +80,24 @@ describe('Atlas::start()', () => {
 
       expect(DummyService.prototype.start).to.have.callCount(1)
     })
+
+    it('re-throws component errors thrown during .start()', () => {
+      DummyService.prototype.start.rejects(new Error('fail!'))
+
+      return expect(atlas.start()).to.eventually.be.rejectedWith(/fail!/)
+    })
+
+    it('stops already started service if one of the components fails to start', async () => {
+      class FailingService extends Service {}
+      sinon.stub(FailingService.prototype, 'start').rejects(new Error('fail!'))
+      atlas.service('failing-service', FailingService)
+
+      await atlas.start()
+        .catch(() => {})
+
+      expect(DummyService.prototype.start).to.have.callCount(1)
+      expect(DummyService.prototype.stop).to.have.callCount(1)
+    })
   })
 
 
@@ -87,8 +108,6 @@ describe('Atlas::start()', () => {
     ]
 
     beforeEach(() => {
-      DummyService.prototype.prepare = sinon.stub().resolves()
-
       // Stub out all the event handlers
       for (const event of events) {
         DummyHook.prototype[event] = sinon.stub().resolves()

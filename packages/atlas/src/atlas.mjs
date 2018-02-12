@@ -349,10 +349,6 @@ class Atlas {
    * @return    {Promise<this>}
    */
   async start() {
-    if (this.started) {
-      return this
-    }
-
     const hooks = this::hidden().catalog.hooks
 
     await this.prepare()
@@ -365,8 +361,24 @@ class Atlas {
     // expose some functionality to the outside world and starting those before ie. a database
     // service is started might break stuff!
     for (const [alias, service] of services) {
-      // eslint-disable-next-line no-use-before-define
-      await this::lifecycle.service.start(alias, service)
+      if (service.started) {
+        this.log.warn({ service: alias }, 'service:start:already-started')
+        continue
+      }
+
+      try {
+        // eslint-disable-next-line no-use-before-define
+        await this::lifecycle.service.start(alias, service)
+      } catch (err) {
+        this.log.error({ err, service: alias }, 'service:start:failure')
+        // Roll back
+        await this.stop()
+          // Shit just got serious 😱
+          .catch(stopErr => void this.log.fatal({ err: stopErr }, 'atlas:start:rollback-failure'))
+
+        // Re-throw the original error which caused Atlas to fail to start
+        throw err
+      }
     }
 
     this::hidden().started = true
@@ -385,19 +397,29 @@ class Atlas {
    * @return    {Promise<this>}
    */
   async stop() {
-    if (!this.started) {
-      return this
-    }
-
     const { services, actions, hooks } = this::hidden().catalog
 
     await this::dispatch('beforeStop', this, hooks)
 
+    let error
+
     // Stop all services, in the reverse order they were added to the instance 💪
     // This will make sure the most important services are stopped first.
     for (const [alias, service] of Array.from(services).reverse()) {
-      // eslint-disable-next-line no-use-before-define
-      await this::lifecycle.service.stop(alias, service)
+      if (!service.started) {
+        this.log.warn({ service: alias }, 'service:stop:already-stopped')
+        continue
+      }
+
+      try {
+        // eslint-disable-next-line no-use-before-define
+        await this::lifecycle.service.stop(alias, service)
+      } catch (err) {
+        this.log.error({ err, service: alias }, 'service:stop:failure')
+        error = err
+        // Leave this service as is and move to the next service. We probably cannot do anything to
+        // properly stop this service. 🙁
+      }
     }
 
     // Unregister actions
@@ -410,6 +432,11 @@ class Atlas {
 
     await this::dispatch('afterStop', null, hooks)
     this.log.info('atlas:stopped')
+
+    // If there was an error thrown in one of the services during .stop(), re-throw it now
+    if (error) {
+      throw error
+    }
 
     return this
   }

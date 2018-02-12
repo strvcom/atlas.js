@@ -13,12 +13,15 @@ describe('Atlas::stop()', () => {
   let options
 
   beforeEach(() => {
+    DummyService.prototype.prepare = sinon.stub().resolves()
+    DummyService.prototype.stop = sinon.stub().resolves()
+
     options = {
       root: __dirname,
       config: {
         atlas: {
           log: {
-            level: 'warn',
+            level: 'fatal',
           },
         },
         services: {
@@ -60,19 +63,14 @@ describe('Atlas::stop()', () => {
 
 
   describe('Service interactions', () => {
-    beforeEach(() => {
-      DummyService.prototype.stop = sinon.stub().resolves()
-    })
-
-
     it('calls stop on the service', async () => {
       await atlas.stop()
       expect(DummyService.prototype.stop).to.have.callCount(1)
     })
 
-    it('passes the exposed instance to the stop() method on the service', async function() {
+    it('passes the exposed instance to the stop() method on the service', async () => {
       const instance = { test: true }
-      this.sandbox.stub(DummyService.prototype, 'prepare').resolves(instance)
+      DummyService.prototype.prepare.resolves(instance)
 
       atlas = new Atlas(options)
       atlas.service('dummy', DummyService)
@@ -95,6 +93,25 @@ describe('Atlas::stop()', () => {
       await atlas.stop()
       expect(atlas.services).to.not.have.property('dummy')
     })
+
+    it('re-throws component errors thrown during .stop()', () => {
+      DummyService.prototype.stop.rejects(new Error('fail!'))
+
+      return expect(atlas.stop()).to.eventually.be.rejectedWith(/fail!/)
+    })
+
+    it('stops the other services if one of the services throws during .stop()', async () => {
+      class FailingService extends Service {}
+      sinon.stub(FailingService.prototype, 'stop').rejects(new Error('fail!'))
+      atlas.service('failing-service', FailingService)
+
+      await atlas.start()
+      await atlas.stop()
+        .catch(() => {})
+
+      expect(FailingService.prototype.stop).to.have.callCount(1)
+      expect(DummyService.prototype.stop).to.have.callCount(1)
+    })
   })
 
 
@@ -105,8 +122,6 @@ describe('Atlas::stop()', () => {
     ]
 
     beforeEach(() => {
-      DummyService.prototype.prepare = sinon.stub().resolves()
-
       // Stub out all the event handlers
       for (const event of events) {
         DummyHook.prototype[event] = sinon.stub().resolves()
