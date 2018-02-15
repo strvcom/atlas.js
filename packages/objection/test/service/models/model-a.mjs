@@ -7,7 +7,7 @@ export default class ModelA extends Model {
       relation: Model.BelongsToOneRelation,
       modelClass: 'ModelB',
       join: {
-        from: 'modela.modelb',
+        from: 'modela.modelBId',
         to: 'modelb.id',
       },
     },
