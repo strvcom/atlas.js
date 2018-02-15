@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.0.0"></a>
+# [2.0.0](https://github.com/strvcom/atlas.js/compare/@atlas.js/mongoose@1.1.0...@atlas.js/mongoose@2.0.0) (2018-02-15)
+
+
+### Features
+
+* **mongoose:** Upgrade Mongoose to 5.0 ([3e5e37f](https://github.com/strvcom/atlas.js/commit/3e5e37f))
+
+
+### BREAKING CHANGES
+
+* **mongoose:** 
+
+
+
+
 <a name="1.1.0"></a>
 # [1.1.0](https://github.com/strvcom/atlas.js/compare/@atlas.js/mongoose@1.0.1...@atlas.js/mongoose@1.1.0) (2017-12-13)
 

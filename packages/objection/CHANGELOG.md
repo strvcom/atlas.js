@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.0.0"></a>
+# [1.0.0](https://github.com/strvcom/atlas.js/compare/@atlas.js/objection@0.4.0...@atlas.js/objection@1.0.0) (2018-02-15)
+
+
+### Features
+
+* **objection:** Upgrade Objection.js to 1.0 ([43bbb18](https://github.com/strvcom/atlas.js/commit/43bbb18))
+
+
+### BREAKING CHANGES
+
+* **objection:** 
+
+
+
+
 <a name="0.4.0"></a>
 # [0.4.0](https://github.com/strvcom/atlas.js/compare/@atlas.js/objection@0.3.1...@atlas.js/objection@0.4.0) (2017-12-13)
 
