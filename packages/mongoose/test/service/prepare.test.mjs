@@ -24,10 +24,6 @@ describe('Mongoose::prepare()', () => {
     expect(await service.prepare()).to.be.instanceof(mongoose.Mongoose)
   })
 
-  it('configures instance to use global Promise', () => {
-    expect(instance.Promise.ES6).to.equal(global.Promise)
-  })
-
   it('sets a debug function to log model events', async function() {
     this.sandbox.stub(Object.getPrototypeOf(instance), 'set')
 

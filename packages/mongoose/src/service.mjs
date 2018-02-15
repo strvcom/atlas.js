@@ -9,9 +9,6 @@ class Mongoose extends Service {
 
   prepare() {
     const instance = new mongoose.Mongoose()
-
-    // Make Mongoose use native Promises instead of crappy mpromise
-    instance.Promise = global.Promise
     // Add a trace logger to allow users to monitor Mongoose activity
     instance.set('debug', this::mtrace)
 
