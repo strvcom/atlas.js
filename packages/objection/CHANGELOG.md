@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.1.0"></a>
+# [1.1.0](https://github.com/strvcom/atlas.js/compare/@atlas.js/objection@1.0.0...@atlas.js/objection@1.1.0) (2018-02-23)
+
+
+### Features
+
+* **objection:** Export Objection's QueryBuilder ([68fdfef](https://github.com/strvcom/atlas.js/commit/68fdfef))
+
+
+
+
 <a name="1.0.0"></a>
 # [1.0.0](https://github.com/strvcom/atlas.js/compare/@atlas.js/objection@0.4.0...@atlas.js/objection@1.0.0) (2018-02-15)
 
