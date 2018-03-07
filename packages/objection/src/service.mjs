@@ -20,7 +20,7 @@ class Objection extends Service {
     // We must do this for all models before we start binding knex to them otherwise Objection will
     // complain
     for (const Model of Object.values(models)) {
-      for (const relation of Object.values(Model.relationMappings)) {
+      for (const relation of Object.values(Model.relationMappings || {})) {
         const target = relation.modelClass
 
         if (typeof target !== 'string') {
