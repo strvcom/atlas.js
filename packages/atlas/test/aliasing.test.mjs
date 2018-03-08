@@ -16,6 +16,7 @@ class DummyAction extends Action {
     component.ping(alias)
   }
 }
+
 class DummyService extends Service {
   static requires = ['action:dummy']
 

@@ -71,6 +71,7 @@ class KoaService extends Service {
         server.removeListener('error', fail)
         return void resolve()
       }
+
       function fail(err) {
         server.removeListener('listening', ok)
         return void reject(err)

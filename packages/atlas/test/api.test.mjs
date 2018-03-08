@@ -1,3 +1,4 @@
+import pino from 'pino'
 import { Atlas } from '..'
 import { FrameworkError } from '@atlas.js/errors'
 
@@ -92,9 +93,7 @@ describe('Atlas: basics and API', () => {
 
     expect(config.log.serializers).to.be.an('object')
     expect(config.log.serializers).to.have.all.keys([
-      'req',
-      'res',
-      'err',
+      ...Object.keys(pino.stdSerializers),
       'custom',
     ])
   })

@@ -10,7 +10,7 @@
   "contributors": [],
   "dependencies": {
     "@atlas.js/repl": "^1.0.2",
-    "caporal": "^0.9.0",
+    "caporal": "^0.10.0",
     "source-map-support": "^0.5.0"
   },
   "peerDependencies": {
