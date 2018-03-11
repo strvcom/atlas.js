@@ -14,7 +14,7 @@ describe('Hook: basics and API', () => {
     expect(Object.keys(Hook.defaults)).to.have.length(0)
   })
 
-  it('has static type property se to hook', () => {
+  it('has static type property set to hook', () => {
     expect(Hook.type).to.equal('hook')
   })
 
