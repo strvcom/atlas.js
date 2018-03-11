@@ -335,7 +335,7 @@ class Atlas {
     // Prepare all services, in parallel 💪
     await Promise.all(Array.from(services).map(([alias, service]) =>
       // eslint-disable-next-line no-use-before-define
-      this::lifecycle.service.prepare(alias, service)))
+      this::lifecycle.prepare(alias, service)))
 
     this::hidden().prepared = true
     await this::dispatch('afterPrepare', this, hooks)
@@ -368,7 +368,7 @@ class Atlas {
 
       try {
         // eslint-disable-next-line no-use-before-define
-        await this::lifecycle.service.start(alias, service)
+        await this::lifecycle.start(alias, service)
       } catch (err) {
         this.log.error({ err, service: alias }, 'service:start:failure')
         // Roll back
@@ -413,7 +413,7 @@ class Atlas {
 
       try {
         // eslint-disable-next-line no-use-before-define
-        await this::lifecycle.service.stop(alias, service)
+        await this::lifecycle.stop(alias, service)
       } catch (err) {
         this.log.error({ err, service: alias }, 'service:stop:failure')
         error = err
@@ -443,51 +443,49 @@ class Atlas {
 }
 
 const lifecycle = {
-  service: {
-    /**
-     * Prepare a service
-     *
-     * @private
-     * @param     {String}    alias       The Service's alias
-     * @param     {Object}    service     The service component container
-     * @return    {Promise<void>}
-     */
-    async prepare(alias, service) {
-      this.log.trace({ service: alias }, 'service:prepare:before')
-      const instance = await service.component.prepare()
-      this::expose('services', alias, instance)
-      this.log.trace({ service: alias }, 'service:prepare:after')
-    },
-    /**
-     * Start a service
-     *
-     * @private
-     * @param     {String}    alias       The Service's alias
-     * @param     {Object}    service     The service component container
-     * @return    {Promise<void>}
-     */
-    async start(alias, service) {
-      this.log.trace({ service: alias }, 'service:start:before')
-      await service.component.start(this.services[alias])
-      service.started = true
-      this.log.trace({ service: alias }, 'service:start:after')
-    },
-    /**
-     * Stop a service
-     *
-     * @private
-     * @param     {String}    alias       The Service's alias
-     * @param     {Object}    service     The service component container
-     * @return    {Promise<void>}
-     */
-    async stop(alias, service) {
-      this.log.trace({ service: alias }, 'service:stop:before')
-      const instance = this.services[alias]
-      delete this.services[alias]
-      await service.component.stop(instance)
-      service.started = false
-      this.log.trace({ service: alias }, 'service:stop:after')
-    },
+  /**
+   * Prepare a service
+   *
+   * @private
+   * @param     {String}    alias       The Service's alias
+   * @param     {Object}    service     The service component container
+   * @return    {Promise<void>}
+   */
+  async prepare(alias, service) {
+    this.log.trace({ service: alias }, 'service:prepare:before')
+    const instance = await service.component.prepare()
+    this::expose('services', alias, instance)
+    this.log.trace({ service: alias }, 'service:prepare:after')
+  },
+  /**
+   * Start a service
+   *
+   * @private
+   * @param     {String}    alias       The Service's alias
+   * @param     {Object}    service     The service component container
+   * @return    {Promise<void>}
+   */
+  async start(alias, service) {
+    this.log.trace({ service: alias }, 'service:start:before')
+    await service.component.start(this.services[alias])
+    service.started = true
+    this.log.trace({ service: alias }, 'service:start:after')
+  },
+  /**
+   * Stop a service
+   *
+   * @private
+   * @param     {String}    alias       The Service's alias
+   * @param     {Object}    service     The service component container
+   * @return    {Promise<void>}
+   */
+  async stop(alias, service) {
+    this.log.trace({ service: alias }, 'service:stop:before')
+    const instance = this.services[alias]
+    delete this.services[alias]
+    await service.component.stop(instance)
+    service.started = false
+    this.log.trace({ service: alias }, 'service:stop:after')
   },
 }
 
