@@ -264,12 +264,14 @@ class Atlas {
    * @return    {this}
    */
   service(alias, Component, opts = {}) {
-    return this::component({
+    this::component({
       type: 'service',
       alias,
       Component,
       aliases: opts.aliases,
     }, this::hidden().catalog.services)
+
+    return this
   }
 
   /**
@@ -283,12 +285,14 @@ class Atlas {
    * @return    {this}
    */
   hook(alias, Component, opts = {}) {
-    return this::component({
+    this::component({
       type: 'hook',
       alias,
       Component,
       aliases: opts.aliases,
     }, this::hidden().catalog.hooks)
+
+    return this
   }
 
   /**
@@ -303,12 +307,14 @@ class Atlas {
    * @return    {this}
    */
   action(alias, Component, opts = {}) {
-    return this::component({
+    this::component({
       type: 'action',
       alias,
       Component,
       aliases: opts.aliases,
     }, this::hidden().catalog.actions)
+
+    return this
   }
 
   /**

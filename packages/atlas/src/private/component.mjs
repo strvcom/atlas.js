@@ -11,7 +11,7 @@ import { ComponentContainer } from '.'
  * @param     {Class}     info.Component    The component class
  * @param     {Object}    info.aliases      Binding information to other defined components
  * @param     {Map}       catalog           The catalog to which to save the component
- * @return    {this}
+ * @return    {ComponentContainer}
  */
 function component(info, catalog) {
   // Safety checks first
@@ -23,10 +23,12 @@ function component(info, catalog) {
   // Use a plural form of the component type, ie., action -> actions, service -> services etc.
   info.config = this.config[`${info.type}s`][info.alias]
 
-  catalog.set(info.alias, new ComponentContainer(info, this))
+  const container = new ComponentContainer(info, this)
+
+  catalog.set(info.alias, container)
   this.log.trace({ [info.type]: info.alias }, `${info.type}:add`)
 
-  return this
+  return container
 }
 
 export default component
