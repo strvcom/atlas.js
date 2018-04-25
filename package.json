@@ -34,8 +34,8 @@
     "validate-commit-msg": "^2.14.0"
   },
   "engines": {
-    "node": "^8.3.0",
-    "npm": "^5.3.0"
+    "node": "^10.0.0",
+    "npm": "^6.0.0"
   },
   "homepage": "https://github.com/strvcom/atlas.js",
   "keywords": [],
