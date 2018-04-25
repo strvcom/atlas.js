@@ -338,14 +338,13 @@ class Atlas {
     const { services, actions, hooks } = this::hidden().catalog
 
     // Prepare actions
-    for (const [alias, action] of actions) {
-      this.actions[alias] = action.component
+    for (const [alias, container] of actions) {
+      this.actions[alias] = await container.prepare({ hooks })
     }
 
     // Prepare all services, in parallel 💪
-    await Promise.all(Array.from(services).map(([alias, service]) =>
-      // eslint-disable-next-line no-use-before-define
-      this::lifecycle.prepare(alias, service)))
+    await Promise.all(Array.from(services).map(async ([alias, container]) =>
+      this::expose('services', alias, await container.prepare({ hooks }))))
 
     this::hidden().prepared = true
     await this::dispatch('afterPrepare', this, hooks)
@@ -359,28 +358,23 @@ class Atlas {
    * @return    {Promise<this>}
    */
   async start() {
-    const hooks = this::hidden().catalog.hooks
+    const { services, hooks } = this::hidden().catalog
 
     await this.prepare()
     await this::dispatch('beforeStart', this, hooks)
-
-    const { services } = this::hidden().catalog
 
     // Start all services, in the order they were added to the instance 💪
     // Ordering is important here! Some services should be started as the last ones because they
     // expose some functionality to the outside world and starting those before ie. a database
     // service is started might break stuff!
-    for (const [alias, service] of services) {
-      if (service.started) {
-        this.log.warn({ service: alias }, 'service:start:already-started')
+    for (const [alias, container] of services) {
+      if (container.started) {
         continue
       }
 
       try {
-        // eslint-disable-next-line no-use-before-define
-        await this::lifecycle.start(alias, service)
+        await container.start({ instance: this.services[alias], hooks })
       } catch (err) {
-        this.log.error({ err, service: alias }, 'service:start:failure')
         // Roll back
         await this.stop()
           // Shit just got serious 😱
@@ -415,17 +409,16 @@ class Atlas {
 
     // Stop all services, in the reverse order they were added to the instance 💪
     // This will make sure the most important services are stopped first.
-    for (const [alias, service] of Array.from(services).reverse()) {
-      if (!service.started) {
-        this.log.warn({ service: alias }, 'service:stop:already-stopped')
+    for (const [alias, container] of Array.from(services).reverse()) {
+      if (!container.started) {
         continue
       }
 
       try {
-        // eslint-disable-next-line no-use-before-define
-        await this::lifecycle.stop(alias, service)
+        const instance = this.services[alias]
+        delete this.services[alias]
+        await container.stop({ instance, hooks })
       } catch (err) {
-        this.log.error({ err, service: alias }, 'service:stop:failure')
         error = err
         // Leave this service as is and move to the next service. We probably cannot do anything to
         // properly stop this service. 🙁
@@ -450,53 +443,6 @@ class Atlas {
 
     return this
   }
-}
-
-const lifecycle = {
-  /**
-   * Prepare a service
-   *
-   * @private
-   * @param     {String}    alias       The Service's alias
-   * @param     {Object}    service     The service component container
-   * @return    {Promise<void>}
-   */
-  async prepare(alias, service) {
-    this.log.trace({ service: alias }, 'service:prepare:before')
-    const instance = await service.component.prepare()
-    this::expose('services', alias, instance)
-    this.log.trace({ service: alias }, 'service:prepare:after')
-  },
-  /**
-   * Start a service
-   *
-   * @private
-   * @param     {String}    alias       The Service's alias
-   * @param     {Object}    service     The service component container
-   * @return    {Promise<void>}
-   */
-  async start(alias, service) {
-    this.log.trace({ service: alias }, 'service:start:before')
-    await service.component.start(this.services[alias])
-    service.started = true
-    this.log.trace({ service: alias }, 'service:start:after')
-  },
-  /**
-   * Stop a service
-   *
-   * @private
-   * @param     {String}    alias       The Service's alias
-   * @param     {Object}    service     The service component container
-   * @return    {Promise<void>}
-   */
-  async stop(alias, service) {
-    this.log.trace({ service: alias }, 'service:stop:before')
-    const instance = this.services[alias]
-    delete this.services[alias]
-    await service.component.stop(instance)
-    service.started = false
-    this.log.trace({ service: alias }, 'service:stop:after')
-  },
 }
 
 export default Atlas

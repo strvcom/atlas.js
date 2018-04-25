@@ -72,6 +72,89 @@ class ComponentContainer {
     // Save the aliases for this component
     this.component::hidden().aliases = this.aliases
   }
+
+  /**
+   * Prepare the component
+   *
+   * @return    {Promise<this>}
+   */
+  async prepare() {
+    this.component.log.trace('prepare:before')
+
+    switch (this.type) {
+      case 'service': {
+        const instance = await this.component.prepare()
+        this.component.log.trace('prepare:after')
+
+        return instance
+      }
+      case 'hook':
+      case 'action':
+      default:
+        this.component.log.trace('prepare:after')
+
+        return this.component
+    }
+  }
+
+  /**
+   * Start the component
+   *
+   * @param     {Object}    opts={}         Additional options
+   * @param     {Map}       opts.hooks      Hooks available in the application
+   * @param     {any}       opts.instance   The service's exposed instance
+   * @return    {Promise<this.component>}
+   */
+  async start(opts = {}) {
+    this.component.log.trace('start:before')
+
+    switch (this.type) {
+      case 'service':
+        await this.component.start(opts.instance)
+          .catch(err => {
+            this.component.log.error({ err }, 'start:failure')
+            throw err
+          })
+        break
+
+      case 'hook':
+      case 'action':
+      default:
+        break
+    }
+
+    this.started = true
+
+    return this.component
+  }
+
+  /**
+   * @param     {Object}    opts={}         Additional options
+   * @param     {Map}       opts.hooks      Hooks available in the application
+   * @param     {any}       opts.instance   The service's exposed instance
+   * @return    {Promise<void>}
+   */
+  async stop(opts = {}) {
+    this.component.log.trace('stop:before')
+
+    switch (this.type) {
+      case 'service':
+        await this.component.stop(opts.instance)
+          .catch(err => {
+            this.component.log.error({ err }, 'stop:failure')
+            this.started = true
+            throw err
+          })
+        break
+
+      case 'hook':
+      case 'action':
+      default:
+        break
+    }
+
+    this.started = false
+  }
 }
 
 function resolve(name) {
