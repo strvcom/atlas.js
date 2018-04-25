@@ -46,6 +46,6 @@
     "url": "git://github.com/strvcom/atlas.js.git"
   },
   "scripts": {
-    "postinstall": "utils/install-githooks.sh"
+    "prepare": "utils/install-githooks.sh"
   }
 }
