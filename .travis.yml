@@ -5,7 +5,10 @@ language: node_js
 node_js:
   - '8.3'
   - '8'
-  - '9'
+  - '10'
+matrix:
+  allow_failures:
+    - node_js: '10'
 
 cache:
   directories:
