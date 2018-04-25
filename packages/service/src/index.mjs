@@ -6,9 +6,9 @@ import Component from '@atlas.js/component'
 class Service extends Component {
   static type = 'service'
 
-  prepare() {}
-  start() {}
-  stop() {}
+  prepare() { return Promise.resolve() }
+  start() { return Promise.resolve() }
+  stop() { return Promise.resolve() }
 }
 
 export default Service

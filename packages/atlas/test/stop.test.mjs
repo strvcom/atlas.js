@@ -1,10 +1,11 @@
 import { Atlas } from '..'
 import Service from '@atlas.js/service'
 import Hook from '@atlas.js/hook'
+import Action from '@atlas.js/action'
 
 class DummyService extends Service {}
 
-class DummyAction {}
+class DummyAction extends Action {}
 
 class DummyHook extends Hook {}
 
