@@ -1,4 +1,3 @@
-import pino from 'pino'
 import { Atlas } from '..'
 import { FrameworkError } from '@atlas.js/errors'
 

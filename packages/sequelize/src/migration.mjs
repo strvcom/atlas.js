@@ -1,7 +1,7 @@
 import path from 'path'
 import Umzug from 'umzug'
 import Action from '@atlas.js/action'
-import { DataTypes } from '.'
+import { DataTypes } from 'sequelize'
 
 class Migration extends Action {
   static defaults = {

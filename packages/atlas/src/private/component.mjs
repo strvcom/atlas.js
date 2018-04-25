@@ -1,5 +1,5 @@
 import { FrameworkError } from '@atlas.js/errors'
-import { ComponentContainer } from '.'
+import ComponentContainer from './component-container'
 
 /**
  * Register a component into the given catalog
