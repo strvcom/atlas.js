@@ -1,6 +1,6 @@
 import path from 'path'
-import { ContextHook } from '../..'
 import { FrameworkError } from '@atlas.js/errors'
+import { ContextHook } from '../..'
 import testcontext from './testcontext'
 
 describe('Koa: ContextHook', () => {

@@ -92,10 +92,7 @@ describe('Atlas: basics and API', () => {
     const config = atlas.config.atlas
 
     expect(config.log.serializers).to.be.an('object')
-    expect(config.log.serializers).to.have.all.keys([
-      ...Object.keys(pino.stdSerializers),
-      'custom',
-    ])
+    expect(config.log.serializers).to.have.all.keys(['err', 'req', 'res', 'custom'])
   })
 
   it('responds to known methods', () => {

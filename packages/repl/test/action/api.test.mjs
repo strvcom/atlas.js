@@ -1,5 +1,5 @@
-import { Action as Repl } from '../..'
 import Action from '@atlas.js/action'
+import { Action as Repl } from '../..'
 
 describe('Action: Repl', () => {
   it('exists', () => {

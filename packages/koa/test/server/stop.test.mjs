@@ -1,6 +1,6 @@
-import { Server as Koa } from '../..'
-import { FrameworkError } from '@atlas.js/errors'
 import http from 'http'
+import { FrameworkError } from '@atlas.js/errors'
+import { Server as Koa } from '../..'
 
 describe('Koa::stop(instance)', () => {
   const sandbox = sinon.sandbox.create()

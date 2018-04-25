@@ -1,6 +1,6 @@
 import path from 'path'
-import { ModelsHook } from '../..'
 import Sequelize from 'sequelize'
+import { ModelsHook } from '../..'
 import * as testmodels from '../testmodels'
 
 describe('Sequelize: ModelsHook', () => {

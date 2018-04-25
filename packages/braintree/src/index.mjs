@@ -1,5 +1,5 @@
+import Braintree from 'braintree'
 import Service from './service'
-import * as Braintree from 'braintree'
 
 export {
   Service,

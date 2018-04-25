@@ -1,5 +1,5 @@
-import { MigrationAction as Migration } from '../..'
 import Umzug from 'umzug'
+import { MigrationAction as Migration } from '../..'
 import mksequelizemock from './sequelizemock'
 
 describe('Migration::up()', () => {

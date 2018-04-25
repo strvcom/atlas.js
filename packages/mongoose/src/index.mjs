@@ -1,9 +1,9 @@
-import Service from './service'
-import ModelsHook from './models'
 import {
   Schema,
   SchemaTypes,
 } from 'mongoose'
+import Service from './service'
+import ModelsHook from './models'
 
 export {
   Service,

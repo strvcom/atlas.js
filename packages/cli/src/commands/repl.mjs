@@ -1,5 +1,5 @@
-import Command from '../command'
 import * as repl from '@atlas.js/repl'
+import Command from '../command'
 
 export default class Repl extends Command {
   static command = 'repl'

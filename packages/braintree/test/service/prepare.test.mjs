@@ -1,5 +1,5 @@
+import braintree from 'braintree'
 import { Service as Braintree } from '../..'
-import * as braintree from 'braintree'
 
 describe('Braintree::prepare()', () => {
   let service

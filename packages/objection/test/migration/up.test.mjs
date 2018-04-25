@@ -1,5 +1,5 @@
-import { MigrationAction as Migration } from '../..'
 import Umzug from 'umzug'
+import { MigrationAction as Migration } from '../..'
 
 describe('Migration::up()', () => {
   let migration

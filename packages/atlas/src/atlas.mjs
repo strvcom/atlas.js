@@ -28,7 +28,11 @@ class Atlas {
     log: {
       name: path.basename(process.cwd()),
       level: 'info',
-      serializers: pino.stdSerializers,
+      serializers: {
+        err: pino.stdSerializers.err,
+        req: pino.stdSerializers.req,
+        res: pino.stdSerializers.res,
+      },
     },
   }
 

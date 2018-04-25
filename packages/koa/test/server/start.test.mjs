@@ -1,5 +1,5 @@
-import { Server as Koa } from '../..'
 import http from 'http'
+import { Server as Koa } from '../..'
 
 describe('Koa::start(instance)', () => {
   const sandbox = sinon.sandbox.create()

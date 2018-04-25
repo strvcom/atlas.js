@@ -1,5 +1,5 @@
-import { Service as Database } from '../..'
 import Sequelize from 'sequelize'
+import { Service as Database } from '../..'
 
 describe('Sequelize::prepare()', () => {
   let service

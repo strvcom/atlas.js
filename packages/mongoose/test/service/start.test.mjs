@@ -1,5 +1,5 @@
-import { Service as Mongoose } from '../..'
 import mongoose from 'mongoose'
+import { Service as Mongoose } from '../..'
 
 describe('Mongoose::start()', () => {
   let service

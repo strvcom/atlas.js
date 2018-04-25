@@ -1,5 +1,3 @@
-import Service from './service'
-import MigrationAction from './migration'
 import {
   compose,
   lit,
@@ -11,6 +9,8 @@ import {
   transaction,
   ValidationError,
 } from 'objection'
+import Service from './service'
+import MigrationAction from './migration'
 
 export {
   compose,

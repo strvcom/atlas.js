@@ -1,4 +1,8 @@
 /* global sinon */
-export const first = sinon.stub()
+const first = sinon.stub()
+const second = sinon.stub()
 
-export const second = sinon.stub()
+export {
+  first,
+  second,
+}

@@ -1,5 +1,5 @@
-import { Action as Templates } from '../..'
 import { FrameworkError } from '@atlas.js/errors'
+import { Action as Templates } from '../..'
 
 describe('Templates::render()', () => {
   let action

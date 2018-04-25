@@ -1,5 +1,5 @@
-import { Action as Templates } from '../..'
 import Action from '@atlas.js/action'
+import { Action as Templates } from '../..'
 
 describe('Action: Templates', () => {
   it('exists', () => {

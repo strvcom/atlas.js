@@ -9,7 +9,7 @@ module.exports = {
     ['@babel/transform-modules-commonjs', {
       allowTopLevelThis: false,
     }],
-    '@babel/proposal-class-properties',
+    ['@babel/proposal-class-properties', { loose: true }],
     '@babel/proposal-function-bind',
   ],
   ignore: [
