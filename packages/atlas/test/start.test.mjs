@@ -31,7 +31,6 @@ describe('Atlas::start()', () => {
       },
     }
     atlas = new Atlas(options)
-    atlas.prepare = sinon.stub().resolves()
   })
 
 
@@ -49,8 +48,10 @@ describe('Atlas::start()', () => {
     expect(atlas.started).to.equal(true)
   })
 
-  it('calls atlas.prepare()', async () => {
+  it('calls atlas.prepare()', async function() {
+    this.sandbox.stub(atlas, 'prepare').resolves(atlas)
     await atlas.start()
+
     expect(atlas.prepare).to.have.callCount(1)
   })
 
@@ -66,7 +67,9 @@ describe('Atlas::start()', () => {
       expect(DummyService.prototype.start).to.have.callCount(1)
     })
 
-    it('calls start with the instance returned from prepare() step', async () => {
+    it('calls start with the instance returned from prepare() step', async function() {
+      this.sandbox.stub(atlas, 'prepare').resolves(atlas)
+
       const instance = { test: true }
       atlas.services.dummy = instance
       await atlas.start()
