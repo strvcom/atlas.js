@@ -58,7 +58,7 @@ describe('Hook: WebsocketHook', () => {
           require: location => require(path.resolve(__dirname, location)),
         },
         log: { debug: () => {} },
-        resolve: () => koa,
+        component: () => koa,
       })
     })
 
@@ -120,7 +120,7 @@ describe('Hook: WebsocketHook', () => {
         config,
         atlas: {},
         log: { info: () => {} },
-        resolve: () => koa,
+        component: () => koa,
       })
     })
 
@@ -151,7 +151,7 @@ describe('Hook: WebsocketHook', () => {
       hook = new WebsocketHook({
         atlas: {},
         log: { info: () => {} },
-        resolve: () => koa,
+        component: () => koa,
       })
     })
     it('calls .close() on the koa.ws.server instance', async () => {

@@ -10,8 +10,8 @@ class Component {
     this.atlas = options.atlas
     this.log = options.log
     this.config = options.config || {}
-    // @CHANGED: The `resolve` param is deprecated, use `component`
-    this.component = options.component || options.resolve
+    this.component = options.component
+    this.dispatch = options.dispatch
   }
 }
 
