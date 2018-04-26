@@ -347,7 +347,7 @@ class Atlas {
       this::expose('services', alias, await container.prepare({ hooks }))))
 
     this::hidden().prepared = true
-    await this::dispatch('afterPrepare', this, hooks)
+    await hooks::dispatch('afterPrepare', this)
 
     return this
   }
@@ -361,7 +361,7 @@ class Atlas {
     const { services, hooks } = this::hidden().catalog
 
     await this.prepare()
-    await this::dispatch('beforeStart', this, hooks)
+    await hooks::dispatch('beforeStart', this)
 
     // Start all services, in the order they were added to the instance 💪
     // Ordering is important here! Some services should be started as the last ones because they
@@ -386,7 +386,7 @@ class Atlas {
     }
 
     this::hidden().started = true
-    await this::dispatch('afterStart', this, hooks)
+    await hooks::dispatch('afterStart', this)
     this.log.info('atlas:ready')
 
     return this
@@ -403,7 +403,7 @@ class Atlas {
   async stop() {
     const { services, actions, hooks } = this::hidden().catalog
 
-    await this::dispatch('beforeStop', this, hooks)
+    await hooks::dispatch('beforeStop', this)
 
     let error
 
@@ -433,7 +433,7 @@ class Atlas {
     this::hidden().started = false
     this::hidden().prepared = false
 
-    await this::dispatch('afterStop', null, hooks)
+    await hooks::dispatch('afterStop', null)
     this.log.info('atlas:stopped')
 
     // If there was an error thrown in one of the services during .stop(), re-throw it now
