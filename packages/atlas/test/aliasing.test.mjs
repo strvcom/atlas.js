@@ -3,35 +3,6 @@ import Service from '@atlas.js/service'
 import Action from '@atlas.js/action'
 import { FrameworkError } from '@atlas.js/errors'
 
-class DummyAction extends Action {
-  static requires = ['service:dummy']
-
-  constructor(options) {
-    super(options)
-    this.ping = sinon.spy()
-  }
-
-  sendPing(alias) {
-    const component = this.component(alias)
-    component.ping(alias)
-  }
-}
-
-class DummyService extends Service {
-  static requires = ['action:dummy']
-
-  prepare() {
-    super.prepare()
-    return {
-      ping: sinon.spy(),
-      sendPing: alias => {
-        const component = this.component(alias)
-        component.ping(alias)
-      },
-    }
-  }
-}
-
 describe('Atlas: cross-component communication', () => {
   let atlas
 
@@ -42,35 +13,63 @@ describe('Atlas: cross-component communication', () => {
         level: 'warn',
       } } },
     })
-
-    atlas.action('action', DummyAction, { aliases: {
-      'service:dummy': 'service',
-    } })
-    atlas.service('service', DummyService, { aliases: {
-      'action:dummy': 'action',
-    } })
-
-    return atlas.start()
   })
 
-  it('service can find action', () => {
-    atlas.services.service.sendPing('action:dummy')
+  it('service can find action', async () => {
+    class DummyService extends Service {
+      static requires = ['action:dummy']
 
-    expect(atlas.actions.action.ping).to.have.callCount(1)
-    expect(atlas.actions.action.ping).to.have.been.calledWith('action:dummy')
+      start() {
+        this.component('action:dummy').ping('service:dummy')
+      }
+    }
+
+    class DummyAction extends Action {}
+
+    DummyAction.prototype.ping = sinon.stub()
+
+    atlas.service('dummy', DummyService, { aliases: { 'action:dummy': 'dummy' } })
+    atlas.action('dummy', DummyAction)
+
+    await atlas.start()
+
+    expect(DummyAction.prototype.ping).to.have.callCount(1)
+    expect(DummyAction.prototype.ping).to.have.been.calledWith('service:dummy')
   })
 
-  it('action can find service', () => {
-    atlas.actions.action.sendPing('service:dummy')
+  it('action can find service', async () => {
+    const api = {
+      ping: sinon.stub(),
+    }
 
-    expect(atlas.services.service.ping).to.have.callCount(1)
-    expect(atlas.services.service.ping).to.have.been.calledWith('service:dummy')
+    class DummyService extends Service {
+      prepare() { return api }
+    }
+
+    class DummyAction extends Action {
+      static requires = ['service:dummy']
+      ping() { this.component('service:dummy').ping('action:dummy') }
+    }
+
+    atlas.service('dummy', DummyService)
+    atlas.action('dummy', DummyAction, { aliases: { 'service:dummy': 'dummy' } })
+
+    await atlas.start()
+    atlas.actions.dummy.ping()
+
+    expect(api.ping).to.have.callCount(1)
+    expect(api.ping).to.have.been.calledWith('action:dummy')
   })
 
-  xit('hook can find action', () => {})
-  xit('hook can find service', () => {})
+  it('requesting unknown component throws', async () => {
+    class DummyAction extends Action {
+      ping(alias) {
+        this.component(alias)
+      }
+    }
+    atlas.action('dummy', DummyAction)
+    await atlas.start()
 
-  it('requesting unknown component throws', () => {
-    expect(() => atlas.services.service.sendPing('service:lolsvc')).to.throw(FrameworkError)
+    expect(() => atlas.actions.dummy.ping('service:lolsvc')).to.throw(FrameworkError)
   })
 })
