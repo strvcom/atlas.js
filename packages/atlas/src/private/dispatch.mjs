@@ -11,17 +11,24 @@
  * @return    {Promise<void>}
  */
 async function dispatch(event, subject) {
-  const tasks = []
+  const tasks = new Map()
 
   for (const [, hook] of this) {
     // Is this hook listening for the event being dispatched?
     if (typeof hook.component[event] === 'function') {
       hook.component.log.debug({ event }, 'hook:event')
-      tasks.push(Promise.resolve(hook.component[event](subject)))
+      tasks.set(hook, Promise.resolve(hook.component[event](subject)))
     }
   }
 
-  await Promise.all(tasks)
+  await Promise.all(Array.from(tasks.values()))
+
+  // Ensure no uncaught error escapes from this place
+  // This utilises the fact that we can catch any Promise-related errors by attaching a .catch block
+  // to the promise, even if the promise body has already executed. 💡
+  for (const [hook, task] of tasks) {
+    task.catch(err => void hook.component.log.error({ err, event }, 'hook:event:failure'))
+  }
 }
 
 export default dispatch
