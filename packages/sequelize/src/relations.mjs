@@ -2,6 +2,7 @@ import Hook from '@atlas.js/hook'
 import { FrameworkError } from '@atlas.js/errors'
 
 class AssociationsHook extends Hook {
+  static observes = 'service:sequelize'
   static requires = [
     'service:sequelize',
   ]

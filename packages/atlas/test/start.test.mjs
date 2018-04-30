@@ -2,16 +2,20 @@ import { Atlas } from '..'
 import Service from '@atlas.js/service'
 import Hook from '@atlas.js/hook'
 
+class ServiceApi {}
+
 class DummyService extends Service {}
 
-class DummyHook extends Hook {}
+class DummyHook extends Hook {
+  static observes = 'atlas'
+}
 
 describe('Atlas::start()', () => {
   let atlas
   let options
 
   beforeEach(() => {
-    DummyService.prototype.prepare = sinon.stub().resolves()
+    DummyService.prototype.prepare = sinon.stub().resolves(new ServiceApi())
     DummyService.prototype.start = sinon.stub().resolves()
     DummyService.prototype.stop = sinon.stub().resolves()
 
@@ -104,7 +108,7 @@ describe('Atlas::start()', () => {
   })
 
 
-  describe('Hook interactions - dispatching events', () => {
+  describe('Hook interactions (observes = atlas)', () => {
     const events = [
       'beforeStart',
       'afterStart',
@@ -138,11 +142,106 @@ describe('Atlas::start()', () => {
     })
 
     it('can handle hooks which do not implement any listeners', async () => {
-      class Empty {}
+      class Empty extends Hook {
+        static observes = 'atlas'
+      }
 
       atlas.hook('empty', Empty)
       // This not throwing will suffice 😎
       await atlas.start()
+    })
+  })
+
+
+  describe('Hook interactions (observes = component)', () => {
+    class ComponentHook extends Hook {
+      static observes = 'service:dummy'
+    }
+
+    const events = [
+      'beforeStart',
+      'afterStart',
+    ]
+
+    beforeEach(() => {
+      for (const event of events) {
+        ComponentHook.prototype[event] = sinon.stub().resolves()
+      }
+
+      atlas.service('dummy', DummyService)
+      atlas.hook('dummy', ComponentHook, { aliases: { 'service:dummy': 'dummy' } })
+    })
+
+
+    it('calls the hooks with the component instance', async () => {
+      const proto = ComponentHook.prototype
+      await atlas.start()
+
+      for (const event of events) {
+        expect(proto[event]).to.have.been.calledWith(atlas.services.dummy)
+      }
+    })
+
+    it('can handle hooks which do not implement any listeners', async () => {
+      class Empty extends Hook {
+        static observes = 'service:dummy'
+      }
+
+      atlas.hook('empty', Empty, { aliases: { 'service:dummy': 'dummy' } })
+      // This not throwing will suffice 😎
+      await atlas.start()
+    })
+  })
+
+
+  describe('Hook execution order', () => {
+    class FirstService extends Service {}
+
+    class SecondService extends Service {}
+
+    class FirstHook extends Hook {
+      static observes = 'service:first'
+    }
+
+    class SecondHook extends Hook {
+      static observes = 'service:second'
+    }
+
+    beforeEach(() => {
+      FirstService.prototype.start = sinon.stub().resolves()
+      SecondService.prototype.start = sinon.stub().resolves()
+      FirstHook.prototype.beforeStart = sinon.stub().resolves()
+      FirstHook.prototype.afterStart = sinon.stub().resolves()
+      SecondHook.prototype.beforeStart = sinon.stub().resolves()
+      SecondHook.prototype.afterStart = sinon.stub().resolves()
+
+      atlas.service('first', FirstService)
+      atlas.service('second', SecondService)
+      atlas.hook('first', FirstHook, { aliases: { 'service:first': 'first' } })
+      atlas.hook('second', SecondHook, { aliases: { 'service:second': 'second' } })
+    })
+
+
+    it('groups the hook events together with the service it observes', async () => {
+      const order = []
+
+      FirstHook.prototype.beforeStart.callsFake(() => void order.push('first:beforeStart'))
+      FirstService.prototype.start.callsFake(() => void order.push('first:start'))
+      FirstHook.prototype.afterStart.callsFake(() => void order.push('first:afterStart'))
+      SecondHook.prototype.beforeStart.callsFake(() => void order.push('second:beforeStart'))
+      SecondService.prototype.start.callsFake(() => void order.push('second:start'))
+      SecondHook.prototype.afterStart.callsFake(() => void order.push('second:afterStart'))
+
+      await atlas.start()
+
+      expect(order).to.have.ordered.members([
+        'first:beforeStart',
+        'first:start',
+        'first:afterStart',
+        'second:beforeStart',
+        'second:start',
+        'second:afterStart',
+      ])
     })
   })
 })

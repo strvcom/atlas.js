@@ -18,6 +18,10 @@ describe('Hook: basics and API', () => {
     expect(Hook.type).to.equal('hook')
   })
 
+  it('has static observes property set to null by default', () => {
+    expect(Hook.observes).to.equal(null)
+  })
+
   it('saves atlas and log objects given on constructor to itself', () => {
     const atlas = { atlas: true }
     const log = { log: true }

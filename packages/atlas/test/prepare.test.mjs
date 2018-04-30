@@ -2,12 +2,16 @@ import { Atlas } from '..'
 import Service from '@atlas.js/service'
 import Hook from '@atlas.js/hook'
 import Action from '@atlas.js/action'
+import { FrameworkError } from '@atlas.js/errors'
+
+class ServiceApi {}
 
 class DummyService extends Service {
   static defaults = { default: true }
 }
 
 class DummyHook extends Hook {
+  static observes = 'atlas'
   static defaults = { default: true }
 }
 
@@ -56,7 +60,7 @@ describe('Atlas::prepare()', () => {
 
   describe('Service interactions', () => {
     beforeEach(() => {
-      DummyService.prototype.prepare = sinon.stub().resolves()
+      DummyService.prototype.prepare = sinon.stub().resolves(new ServiceApi())
       atlas.service('dummy', DummyService)
     })
 
@@ -94,9 +98,8 @@ describe('Atlas::prepare()', () => {
     })
   })
 
-  describe('Hook interactions - dispatching events', () => {
+  describe('Hook interactions', () => {
     beforeEach(() => {
-      DummyService.prototype.prepare = sinon.stub().resolves()
       DummyHook.prototype.afterPrepare = sinon.stub().resolves()
 
       atlas.service('dummy', DummyService)
@@ -117,13 +120,24 @@ describe('Atlas::prepare()', () => {
     })
 
     it('can handle hooks which do not implement any listeners', async () => {
-      class Empty {
-        prepare() {}
+      class Empty extends Hook {
+        static observes = 'atlas'
       }
 
       atlas.hook('empty', Empty)
       // This not throwing will suffice 😎
       await atlas.prepare()
+    })
+
+    it('throws when a hook does not declare the component they want to observe', () => {
+      class Empty extends Hook {}
+
+      atlas.hook('empty', Empty)
+
+      return expect(atlas.prepare()).to.be.rejectedWith(
+        FrameworkError,
+        /does not have static 'observes' property/i,
+      )
     })
   })
 })

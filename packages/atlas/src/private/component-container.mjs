@@ -4,6 +4,7 @@ import {
   defaultsDeep as defaults,
   difference,
 } from 'lodash'
+import dispatch from './dispatch'
 
 /**
  * This class holds and manages a component
@@ -43,8 +44,22 @@ class ComponentContainer {
     // Check if the component received all the aliases it requires
     const aliases = {
       provided: Object.keys(this.aliases),
-      required: this.Component.requires || [],
+      // Copy the contents to avoid their future modification
+      required: [...this.Component.requires || []],
     }
+
+    if (this.type === 'hook') {
+      // Require observed components to be resolved via alias
+      if (typeof this.Component.observes === 'string') {
+        aliases.required.push(this.Component.observes)
+      }
+
+      // Do not require atlas to be listed in aliases - we can resolve it automatically
+      if (this.Component.observes === 'atlas') {
+        aliases.provided.push('atlas')
+      }
+    }
+
     const missing = difference(aliases.required, aliases.provided)
     const extra = difference(aliases.provided, aliases.required)
 
@@ -55,6 +70,8 @@ class ComponentContainer {
     if (extra.length) {
       throw new FrameworkError(`Unneeded aliases for component ${this.alias}: ${extra.join(', ')}`)
     }
+
+    const observers = new Map()
 
     atlas.log.trace({
       component: this.alias,
@@ -67,10 +84,12 @@ class ComponentContainer {
       log: atlas.log.child({ [this.type]: this.alias }),
       config: defaults(info.config, this.Component.defaults),
       component: resolve,
+      dispatch: observers::dispatch,
     })
 
     // Save the aliases for this component
     this.component::hidden().aliases = this.aliases
+    this.component::hidden().observers = observers
   }
 
   /**
@@ -108,9 +127,17 @@ class ComponentContainer {
   async start(opts = {}) {
     this.component.log.trace('start:before')
 
+    this::mkobservers({ hooks: opts.hooks })
+
+    const observers = this.component::hidden().observers
+
     switch (this.type) {
       case 'service':
-        await this.component.start(opts.instance)
+        await (async () => {
+          await observers::dispatch('beforeStart', opts.instance)
+          await this.component.start(opts.instance)
+          await observers::dispatch('afterStart', opts.instance)
+        })()
           .catch(err => {
             this.component.log.error({ err }, 'start:failure')
             throw err
@@ -130,16 +157,21 @@ class ComponentContainer {
 
   /**
    * @param     {Object}    opts={}         Additional options
-   * @param     {Map}       opts.hooks      Hooks available in the application
    * @param     {any}       opts.instance   The service's exposed instance
    * @return    {Promise<void>}
    */
   async stop(opts = {}) {
     this.component.log.trace('stop:before')
 
+    const observers = this.component::hidden().observers
+
     switch (this.type) {
       case 'service':
-        await this.component.stop(opts.instance)
+        await (async () => {
+          await observers::dispatch('beforeStop', opts.instance)
+          await this.component.stop(opts.instance)
+          await observers::dispatch('afterStop', null)
+        })()
           .catch(err => {
             this.component.log.error({ err }, 'stop:failure')
             this.started = true
@@ -156,6 +188,25 @@ class ComponentContainer {
     this.started = false
   }
 }
+
+/**
+ * Find all hooks which want to observe this component's events
+ *
+ * @private
+ * @param     {Object}      opts          Function parameters
+ * @param     {Map}         opts.hooks    All hooks known to Atlas
+ * @return    {void}
+ */
+function mkobservers({ hooks }) {
+  for (const [alias, container] of hooks) {
+    const target = (container.aliases || {})[container.Component.observes]
+
+    if (this.alias === target) {
+      this.component::hidden().observers.set(alias, container)
+    }
+  }
+}
+
 
 function resolve(name) {
   const resolved = this::hidden().aliases[name]

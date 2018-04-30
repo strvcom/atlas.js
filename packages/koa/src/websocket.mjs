@@ -3,6 +3,7 @@ import websocket from 'koa-websocket'
 import middleware from './middleware'
 
 class WebsocketHook extends Hook {
+  static observes = 'service:koa'
   static requires = [
     'service:koa',
   ]

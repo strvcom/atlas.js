@@ -2,7 +2,9 @@ import { Atlas } from '..'
 import Hook from '@atlas.js/hook'
 import { FrameworkError } from '@atlas.js/errors'
 
-class DummyHook extends Hook {}
+class DummyHook extends Hook {
+  static observes = 'atlas'
+}
 
 describe('Atlas::hook()', () => {
   let atlas
@@ -107,6 +109,38 @@ describe('Atlas::hook()', () => {
         'service:dummy': 'dummy',
         'action:dummy': 'dummy',
       } })
+    }).to.not.throw()
+  })
+
+  it('does not throw when aliases include the observed component', () => {
+    class Dummy extends Hook {
+      static observes = 'service:dummy'
+    }
+
+    expect(() => {
+      atlas.hook('dummy', Dummy, { aliases: {
+        'service:dummy': 'dummy',
+      } })
+    }).to.not.throw()
+  })
+
+  it('throws when the observed component is not included in the aliases', () => {
+    class Dummy extends Hook {
+      static observes = 'service:dummy'
+    }
+
+    expect(() => {
+      atlas.hook('dummy', Dummy)
+    }).to.throw(FrameworkError, /Missing aliases for component dummy/)
+  })
+
+  it('does not throw if a hook observes the atlas instance and atlas is not in aliases', () => {
+    class Dummy extends Hook {
+      static observes = 'atlas'
+    }
+
+    expect(() => {
+      atlas.hook('dummy', Dummy)
     }).to.not.throw()
   })
 })

@@ -42,4 +42,12 @@ describe('Component: basics and API', () => {
 
     expect(component).itself.to.respondTo('component')
   })
+
+  it('saves the dispatch function given on constructor to itself', () => {
+    const dispatch = () => {}
+    const component = new Component({ dispatch })
+
+    expect(component).itself.to.respondTo('dispatch')
+    expect(component.dispatch).to.eql(dispatch)
+  })
 })

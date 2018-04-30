@@ -6,6 +6,7 @@ class ContextHook extends Hook {
     module: 'koa-context',
   }
 
+  static observes = 'service:koa'
   static requires = [
     'service:koa',
   ]

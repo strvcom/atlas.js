@@ -208,6 +208,7 @@ class Atlas {
       hooks: new Map(),
       actions: new Map(),
     }
+    this::hidden().observers = new Map()
 
     // Safety checks
     if (!this.env) {
@@ -336,6 +337,18 @@ class Atlas {
     }
 
     const { services, actions, hooks } = this::hidden().catalog
+    const observers = this::hidden().observers
+
+    for (const [alias, container] of hooks) {
+      if (!container.Component.observes) {
+        throw new FrameworkError(`Hook ${alias} does not have static 'observes' property`)
+      }
+
+      // Prepare observers of Atlas itself
+      if (container.Component.observes === 'atlas') {
+        observers.set(alias, container)
+      }
+    }
 
     // Prepare actions
     for (const [alias, container] of actions) {
@@ -347,7 +360,7 @@ class Atlas {
       this::expose('services', alias, await container.prepare({ hooks }))))
 
     this::hidden().prepared = true
-    await hooks::dispatch('afterPrepare', this)
+    await observers::dispatch('afterPrepare', this)
 
     return this
   }
@@ -359,9 +372,10 @@ class Atlas {
    */
   async start() {
     const { services, hooks } = this::hidden().catalog
+    const observers = this::hidden().observers
 
     await this.prepare()
-    await hooks::dispatch('beforeStart', this)
+    await observers::dispatch('beforeStart', this)
 
     // Start all services, in the order they were added to the instance 💪
     // Ordering is important here! Some services should be started as the last ones because they
@@ -386,7 +400,7 @@ class Atlas {
     }
 
     this::hidden().started = true
-    await hooks::dispatch('afterStart', this)
+    await observers::dispatch('afterStart', this)
     this.log.info('atlas:ready')
 
     return this
@@ -402,8 +416,9 @@ class Atlas {
    */
   async stop() {
     const { services, actions, hooks } = this::hidden().catalog
+    const observers = this::hidden().observers
 
-    await hooks::dispatch('beforeStop', this)
+    await observers::dispatch('beforeStop', this)
 
     let error
 

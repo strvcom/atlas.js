@@ -3,18 +3,22 @@ import Service from '@atlas.js/service'
 import Hook from '@atlas.js/hook'
 import Action from '@atlas.js/action'
 
+class ServiceApi {}
+
 class DummyService extends Service {}
 
 class DummyAction extends Action {}
 
-class DummyHook extends Hook {}
+class DummyHook extends Hook {
+  static observes = 'atlas'
+}
 
 describe('Atlas::stop()', () => {
   let atlas
   let options
 
   beforeEach(() => {
-    DummyService.prototype.prepare = sinon.stub().resolves()
+    DummyService.prototype.prepare = sinon.stub().resolves(new ServiceApi())
     DummyService.prototype.stop = sinon.stub().resolves()
 
     options = {
@@ -116,7 +120,7 @@ describe('Atlas::stop()', () => {
   })
 
 
-  describe('Service interactions - dispatching events', () => {
+  describe('Hook interactions (observes = atlas)', () => {
     const events = [
       'beforeStop',
       'afterStop',
@@ -151,6 +155,46 @@ describe('Atlas::stop()', () => {
 
       expect(args).to.have.length(1)
       expect(args[0]).to.equal(null)
+    })
+  })
+
+
+  describe('Hook interactions (observes = component)', () => {
+    class ComponentHook extends Hook {
+      static observes = 'service:dummy'
+    }
+
+    const events = [
+      'beforeStop',
+      'afterStop',
+    ]
+
+    beforeEach(() => {
+      // Stub out all the event handlers
+      for (const event of events) {
+        ComponentHook.prototype[event] = sinon.stub().resolves()
+      }
+
+      atlas = new Atlas(options)
+      atlas.service('dummy', DummyService)
+      atlas.hook('dummy', ComponentHook, { aliases: { 'service:dummy': 'dummy' } })
+
+      return atlas.start()
+    })
+
+    it('calls the beforeStop hook with the component instance', async () => {
+      const service = atlas.services.dummy
+      const proto = ComponentHook.prototype
+      await atlas.stop()
+
+      expect(proto.beforeStop).to.have.been.calledWith(service)
+    })
+
+    it('calls the afterStop hook with null', async () => {
+      const proto = ComponentHook.prototype
+      await atlas.stop()
+
+      expect(proto.afterStop).to.have.been.calledWith(null)
     })
   })
 

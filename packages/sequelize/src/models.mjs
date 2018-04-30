@@ -5,6 +5,7 @@ class ModelsHook extends Hook {
     module: 'models',
   }
 
+  static observes = 'service:sequelize'
   static requires = [
     'service:sequelize',
   ]
