@@ -18,6 +18,8 @@ async function dispatch(event, subject) {
     if (typeof hook.component[event] === 'function') {
       hook.component.log.debug({ event }, 'hook:event')
       tasks.set(hook, Promise.resolve(hook.component[event](subject)))
+    } else {
+      hook.component.log.debug({ event }, 'hook:event:not-implemented')
     }
   }
 
