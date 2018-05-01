@@ -39,6 +39,10 @@ class Atlas {
   /**
    * Initialise a brand-new atlas instance from the given module locations
    *
+   * Use this method to quickly configure Atlas instance by simply telling it where your components
+   * live on the filesystem, and Atlas will load them from the given module locations and add them
+   * to the Atlas instance.
+   *
    * @param     {Object}      options                       Configuration options
    * @param     {String}      options.env                   The environment under which to operate
    * @param     {String}      options.root                  The root directory to which all other
@@ -78,7 +82,39 @@ class Atlas {
       modules[type] = atlas.require(options[type], { optional: true })
     }
 
+    atlas.log.debug({ paths }, 'atlas:init')
+
+    return this.bootstrap(atlas, modules)
+  }
+
+  /**
+   * Bootstrap the given Atlas instance with the provided modules
+   *
+   * Use this method to quickly set up the given Atlas instance to use the provided components. This
+   * is useful if you need to have multiple entry points to your program and some entrypoints should
+   * only use some components available. This is especially useful when implementing worker
+   * processes where you only need a subset of all available components. This method, while more
+   * verbose as Atlas.init(), still frees you from manually adding all the components by hand while
+   * providing greater flexibility as to which components will be used.
+   *
+   * @param     {Atlas}   atlas                 The Atlas instance to bootstrap
+   * @param     {Object}  modules={}            All the modules which should be added to Atlas
+   * @param     {Object}  modules.actions       Actions to add
+   * @param     {Object}  modules.hooks         Hooks to add
+   * @param     {Object}  modules.services      Services to add
+   * @param     {Object}  modules.aliases       Aliases for all the components
+   * @return    {Atlas}                         The Atlas instance with all components added, ready
+   *                                            to be started
+   */
+  static bootstrap(atlas, modules = {}) {
     defaults(modules, {
+      // config module is loaded by Atlas instance itself, so it's okay to use a string here and let
+      // Atlas load it
+      config: 'config',
+      // The following modules must already be provided directly as we won't load them
+      actions: {},
+      hooks: {},
+      services: {},
       aliases: {
         actions: {},
         hooks: {},
@@ -89,13 +125,12 @@ class Atlas {
     atlas.log.debug({
       env: atlas.env,
       root: atlas.root,
-      paths,
       components: {
         actions: Object.keys(modules.actions),
         hooks: Object.keys(modules.hooks),
         services: Object.keys(modules.services),
       },
-    }, 'atlas:init')
+    }, 'atlas:bootstrap')
 
     // Hooks
     for (const [alias, Hook] of Object.entries(modules.hooks)) {
