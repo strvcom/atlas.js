@@ -125,8 +125,11 @@ class ComponentContainer {
    * @return    {Promise<this.component>}
    */
   async start(opts = {}) {
-    this.component.log.trace('start:before')
+    if (this.started) {
+      return this.component
+    }
 
+    this.component.log.trace('start:before')
     this::mkobservers({ hooks: opts.hooks })
 
     const observers = this.component::hidden().observers
@@ -161,6 +164,10 @@ class ComponentContainer {
    * @return    {Promise<void>}
    */
   async stop(opts = {}) {
+    if (!this.started) {
+      return
+    }
+
     this.component.log.trace('stop:before')
 
     const observers = this.component::hidden().observers

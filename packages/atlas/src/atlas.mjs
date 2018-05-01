@@ -382,10 +382,6 @@ class Atlas {
     // expose some functionality to the outside world and starting those before ie. a database
     // service is started might break stuff!
     for (const [alias, container] of services) {
-      if (container.started) {
-        continue
-      }
-
       try {
         await container.start({ instance: this.services[alias], hooks })
       } catch (err) {
@@ -425,10 +421,6 @@ class Atlas {
     // Stop all services, in the reverse order they were added to the instance 💪
     // This will make sure the most important services are stopped first.
     for (const [alias, container] of Array.from(services).reverse()) {
-      if (!container.started) {
-        continue
-      }
-
       try {
         const instance = this.services[alias]
         delete this.services[alias]
