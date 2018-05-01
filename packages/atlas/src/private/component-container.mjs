@@ -220,7 +220,7 @@ function resolve(name) {
   const component = this.atlas[`${type}s`][resolved]
 
   if (!component) {
-    throw new FrameworkError(`Unable to find ${type} ${resolved} aliased as ${name}`)
+    throw new FrameworkError(`Unable to find ${type}:${resolved} aliased as ${name}`)
   }
 
   return component
