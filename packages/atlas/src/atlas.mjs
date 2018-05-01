@@ -350,10 +350,13 @@ class Atlas {
       }
     }
 
-    // Prepare actions
-    for (const [alias, container] of actions) {
-      this.actions[alias] = await container.prepare({ hooks })
-    }
+    // Prepare hooks
+    await Promise.all(Array.from(hooks).map(([, container]) =>
+      container.prepare()))
+
+    // Prepare actions, in parallel 💪
+    await Promise.all(Array.from(actions).map(async ([alias, container]) =>
+      this::expose('actions', alias, await container.prepare({ hooks }))))
 
     // Prepare all services, in parallel 💪
     await Promise.all(Array.from(services).map(async ([alias, container]) =>
@@ -371,11 +374,16 @@ class Atlas {
    * @return    {Promise<this>}
    */
   async start() {
-    const { services, hooks } = this::hidden().catalog
+    const { actions, services, hooks } = this::hidden().catalog
     const observers = this::hidden().observers
 
     await this.prepare()
     await observers::dispatch('beforeStart', this)
+
+    await Promise.all([
+      ...Array.from(hooks),
+      ...Array.from(actions),
+    ].map(([, container]) => container.start({ hooks })))
 
     // Start all services, in the order they were added to the instance 💪
     // Ordering is important here! Some services should be started as the last ones because they
@@ -415,6 +423,11 @@ class Atlas {
     const observers = this::hidden().observers
 
     await observers::dispatch('beforeStop', this)
+
+    await Promise.all([
+      ...Array.from(hooks),
+      ...Array.from(actions),
+    ].map(([, container]) => container.stop()))
 
     let error
 
