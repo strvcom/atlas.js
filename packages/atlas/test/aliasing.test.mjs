@@ -61,6 +61,60 @@ describe('Atlas: cross-component communication', () => {
     expect(api.ping).to.have.been.calledWith('action:dummy')
   })
 
+  // @TODO: Implement internal components
+  xit('service can find internal action', async () => {
+    class DummyService extends Service {
+      static requires = ['action:internal']
+      start() {
+        this.component('action:internal').ping('service:dummy')
+      }
+    }
+
+    class InternalAction extends Action {
+      static internal = true
+    }
+
+    InternalAction.prototype.ping = sinon.stub()
+
+    atlas.service('dummy', DummyService, { aliases: { 'action:internal': 'internal' } })
+    atlas.action('internal', InternalAction)
+
+    await atlas.start()
+
+    expect(InternalAction.prototype.ping).to.have.callCount(1)
+    expect(InternalAction.prototype.ping).to.have.been.calledWith('service:dummy')
+  })
+
+  // @TODO: Implement internal components
+  xit('action can find internal service', async () => {
+    const api = {
+      ping: sinon.stub(),
+    }
+
+    class InternalService extends Service {
+      static internal = true
+
+      prepare() { return api }
+    }
+
+    class DummyAction extends Action {
+      static requires = ['service:internal']
+
+      ping() {
+        this.component('service:internal').ping('action:dummy')
+      }
+    }
+
+    atlas.service('internal', InternalService)
+    atlas.action('dummy', DummyAction, { aliases: { 'service:internal': 'internal' } })
+
+    await atlas.start()
+    atlas.actions.dummy.ping()
+
+    expect(api.ping).to.have.callCount(1)
+    expect(api.ping).to.have.been.calledWith('action:dummy')
+  })
+
   it('requesting unknown component throws', async () => {
     class DummyAction extends Action {
       ping(alias) {

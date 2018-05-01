@@ -85,6 +85,17 @@ describe('Atlas::prepare()', () => {
 
       expect(DummyService.prototype.prepare).to.have.callCount(1)
     })
+
+    // @TODO: Implement internal components
+    xit('does not expose services marked as internal', async () => {
+      class InternalService extends Service {
+        static internal = true
+      }
+      atlas.service('internal', InternalService)
+      await atlas.prepare()
+
+      expect(atlas.services).not.to.have.property('internal')
+    })
   })
 
 
@@ -95,6 +106,17 @@ describe('Atlas::prepare()', () => {
 
       expect(atlas.actions).to.have.property('dummy')
       expect(atlas.actions.dummy).to.respondTo('dummyMethod')
+    })
+
+    // @TODO: Implement internal components
+    xit('does not expose actions marked as internal', async () => {
+      class InternalAction extends Action {
+        static internal = true
+      }
+      atlas.action('internal', InternalAction)
+      await atlas.prepare()
+
+      expect(atlas.actions).not.to.have.property('internal')
     })
   })
 
