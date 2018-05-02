@@ -2,7 +2,10 @@
 
 ## Installation
 
-All projects will need the `@atlas.js/atlas` package, which provides all the important bits and pieces you will need on a standalone project.
+> tl;dr - There is a very basic yeoman generator to quickly scaffold the very basics needed to get Atlas up and running: [@atlas.js/generator-atlas][generator-atlas].
+> It is still recommended to at least quickly read through the stuff explained here. ⚠️
+
+All projects will need the [`@atlas.js/atlas`][@atlas.js/atlas] package, which provides all the important bits and pieces you will need on a standalone project.
 
 `npm i --save @atlas.js/atlas`
 
@@ -12,7 +15,7 @@ This package includes the following:
 - `Service` / `Action` / `Hook`: These classes are used when developing custom components - you will need to extend them
 - `errors`: This object contains references to all the errors that @atlas.js can explicitly throw at you
 
-You start your app by importing the `Atlas` class:
+You start by importing the `Atlas` class:
 
 ```js
 import { Atlas } from '@atlas.js/atlas'
@@ -134,3 +137,6 @@ atlas.hook('middleware', Koa.MiddlewareHook, {
 That `service:koa` is declared in the package's documentation. The `http` is the name that **you chose** to use for the Koa service.
 
 Now you have told the `MiddlewareHook` that the Koa service can be found under `atlas.services.http`. All is good! 🎉
+
+[generator-atlas]: https://npmjs.com/package/@atlas.js/generator-atlas
+[@atlas.js/atlas]: https://npmjs.com/package/@atlas.js/atlas

@@ -21,10 +21,13 @@ An Action is a class which is instantiated by the Atlas instance upon adding it 
 Here is a bare class which shows how an Action works.
 
 ```js
-import Action from '@atlas.js/action'
+import { Action } from '@atlas.js/atlas'
 import joi from 'joi'
 
 class User extends Action {
+  // Tell Atlas that we cannot work without these services
+  static requires = ['service:database']
+
   async create(data) {
     // Get the database component (assuming you have registered such component
     // into your app)
@@ -74,3 +77,23 @@ atlas.start()
   })
 })
 ```
+
+## Dispatching custom events
+
+An action may dispatch (or emit) custom events which are then delivered to any hooks which are set up to observe this action.
+
+```js
+class User extends Action {
+  async create(data) {
+    // ... do something interesting with data, then emit a custom event!
+
+    // In this form, the execution will not wait until all hooks are done processing the event.
+    // Note that any errors thrown from the hooks will eventually be handled by Atlas.
+    this.dispatch('userCreated', data)
+    // But you can optionally wait for all hooks to finish before moving on.
+    await this.dispatch('userCreated', data)
+  }
+}
+```
+
+See the [writing-hooks.md](writing-hooks.md) tutorial for more details about how to handle these events.

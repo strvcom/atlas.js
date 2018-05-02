@@ -1,5 +1,30 @@
 # Migration guide
 
+## 1.x -> 2.x
+
+**Major hooks improvements**
+
+- All hooks must now declare exactly which component they want to to observe, via a `static observes = 'component:name'`
+  > This static `observes` property should be a string and it should be a component's name. When that component's state changes or when that component dispatches a custom event, this hook will receive that event. To observe changes in the state of Atlas itself, set this property to `atlas`.
+
+- Hook execution order has been changed
+  > Now that each hook must declare exactly which component's state it wants to observe, we were able to rework their execution order. Previously, the order was as follows:
+  >
+  > - Dispatch the `beforeStart` event to all hooks
+  > - Start all services
+  > - Dispatch the `afterStart` event to all hooks
+  >
+  > Now the order more closely resembles an "observer" pattern:
+  >
+  > - Pick a service
+  > - For that service, find all hooks which want to observe this service's events
+  > - Trigger the `beforeStart` or `beforeStop` event for all these observers
+  > - Start or stop the service
+  > - Trigger the `afterStart` or `afterStop` event for all these observers
+  > - Move on to the next service
+  >
+  > This behaviour should avoid lots of strange errors which used to occur in the 1.x release line during failed start/stop sequence. Atlas itself should no longer hang the Node.js process when the startup or shutdown sequence fails due to one component failing to start or stop (unless the failing component already has some active listeners registered).
+
 ## 0.x -> 1.x
 
 **_@atlas.js/core_, _@atlas.js/application_ packages are replaced with _@atlas.js/atlas_**

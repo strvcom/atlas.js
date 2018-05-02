@@ -5,7 +5,7 @@
 A component is (usually) a class which implements some kind of functionality that can be used by the framework or by your own code. Currently there are 3 types of components:
 
 - [`Service`](writing-services.md) - interfaces with some foreign API/interface and exposes a set of functionality to work with the service (ie. a database or a remote REST API server)
-- [`Hook`](writing-hooks.md) - listens for events fired by the Atlas instance and reacts to those events (ie. a hook which starts some workers just after the application has started up)
+- [`Hook`](writing-hooks.md) - listens for events fired either by the Atlas instance or by some other component and reacts to those events (ie. a hook which starts some workers just after the application has started up, or a hook which provides some extra functionality to a service, or a hook which observes some other action which emits events when something interesting happens)
 - [`Action`](writing-actions.md) - Implements some business-specific functionality which can then be called from ie. an http server's route handler or from a CLI utility
 
 While each component serves a different purpose, they do share some similarities. Let's look what you can do inside a component.
@@ -24,7 +24,7 @@ When implementing components, the following properties are available as soon as 
 Let's say we are writing an action component... We have a basic class like this one:
 
 ```js
-import Action from '@atlas.js/service'
+import { Action } from '@atlas.js/atlas'
 
 class MyAction extends Action {
   doThing() {}
@@ -55,6 +55,14 @@ console.log(this.atlas.root)
 
 ```js
 this.log.info({ data: true }, 'log entry with data')
+```
+
+### Get to some other component
+
+```js
+// This requires that the Action declares this component as a required dependency via a
+// static requires = ['service:server'] property. See the first-steps.md document for more info.
+const server = this.component('service:server')
 ```
 
 [pino-home]: https://www.npmjs.com/package/pino
