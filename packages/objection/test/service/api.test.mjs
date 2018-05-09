@@ -14,6 +14,7 @@ describe('Service: Objection', () => {
     expect(Objection.defaults).to.have.all.keys([
       'knex',
       'models',
+      'prefetch',
     ])
   })
 })

@@ -6,6 +6,7 @@ class Objection extends Service {
   static defaults = {
     knex: {},
     models: 'models',
+    prefetch: true,
   }
 
   prepare() {
@@ -51,6 +52,11 @@ class Objection extends Service {
     // There is no official "connect()" or similar method, so let's just do a raw query to make sure
     // the connection is open.
     await client.connection.raw('select 1 + 1')
+
+    // Prefetch all models' table metadata to avoid fetching them during actual requests
+    await this.config.prefetch
+      ? Promise.all(Object.values(client.models).map(Model => Model.fetchTableMetadata()))
+      : void 0
   }
 
   async stop(client) {

@@ -12,10 +12,11 @@ You will also need to install one of the [supported database drivers][knex-db-dr
 
 ### Service
 
-The service accepts two configuration options - `models` and `knex`.
+The service accepts three configuration options - `models`, `knex` and `prefetch`.
 
 - `models`: A path to a module, relative to application's root, from which to load database models. Each exported key is expected to a model.
 - `knex`: This object is [passed as-is][knex-config] to the underlying Knex client to initialise the connection.
+- `prefetch`: (default `true`) Determines whether your models' table schemas will be eagerly prefetched on startup to avoid fetching them during actual requests. See [Objection.js docs][objection-fetchtableschema] to learn more about this behaviour.
 
 ```js
 import * as objection from '@atlas.js/objection'
@@ -25,6 +26,7 @@ const atlas = new Atlas({
   config: {
     services: {
       database: {
+        prefetch: true,
         models: 'path/to/objection-models',
         knex: {
           client: 'mysql',
@@ -116,3 +118,4 @@ See the [LICENSE](LICENSE) file for information.
 
 [knex-db-drivers]: http://knexjs.org/#Installation-node
 [knex-config]: http://knexjs.org/#Installation-client
+[objection-fetchtableschema]: http://vincit.github.io/objection.js/#fetchtablemetadata
