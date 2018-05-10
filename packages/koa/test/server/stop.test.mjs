@@ -3,7 +3,7 @@ import { FrameworkError } from '@atlas.js/errors'
 import { Server as Koa } from '../..'
 
 describe('Koa::stop(instance)', () => {
-  const sandbox = sinon.sandbox.create()
+  const sandbox = sinon.createSandbox()
   let service
   let instance
   let opts

@@ -2,7 +2,7 @@ import http from 'http'
 import { Server as Koa } from '../..'
 
 describe('Koa::start(instance)', () => {
-  const sandbox = sinon.sandbox.create()
+  const sandbox = sinon.createSandbox()
   let service
   let instance
   let opts
