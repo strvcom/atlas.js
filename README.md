@@ -1,5 +1,4 @@
 # ![Atlas.js][atlas-logo] @atlas.js
----
 
 [![Build Status][travis-badge]][travis-url]
 [![Coverage Status][coveralls-badge]][coveralls-url]
