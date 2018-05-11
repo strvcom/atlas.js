@@ -1,7 +1,7 @@
 {
   "source": "packages",
   "destination": "docs",
-  "includes": ["\\.es$"],
+  "includes": ["\\.mjs$"],
   "excludes": ["node_modules", "test"],
   "plugins": [{
     "name": "esdoc-standard-plugin",
@@ -15,7 +15,8 @@
     "name": "esdoc-ecmascript-proposal-plugin",
     "option": {
       "classProperties": true,
-      "functionBind": true
+      "functionBind": true,
+      "objectRestSpread": true
     }
   }]
 }
