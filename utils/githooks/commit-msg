@@ -4,4 +4,4 @@
 # This is necessary to facilitate automated package publishing.
 
 # This utility's configuration resides in .vcmrc file.
-node_modules/.bin/validate-commit-msg "$(<"$1")"
+echo "$(<"$1")" | ./node_modules/.bin/commitlint
