@@ -56,9 +56,6 @@ coverage: force compile
 docs: compile
 	esdoc
 
-publish: force compile lint test
-	lerna publish --conventional-commits
-
 clean:
 	rm -rf {.nyc_output,coverage,docs}
 	find . -name '*.log' -print -delete
