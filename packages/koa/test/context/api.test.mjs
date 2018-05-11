@@ -11,7 +11,6 @@ describe('Koa: ContextHook', () => {
     hook = new ContextHook({
       atlas: {
         root: __dirname,
-        // eslint-disable-next-line global-require
         require: () => testcontext,
       },
       config: {
