@@ -35,6 +35,18 @@ class LifecycleLogger extends Hook {
   // other action or service: static observes = 'action:user'
   static observes = 'atlas'
 
+  // Declare your configuration schema for your component, using JSON Schema
+  // Your actual config can be accessed from the component instance via `this.config`
+  static config = {
+    type: 'object',
+    properties: {
+      something: {
+        type: 'string',
+        default: 'important',
+      },
+    },
+  }
+
   async afterPrepare() {
     this.log.info('done preparing!')
   }

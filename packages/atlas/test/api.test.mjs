@@ -110,6 +110,7 @@ describe('Atlas: basics and API', () => {
       'services',
       'config',
       'log',
+      'validator',
     ])
     // Implemented as getters, and Chai does not seem to work with them when checking for .keys()
     // eslint-disable-next-line no-process-env

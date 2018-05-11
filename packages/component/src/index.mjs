@@ -1,4 +1,7 @@
 class Component {
+  static config = {}
+
+  // @DEPRECATED: Use static config as JSON Schema
   static defaults = {}
   static requires = []
 

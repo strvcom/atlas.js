@@ -27,13 +27,26 @@ import joi from 'joi'
 class User extends Action {
   // Tell Atlas that we cannot work without these services
   static requires = ['service:database']
+  // Declare your configuration schema for your component, using JSON Schema
+  // Your actual config can be accessed from the component instance via `this.config`
+  static config = {
+    type: 'object',
+    properties: {
+      something: {
+        type: 'string',
+        default: 'important',
+      },
+    },
+  }
 
   async create(data) {
     // Get the database component (assuming you have registered such component
     // into your app)
     const db = this.component('service:database')
-    // Run some checks on the data (using imaginary validation library)
-    joi.validate(data)
+    // Utilise your component's config
+    const config = this.config
+
+    console.log(config.something)  // -> "important"
 
     // Save the data to the database
     const user = await db.users.insert(data)

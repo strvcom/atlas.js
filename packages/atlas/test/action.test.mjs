@@ -1,6 +1,9 @@
 import { Atlas } from '..'
 import Action from '@atlas.js/action'
-import { FrameworkError } from '@atlas.js/errors'
+import {
+  FrameworkError,
+  ValidationError,
+} from '@atlas.js/errors'
 
 class DummyAction extends Action {}
 
@@ -37,6 +40,7 @@ describe('Atlas::action()', () => {
 
   it('provides the atlas on action constructor argument', () => {
     const action = sinon.spy()
+    action.config = {}
     atlas.action('dummy', action)
     const args = action.getCall(0).args[0]
 
@@ -46,6 +50,7 @@ describe('Atlas::action()', () => {
 
   it('provides a logger instance on action constructor argument', () => {
     const action = sinon.spy()
+    action.config = {}
     atlas.action('dummy', action)
     const args = action.getCall(0).args[0]
 
@@ -56,6 +61,7 @@ describe('Atlas::action()', () => {
 
   it('provides the config object on action constructor argument', () => {
     const action = sinon.spy()
+    action.config = {}
     atlas.action('dummy', action)
     const args = action.getCall(0).args[0]
 
@@ -66,6 +72,7 @@ describe('Atlas::action()', () => {
 
   it('provides the resolve function on action constructor argument as `component`', () => {
     const action = sinon.spy()
+    action.config = {}
     atlas.action('dummy', action)
     const args = action.getCall(0).args[0]
 
@@ -75,6 +82,7 @@ describe('Atlas::action()', () => {
 
   it('applies defaults defined on action on top of user-provided config', () => {
     const action = sinon.spy()
+    action.config = {}
     action.defaults = { default: true }
     atlas.action('dummy', action)
     const args = action.getCall(0).args[0]
@@ -84,6 +92,7 @@ describe('Atlas::action()', () => {
 
   it('throws when aliases do not satisfy requirements of the component', () => {
     const action = sinon.spy()
+    action.config = {}
     action.requires = ['service:dummy']
     expect(() => {
       atlas.action('dummy', action)
@@ -92,6 +101,7 @@ describe('Atlas::action()', () => {
 
   it('throws when extraneous aliases are specified', () => {
     const action = sinon.spy()
+    action.config = {}
     expect(() => {
       atlas.action('dummy', action, { aliases: {
         'service:dummy': 'dummy',
@@ -99,8 +109,38 @@ describe('Atlas::action()', () => {
     }).to.throw(FrameworkError, /Unneeded aliases for component dummy/)
   })
 
+  it('throws when user config fails component config schema', () => {
+    options.config.actions.dummy = { lol: true }
+    atlas = new Atlas(options)
+
+    const action = sinon.spy()
+    action.config = {
+      type: 'object',
+      additionalProperties: false,
+      properties: {
+        test: { type: 'boolean' },
+      },
+    }
+
+    expect(() => atlas.action('dummy', action)).to.throw(ValidationError)
+  })
+
+  it('works when user config passes component config schema', () => {
+    const action = sinon.spy()
+    action.config = {
+      type: 'object',
+      additionalProperties: false,
+      properties: {
+        test: { type: 'boolean' },
+      },
+    }
+
+    expect(() => atlas.action('dummy', action)).not.to.throw(ValidationError)
+  })
+
   it('works when all requirements are specified', () => {
     const action = sinon.spy()
+    action.config = {}
     action.requires = ['service:dummy']
     expect(() => {
       atlas.action('dummy', action, { aliases: {

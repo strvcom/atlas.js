@@ -9,6 +9,11 @@ describe('Component: basics and API', () => {
     expect(() => new Component()).to.not.throw()
   })
 
+  it('has a static config property with an empty object', () => {
+    expect(Component.config).to.be.an('object')
+    expect(Object.keys(Component.config)).to.have.length(0)
+  })
+
   it('has a static defaults property with an empty object', () => {
     expect(Component.defaults).to.be.an('object')
     expect(Object.keys(Component.defaults)).to.have.length(0)

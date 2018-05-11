@@ -11,6 +11,19 @@ class FrameworkError extends Error {
   }
 }
 
+/**
+ * Error representing a failed JSON schema validation
+ * @extends    FrameworkError
+ */
+class ValidationError extends FrameworkError {
+  constructor(errors = {}) {
+    super('Atlas.js validation error')
+
+    this.errors = errors
+  }
+}
+
 export {
   FrameworkError,
+  ValidationError,
 }

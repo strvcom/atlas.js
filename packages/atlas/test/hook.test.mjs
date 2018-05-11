@@ -1,6 +1,9 @@
 import { Atlas } from '..'
 import Hook from '@atlas.js/hook'
-import { FrameworkError } from '@atlas.js/errors'
+import {
+  FrameworkError,
+  ValidationError,
+} from '@atlas.js/errors'
 
 class DummyHook extends Hook {
   static observes = 'atlas'
@@ -39,6 +42,7 @@ describe('Atlas::hook()', () => {
 
   it('provides the atlas on hook constructor argument', () => {
     const hook = sinon.spy()
+    hook.config = {}
     atlas.hook('dummy', hook)
     const args = hook.getCall(0).args[0]
 
@@ -48,6 +52,7 @@ describe('Atlas::hook()', () => {
 
   it('provides a logger instance on hook constructor argument', () => {
     const hook = sinon.spy()
+    hook.config = {}
     atlas.hook('dummy', hook)
     const args = hook.getCall(0).args[0]
 
@@ -58,6 +63,7 @@ describe('Atlas::hook()', () => {
 
   it('provides config object on hook constructor argument', () => {
     const hook = sinon.spy()
+    hook.config = {}
     atlas.hook('dummy', hook)
     const args = hook.getCall(0).args[0]
 
@@ -68,6 +74,7 @@ describe('Atlas::hook()', () => {
 
   it('provides the resolve function on hook constructor argument as `component`', () => {
     const hook = sinon.spy()
+    hook.config = {}
     atlas.hook('dummy', hook)
     const args = hook.getCall(0).args[0]
 
@@ -77,6 +84,7 @@ describe('Atlas::hook()', () => {
 
   it('applies defaults defined on hook on top of user-provided config', () => {
     const hook = sinon.spy()
+    hook.config = {}
     hook.defaults = { default: true }
     atlas.hook('dummy', hook)
     const args = hook.getCall(0).args[0]
@@ -86,6 +94,7 @@ describe('Atlas::hook()', () => {
 
   it('throws when aliases do not satisfy requirements of the component', () => {
     const hook = sinon.spy()
+    hook.config = {}
     hook.requires = ['service:dummy', 'action:dummy']
     expect(() => {
       atlas.hook('dummy', hook)
@@ -94,6 +103,7 @@ describe('Atlas::hook()', () => {
 
   it('throws when extraneous aliases are specified', () => {
     const hook = sinon.spy()
+    hook.config = {}
     expect(() => {
       atlas.hook('dummy', hook, { aliases: {
         'service:dummy': 'dummy',
@@ -103,6 +113,7 @@ describe('Atlas::hook()', () => {
 
   it('works when all requirements are specified', () => {
     const hook = sinon.spy()
+    hook.config = {}
     hook.requires = ['service:dummy', 'action:dummy']
     expect(() => {
       atlas.hook('dummy', hook, { aliases: {
@@ -132,6 +143,35 @@ describe('Atlas::hook()', () => {
     expect(() => {
       atlas.hook('dummy', Dummy)
     }).to.throw(FrameworkError, /Missing aliases for component dummy/)
+  })
+
+  it('throws when user config fails component config schema', () => {
+    options.config.hooks.dummy = { lol: true }
+    atlas = new Atlas(options)
+
+    const hook = sinon.spy()
+    hook.config = {
+      type: 'object',
+      additionalProperties: false,
+      properties: {
+        test: { type: 'boolean' },
+      },
+    }
+
+    expect(() => atlas.hook('dummy', hook)).to.throw(ValidationError)
+  })
+
+  it('works when user config passes component config schema', () => {
+    const hook = sinon.spy()
+    hook.config = {
+      type: 'object',
+      additionalProperties: false,
+      properties: {
+        test: { type: 'boolean' },
+      },
+    }
+
+    expect(() => atlas.hook('dummy', hook)).not.to.throw(ValidationError)
   })
 
   it('does not throw if a hook observes the atlas instance and atlas is not in aliases', () => {

@@ -2,6 +2,7 @@
 /* eslint-disable no-await-in-loop */
 
 import path from 'path'
+import Ajv from 'ajv'
 import pino from 'pino'
 import {
   defaultsDeep as defaults,
@@ -33,6 +34,12 @@ class Atlas {
         req: pino.stdSerializers.req,
         res: pino.stdSerializers.res,
       },
+    },
+
+    validator: {
+      allErrors: true,
+      useDefaults: true,
+      coerceTypes: true,
     },
   }
 
@@ -220,6 +227,12 @@ class Atlas {
   actions = {}
 
   /**
+   * An instance of Ajv used to validate component configuration
+   * @type    {Ajv}
+   */
+  validator = null
+
+  /**
    * Create a new instance
    *
    * @param     {Object}    options             Options for the instance
@@ -262,6 +275,8 @@ class Atlas {
     })
     // Logger 🌲
     this.log = this::mklog(this.config.atlas.log)
+    // Ajv validator ✓
+    this.validator = new Ajv(this.config.atlas.validator)
   }
 
   /**

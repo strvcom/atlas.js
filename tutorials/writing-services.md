@@ -22,11 +22,18 @@ import Service from '@atlas.js/service'
 import request from 'request-promise'
 
 class GithubApi extends Service {
-  // Default configuration values that your service expects. If the user does
-  // not provide a value for the option, the value defined here will be used.
-  static defaults = {
-    json: true
+  // Declare your configuration schema for your component, using JSON Schema
+  // Your actual config can be accessed from the component instance via `this.config`
+  static config = {
+    type: 'object',
+    properties: {
+      json: {
+        type: 'boolean',
+        default: true,
+      },
+    },
   }
+
   // If your service needs to interact with another service or action, you should declare
   // the name of the component under which you will expect it to find.
   // It is the user's responsibility to map the name you define here to an
@@ -40,7 +47,8 @@ class GithubApi extends Service {
   // primitive value.
   async prepare() {
     // this.config contains your component's configuration. It contains any
-    // options supplied by the user and your component's defaults.
+    // options supplied by the user and your component's defaults defined
+    // using the static config property as JSON schema.
     this.instance = request.defaults(this.config)
 
     // This is what your service's users will be able to access

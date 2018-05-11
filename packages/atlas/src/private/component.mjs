@@ -22,6 +22,8 @@ function component(info, catalog) {
   // Pull user-provided config for this component
   // Use a plural form of the component type, ie., action -> actions, service -> services etc.
   info.config = this.config[`${info.type}s`][info.alias]
+  // Pull JSON schema validator from the Atlas instance
+  info.validator = this.validator
 
   const container = new ComponentContainer(info, this)
 

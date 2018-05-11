@@ -10,6 +10,7 @@
     "@atlas.js/errors": "^0.1.1",
     "@atlas.js/hook": "^1.0.2",
     "@atlas.js/service": "^1.0.2",
+    "ajv": "^6.5.0",
     "local-scope": "^1.2.0",
     "lodash": "^4.17.4",
     "pino": "^4.7.0"

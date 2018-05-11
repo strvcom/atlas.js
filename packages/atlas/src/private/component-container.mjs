@@ -1,5 +1,8 @@
 import hidden from 'local-scope/create'
-import { FrameworkError } from '@atlas.js/errors'
+import {
+  FrameworkError,
+  ValidationError,
+} from '@atlas.js/errors'
 import {
   defaultsDeep as defaults,
   difference,
@@ -28,6 +31,7 @@ class ComponentContainer {
    *                                              components
    * @param     {Class}         info.Component    The component class
    * @param     {Object}        info.config       The component's user-specified configuration
+   * @param     {Ajv}           info.validator    A JSON schema validator instance
    * @param     {Atlas}         atlas             The Atlas instance
    */
   constructor(info, atlas) {
@@ -72,6 +76,11 @@ class ComponentContainer {
     }
 
     const observers = new Map()
+    const config = defaults(info.config, this.Component.defaults)
+
+    if (!info.validator.validate(info.Component.config, config)) {
+      throw new ValidationError(info.validator.errors)
+    }
 
     atlas.log.trace({
       component: this.alias,
@@ -81,8 +90,8 @@ class ComponentContainer {
 
     this.component = new this.Component({
       atlas,
+      config,
       log: atlas.log.child({ [this.type]: this.alias }),
-      config: defaults(info.config, this.Component.defaults),
       component: resolve,
       dispatch: observers::dispatch,
     })
