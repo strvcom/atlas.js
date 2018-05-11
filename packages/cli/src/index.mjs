@@ -5,6 +5,16 @@ import commands from './commands'
 
 const help = fs.readFileSync(path.join(__dirname, 'more-info.txt'), 'utf8')
 
+/**
+ * The CLI entry point
+ *
+ * You should not call this function directly.
+ *
+ * @private
+ * @param     {Object}    caporal     The caporal module
+ * @param     {Array}     argv        CLI arguments
+ * @return    {caporal~Program}
+ */
 export default function cli(caporal, argv) {
   caporal.version(pkg.version)
   caporal.description('Atlas.js CLI utility')
