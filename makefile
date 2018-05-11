@@ -27,10 +27,15 @@ node_modules: package.json
 %.js: %.mjs node_modules .babelrc.js
 	babel $< --out-file $@ $(FCOMPILE)
 
+coverage/lcov.info: $(OUTFILES)
+	nyc mocha $(FTEST)
+
 
 # TASK DEFINITIONS
 
 compile: $(OUTFILES)
+
+coverage: coverage/lcov.info
 
 precompile: install
 	babel . --extensions .mjs --out-dir . $(FCOMPILE)
@@ -49,9 +54,6 @@ test-debug: force compile
 
 test-watch: force compile
 	mocha --reporter min $(FTEST) --watch
-
-coverage: force compile
-	nyc mocha $(FTEST)
 
 docs: compile
 	esdoc
