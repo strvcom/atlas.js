@@ -1,5 +1,5 @@
 # Defining shell is necessary in order to modify PATH
-SHELL := bash
+SHELL := sh
 export PATH := node_modules/.bin/:$(PATH)
 export NODE_OPTIONS := --trace-deprecation --trace-warnings
 
@@ -11,7 +11,7 @@ FCOMPILE :=
 FLINT :=
 FINSTALL :=
 
-SRCFILES := $(shell find . -name '*.mjs' -not -path '*/node_modules/*')
+SRCFILES := $(shell find . -name '*.mjs' -not -path '*/node_modules/*' -not -path './.git/*')
 OUTFILES := $(patsubst %.mjs, %.js, $(SRCFILES))
 
 # Do this when make is invoked without targets
@@ -68,7 +68,7 @@ outdated:
 	lerna exec "npm outdated || true"
 
 unlock: pristine
-	find . -name package-lock.json -print -delete
+	rm package-lock.json packages/*/package-lock.json
 	touch package.json
 
 # Delete all the .js and .js.map files (excluding any potential dotfiles with .js extension)
