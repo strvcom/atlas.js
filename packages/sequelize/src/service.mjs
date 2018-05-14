@@ -2,9 +2,19 @@ import Service from '@atlas.js/service'
 import Database from 'sequelize'
 
 class Sequelize extends Service {
-  static defaults = {
-    uri: 'sqlite://atlas-db.sqlite',
-    options: {},
+  static config = {
+    type: 'object',
+    additionalProperties: false,
+    required: ['uri'],
+    properties: {
+      uri: {
+        type: 'string',
+        default: 'sqlite://atlas-db.sqlite',
+      },
+      options: {
+        type: 'object',
+      },
+    },
   }
 
   prepare() {

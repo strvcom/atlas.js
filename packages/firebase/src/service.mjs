@@ -2,10 +2,19 @@ import Service from '@atlas.js/service'
 import * as Admin from 'firebase-admin'
 
 class Firebase extends Service {
-  static defaults = {
-    name: null,
-    credential: {},
-    databaseURL: null,
+  static config = {
+    type: 'object',
+    additionalProperties: false,
+    properties: {
+      name: { type: 'string' },
+      databaseURL: { type: 'string' },
+      credential: {
+        oneOf: [
+          { type: 'string' },
+          { type: 'object' },
+        ],
+      },
+    },
   }
 
   prepare() {

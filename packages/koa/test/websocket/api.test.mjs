@@ -1,4 +1,5 @@
 import path from 'path'
+import { Atlas } from '@atlas.js/atlas'
 import Hook from '@atlas.js/hook'
 import { WebsocketHook } from '../..'
 import * as testmiddleware from './testmiddleware'
@@ -16,11 +17,15 @@ describe('Hook: WebsocketHook', () => {
     expect(WebsocketHook.requires).to.include('service:koa')
   })
 
-  it('defines its defaults', () => {
-    expect(WebsocketHook.defaults).to.have.all.keys([
-      'middleware',
-      'listen',
-    ])
+  it('defines its config', () => {
+    expect(WebsocketHook.config).to.be.an('object')
+  })
+
+  it("default config passes component's schema validation", () => {
+    const atlas = new Atlas({ root: __dirname })
+
+    expect(() =>
+      atlas.hook('ws', WebsocketHook, { aliases: { 'service:koa': 'koa' } })).to.not.throw()
   })
 
   it('implements `afterPrepare` hook', () => {

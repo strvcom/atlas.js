@@ -3,10 +3,37 @@ import Service from '@atlas.js/service'
 import { FrameworkError } from '@atlas.js/errors'
 
 class Objection extends Service {
-  static defaults = {
-    knex: {},
-    models: 'models',
-    prefetch: true,
+  static config = {
+    type: 'object',
+    additionalProperties: false,
+    required: ['knex', 'models'],
+    properties: {
+      knex: {
+        type: 'object',
+        required: ['client'],
+        properties: {
+          // @TODO: Allow functions as valid client
+          client: {
+            type: 'string',
+            enum: [
+              'mariadb',
+              'mariasql',
+              'pg',
+              'postgresql',
+              'sqlite',
+            ],
+          },
+        },
+      },
+      models: {
+        type: 'string',
+        default: 'models',
+      },
+      prefetch: {
+        type: 'boolean',
+        default: true,
+      },
+    },
   }
 
   prepare() {

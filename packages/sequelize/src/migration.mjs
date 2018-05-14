@@ -4,8 +4,16 @@ import Action from '@atlas.js/action'
 import { DataTypes } from 'sequelize'
 
 class Migration extends Action {
-  static defaults = {
-    module: 'migrations',
+  static config = {
+    type: 'object',
+    additionalProperties: false,
+    required: ['module'],
+    properties: {
+      module: {
+        type: 'string',
+        default: 'migration',
+      },
+    },
   }
 
   static requires = [

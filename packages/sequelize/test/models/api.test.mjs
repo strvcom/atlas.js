@@ -1,4 +1,5 @@
 import path from 'path'
+import { Atlas } from '@atlas.js/atlas'
 import Sequelize from 'sequelize'
 import { ModelsHook } from '../..'
 import * as testmodels from '../testmodels'
@@ -32,6 +33,19 @@ describe('Sequelize: ModelsHook', () => {
 
   it('exists', () => {
     expect(ModelsHook).to.be.a('function')
+  })
+
+  it('defines its config', () => {
+    expect(ModelsHook.config).to.be.an('object')
+  })
+
+  it("default config passes component's schema validation", () => {
+    const atlas = new Atlas({ root: __dirname })
+
+    expect(() =>
+      atlas.hook('models', ModelsHook, {
+        aliases: { 'service:sequelize': 'sequelize' },
+      })).to.not.throw()
   })
 
   it('defines its required components', () => {

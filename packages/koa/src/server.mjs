@@ -5,31 +5,73 @@ import Koa from 'koa'
 import middleware from './middleware'
 
 class KoaService extends Service {
-  static defaults = {
-    middleware: {
-      module: 'middleware',
-      config: {},
-    },
+  static config = {
+    type: 'object',
+    additionalProperties: false,
+    properties: {
+      middleware: {
+        type: 'object',
+        additionalProperties: false,
+        properties: {
+          module: {
+            type: 'string',
+            default: 'middleware',
+          },
+          config: {
+            type: 'object',
+            default: {},
+          },
+        },
+      },
 
-    listen: {
-      // It is a general best practice in the Node.js ecosystem to use the PORT env var to specify
-      // the port to which the web server should bind to -> let's respect that
-      // eslint-disable-next-line no-process-env
-      port: process.env.PORT || 3000,
-      hostname: '127.0.0.1',
-    },
+      listen: {
+        type: 'object',
+        additionalProperties: false,
+        properties: {
+          port: {
+            type: 'number',
+            // It is a general best practice in the Node.js ecosystem to use the PORT env var to
+            // specify the port to which the web server should bind to -> let's respect that
+            // eslint-disable-next-line no-process-env
+            default: process.env.PORT || 3000,
+          },
+          hostname: {
+            type: 'string',
+            default: '127.0.0.1',
+          },
+        },
+      },
 
-    server: {
-      // Overriden in this implementation to have lower value
-      // These days most of the people deploy to Heroku and they have a request timeout of 30s
-      timeout: 30000,
-      // Defaults for Node.js
-      maxHeadersCount: 2000,
-      keepAliveTimeout: 5000,
-    },
+      server: {
+        type: 'object',
+        properties: {
+          timeout: {
+            type: 'number',
+            // Overriden in this implementation to have lower value
+            // These days most of the people deploy to Heroku and they have a request timeout of 30s
+            default: 30000,
+          },
+          // Defaults for Node.js
+          maxHeadersCount: {
+            type: 'number',
+            default: 2000,
+          },
+          keepAliveTimeout: {
+            type: 'number',
+            default: 5000,
+          },
+        },
+      },
 
-    koa: {
-      proxy: false,
+      koa: {
+        type: 'object',
+        properties: {
+          proxy: {
+            type: 'boolean',
+            default: false,
+          },
+        },
+      },
     },
   }
 

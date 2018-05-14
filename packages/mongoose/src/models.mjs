@@ -1,8 +1,15 @@
 import Hook from '@atlas.js/hook'
 
 class ModelsHook extends Hook {
-  static defaults = {
-    module: 'models',
+  static config = {
+    type: 'object',
+    additionalProperties: false,
+    properties: {
+      module: {
+        type: 'string',
+        default: 'models',
+      },
+    },
   }
 
   static observes = 'service:mongoose'

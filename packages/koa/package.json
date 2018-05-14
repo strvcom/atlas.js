@@ -12,6 +12,9 @@
     "koa": "^2.3.0",
     "koa-websocket": "^4.1.0"
   },
+  "devDependencies": {
+    "@atlas.js/atlas": "^1.3.1"
+  },
   "engines": {
     "node": "^8.3.0",
     "npm": "^5.3.0"

@@ -3,8 +3,16 @@ import Umzug from 'umzug'
 import Action from '@atlas.js/action'
 
 class Migration extends Action {
-  static defaults = {
-    module: 'migrations',
+  static config = {
+    type: 'object',
+    additionalProperties: false,
+    required: ['module'],
+    properties: {
+      module: {
+        type: 'string',
+        default: 'migration',
+      },
+    },
   }
 
   static requires = [

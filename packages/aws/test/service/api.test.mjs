@@ -1,3 +1,4 @@
+import { Atlas } from '@atlas.js/atlas'
 import Service from '@atlas.js/service'
 import { Service as AWS } from '../..'
 
@@ -10,10 +11,13 @@ describe('Service: AWS', () => {
     expect(new AWS()).to.be.instanceof(Service)
   })
 
-  it('defines its defaults', () => {
-    expect(AWS.defaults).to.have.all.keys([
-      'globals',
-      'services',
-    ])
+  it('defines its config', () => {
+    expect(AWS.config).to.be.an('object')
+  })
+
+  it("default config passes component's schema validation", () => {
+    const atlas = new Atlas({ root: __dirname })
+
+    expect(() => atlas.service('aws', AWS)).to.not.throw()
   })
 })

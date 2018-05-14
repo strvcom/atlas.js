@@ -2,8 +2,16 @@ import Hook from '@atlas.js/hook'
 import { FrameworkError } from '@atlas.js/errors'
 
 class ContextHook extends Hook {
-  static defaults = {
-    module: 'koa-context',
+  static config = {
+    type: 'object',
+    default: {},
+    additionalProperties: false,
+    properties: {
+      module: {
+        type: 'string',
+        default: 'koa-context',
+      },
+    },
   }
 
   static observes = 'service:koa'

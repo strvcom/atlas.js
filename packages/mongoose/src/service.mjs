@@ -2,6 +2,27 @@ import Service from '@atlas.js/service'
 import mongoose from 'mongoose'
 
 class Mongoose extends Service {
+  static config = {
+    type: 'object',
+    additionalProperties: false,
+    properties: {
+      uri: {
+        type: 'string',
+        default: 'mongodb://127.0.0.1:27017',
+      },
+      // see http://mongodb.github.io/node-mongodb-native/2.2/api/MongoClient.html#connect
+      options: {
+        type: 'object',
+        default: {},
+        properties: {
+          reconnectTries: { type: 'number' },
+          reconnectInterval: { type: 'number' },
+          poolSize: { type: 'number' },
+        },
+      },
+    },
+  }
+
   static defaults = {
     uri: 'mongodb://127.0.0.1:27017',
     options: {},

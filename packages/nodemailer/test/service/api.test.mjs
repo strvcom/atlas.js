@@ -1,3 +1,4 @@
+import { Atlas, errors } from '@atlas.js/atlas'
 import Service from '@atlas.js/service'
 import { Service as Nodemailer } from '../..'
 
@@ -10,12 +11,30 @@ describe('Service: Nodemailer', () => {
     expect(new Nodemailer()).to.be.instanceof(Service)
   })
 
-  it('defines its defaults', () => {
-    expect(Nodemailer.defaults).to.have.all.keys([
-      'transport',
-      'options',
-      'defaults',
-      'plugins',
-    ])
+  it('defines its config', () => {
+    expect(Nodemailer.config).to.be.an('object')
+  })
+
+  it('throws on invalid config', () => {
+    const atlas = new Atlas({ root: __dirname })
+
+    expect(() =>
+      atlas.service('nodemailer', Nodemailer)).to.throw(errors.ValidationError)
+  })
+
+  it('does not throw on valid config', () => {
+    const atlas = new Atlas({
+      root: __dirname,
+      config: {
+        services: {
+          nodemailer: {
+            transport: 'test',
+          },
+        },
+      },
+    })
+
+    expect(() =>
+      atlas.service('nodemailer', Nodemailer)).not.to.throw()
   })
 })

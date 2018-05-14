@@ -4,15 +4,31 @@ import Action from '@atlas.js/action'
 import { FrameworkError } from '@atlas.js/errors'
 
 export default class Templates extends Action {
-  static defaults = {
-    // Templates directory
-    templates: 'templates',
-    // Expected template extension
-    extension: '.pug',
-    engine: 'pug',
-    // Default locals to be sent to the template renderer
-    locals: {
-      cache: true,
+  static config = {
+    type: 'object',
+    additionalProperties: false,
+    properties: {
+      templates: {
+        type: 'string',
+        default: 'templates',
+      },
+      extension: {
+        type: 'string',
+        default: '.pug',
+      },
+      engine: {
+        type: 'string',
+        default: 'pug',
+      },
+      locals: {
+        type: 'object',
+        properties: {
+          cache: {
+            type: 'boolean',
+            default: true,
+          },
+        },
+      },
     },
   }
 

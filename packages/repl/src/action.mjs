@@ -6,14 +6,40 @@ import fsp from 'promisified-core/fs'
 import Action from '@atlas.js/action'
 
 class Repl extends Action {
-  static defaults = {
-    historyFile: path.resolve(os.homedir(), '.node_repl_history'),
-    username: os.userInfo().username,
-    prompt: '✏️ ',
-    greet: true,
-    newlines: {
-      unix: '\n',
-      win32: '\r\n',
+  static config = {
+    type: 'object',
+    additionalProperties: false,
+    properties: {
+      historyFile: {
+        type: 'string',
+        default: path.resolve(os.homedir(), '.node_repl_history'),
+      },
+      username: {
+        type: 'string',
+        default: os.userInfo().username,
+      },
+      prompt: {
+        type: 'string',
+        default: '✏️ ',
+      },
+      greet: {
+        type: 'boolean',
+        default: true,
+      },
+      newlines: {
+        type: 'object',
+        additionalProperties: false,
+        properties: {
+          unix: {
+            type: 'string',
+            default: '\n',
+          },
+          win32: {
+            type: 'string',
+            default: '\r\n',
+          },
+        },
+      },
     },
   }
 

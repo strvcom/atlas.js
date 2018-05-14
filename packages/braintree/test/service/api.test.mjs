@@ -1,3 +1,4 @@
+import { Atlas, errors } from '@atlas.js/atlas'
 import Service from '@atlas.js/service'
 import { Service as Braintree } from '../..'
 
@@ -10,7 +11,32 @@ describe('Service: Braintree', () => {
     expect(new Braintree()).to.be.instanceof(Service)
   })
 
-  it('defines its defaults', () => {
-    expect(Object.keys(Braintree.defaults)).to.have.length(0)
+  it('defines its config', () => {
+    expect(Braintree.config).to.be.an('object')
+  })
+
+  it('throws on invalid config', () => {
+    const atlas = new Atlas({ root: __dirname })
+
+    expect(() =>
+      atlas.service('braintree', Braintree)).to.throw(errors.ValidationError)
+  })
+
+  it('does not throw on valid config', () => {
+    const atlas = new Atlas({
+      root: __dirname,
+      config: {
+        services: {
+          braintree: {
+            merchantId: 'abc',
+            publicKey: 'pubkey-test',
+            privateKey: 'privkey-test',
+          },
+        },
+      },
+    })
+
+    expect(() =>
+      atlas.service('braintree', Braintree)).not.to.throw()
   })
 })

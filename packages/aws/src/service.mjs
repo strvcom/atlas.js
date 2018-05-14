@@ -2,13 +2,23 @@ import Service from '@atlas.js/service'
 import { defaultsDeep as defaults } from 'lodash'
 
 class AWS extends Service {
-  static defaults = {
-    globals: {
-      accessKeyId: null,
-      secretAccessKey: null,
-      region: null,
+  static config = {
+    type: 'object',
+    additionalProperties: false,
+    properties: {
+      globals: {
+        type: 'object',
+        properties: {
+          accessKeyId: { type: 'string' },
+          secretAccessKey: { type: 'string' },
+          region: { type: 'string' },
+        },
+      },
+      services: {
+        type: 'object',
+        default: {},
+      },
     },
-    services: {},
   }
 
   prepare() {

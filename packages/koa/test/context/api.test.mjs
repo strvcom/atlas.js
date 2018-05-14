@@ -1,3 +1,4 @@
+import { Atlas } from '@atlas.js/atlas'
 import { FrameworkError } from '@atlas.js/errors'
 import { ContextHook } from '../..'
 import testcontext from './testcontext'
@@ -29,11 +30,15 @@ describe('Koa: ContextHook', () => {
     expect(hook).to.respondTo('afterPrepare')
   })
 
-  it('defines its defaults', () => {
-    expect(ContextHook).to.have.property('defaults')
-    expect(ContextHook.defaults).to.have.all.keys([
-      'module',
-    ])
+  it('defines its config', () => {
+    expect(ContextHook.config).to.be.an('object')
+  })
+
+  it("default config passes component's schema validation", () => {
+    const atlas = new Atlas({ root: __dirname })
+
+    expect(() =>
+      atlas.hook('ctx', ContextHook, { aliases: { 'service:koa': 'koa' } })).to.not.throw()
   })
 
 

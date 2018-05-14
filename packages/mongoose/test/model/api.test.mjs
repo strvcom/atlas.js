@@ -1,4 +1,5 @@
 import path from 'path'
+import { Atlas } from '@atlas.js/atlas'
 import { ModelsHook } from '../..'
 import * as testmodels from './testmodels'
 
@@ -27,10 +28,15 @@ describe('Mongoose: ModelsHook', () => {
     expect(ModelsHook).to.be.a('function')
   })
 
-  it('defines its defaults', () => {
-    expect(ModelsHook.defaults).to.have.all.keys([
-      'module',
-    ])
+  it('defines its config', () => {
+    expect(ModelsHook.config).to.be.an('object')
+  })
+
+  it("default config passes component's schema validation", () => {
+    const atlas = new Atlas({ root: __dirname })
+
+    expect(() =>
+      atlas.hook('models', ModelsHook, { aliases: { 'service:mongoose': 'db' } })).to.not.throw()
   })
 
   it('defines its required components', () => {

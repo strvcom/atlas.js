@@ -2,17 +2,29 @@ import nodemailer from 'nodemailer'
 import Service from '@atlas.js/service'
 
 class Nodemailer extends Service {
-  static defaults = {
-    transport: null,
-    options: {},
-    defaults: {},
-    // For a single plugin:
-    // {
-    //   plugin: () => {},
-    //   event: 'compile',
-    //   options: {},
-    // }
-    plugins: [],
+  static config = {
+    type: 'object',
+    additionalProperties: false,
+    required: ['transport'],
+    properties: {
+      // Name of the module to load as a transport
+      transport: { type: 'string' },
+      // Options passed to the transport
+      options: { type: 'object' },
+      plugins: {
+        type: 'array',
+        items: {
+          type: 'object',
+          additionalProperties: false,
+          required: ['plugin', 'event'],
+          properties: {
+            plugin: { type: 'string' },
+            event: { type: 'string', enum: ['compile', 'stream'] },
+            options: { type: 'object' },
+          },
+        },
+      },
+    },
   }
 
   async prepare() {

@@ -8,12 +8,40 @@ class WebsocketHook extends Hook {
     'service:koa',
   ]
 
-  static defaults = {
-    middleware: {
-      module: 'websocket/middleware',
-      config: {},
+  static config = {
+    type: 'object',
+    default: {},
+    additionalProperties: false,
+    properties: {
+      middleware: {
+        type: 'object',
+        additionalProperties: false,
+        properties: {
+          module: {
+            type: 'string',
+            default: 'websocket/middleware',
+          },
+          config: {
+            type: 'object',
+            default: {},
+          },
+        },
+      },
+
+      listen: {
+        type: 'object',
+        properties: {
+          host: { type: 'string' },
+          port: { type: 'number' },
+          backlog: { type: 'number' },
+          path: { type: 'string' },
+          noServer: {
+            type: 'boolean',
+            default: false,
+          },
+        },
+      },
     },
-    listen: null,
   }
 
   afterPrepare() {
