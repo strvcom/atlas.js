@@ -14,11 +14,20 @@ NPMRC
 git remote add pushable-origin "https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git"
 git checkout "${TRAVIS_BRANCH}"
 
-# Publish!
-npx lerna publish \
-  --sort \
-  --conventional-commits \
-  --yes \
-  --git-remote pushable-origin \
-  --npm-tag "${NPM_DISTTAG}" \
+# Prepare arguments for deployment with lerna
+lernaargs=(
+  --yes
+  --sort
+  --conventional-commits
+  --git-remote pushable-origin
   --message "chore: release [ci skip]"
+)
+
+# Customise the release depending on the branch we are releasing from
+case "${TRAVIS_BRANCH}" in
+  "release/latest")   lernaargs+=(--npm-tag=latest) ;;
+  "release/next")     lernaargs+=(--npm-tag=next --canary) ;;
+esac
+
+# Publish!
+npx lerna publish "${lernaargs[@]}"
