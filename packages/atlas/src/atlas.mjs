@@ -3,6 +3,7 @@
 
 import path from 'path'
 import Ajv from 'ajv'
+import ajvKeywords from 'ajv-keywords'
 import pino from 'pino'
 import {
   defaultsDeep as defaults,
@@ -277,6 +278,7 @@ class Atlas {
     this.log = this::mklog(this.config.atlas.log)
     // Ajv validator ✓
     this.validator = new Ajv(this.config.atlas.validator)
+    ajvKeywords(this.validator)
   }
 
   /**
