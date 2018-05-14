@@ -12,16 +12,19 @@ class Objection extends Service {
         type: 'object',
         required: ['client'],
         properties: {
-          // @TODO: Allow functions as valid client
           client: {
-            type: 'string',
-            enum: [
-              'mariadb',
-              'mariasql',
-              'pg',
-              'postgresql',
-              'sqlite',
-            ],
+            oneOf: [{
+              type: 'string',
+              enum: [
+                'mariadb',
+                'mariasql',
+                'pg',
+                'postgresql',
+                'sqlite',
+              ],
+            }, {
+              typeof: 'function',
+            }],
           },
         },
       },
