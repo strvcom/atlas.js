@@ -11,7 +11,7 @@ FCOMPILE :=
 FLINT :=
 FINSTALL :=
 
-SRCFILES := $(shell find . -name '*.mjs' -not -path '*/node_modules/*' -not -path './.git/*')
+SRCFILES := $(shell find . -name '*.mjs' -not -path '*/node_modules/*' -not -path './.git/*' -not -path '**/generators/**/templates/*')
 OUTFILES := $(patsubst %.mjs, %.js, $(SRCFILES))
 
 # Do this when make is invoked without targets
@@ -24,7 +24,7 @@ node_modules: package.json
 	npm install $(FINSTALL) && lerna bootstrap && touch node_modules
 
 # Default compilation target for all source files
-%.js: %.mjs node_modules .babelrc.js
+%.js: %.mjs node_modules babel.config.js
 	babel $< --out-file $@ $(FCOMPILE)
 
 coverage/lcov.info: $(OUTFILES)
