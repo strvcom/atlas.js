@@ -2,7 +2,7 @@
 
 ## 1.x -> 2.x
 
-**Major hooks improvements**
+### Major hooks improvements
 
 - All hooks must now declare exactly which component they want to to observe, via a `static observes = 'component:name'`
   > This static `observes` property should be a string and it should be a component's name. When that component's state changes or when that component dispatches a custom event, this hook will receive that event. To observe changes in the state of Atlas itself, set this property to `atlas`.
@@ -24,6 +24,38 @@
   > - Move on to the next service
   >
   > This behaviour should avoid lots of strange errors which used to occur in the 1.x release line during failed start/stop sequence. Atlas itself should no longer hang the Node.js process when the startup or shutdown sequence fails due to one component failing to start or stop (unless the failing component already has some active listeners registered).
+
+### Component configuration changes
+
+- The components' static `defaults` property is deprecated and replaced with static `config` property, which is a JSON schema definition of the configuration expected by the component
+  > This change was necessary to provide feedback when you misplace some configuration options for a component, or when the configuration is invalid for any reason. Previously this was not possible because Atlas did not know what exactly a component needed in their configuration.
+  > Note that you do not need to update your applications' configuration, only the components' definition.
+  >
+  > #### Before
+  >
+  > ```js
+  > class MyComponent extends Component {
+  >   static defaults = { value: true }
+  > }
+  > ```
+  >
+  > #### After
+  >
+  > ```js
+  > class MyComponent extends Component {
+  >   // JSON Schema definition for your component's expected configuration
+  >   static config = {
+  >     type: 'object',
+  >     additionalProperties: false,
+  >     properties: {
+  >       value: {
+  >         type: 'boolean',
+  >         default: true
+  >       }
+  >     }
+  >   }
+  > }
+  > ```
 
 ## 0.x -> 1.x
 
