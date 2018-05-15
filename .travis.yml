@@ -6,9 +6,6 @@ node_js:
   - '8.3'
   - '8'
   - '10'
-matrix:
-  allow_failures:
-    - node_js: '10'
 
 cache:
   directories:
@@ -43,4 +40,4 @@ deploy:
     repo: strvcom/atlas.js
     all_branches: true
     condition: $TRAVIS_BRANCH =~ ^release\/.{1,}$
-    node_js: '8'
+    node_js: '10'

@@ -6,7 +6,7 @@
   "bugs": "https://github.com/strvcom/atlas.js/issues",
   "contributors": [],
   "engines": {
-    "node": "^8.3.0",
+    "node": ">=8.3.0",
     "npm": "^5.3.0"
   },
   "homepage": "https://github.com/strvcom/atlas.js/tree/master/packages/errors",
