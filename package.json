@@ -11,7 +11,7 @@
     "@babel/plugin-proposal-class-properties": "7.0.0-beta.44",
     "@babel/plugin-proposal-function-bind": "7.0.0-beta.44",
     "@babel/plugin-syntax-object-rest-spread": "7.0.0-beta.44",
-    "@babel/plugin-transform-modules-commonjs": "7.0.0-beta.44",
+    "@babel/plugin-transform-modules-commonjs": "7.0.0-beta.47",
     "@strv/eslint-config-javascript": "^7.11.0",
     "babel-eslint": "^8.2.0",
     "chai": "^4.1.0",
