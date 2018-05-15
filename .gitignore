@@ -10,6 +10,7 @@ local.mk
 # Compiled files
 **/*.js
 **/*.js.map
+!babel.config.js
 !**/.*.js
 # Fix for Atom bug - the above re-inclusion of .*.js files incorrectly re-adds also any *.test.js
 # files. Git itself does not need this.
