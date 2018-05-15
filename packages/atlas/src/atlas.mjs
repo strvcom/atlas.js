@@ -40,7 +40,9 @@ class Atlas {
     validator: {
       allErrors: true,
       useDefaults: true,
-      coerceTypes: true,
+      keywords: [
+        'typeof',
+      ],
     },
   }
 
@@ -278,7 +280,7 @@ class Atlas {
     this.log = this::mklog(this.config.atlas.log)
     // Ajv validator ✓
     this.validator = new Ajv(this.config.atlas.validator)
-    ajvKeywords(this.validator)
+    ajvKeywords(this.validator, this.config.atlas.validator.keywords)
   }
 
   /**
