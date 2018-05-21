@@ -3,11 +3,16 @@ node_modules
 
 # Local configuration
 .env
-src/config/local.es
+src/config/local.mjs
 
-# Generated files
-docs
-coverage
+# Compiled files
+**/*.js
+**/*.js.map
+!babel.config.js
+!**/.*.js
+# Fix for Atom bug - the above re-inclusion of .*.js files incorrectly re-adds also any *.test.js
+# files. Git itself does not need this.
+**/*.test.js
 
 # Generated files
 .nvmrc
@@ -16,6 +21,7 @@ coverage
 gh-pages
 
 # Garbage
+*.lerna_backup
 *.log
 *~
 *#

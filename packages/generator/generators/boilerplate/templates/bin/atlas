@@ -1,0 +1,21 @@
+#!/bin/sh
+
+# This is a wrapper CLI around the Atlas.js CLI utility. Its sole purpose is to prepare the runtime
+# for local development by:
+#
+# - compiling all sources
+# - providing an opportunity to load dotenv/config while running locally
+# - otherwise modify the runtime in any way or perform other tasks which are only relevant on local
+#   development (ie. start some docker containers with database etc.)
+#
+# ⚠️ This CLI should NOT be used on actual deployments - to start Atlas.js there, just run the Atlas
+# CLI utility directly: node_modules/.bin/atlas start
+
+# Ie., to load a module on startup, you can do the following:
+# export NODE_OPTIONS="--trace-deprecation --trace-warnings --require dotenv/config"
+
+# Compile all JavaScripts
+make compile
+
+# Release the Kraken! 🐙
+exec "$(pwd)/node_modules/.bin/atlas" "$@"

@@ -1,6 +1,9 @@
 import Generator from 'yeoman-generator'
 
-const templates = [
+const files = [
+  'makefile',
+  'babel.config.js',
+  'bin/atlas',
   'src/index.mjs',
   'src/actions.mjs',
   'src/aliases.mjs',
@@ -17,29 +20,11 @@ const templates = [
 ]
 
 class Boilerplate extends Generator {
-  async prompting() {
-    this.options = {
-      ...this.options,
-      ...await this.prompt({
-        type: 'input',
-        name: 'extension',
-        default: '.mjs',
-        message: 'File extension to use for project files:',
-      }),
-    }
-  }
-
   writing() {
-    const files = templates
-      .map(file => ({
-        source: file,
-        target: file.replace(/\.mjs$/, this.options.extension),
-      }))
-
-    for (const template of files) {
+    for (const file of files) {
       this.fs.copy(
-        this.templatePath(template.source),
-        this.destinationPath(template.target),
+        this.templatePath(file),
+        this.destinationPath(file),
       )
     }
   }
