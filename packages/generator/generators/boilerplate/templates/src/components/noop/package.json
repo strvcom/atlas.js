@@ -3,7 +3,7 @@
   "description": "A noop component for Atlas.js",
   "version": "1.0.0",
   "dependencies": {
-    "@atlas.js/service": "^.0.0.4"
+    "@atlas.js/service": "^2.0.0"
   },
   "devDependencies": {},
   "keywords": [],
