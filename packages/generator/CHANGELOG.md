@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.0.0"></a>
+# 2.0.0 (2018-05-22)
+
+
+### Bug Fixes
+
+* **generator:** actually install the noop service into the project ([fa7a9d4](https://github.com/strvcom/atlas.js/commit/fa7a9d4))
+* **generator:** use correct import path in sample noop service ([7b44165](https://github.com/strvcom/atlas.js/commit/7b44165))
+
+
+### Features
+
+* node.js 10 is now supported release line ([521ac2c](https://github.com/strvcom/atlas.js/commit/521ac2c))
+* **generator:** bump [@atlas](https://github.com/atlas).js/service to v2 in the sample noop service ([e6b9568](https://github.com/strvcom/atlas.js/commit/e6b9568))
+* **generator:** overhaul Yeoman generator to spit out workable project ([1bf749c](https://github.com/strvcom/atlas.js/commit/1bf749c))
+
+
+### BREAKING CHANGES
+
+* **generator:** 
+
+
+
+
 <a name="1.0.0"></a>
 # [1.0.0](https://github.com/strvcom/atlas.js/compare/@atlas.js/generator-atlas@0.2.0...@atlas.js/generator-atlas@1.0.0) (2017-10-24)
 

@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.0.0"></a>
+# 2.0.0 (2018-05-22)
+
+
+### Features
+
+* drop components's static defaults, use static config (JSON schema) ([5c7d5ce](https://github.com/strvcom/atlas.js/commit/5c7d5ce))
+* **objection:** client can now also be a function ([b27aee2](https://github.com/strvcom/atlas.js/commit/b27aee2))
+* **objection:** Eagerly fetch table metadata on startup ([8a879c3](https://github.com/strvcom/atlas.js/commit/8a879c3))
+* node.js 10 is now supported release line ([521ac2c](https://github.com/strvcom/atlas.js/commit/521ac2c))
+
+
+### BREAKING CHANGES
+
+* 
+
+
+
+
 <a name="1.1.1"></a>
 ## [1.1.1](https://github.com/strvcom/atlas.js/compare/@atlas.js/objection@1.1.0...@atlas.js/objection@1.1.1) (2018-03-07)
 

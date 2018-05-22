@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.0.0"></a>
+# 2.0.0 (2018-05-22)
+
+
+### Features
+
+* drop components's static defaults, use static config (JSON schema) ([5c7d5ce](https://github.com/strvcom/atlas.js/commit/5c7d5ce))
+* node.js 10 is now supported release line ([521ac2c](https://github.com/strvcom/atlas.js/commit/521ac2c))
+
+
+### BREAKING CHANGES
+
+* 
+
+
+
+
 <a name="1.0.2"></a>
 ## [1.0.2](https://github.com/strvcom/atlas.js/compare/@atlas.js/aws@1.0.1...@atlas.js/aws@1.0.2) (2017-12-13)
 

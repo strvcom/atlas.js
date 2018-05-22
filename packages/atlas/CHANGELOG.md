@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.0.0"></a>
+# 2.0.0 (2018-05-22)
+
+
+### Bug Fixes
+
+* **atlas:** avoid Ajv warning due to incompatible configuration ([4d1592d](https://github.com/strvcom/atlas.js/commit/4d1592d))
+
+
+### Features
+
+* **atlas:** allow components to define their config schema 💪 ([ecd54d8](https://github.com/strvcom/atlas.js/commit/ecd54d8)), closes [#28](https://github.com/strvcom/atlas.js/issues/28)
+* **atlas:** Allow components to emit custom events 💪 ([ba02799](https://github.com/strvcom/atlas.js/commit/ba02799)), closes [#34](https://github.com/strvcom/atlas.js/issues/34)
+* **atlas:** allow JSON schemas to use ajv-keywords ([70b42f2](https://github.com/strvcom/atlas.js/commit/70b42f2))
+* **atlas:** Implement Atlas.bootstrap() 🚀 ([d6f1101](https://github.com/strvcom/atlas.js/commit/d6f1101))
+* **atlas:** Legendary: overhaul Hooks ([7710edd](https://github.com/strvcom/atlas.js/commit/7710edd)), closes [#35](https://github.com/strvcom/atlas.js/issues/35) [#34](https://github.com/strvcom/atlas.js/issues/34)
+* **atlas:** Log when a hook receives event it cannot handle ([0939822](https://github.com/strvcom/atlas.js/commit/0939822)), closes [#34](https://github.com/strvcom/atlas.js/issues/34)
+* node.js 10 is now supported release line ([521ac2c](https://github.com/strvcom/atlas.js/commit/521ac2c))
+
+
+### BREAKING CHANGES
+
+* **atlas:** 
+
+
+
+
 <a name="1.3.1"></a>
 ## [1.3.1](https://github.com/strvcom/atlas.js/compare/@atlas.js/atlas@1.3.0...@atlas.js/atlas@1.3.1) (2018-02-12)
 

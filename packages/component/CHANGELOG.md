@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.0.0"></a>
+# 2.0.0 (2018-05-22)
+
+
+### Features
+
+* **atlas:** allow components to define their config schema 💪 ([ecd54d8](https://github.com/strvcom/atlas.js/commit/ecd54d8)), closes [#28](https://github.com/strvcom/atlas.js/issues/28)
+* **atlas:** Legendary: overhaul Hooks ([7710edd](https://github.com/strvcom/atlas.js/commit/7710edd)), closes [#35](https://github.com/strvcom/atlas.js/issues/35) [#34](https://github.com/strvcom/atlas.js/issues/34)
+* **component:** Drop support for the old resolve constructor param ([394f65d](https://github.com/strvcom/atlas.js/commit/394f65d))
+* node.js 10 is now supported release line ([521ac2c](https://github.com/strvcom/atlas.js/commit/521ac2c))
+
+
+### BREAKING CHANGES
+
+* **atlas:** 
+* **component:** 
+
+
+
+
 <a name="1.1.0"></a>
 # [1.1.0](https://github.com/strvcom/atlas.js/compare/@atlas.js/component@1.0.1...@atlas.js/component@1.1.0) (2017-12-13)
 

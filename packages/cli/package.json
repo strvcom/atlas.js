@@ -1,7 +1,7 @@
 {
   "name": "@atlas.js/cli",
   "description": "CLI interface for @atlas.js",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "author": "Robert Rossmann <robert.rossmann@strv.com>",
   "bin": {
     "atlas": "src/bin/atlas.js"
@@ -9,7 +9,7 @@
   "bugs": "https://github.com/strvcom/atlas.js/issues",
   "contributors": [],
   "dependencies": {
-    "@atlas.js/repl": "^1.0.2",
+    "@atlas.js/repl": "^2.0.0",
     "caporal": "^0.10.0",
     "source-map-support": "^0.5.0"
   },

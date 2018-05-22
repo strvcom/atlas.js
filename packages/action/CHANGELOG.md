@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.1.0"></a>
+# 1.1.0 (2018-05-22)
+
+
+### Features
+
+* node.js 10 is now supported release line ([521ac2c](https://github.com/strvcom/atlas.js/commit/521ac2c))
+
+
+
+
 <a name="1.0.2"></a>
 ## [1.0.2](https://github.com/strvcom/atlas.js/compare/@atlas.js/action@1.0.1...@atlas.js/action@1.0.2) (2017-12-13)
 
