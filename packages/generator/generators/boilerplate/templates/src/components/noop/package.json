@@ -1,5 +1,5 @@
 {
-  "name": "noop",
+  "name": "@app/noop",
   "description": "A noop component for Atlas.js",
   "version": "1.0.0",
   "dependencies": {

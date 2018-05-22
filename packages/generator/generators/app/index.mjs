@@ -36,7 +36,10 @@ class Atlas extends Generator {
   }
 
   install() {
-    this.npmInstall('@atlas.js/atlas', { save: true })
+    this.npmInstall([
+      '@atlas.js/atlas',
+      './src/components/noop',
+    ], { save: true })
     this.npmInstall([
       '@atlas.js/cli',
       '@babel/core',

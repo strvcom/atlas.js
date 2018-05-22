@@ -12,5 +12,9 @@
  * }
  * ```
  */
+
+import { Service as noop } from '@app/noop'
+
 export {
+  noop,
 }
