@@ -26,7 +26,7 @@ lernaargs=(
 # Customise the release depending on the branch we are releasing from
 case "${TRAVIS_BRANCH}" in
   "release/latest")   lernaargs+=(--npm-tag=latest) ;;
-  "release/next")     lernaargs+=(--npm-tag=next --canary) ;;
+  "release/next")     lernaargs+=(--npm-tag=next) ;;
 esac
 
 # Publish!
