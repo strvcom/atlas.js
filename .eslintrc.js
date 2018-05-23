@@ -16,8 +16,7 @@ module.exports = {
 
   overrides: [{
     files: [
-      'test/**',
-      'packages/*/test/**/*.test.mjs',
+      '**/*.test.mjs',
     ],
 
     env: {
@@ -27,22 +26,6 @@ module.exports = {
     globals: {
       sinon: true,
       expect: true,
-    },
-
-    rules: {
-      'import/no-extraneous-dependencies': ['error', {
-        packageDir: ['.', __dirname],
-      }],
-    },
-  }, {
-    files: [
-      'packages/generator/generators/boilerplate/templates/src/**/*.mjs',
-    ],
-
-    rules: {
-      'import/no-extraneous-dependencies': ['error', {
-        packageDir: ['.', __dirname],
-      }],
     },
   }, {
     files: [
