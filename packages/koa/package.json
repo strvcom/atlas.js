@@ -10,7 +10,7 @@
     "@atlas.js/hook": "^2.0.0",
     "@atlas.js/service": "^1.1.0",
     "koa": "^2.3.0",
-    "koa-websocket": "^4.1.0"
+    "koa-websocket": "^5.0.1"
   },
   "devDependencies": {
     "@atlas.js/atlas": "^2.0.0"
