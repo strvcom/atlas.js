@@ -1,0 +1,32 @@
+{
+  "name": "@atlas.js/queue",
+  "description": "A Redis-backed queue service built on top of bee-queue for @atlas.js",
+  "version": "0.0.1",
+  "author": "Robert Rossmann <robert.rossmann@strv.com>",
+  "bugs": "https://github.com/strvcom/atlas.js/issues",
+  "contributors": [],
+  "dependencies": {
+    "@atlas.js/service": "^1.1.0",
+    "bee-queue": "^1.2.2",
+    "lodash": "^4.17.10",
+    "redis": "^2.8.0"
+  },
+  "devDependencies": {
+    "@atlas.js/atlas": "^2.0.0"
+  },
+  "engines": {
+    "node": ">=8.3.0",
+    "npm": "^5.3.0"
+  },
+  "homepage": "https://github.com/strvcom/atlas.js/tree/master/packages/queue",
+  "keywords": [],
+  "license": "BSD-3-Clause",
+  "main": "src",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/strvcom/atlas.js.git"
+  }
+}
