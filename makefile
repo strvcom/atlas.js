@@ -58,10 +58,6 @@ test-watch: force compile
 docs: compile
 	esdoc
 
-clean:
-	rm -rf {.nyc_output,coverage,docs}
-	find . -name '*.log' -print -delete
-
 outdated:
 	npm outdated || true
 	lerna exec "npm outdated || true"
@@ -70,9 +66,15 @@ unlock: pristine
 	rm package-lock.json packages/*/package-lock.json
 	touch package.json
 
-# Delete all the .js and .js.map files (excluding any potential dotfiles with .js extension)
+clean:
+	rm -rf {.nyc_output,coverage,docs}
+	find . -name '*.log' -print -delete
+
 distclean: clean
-	rm -rf $(OUTFILES)
+	find . -name "*.js" \
+		-not -path "*/node_modules/*" -not -path "*/.git/*" \
+		-not -name ".*.js" -not -name "babel.config.js" \
+		-print -delete
 
 pristine: distclean
 	rm -rf node_modules packages/*/node_modules
