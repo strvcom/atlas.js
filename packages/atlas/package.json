@@ -12,7 +12,6 @@
     "@atlas.js/service": "^1.1.0",
     "ajv": "^6.5.0",
     "ajv-keywords": "^3.2.0",
-    "local-scope": "^1.2.0",
     "lodash": "^4.17.4",
     "pino": "^4.7.0"
   },

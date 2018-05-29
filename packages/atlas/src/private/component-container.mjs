@@ -1,4 +1,3 @@
-import hidden from 'local-scope/create'
 import {
   FrameworkError,
   ValidationError,
@@ -20,6 +19,8 @@ class ComponentContainer {
    * @type    {Boolean}
    */
   started = false
+
+  #observers = null
 
   /**
    * Create new container for a component
@@ -92,13 +93,11 @@ class ComponentContainer {
       atlas,
       config,
       log: atlas.log.child({ [this.type]: this.alias }),
-      component: resolve,
+      component: this::resolve,
       dispatch: observers::dispatch,
     })
 
-    // Save the aliases for this component
-    this.component::hidden().aliases = this.aliases
-    this.component::hidden().observers = observers
+    this.#observers = observers
   }
 
   /**
@@ -139,16 +138,14 @@ class ComponentContainer {
     }
 
     this.component.log.trace('start:before')
-    this::mkobservers({ hooks: opts.hooks })
-
-    const observers = this.component::hidden().observers
+    this::mkobservers(this.#observers, { hooks: opts.hooks })
 
     switch (this.type) {
       case 'service':
         await (async () => {
-          await observers::dispatch('beforeStart', opts.instance)
+          await this.#observers::dispatch('beforeStart', opts.instance)
           await this.component.start(opts.instance)
-          await observers::dispatch('afterStart', opts.instance)
+          await this.#observers::dispatch('afterStart', opts.instance)
         })()
           .catch(err => {
             this.component.log.error({ err }, 'start:failure')
@@ -179,14 +176,12 @@ class ComponentContainer {
 
     this.component.log.trace('stop:before')
 
-    const observers = this.component::hidden().observers
-
     switch (this.type) {
       case 'service':
         await (async () => {
-          await observers::dispatch('beforeStop', opts.instance)
+          await this.#observers::dispatch('beforeStop', opts.instance)
           await this.component.stop(opts.instance)
-          await observers::dispatch('afterStop', null)
+          await this.#observers::dispatch('afterStop', null)
         })()
           .catch(err => {
             this.component.log.error({ err }, 'stop:failure')
@@ -209,23 +204,24 @@ class ComponentContainer {
  * Find all hooks which want to observe this component's events
  *
  * @private
+ * @param     {Map}         observers     The observers to check
  * @param     {Object}      opts          Function parameters
  * @param     {Map}         opts.hooks    All hooks known to Atlas
  * @return    {void}
  */
-function mkobservers({ hooks }) {
+function mkobservers(observers, { hooks }) {
   for (const [alias, container] of hooks) {
     const target = (container.aliases || {})[container.Component.observes]
 
     if (this.alias === target) {
-      this.component::hidden().observers.set(alias, container)
+      observers.set(alias, container)
     }
   }
 }
 
 
 function resolve(name) {
-  const resolved = this::hidden().aliases[name]
+  const resolved = this.aliases[name]
 
   if (!resolved) {
     throw new FrameworkError(`Alias for ${name} not defined`)
@@ -233,7 +229,8 @@ function resolve(name) {
 
   const [type] = name.split(':')
   // Use a plural form of the component type, ie., action -> actions, service -> services etc.
-  const component = this.atlas[`${type}s`][resolved]
+  // @TODO: This suuuucks!
+  const component = this.component.atlas[`${type}s`][resolved]
 
   if (!component) {
     throw new FrameworkError(`Unable to find ${type}:${resolved} aliased as ${name}`)

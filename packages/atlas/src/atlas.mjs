@@ -9,7 +9,6 @@ import {
   defaultsDeep as defaults,
   isPlainObject,
 } from 'lodash'
-import hidden from 'local-scope/create'
 import { FrameworkError } from '@atlas.js/errors'
 import {
   expose,
@@ -173,7 +172,7 @@ class Atlas {
    * @return    {String}
    */
   get env() {
-    return this::hidden().env
+    return this.#env
   }
 
   /**
@@ -185,7 +184,7 @@ class Atlas {
    * @return    {String}
    */
   get root() {
-    return this::hidden().root
+    return this.#root
   }
 
   /**
@@ -195,7 +194,7 @@ class Atlas {
    * @return    {boolean}
    */
   get prepared() {
-    return this::hidden().prepared
+    return this.#prepared
   }
 
   /**
@@ -205,7 +204,7 @@ class Atlas {
    * @return    {boolean}
    */
   get started() {
-    return this::hidden().started
+    return this.#started
   }
 
   /**
@@ -229,6 +228,18 @@ class Atlas {
    */
   actions = {}
 
+  #env = null
+  #root = null
+  #prepared = false
+  #started = false
+  #catalog = {
+    services: new Map(),
+    hooks: new Map(),
+    actions: new Map(),
+  }
+
+  #observers = new Map()
+
   /**
    * An instance of Ajv used to validate component configuration
    * @type    {Ajv}
@@ -250,19 +261,11 @@ class Atlas {
   constructor(options = {}) {
     // Initialise private stuff
     // eslint-disable-next-line no-process-env
-    this::hidden().env = options.env || process.env.NODE_ENV
-    this::hidden().root = options.root
-    this::hidden().prepared = false
-    this::hidden().started = false
-    this::hidden().catalog = {
-      services: new Map(),
-      hooks: new Map(),
-      actions: new Map(),
-    }
-    this::hidden().observers = new Map()
+    this.#env = options.env || process.env.NODE_ENV
+    this.#root = options.root
 
     // Safety checks
-    if (!this.env) {
+    if (!this.#env) {
       throw new FrameworkError('env not specified and NODE_ENV was not set')
     }
 
@@ -328,7 +331,7 @@ class Atlas {
       alias,
       Component,
       aliases: opts.aliases,
-    }, this::hidden().catalog.services)
+    }, this.#catalog.services)
 
     return this
   }
@@ -349,7 +352,7 @@ class Atlas {
       alias,
       Component,
       aliases: opts.aliases,
-    }, this::hidden().catalog.hooks)
+    }, this.#catalog.hooks)
 
     return this
   }
@@ -371,7 +374,7 @@ class Atlas {
       alias,
       Component,
       aliases: opts.aliases,
-    }, this::hidden().catalog.actions)
+    }, this.#catalog.actions)
 
     return this
   }
@@ -390,8 +393,7 @@ class Atlas {
       return this
     }
 
-    const { services, actions, hooks } = this::hidden().catalog
-    const observers = this::hidden().observers
+    const { services, actions, hooks } = this.#catalog
 
     for (const [alias, container] of hooks) {
       if (!container.Component.observes) {
@@ -400,7 +402,7 @@ class Atlas {
 
       // Prepare observers of Atlas itself
       if (container.Component.observes === 'atlas') {
-        observers.set(alias, container)
+        this.#observers.set(alias, container)
       }
     }
 
@@ -416,8 +418,8 @@ class Atlas {
     await Promise.all(Array.from(services).map(async ([alias, container]) =>
       this::expose('services', alias, await container.prepare({ hooks }))))
 
-    this::hidden().prepared = true
-    await observers::dispatch('afterPrepare', this)
+    this.#prepared = true
+    await this.#observers::dispatch('afterPrepare', this)
 
     return this
   }
@@ -428,11 +430,10 @@ class Atlas {
    * @return    {Promise<this>}
    */
   async start() {
-    const { actions, services, hooks } = this::hidden().catalog
-    const observers = this::hidden().observers
+    const { actions, services, hooks } = this.#catalog
 
     await this.prepare()
-    await observers::dispatch('beforeStart', this)
+    await this.#observers::dispatch('beforeStart', this)
 
     await Promise.all([
       ...Array.from(hooks),
@@ -457,8 +458,8 @@ class Atlas {
       }
     }
 
-    this::hidden().started = true
-    await observers::dispatch('afterStart', this)
+    this.#started = true
+    await this.#observers::dispatch('afterStart', this)
     this.log.info('atlas:ready')
 
     return this
@@ -473,10 +474,9 @@ class Atlas {
    * @return    {Promise<this>}
    */
   async stop() {
-    const { services, actions, hooks } = this::hidden().catalog
-    const observers = this::hidden().observers
+    const { services, actions, hooks } = this.#catalog
 
-    await observers::dispatch('beforeStop', this)
+    await this.#observers::dispatch('beforeStop', this)
 
     await Promise.all([
       ...Array.from(hooks),
@@ -504,8 +504,8 @@ class Atlas {
       delete this.actions[alias]
     }
 
-    this::hidden().started = false
-    this::hidden().prepared = false
+    this.#started = false
+    this.#prepared = false
 
     await hooks::dispatch('afterStop', null)
     this.log.info('atlas:stopped')
