@@ -13,7 +13,7 @@
     "@babel/plugin-syntax-object-rest-spread": "^7.0.0-beta.49",
     "@babel/plugin-transform-modules-commonjs": "^7.0.0-beta.49",
     "@commitlint/cli": "^6.2.0",
-    "@commitlint/config-conventional": "^6.1.3",
+    "@commitlint/config-conventional": "^7.0.0",
     "@strv/eslint-config-javascript": "^7.11.0",
     "babel-eslint": "^8.2.0",
     "chai": "^4.1.0",
