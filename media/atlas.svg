@@ -1,17 +1,31 @@
-<svg width="52px" height="61px" viewBox="0 0 52 61" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <defs></defs>
-    <g id="Final" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="03-1-1-Services" transform="translate(-293.000000, -114.000000)" stroke-width="2">
-            <g id="01" transform="translate(130.000000, 104.000000)">
-                <g id="Icon-Atlas" transform="translate(150.000000, 0.000000)">
-                    <g id="Lines" transform="translate(1.000000, 11.000000)">
-                        <circle id="Oval-3" stroke="#EF0D33" cx="42" cy="21" r="20"></circle>
-                        <path d="M46.2469517,2.25304833 C30.2306939,2.25304833 17.2469517,15.2367906 17.2469517,31.2530483 C17.2469517,47.2693061 30.2306939,60.2530483 46.2469517,60.2530483" id="Oval" stroke="#FFFFFF" stroke-linecap="round" transform="translate(31.746952, 31.253048) rotate(-45.000000) translate(-31.746952, -31.253048) "></path>
-                        <path d="M41.9987793,50 L41.9987793,59" id="Path-2" stroke="#FFFFFF"></path>
-                        <path d="M53.9987793,59 L29.9987793,59" id="Path-2" stroke="#FFFFFF" stroke-linecap="round"></path>
-                    </g>
-                </g>
-            </g>
-        </g>
-    </g>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="500px" height="500px" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">
+ <defs>
+  <path id="shape-path" title="Oval-3" d="M 434.615356445312 184.50830078125 C 434.615356445312 269.614135742188 365.735717773438 338.606567382812 280.769165039062 338.606567382812 C 195.801635742188 338.606567382812 126.922973632812 269.614135742188 126.922973632812 184.50830078125 C 126.922973632812 99.4014892578125 195.801635742188 30.409912109375 280.769165039062 30.409912109375 C 365.735717773438 30.409912109375 434.615356445312 99.4014892578125 434.615356445312 184.50830078125 Z"/>
+ </defs>
+ <defs>
+  <path id="stroke-path" d="M 434.615356445312 184.50830078125 C 434.615356445312 269.614135742188 365.735717773438 338.606567382812 280.769165039062 338.606567382812 C 195.801635742188 338.606567382812 126.922973632812 269.614135742188 126.922973632812 184.50830078125 C 126.922973632812 99.4014892578125 195.801635742188 30.409912109375 280.769165039062 30.409912109375 C 365.735717773438 30.409912109375 434.615356445312 99.4014892578125 434.615356445312 184.50830078125 Z"/>
+ </defs>
+ <use id="oval-3" stroke="#ef0d33" stroke-opacity="1.0" stroke-linecap="round" fill="none" stroke-width="15.3972257250946" xlink:href="#stroke-path"/>
+ <defs>
+  <path id="shape-path-1" title="Oval" d="M 123.028930664062 26.509521484375 C 35.912109375 113.770141601562 35.9130859375 255.245483398438 123.028930664062 342.505126953125 C 210.146850585938 429.764892578125 351.3896484375 429.764892578125 438.507446289062 342.505126953125"/>
+ </defs>
+ <defs>
+  <path id="stroke-path-1" d="M 123.028930664062 26.509521484375 C 35.912109375 113.770141601562 35.9130859375 255.245483398438 123.028930664062 342.505126953125 C 210.146850585938 429.764892578125 351.3896484375 429.764892578125 438.507446289062 342.505126953125"/>
+ </defs>
+ <use id="oval" stroke="#ffffff" stroke-opacity="1.0" stroke-linecap="round" fill="none" stroke-width="15.3972257250946" xlink:href="#stroke-path-1"/>
+ <defs>
+  <path id="shape-path-2" title="Path-2" d="M 280.759765625 407.950927734375 L 280.759765625 477.295166015625"/>
+ </defs>
+ <defs>
+  <path id="stroke-path-2" d="M 280.759765625 407.950927734375 L 280.759765625 477.295166015625"/>
+ </defs>
+ <use id="path-2" stroke="#ffffff" stroke-opacity="1.0" stroke-linecap="round" fill="none" stroke-width="6.62295081967213" xlink:href="#stroke-path-2"/>
+ <defs>
+  <path id="shape-path-3" title="Path-2" d="M 373.067504882812 477.295166015625 L 188.4521484375 477.295166015625"/>
+ </defs>
+ <defs>
+  <path id="stroke-path-3" d="M 373.067504882812 477.295166015625 L 188.4521484375 477.295166015625"/>
+ </defs>
+ <use id="path-2-1" stroke="#ffffff" stroke-opacity="1.0" stroke-linecap="round" fill="none" stroke-width="6.61538461538461" xlink:href="#stroke-path-3"/>
 </svg>

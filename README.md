@@ -148,7 +148,7 @@ So you have an app with a Koa service configured and running... Great! But you p
 
 See the [LICENSE](LICENSE) file for information.
 
-[atlas-logo]: https://user-images.githubusercontent.com/3058150/39867067-76068d6e-5453-11e8-862b-968ebb8c1024.png
+[atlas-logo]: https://user-images.githubusercontent.com/3058150/40908805-197d3c3e-67e8-11e8-97a8-b275edc325b9.png
 [travis-badge]: https://img.shields.io/travis/strvcom/atlas.js.svg?style=flat-square
 [travis-url]: https://travis-ci.org/strvcom/atlas.js
 [make-badge]: https://img.shields.io/badge/Built%20with-GNU%20Make-brightgreen.svg?style=flat-square
