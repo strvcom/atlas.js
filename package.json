@@ -14,7 +14,7 @@
     "@babel/plugin-transform-modules-commonjs": "^7.0.0-beta.49",
     "@commitlint/cli": "^7.0.0",
     "@commitlint/config-conventional": "^7.0.0",
-    "@strv/eslint-config-javascript": "^7.11.0",
+    "@strv/eslint-config-javascript": "^8.0.0",
     "babel-eslint": "^8.2.0",
     "chai": "^4.1.0",
     "chai-as-promised": "^7.1.1",
