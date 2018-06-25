@@ -3,5 +3,5 @@
 # Validate commit message to adhere to conventional-commits standard
 # This is necessary to facilitate automated package publishing.
 
-# This utility's configuration resides in .vcmrc file.
+# This utility's configuration resides in .commitlintrc.js file.
 echo "$(<"$1")" | ./node_modules/.bin/commitlint
