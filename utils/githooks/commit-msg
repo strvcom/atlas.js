@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 # Validate commit message to adhere to conventional-commits standard
 # This is necessary to facilitate automated package publishing.
