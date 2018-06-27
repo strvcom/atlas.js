@@ -14,6 +14,5 @@ module.exports = {
   ],
   ignore: [
     '**/node_modules',
-    '**/generators/**/templates/*',
   ],
 }

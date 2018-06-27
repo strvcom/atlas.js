@@ -45,8 +45,5 @@
   "repository": {
     "type": "git",
     "url": "git://github.com/strvcom/atlas.js.git"
-  },
-  "scripts": {
-    "prepare": "utils/install-githooks.sh"
   }
 }

@@ -11,11 +11,11 @@ FCOMPILE :=
 FLINT :=
 FINSTALL :=
 
-SRCFILES := $(shell find . -name '*.mjs' -not -path '*/node_modules/*' -not -path './.git/*' -not -path '**/generators/**/templates/*')
-OUTFILES := $(patsubst %.mjs, %.js, $(SRCFILES))
+SRCFILES := $(patsubst %.mjs, %.js, $(shell utils/make/projectfiles.sh mjs))
+GITFILES := $(patsubst utils/githooks/%, .git/hooks/%, $(wildcard utils/githooks/*))
 
 # Do this when make is invoked without targets
-all: precompile
+all: precompile githooks
 
 
 # GENERIC TARGETS
@@ -27,20 +27,26 @@ node_modules: package.json
 %.js: %.mjs node_modules babel.config.js
 	babel $< --out-file $@ $(FCOMPILE)
 
-coverage/lcov.info: $(OUTFILES)
+# Default target for all possible git hooks
+.git/hooks/%: utils/githooks/%
+	cp $< $@
+
+coverage/lcov.info: $(SRCFILES)
 	nyc mocha $(FTEST)
 
 
 # TASK DEFINITIONS
 
-compile: $(OUTFILES)
+githooks: $(GITFILES)
+
+compile: $(SRCFILES)
 
 coverage: coverage/lcov.info
 
 precompile: install
 	babel . --extensions .mjs --out-dir . $(FCOMPILE)
 
-install: node_modules
+install: node_modules $(GITFILES)
 
 lint: force install
 	eslint --ext .mjs --report-unused-disable-directives $(FLINT) .
@@ -71,10 +77,7 @@ clean:
 	find . -name '*.log' -print -delete
 
 distclean: clean
-	find . -name "*.js" \
-		-not -path "*/node_modules/*" -not -path "*/.git/*" \
-		-not -name ".*.js" -not -name "babel.config.js" \
-		-print -delete
+	rm $(shell ./utils/make/projectfiles.sh js)
 
 pristine: distclean
 	rm -rf node_modules packages/*/node_modules
