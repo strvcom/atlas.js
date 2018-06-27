@@ -20,6 +20,8 @@ class ComponentContainer {
    */
   started = false
 
+  instance = null
+
   #observers = new Map()
 
   /**
@@ -107,18 +109,19 @@ class ComponentContainer {
 
     switch (this.type) {
       case 'service': {
-        const instance = await this.component.prepare()
+        this.instance = await this.component.prepare()
         this.component.log.trace('prepare:after')
-
-        return instance
+        break
       }
       case 'hook':
       case 'action':
       default:
         this.component.log.trace('prepare:after')
-
-        return this.component
+        this.instance = this.component
+        break
     }
+
+    return this.instance
   }
 
   /**
@@ -126,7 +129,6 @@ class ComponentContainer {
    *
    * @param     {Object}    opts={}         Additional options
    * @param     {Map}       opts.hooks      Hooks available in the application
-   * @param     {any}       opts.instance   The service's exposed instance
    * @return    {Promise<this.component>}
    */
   async start(opts = {}) {
@@ -140,9 +142,9 @@ class ComponentContainer {
     switch (this.type) {
       case 'service':
         await (async () => {
-          await this.#observers::dispatch('beforeStart', opts.instance)
-          await this.component.start(opts.instance)
-          await this.#observers::dispatch('afterStart', opts.instance)
+          await this.#observers::dispatch('beforeStart', this.instance)
+          await this.component.start(this.instance)
+          await this.#observers::dispatch('afterStart', this.instance)
         })()
           .catch(err => {
             this.component.log.error({ err }, 'start:failure')
@@ -162,11 +164,11 @@ class ComponentContainer {
   }
 
   /**
-   * @param     {Object}    opts={}         Additional options
-   * @param     {any}       opts.instance   The service's exposed instance
+   * Stop this component and clean up all associated resources
+   *
    * @return    {Promise<void>}
    */
-  async stop(opts = {}) {
+  async stop() {
     if (!this.started) {
       return
     }
@@ -176,8 +178,8 @@ class ComponentContainer {
     switch (this.type) {
       case 'service':
         await (async () => {
-          await this.#observers::dispatch('beforeStop', opts.instance)
-          await this.component.stop(opts.instance)
+          await this.#observers::dispatch('beforeStop', this.instance)
+          await this.component.stop(this.instance)
           await this.#observers::dispatch('afterStop', null)
         })()
           .catch(err => {
@@ -194,6 +196,7 @@ class ComponentContainer {
     }
 
     this.#observers.clear()
+    this.instance = null
     this.started = false
   }
 }

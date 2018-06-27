@@ -444,9 +444,9 @@ class Atlas {
     // Ordering is important here! Some services should be started as the last ones because they
     // expose some functionality to the outside world and starting those before ie. a database
     // service is started might break stuff!
-    for (const [alias, container] of services) {
+    for (const [, container] of services) {
       try {
-        await container.start({ instance: this.services[alias], hooks })
+        await container.start({ hooks })
       } catch (err) {
         // Roll back
         await this.stop()
@@ -489,13 +489,13 @@ class Atlas {
     // This will make sure the most important services are stopped first.
     for (const [alias, container] of Array.from(services).reverse()) {
       try {
-        const instance = this.services[alias]
         delete this.services[alias]
-        await container.stop({ instance, hooks })
+        await container.stop({ hooks })
       } catch (err) {
         error = err
         // Leave this service as is and move to the next service. We probably cannot do anything to
         // properly stop this service. 🙁
+        continue
       }
     }
 

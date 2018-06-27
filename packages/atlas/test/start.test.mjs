@@ -71,11 +71,9 @@ describe('Atlas::start()', () => {
       expect(DummyService.prototype.start).to.have.callCount(1)
     })
 
-    it('calls start with the instance returned from prepare() step', async function() {
-      this.sandbox.stub(atlas, 'prepare').resolves(atlas)
-
+    it('calls start with the instance returned from prepare() step', async () => {
       const instance = { test: true }
-      atlas.services.dummy = instance
+      DummyService.prototype.prepare.resolves(instance)
       await atlas.start()
 
       expect(DummyService.prototype.start).to.have.been.calledWith(instance)
