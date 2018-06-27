@@ -20,7 +20,7 @@ class ComponentContainer {
    */
   started = false
 
-  #observers = null
+  #observers = new Map()
 
   /**
    * Create new container for a component
@@ -76,7 +76,6 @@ class ComponentContainer {
       throw new FrameworkError(`Unneeded aliases for component ${this.alias}: ${extra.join(', ')}`)
     }
 
-    const observers = new Map()
     const config = defaults(info.config, this.Component.defaults)
 
     if (!info.validator.validate(info.Component.config, config)) {
@@ -94,10 +93,8 @@ class ComponentContainer {
       config,
       log: atlas.log.child({ [this.type]: this.alias }),
       component: this::resolve,
-      dispatch: observers::dispatch,
+      dispatch: this.#observers::dispatch,
     })
-
-    this.#observers = observers
   }
 
   /**
@@ -196,6 +193,7 @@ class ComponentContainer {
         break
     }
 
+    this.#observers.clear()
     this.started = false
   }
 }
