@@ -4,7 +4,7 @@ module.exports = {
   parser: 'babel-eslint',
 
   extends: [
-    '@strv/javascript/environments/nodejs/v8-3',
+    '@strv/javascript/environments/nodejs/v10',
     '@strv/javascript/environments/nodejs/optional',
     '@strv/javascript/coding-styles/recommended',
   ],
@@ -26,6 +26,10 @@ module.exports = {
     globals: {
       sinon: true,
       expect: true,
+    },
+
+    rules: {
+      'max-classes-per-file': 'off',
     },
   }, {
     files: [

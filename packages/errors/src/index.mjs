@@ -1,3 +1,6 @@
+// This module is so small it does not make sense to split classes into individual files. Yet. 😇
+/* eslint-disable max-classes-per-file */
+
 /**
  * Generic error class for all errors explicitly created within @atlas.js
  * @extends Error

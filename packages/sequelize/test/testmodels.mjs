@@ -1,3 +1,4 @@
+/* eslint-disable max-classes-per-file */
 import { Model } from '..'
 
 class User extends Model {
