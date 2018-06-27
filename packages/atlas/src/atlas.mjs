@@ -393,7 +393,8 @@ class Atlas {
       return this
     }
 
-    const { services, actions, hooks } = this.#catalog
+    const catalog = this.#catalog
+    const { services, actions, hooks } = catalog
 
     for (const [alias, container] of hooks) {
       if (!container.Component.observes) {
@@ -408,15 +409,15 @@ class Atlas {
 
     // Prepare hooks
     await Promise.all(Array.from(hooks).map(([, container]) =>
-      container.prepare()))
+      container.prepare({ catalog })))
 
     // Prepare actions, in parallel 💪
     await Promise.all(Array.from(actions).map(async ([alias, container]) =>
-      this::expose('actions', alias, await container.prepare({ hooks }))))
+      this::expose('actions', alias, await container.prepare({ catalog }))))
 
     // Prepare all services, in parallel 💪
     await Promise.all(Array.from(services).map(async ([alias, container]) =>
-      this::expose('services', alias, await container.prepare({ hooks }))))
+      this::expose('services', alias, await container.prepare({ catalog }))))
 
     this.#prepared = true
     await this.#observers::dispatch('afterPrepare', this)

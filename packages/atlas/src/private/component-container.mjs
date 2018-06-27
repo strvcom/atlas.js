@@ -23,6 +23,7 @@ class ComponentContainer {
   instance = null
 
   #observers = new Map()
+  #catalog = new Map()
 
   /**
    * Create new container for a component
@@ -94,18 +95,28 @@ class ComponentContainer {
       atlas,
       config,
       log: atlas.log.child({ [this.type]: this.alias }),
-      component: this::resolve,
       dispatch: this.#observers::dispatch,
+      component: name => {
+        if (!this.#catalog.has(name)) {
+          throw new FrameworkError(`Alias for ${name} not defined`)
+        }
+
+        return this.#catalog.get(name).instance
+      },
     })
   }
 
   /**
    * Prepare the component
    *
+   * @param     {Object}          options           Input options
+   * @param     {Object}          options.catalog   Atlas catalog of all components
    * @return    {Promise<this>}
    */
-  async prepare() {
+  async prepare(options = {}) {
     this.component.log.trace('prepare:before')
+
+    this::mkcatalog(this.#catalog, options)
 
     switch (this.type) {
       case 'service': {
@@ -196,6 +207,7 @@ class ComponentContainer {
     }
 
     this.#observers.clear()
+    this.#catalog.clear()
     this.instance = null
     this.started = false
   }
@@ -220,24 +232,25 @@ function mkobservers(observers, { hooks }) {
   }
 }
 
+function mkcatalog(destination, { catalog }) {
+  for (const [alias, resolved] of Object.entries(this.aliases)) {
+    const [type] = alias.split(':')
+    const source = (() => {
+      switch (type) {
+        case 'service': return catalog.services
+        case 'action': return catalog.actions
+        default: throw new FrameworkError(`Invalid component type: ${type} used in alias ${alias}`)
+      }
+    })()
 
-function resolve(name) {
-  const resolved = this.aliases[name]
+    const dependency = source.get(this.aliases[alias])
 
-  if (!resolved) {
-    throw new FrameworkError(`Alias for ${name} not defined`)
+    if (!dependency) {
+      throw new FrameworkError(`Unable to find ${type} ${resolved} aliased as ${alias}`)
+    }
+
+    destination.set(alias, dependency)
   }
-
-  const [type] = name.split(':')
-  // Use a plural form of the component type, ie., action -> actions, service -> services etc.
-  // @TODO: This suuuucks!
-  const component = this.component.atlas[`${type}s`][resolved]
-
-  if (!component) {
-    throw new FrameworkError(`Unable to find ${type}:${resolved} aliased as ${name}`)
-  }
-
-  return component
 }
 
 export default ComponentContainer
