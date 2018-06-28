@@ -407,17 +407,25 @@ class Atlas {
       }
     }
 
-    // Prepare hooks
-    await Promise.all(Array.from(hooks).map(([, container]) =>
-      container.prepare({ catalog })))
-
-    // Prepare actions, in parallel 💪
-    await Promise.all(Array.from(actions).map(async ([alias, container]) =>
-      this::expose('actions', alias, await container.prepare({ catalog }))))
-
-    // Prepare all services, in parallel 💪
-    await Promise.all(Array.from(services).map(async ([alias, container]) =>
-      this::expose('services', alias, await container.prepare({ catalog }))))
+    // Prepare all components, in parallel 💪
+    void (await Promise.all([
+      ...Array.from(hooks).map(async ([, container]) => ({
+        expose: false,
+        value: await container.prepare({ catalog }),
+      })),
+      ...Array.from(services).map(async ([alias, container]) => ({
+        expose: container.Component.internal ? false : 'services',
+        value: await container.prepare({ catalog }),
+        alias,
+      })),
+      ...Array.from(actions).map(async ([alias, container]) => ({
+        expose: container.Component.internal ? false : 'actions',
+        value: await container.prepare({ catalog }),
+        alias,
+      })),
+    ]))
+      .filter(result => Boolean(result.expose))
+      .forEach(result => this::expose(result.expose, result.alias, result.value))
 
     this.#prepared = true
     await this.#observers::dispatch('afterPrepare', this)

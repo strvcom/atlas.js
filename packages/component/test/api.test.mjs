@@ -24,6 +24,10 @@ describe('Component: basics and API', () => {
     expect(Component.requires).to.have.length(0)
   })
 
+  it('has a static internal property set to false', () => {
+    expect(Component.internal).to.equal(false)
+  })
+
   it('saves atlas, log and config objects given on constructor to itself', () => {
     const atlas = { atlas: true }
     const log = { log: true }

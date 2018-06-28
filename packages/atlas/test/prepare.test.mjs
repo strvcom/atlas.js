@@ -86,8 +86,7 @@ describe('Atlas::prepare()', () => {
       expect(DummyService.prototype.prepare).to.have.callCount(1)
     })
 
-    // @TODO: Implement internal components
-    xit('does not expose services marked as internal', async () => {
+    it('does not expose services marked as internal', async () => {
       class InternalService extends Service {
         static internal = true
       }
@@ -108,8 +107,7 @@ describe('Atlas::prepare()', () => {
       expect(atlas.actions.dummy).to.respondTo('dummyMethod')
     })
 
-    // @TODO: Implement internal components
-    xit('does not expose actions marked as internal', async () => {
+    it('does not expose actions marked as internal', async () => {
       class InternalAction extends Action {
         static internal = true
       }

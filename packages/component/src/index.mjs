@@ -1,4 +1,5 @@
 class Component {
+  static internal = false
   static config = {}
 
   // @DEPRECATED: Use static config as JSON Schema

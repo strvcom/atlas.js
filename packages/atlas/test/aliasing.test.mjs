@@ -61,8 +61,7 @@ describe('Atlas: cross-component communication', () => {
     expect(api.ping).to.have.been.calledWith('action:dummy')
   })
 
-  // @TODO: Implement internal components
-  xit('service can find internal action', async () => {
+  it('service can find internal action', async () => {
     class DummyService extends Service {
       static requires = ['action:internal']
       start() {
@@ -85,8 +84,7 @@ describe('Atlas: cross-component communication', () => {
     expect(InternalAction.prototype.ping).to.have.been.calledWith('service:dummy')
   })
 
-  // @TODO: Implement internal components
-  xit('action can find internal service', async () => {
+  it('action can find internal service', async () => {
     const api = {
       ping: sinon.stub(),
     }
