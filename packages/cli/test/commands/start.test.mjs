@@ -37,22 +37,25 @@ describe('CLI: start', () => {
       expect(start.atlas.start).to.have.callCount(1)
     })
 
-    it('registers SIGINT and SIGTERM event listeners', async () => {
+    it('registers SIGINT, SIGTERM and beforeExit event listeners', async () => {
       const counts = {
         SIGINT: process.listenerCount('SIGINT'),
         SIGTERM: process.listenerCount('SIGTERM'),
+        beforeExit: process.listenerCount('beforeExit'),
       }
 
       await start.run()
 
       expect(process.listenerCount('SIGINT')).to.equal(counts.SIGINT + 1)
       expect(process.listenerCount('SIGTERM')).to.equal(counts.SIGTERM + 1)
+      expect(process.listenerCount('beforeExit')).to.equal(counts.beforeExit + 1)
     })
 
-    it('removes SIGINT and SIGTERM event listeners upon receiving them', async () => {
+    it('removes SIGINT, SIGTERM and beforeExit listeners upon receiving a signal', async () => {
       const counts = {
         SIGINT: process.listenerCount('SIGINT'),
         SIGTERM: process.listenerCount('SIGTERM'),
+        beforeExit: process.listenerCount('beforeExit'),
       }
 
       await start.run()
@@ -60,6 +63,7 @@ describe('CLI: start', () => {
 
       expect(process.listenerCount('SIGINT')).to.equal(counts.SIGINT)
       expect(process.listenerCount('SIGTERM')).to.equal(counts.SIGTERM)
+      expect(process.listenerCount('beforeExit')).to.equal(counts.beforeExit)
     })
 
     it('stops the atlas instance upon exit', async () => {

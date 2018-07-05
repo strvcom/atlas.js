@@ -14,7 +14,7 @@ class Start extends Command {
   async run() {
     process.once('SIGINT', this.doExit)
     process.once('SIGTERM', this.doExit)
-
+    process.once('beforeExit', this.doExit)
     await this.atlas.start()
       .catch(fatal)
   }
@@ -30,6 +30,7 @@ class Start extends Command {
     // you press ctrl+c, we'll just brute-force-quit the whole thing. 🔥
     process.removeListener('SIGINT', this.doExit)
     process.removeListener('SIGTERM', this.doExit)
+    process.removeListener('beforeExit', this.doExit)
     process.once('SIGINT', forcequit)
     process.once('SIGTERM', forcequit)
 
