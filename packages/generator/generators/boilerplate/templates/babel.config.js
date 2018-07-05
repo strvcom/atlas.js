@@ -3,6 +3,7 @@
 module.exports = {
   sourceMaps: 'inline',
   plugins: [
+    '@babel/syntax-object-rest-spread',
     ['@babel/transform-modules-commonjs', {
       allowTopLevelThis: false,
     }],
