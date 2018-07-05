@@ -46,6 +46,7 @@ class Atlas extends Generator {
       '@babel/cli',
       '@babel/plugin-proposal-class-properties',
       '@babel/plugin-transform-modules-commonjs',
+      'dotenv',
     ], { 'save-dev': true })
   }
 }

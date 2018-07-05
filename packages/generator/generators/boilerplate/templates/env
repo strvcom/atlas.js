@@ -1,0 +1,3 @@
+# This file is loaded only when starting the project using bin/atlas. If you use other means to
+# start your app you will need to update your workflow accordingly.
+NODE_ENV = development

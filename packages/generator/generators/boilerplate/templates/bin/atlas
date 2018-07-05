@@ -17,5 +17,7 @@
 # Compile all JavaScripts
 make compile
 
+export NODE_OPTIONS="--require dotenv/config"
+
 # Release the Kraken! 🐙
 exec "$(pwd)/node_modules/.bin/atlas" "$@"

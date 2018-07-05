@@ -1,6 +1,7 @@
 import Generator from 'yeoman-generator'
 
 const files = [
+  ['env', '.env'],
   'makefile',
   'babel.config.js',
   'bin/atlas',
@@ -22,9 +23,13 @@ const files = [
 class Boilerplate extends Generator {
   writing() {
     for (const file of files) {
+      const [source, destination] = Array.isArray(file)
+        ? file
+        : [file, file]
+
       this.fs.copy(
-        this.templatePath(file),
-        this.destinationPath(file),
+        this.templatePath(source),
+        this.destinationPath(destination),
       )
     }
   }
