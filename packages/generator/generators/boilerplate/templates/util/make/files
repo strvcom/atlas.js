@@ -1,0 +1,15 @@
+#!/bin/sh
+
+# Find all files inside the project with the specified extension
+
+# This script provides some guards against searching locations known to include vendored files.
+
+EXT=$1
+
+find . \
+  -name "*.${EXT}" \
+  -not -path '*/node_modules/*' \
+  -not -path "*/.git/*" \
+  -not -path '*/.*' \
+  -not -name '.*.js' \
+  -not -name babel.config.js

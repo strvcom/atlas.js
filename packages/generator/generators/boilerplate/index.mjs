@@ -21,6 +21,7 @@ const files = [
   'src/components/noop/src/index.mjs',
   'src/components/noop/src/service.mjs',
   'src/components/noop/package.json',
+  'util/make/files',
 ]
 
 class Boilerplate extends Generator {

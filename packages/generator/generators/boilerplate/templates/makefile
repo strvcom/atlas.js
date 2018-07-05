@@ -10,12 +10,8 @@ export PATH := node_modules/.bin/:$(PATH)
 FINSTALL :=
 FCOMPILE :=
 
-
-# Define files to be compiled with babel. We use find to get a list of all .mjs files from the
-# current project, excluding results from node_modules and any potential dot dirs (.git etc.)
-SRCFILES := $(shell find . -name '*.mjs' -not -path '*/node_modules/*' -not -path '*/.*')
 # Build a list of our targets which should be "made" by make when compiling sources
-OUTFILES := $(patsubst %.mjs, %.js, $(SRCFILES))
+JSFILES := $(patsubst %.mjs, %.js, $(shell util/make/files mjs))
 
 # Since this is the first target, Make will do this when make is invoked without arguments
 all: precompile
@@ -28,11 +24,11 @@ install: node_modules
 precompile: install
 	babel . --extensions .mjs --out-dir . $(FCOMPILE)
 
-compile: $(OUTFILES)
+compile: $(JSFILES)
 
 # Delete all compiled files
 distclean:
-	rm -rf $(OUTFILES)
+	rm $(shell ./util/make/files js) || true
 
 
 # GENERIC TARGETS
