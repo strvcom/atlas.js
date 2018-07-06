@@ -6,6 +6,7 @@ const generators = {
   gitignore: require.resolve('../gitignore'),
   editorconfig: require.resolve('../editorconfig'),
   boilerplate: require.resolve('../boilerplate'),
+  eslint: require.resolve('../eslint'),
 }
 
 class Atlas extends Generator {
@@ -26,6 +27,7 @@ class Atlas extends Generator {
         root: true,
       },
       boilerplate: null,
+      eslint: null,
     }
 
     this.composeWith(generators.npm, configs.npm)
@@ -33,6 +35,7 @@ class Atlas extends Generator {
     this.composeWith(generators.gitignore, configs.gitignore)
     this.composeWith(generators.editorconfig, configs.editorconfig)
     this.composeWith(generators.boilerplate, configs.boilerplate)
+    this.composeWith(generators.eslint, configs.eslint)
   }
 
   install() {

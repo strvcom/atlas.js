@@ -9,6 +9,7 @@ export PATH := node_modules/.bin/:$(PATH)
 # they are available.
 FINSTALL :=
 FCOMPILE :=
+<%_ if (config.eslint) { %>FLINT :=<%_ } %>
 
 # Build a list of our targets which should be "made" by make when compiling sources
 JSFILES := $(patsubst %.mjs, %.js, $(shell util/make/files mjs))
@@ -25,6 +26,9 @@ precompile: install
 	babel . --extensions .mjs --out-dir . $(FCOMPILE)
 
 compile: $(JSFILES)
+
+<%_ if (config.eslint) { %>lint:
+	eslint --ext .mjs --report-unused-disable-directives $(FLINT) .<%_ } %>
 
 # Delete all compiled files
 distclean:

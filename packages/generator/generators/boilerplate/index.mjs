@@ -31,9 +31,10 @@ class Boilerplate extends Generator {
         ? file
         : [file, file]
 
-      this.fs.copy(
+      this.fs.copyTpl(
         this.templatePath(source),
         this.destinationPath(destination),
+        { config: this.config.getAll() },
       )
     }
   }
