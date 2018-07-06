@@ -69,7 +69,7 @@ outdated:
 	lerna exec "npm outdated || true"
 
 unlock: pristine
-	rm package-lock.json packages/*/package-lock.json
+	rm -f package-lock.json packages/*/package-lock.json
 	touch package.json
 
 clean:
@@ -77,7 +77,7 @@ clean:
 	find . -name '*.log' -print -delete
 
 distclean: clean
-	rm $(shell ./utils/make/projectfiles.sh js)
+	rm -f $(shell ./utils/make/projectfiles.sh js)
 
 pristine: distclean
 	rm -rf node_modules packages/*/node_modules
