@@ -18,7 +18,13 @@
 
   // Disable built-in JS validator due to unsupported language syntax being used
   "javascript.validate.enable": false,
+  "javascript.format.enable": false,
+  "typescript.format.enable": false,
+
   // Enable ESLint and its auto-fixer
   "eslint.enable": true,
-  "eslint.autoFixOnSave": true
+  "eslint.autoFixOnSave": true,
+  "eslint.options": {
+    "reportUnusedDisableDirectives": true
+  }
 }
