@@ -23,14 +23,13 @@ async function dispatch(event, subject) {
     }
   }
 
-  await Promise.all(Array.from(tasks.values()))
-
-  // Ensure no uncaught error escapes from this place
-  // This utilises the fact that we can catch any Promise-related errors by attaching a .catch block
-  // to the promise, even if the promise body has already executed. 💡
   for (const [hook, task] of tasks) {
     task.catch(err => void hook.component.log.error({ err, event }, 'hook:event:failure'))
   }
+
+  // Ensure no uncaught error escapes from this place
+  await Promise.all(Array.from(tasks.values()))
+    .catch(() => {})
 }
 
 export default dispatch

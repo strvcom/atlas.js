@@ -1,4 +1,5 @@
 import path from 'path'
+import { errors } from '@atlas.js/atlas'
 import { Service as Objection } from '../..'
 import * as models from './models'
 
@@ -42,11 +43,14 @@ describe('Objection::prepare()', () => {
     expect(instance.models).to.have.all.keys([
       'ModelA',
       'ModelB',
+      'ModelC',
     ])
   })
 
   it('resolves model names in relationship mappings to actual model classes', () => {
-    for (const Model of Object.values(instance.models)) {
+    void ['ModelA', 'ModelB'].forEach(name => {
+      const Model = instance.models[name]
+
       // Sanity check
       expect(Model).to.have.property('relationMappings')
       expect(Object.keys(Model.relationMappings).length).to.be.greaterThan(0)
@@ -54,7 +58,12 @@ describe('Objection::prepare()', () => {
       for (const relation of Object.values(Model.relationMappings)) {
         expect(relation.modelClass).to.be.a('function')
       }
-    }
+    })
+  })
+
+  it('works with models with no relationship mappings', () => {
+    expect(instance.models.ModelC).to.be.a('function')
+    expect(instance.models.ModelC).not.to.have.property('relationshipMappings')
   })
 
   it('exposes atlas instance as both static and instance property', () => {
@@ -62,5 +71,21 @@ describe('Objection::prepare()', () => {
       expect(Model).to.have.property('atlas')
       expect(Model.prototype).to.have.property('atlas')
     }
+  })
+
+  it('throws if a model relation references unknown model name', () => {
+    class ModelA {
+      static relationMappings = {
+        customRelation: {
+          modelClass: 'UnknownModel',
+        },
+      }
+    }
+    service.atlas.require.returns({ ModelA })
+
+    return expect(service.prepare()).to.eventually.be.rejectedWith(
+      errors.FrameworkError,
+      /Unable to find relation UnknownModel defined in ModelA/,
+    )
   })
 })

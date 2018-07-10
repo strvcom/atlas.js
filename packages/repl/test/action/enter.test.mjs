@@ -156,7 +156,7 @@ describe('Repl::enter()', () => {
 
     // Read whatever has been sent to the output
     const out = opts.output.read().toString('utf8')
-    const matches = out.match(new RegExp(opts.nl, 'g')) || []
+    const matches = out.match(new RegExp(opts.nl, 'g'))
     // Make sure we get four lines separated by the \r\n escape sequence
     expect(matches).to.have.length(4)
   })
@@ -173,7 +173,7 @@ describe('Repl::enter()', () => {
 
     // Read whatever has been sent to the output
     const out = opts.output.read().toString('utf8')
-    const matches = out.match(new RegExp('<EOL>', 'g')) || []
+    const matches = out.match(new RegExp('<EOL>', 'g'))
     // Make sure we get four lines separated by the <EOL> escape sequence
     expect(matches).to.have.length(4)
   })
@@ -187,7 +187,7 @@ describe('Repl::enter()', () => {
 
     // Read whatever has been sent to the output
     const out = opts.output.read().toString('utf8')
-    const matches = out.match(/\r\n/g) || []
+    const matches = out.match(/\r\n/g)
     // Make sure we get four lines separated by the \r\n escape sequence
     expect(matches).to.have.length(4)
   })
@@ -201,7 +201,7 @@ describe('Repl::enter()', () => {
 
     // Read whatever has been sent to the output
     const out = opts.output.read().toString('utf8')
-    const matches = out.match(/\n/g) || []
+    const matches = out.match(/\n/g)
     // Make sure we get four lines separated by the \r\n escape sequence
     expect(matches).to.have.length(4)
   })

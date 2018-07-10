@@ -44,7 +44,7 @@ describe('Objection::start()', () => {
   })
 
   it('prefetches table metadata for all models', () => {
-    expect(Object.values(instance.models)).to.have.length(2)
+    expect(Object.values(instance.models)).to.have.length(Object.keys(models).length)
 
     for (const Model of Object.values(instance.models)) {
       expect(Model.fetchTableMetadata).to.have.callCount(1)
@@ -62,7 +62,7 @@ describe('Objection::start()', () => {
     this.sandbox.stub(instance.connection, 'raw').resolves()
     // await service.start(instance)
 
-    expect(Object.values(instance.models)).to.have.length(2)
+    expect(Object.values(instance.models)).to.have.length(Object.keys(models).length)
 
     for (const Model of Object.values(instance.models)) {
       expect(Model.fetchTableMetadata).to.have.callCount(0)

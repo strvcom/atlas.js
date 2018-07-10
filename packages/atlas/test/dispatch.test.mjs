@@ -71,4 +71,24 @@ describe('Hook: custom events', () => {
     return expect(atlas.actions.dummy.trigger('handleOtherEvent'))
       .to.not.eventually.be.rejectedWith(Error)
   })
+
+  it('still resolves even if one of the hooks throws', async () => {
+    atlas = new Atlas({
+      root: __dirname,
+      config: {
+        atlas: { log: { level: 'fatal' } },
+      },
+    })
+    atlas.hook('dummy', DummyHook, { aliases: { 'action:dummy': 'dummy' } })
+    atlas.hook('another', AnotherHook, { aliases: { 'action:dummy': 'dummy' } })
+    atlas.action('dummy', DummyAction)
+
+    await atlas.start()
+
+    DummyHook.prototype.handleEvent = sinon.stub().resolves()
+    AnotherHook.prototype.handleEvent = sinon.stub().rejects(new Error('u-oh'))
+
+    return expect(atlas.actions.dummy.trigger('handleEvent'))
+      .to.not.be.eventually.rejectedWith(Error)
+  })
 })

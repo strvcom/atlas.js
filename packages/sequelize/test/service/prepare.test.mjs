@@ -8,7 +8,9 @@ describe('Sequelize::prepare()', () => {
   beforeEach(async () => {
     service = new Database({
       atlas: {},
-      log: {},
+      log: {
+        trace: sinon.stub(),
+      },
       config: {
         uri: 'sqlite://test-db.sqlite',
         options: {
@@ -34,7 +36,15 @@ describe('Sequelize::prepare()', () => {
 
   it('sets a debug function to log sequelize events', () => {
     expect(instance.options.logging).to.be.a('function')
-    // eslint-disable-next-line no-console
-    expect(instance.options.logging).to.not.equal(console.log)
+  })
+
+  it('prints the SQL statements Sequelize executes at trace level using the service logger', () => {
+    const example = 'Executing (default): SELECT 1 + 1'
+    const fn = instance.options.logging
+
+    fn(example)
+
+    expect(service.log.trace).to.have.callCount(1)
+    expect(service.log.trace).to.have.been.calledWith({ sql: 'SELECT 1 + 1' })
   })
 })

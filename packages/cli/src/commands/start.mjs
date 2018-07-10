@@ -57,6 +57,9 @@ class Start extends Command {
  * @return    {void}
  */
 function forcequit() {
+  process.removeListener('SIGINT', forcequit)
+  process.removeListener('SIGTERM', forcequit)
+
   throw new Error('Forced quit')
 }
 

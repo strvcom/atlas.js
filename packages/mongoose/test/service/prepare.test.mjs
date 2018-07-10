@@ -8,7 +8,9 @@ describe('Mongoose::prepare()', () => {
   beforeEach(async () => {
     service = new Mongoose({
       atlas: {},
-      log: {},
+      log: {
+        trace: sinon.stub(),
+      },
       config: {},
     })
 
@@ -24,13 +26,18 @@ describe('Mongoose::prepare()', () => {
     expect(await service.prepare()).to.be.instanceof(mongoose.Mongoose)
   })
 
-  it('sets a debug function to log model events', async function() {
-    this.sandbox.stub(Object.getPrototypeOf(instance), 'set')
-
+  it('sets a debug function to log model events', async () => {
     await service.prepare()
 
-    expect(instance.set).to.have.callCount(1)
-    expect(instance.set).to.have.been.calledWith('debug')
-    expect(instance.set.firstCall.args[1]).to.be.a('function')
+    expect(instance.options.debug).to.be.a('function')
+
+    instance.options.debug('collection', 'method', 'arg1', 'arg2')
+
+    expect(service.log.trace).to.have.callCount(1)
+    expect(service.log.trace).to.have.been.calledWith({
+      collection: 'collection',
+      method: 'method',
+      args: ['arg1', 'arg2'],
+    })
   })
 })

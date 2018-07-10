@@ -113,7 +113,7 @@ class ComponentContainer {
    * @param     {Object}          options.catalog   Atlas catalog of all components
    * @return    {Promise<this>}
    */
-  async prepare(options = {}) {
+  async prepare(options) {
     this.component.log.trace('prepare:before')
 
     this::mkcatalog(this.#catalog, options)
@@ -138,11 +138,11 @@ class ComponentContainer {
   /**
    * Start the component
    *
-   * @param     {Object}    opts={}         Additional options
+   * @param     {Object}    opts            Additional options
    * @param     {Map}       opts.hooks      Hooks available in the application
    * @return    {Promise<this.component>}
    */
-  async start(opts = {}) {
+  async start(opts) {
     if (this.started) {
       return this.component
     }
@@ -224,7 +224,7 @@ class ComponentContainer {
  */
 function mkobservers(observers, { hooks }) {
   for (const [alias, container] of hooks) {
-    const target = (container.aliases || {})[container.Component.observes]
+    const target = container.aliases[container.Component.observes]
 
     if (this.alias === target) {
       observers.set(alias, container)

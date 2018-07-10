@@ -53,9 +53,7 @@ describe('Koa::stop(instance)', () => {
   it('throws when called on an instance not yet prepared', () => {
     delete instance.server
     const msg = /Cannot stop a non-running server/
-    service = new Koa({
-      log: { info: () => {} },
-    })
+    service = new Koa({})
     return expect(service.stop(instance)).to.eventually.be.rejectedWith(FrameworkError, msg)
   })
 

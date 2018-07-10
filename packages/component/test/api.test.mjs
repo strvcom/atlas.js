@@ -44,7 +44,7 @@ describe('Component: basics and API', () => {
   })
 
   it('saves the component function given on constructor to itself', () => {
-    const resolve = () => {}
+    const resolve = sinon.stub()
     const component = new Component({
       component: resolve,
     })
@@ -53,7 +53,7 @@ describe('Component: basics and API', () => {
   })
 
   it('saves the dispatch function given on constructor to itself', () => {
-    const dispatch = () => {}
+    const dispatch = sinon.stub()
     const component = new Component({ dispatch })
 
     expect(component).itself.to.respondTo('dispatch')

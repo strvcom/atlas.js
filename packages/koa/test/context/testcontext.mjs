@@ -1,4 +1,5 @@
+/* global sinon */
 export default {
-  testmethod() {},
-  anothermethod() {},
+  testmethod: sinon.stub(),
+  anothermethod: sinon.stub(),
 }

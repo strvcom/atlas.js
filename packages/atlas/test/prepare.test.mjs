@@ -16,7 +16,7 @@ class DummyHook extends Hook {
 }
 
 class DummyAction extends Action {
-  dummyMethod() {}
+  dummyMethod = sinon.stub()
 }
 
 describe('Atlas::prepare()', () => {
@@ -154,7 +154,7 @@ describe('Atlas::prepare()', () => {
 
       atlas.hook('empty', Empty)
 
-      return expect(atlas.prepare()).to.be.rejectedWith(
+      return expect(atlas.prepare()).to.eventually.be.rejectedWith(
         FrameworkError,
         /does not have static 'observes' property/i,
       )

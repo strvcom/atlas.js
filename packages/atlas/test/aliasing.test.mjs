@@ -124,4 +124,30 @@ describe('Atlas: cross-component communication', () => {
 
     expect(() => atlas.actions.dummy.ping('service:lolsvc')).to.throw(FrameworkError)
   })
+
+  it('declaring a component of invalid type throws', () => {
+    class DummyAction extends Action {
+      static requires = ['invalid:name']
+    }
+
+    atlas.action('dummy', DummyAction, { aliases: { 'invalid:name': 'dummy' } })
+
+    return expect(atlas.start()).to.be.eventually.rejectedWith(
+      FrameworkError,
+      /Invalid component type: invalid used in alias invalid:name/,
+    )
+  })
+
+  it('resolving an alias into unknown component throws', () => {
+    class DummyAction extends Action {
+      static requires = ['service:dummy']
+    }
+
+    atlas.action('dummy', DummyAction, { aliases: { 'service:dummy': 'unknown' } })
+
+    return expect(atlas.start()).to.be.eventually.rejectedWith(
+      FrameworkError,
+      /Unable to find service unknown aliased as service:dummy/,
+    )
+  })
 })

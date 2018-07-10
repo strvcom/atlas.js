@@ -103,6 +103,12 @@ describe('Hook: WebsocketHook', () => {
       expect(args.first).to.eql({ firsttest: true })
       expect(args.second).to.eql({ secondtest: true })
     })
+
+    it('works without any middleware configured', async () => {
+      delete config.middleware
+
+      await hook.afterPrepare()
+    })
   })
 
 
@@ -163,6 +169,12 @@ describe('Hook: WebsocketHook', () => {
       expect(koa.ws.server.close).to.have.callCount(0)
       await hook.beforeStop()
       expect(koa.ws.server.close).to.have.callCount(1)
+    })
+
+    it('re-throws any errors returned from the koa.ws.server.close() method', () => {
+      koa.ws.server.close.callsArgWithAsync(0, new Error('u-oh'))
+
+      return expect(hook.beforeStop()).to.eventually.be.rejectedWith(Error, /u-oh/)
     })
   })
 })

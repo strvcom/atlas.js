@@ -89,5 +89,41 @@ describe('CLI: start', () => {
 
       expect(disconnect).to.have.callCount(1)
     })
+
+    it('throws an error to stop the process if a terminating signal is sent again', async () => {
+      await start.run()
+      start.doExit()
+
+      // Sending SIGINT causes the test suite to exit with code 130, so just test SIGTERM 🤷‍♂️
+      expect(() => process.emit('SIGTERM')).to.throw(Error, /Forced quit/)
+
+      delete process.exitCode
+    })
+
+    it('kills the process after 10s if an error occurs during stop procedure', async function() {
+      this.sandbox.stub(process, 'exit')
+      this.sandbox.stub(console, 'error')
+
+      const error = new Error('u-oh')
+      const clock = sinon.useFakeTimers({
+        toFake: ['setTimeout'],
+      })
+
+      start.atlas.stop.rejects(error)
+      await start.doExit()
+
+      // eslint-disable-next-line no-console
+      expect(console.error).to.have.been.calledWith(error.stack)
+      expect(process.exit).to.have.callCount(0)
+
+      clock.runAll()
+      clock.restore()
+
+      expect(process.exit).to.have.callCount(1)
+      expect(process.exitCode).to.equal(1)
+      expect(clock.now).to.equal(10000)
+
+      delete process.exitCode
+    })
   })
 })

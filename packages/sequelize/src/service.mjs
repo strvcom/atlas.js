@@ -41,7 +41,7 @@ class Sequelize extends Service {
 
 function strace(sql) {
   // Remove the initial "Executing (default): prefix to keep only the SQL statement"
-  sql = sql.slice(sql.indexOf(':') + 1)
+  sql = sql.slice(sql.indexOf(':') + 1).trim()
   this.log.trace({ sql }, 'sequelize activity')
 }
 

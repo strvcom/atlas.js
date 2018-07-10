@@ -8,5 +8,5 @@ const stdSerializers = {
 
 export default {
   ...stdSerializers,
-  custom: () => {},
+  custom: true,
 }

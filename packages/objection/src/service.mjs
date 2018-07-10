@@ -39,7 +39,8 @@ class Objection extends Service {
     },
   }
 
-  prepare() {
+  // eslint-disable-next-line require-await
+  async prepare() {
     const models = this.atlas.require(this.config.models) || {}
     const connection = knex(this.config.knex)
     const client = {
