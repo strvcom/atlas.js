@@ -7,6 +7,7 @@ const generators = {
   editorconfig: require.resolve('../editorconfig'),
   boilerplate: require.resolve('../boilerplate'),
   eslint: require.resolve('../eslint'),
+  vscode: require.resolve('../vscode'),
 }
 
 class Atlas extends Generator {
@@ -28,6 +29,7 @@ class Atlas extends Generator {
       },
       boilerplate: null,
       eslint: null,
+      vscode: null,
     }
 
     this.composeWith(generators.npm, configs.npm)
@@ -36,6 +38,7 @@ class Atlas extends Generator {
     this.composeWith(generators.editorconfig, configs.editorconfig)
     this.composeWith(generators.boilerplate, configs.boilerplate)
     this.composeWith(generators.eslint, configs.eslint)
+    this.composeWith(generators.vscode, configs.vscode)
   }
 
   install() {
