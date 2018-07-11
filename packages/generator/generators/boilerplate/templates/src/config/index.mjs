@@ -15,7 +15,12 @@
  * same as the alias you gave to that component.
  */
 export default {
-  atlas: {},
+  atlas: {
+    // Atlas uses pino as logger. See the project's README for possible options:
+    // https://github.com/pinojs/pino
+    // Log levels are described here: https://github.com/pinojs/pino/blob/master/docs/API.md
+    log: {},
+  },
   actions: {},
   services: {},
   hooks: {},

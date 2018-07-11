@@ -9,7 +9,11 @@
  * This file's structure is the same as the main configuration module.
  */
 export default {
-  atlas: {},
+  atlas: {
+    log: {
+      prettyPrint: true,
+    },
+  },
   actions: {},
   services: {},
   hooks: {},

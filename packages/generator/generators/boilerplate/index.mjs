@@ -15,6 +15,7 @@ const files = [
   'src/services/README.md',
   'src/config/index.mjs',
   'src/config/local.mjs',
+  'src/config/env/test.mjs',
   'src/config/env/development.mjs',
   'src/config/env/production.mjs',
   'src/components/README.md',
