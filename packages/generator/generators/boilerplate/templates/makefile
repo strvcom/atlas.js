@@ -10,6 +10,7 @@ export PATH := node_modules/.bin/:$(PATH)
 FINSTALL :=
 FCOMPILE :=
 <%_ if (config.eslint) { %>FLINT :=<%_ } %>
+<%_ if (config.testsuite) { %>FTEST :=<%_ } %>
 
 # Build a list of our targets which should be "made" by make when compiling sources
 JSFILES := $(patsubst %.mjs, %.js, $(shell util/make/files mjs))
@@ -30,8 +31,19 @@ compile: $(JSFILES)
 <%_ if (config.eslint) { %>lint:
 	eslint --ext .mjs --report-unused-disable-directives $(FLINT) .<%_ } %>
 
+<%_ if (config.testsuite) { %>test: force compile
+	mocha $(FTEST)
+
+inspect: force compile
+	mocha --inspect --inspect-brk $(FTEST)
+
+coverage: coverage/lcov.info
+
+clean:
+	rm -rf .nyc_output coverage<%_ } %>
+
 # Delete all compiled files
-distclean:
+distclean:<%_ if (config.testsuite) { %> clean<%_ } %>
 	rm $(shell ./util/make/files js) || true
 
 
@@ -44,6 +56,11 @@ node_modules: package.json
 %.js: %.mjs node_modules babel.config.js
 	babel $< --out-file $@ $(FCOMPILE)
 
+<%_ if (config.testsuite) { %>coverage/lcov.info: $(JSFILES)
+	nyc mocha $(FTEST)<%_ } %>
+
+# Use this prerequisite to force the target to never be treated as "up to date"
+.PHONY: force
 
 # If this file exists, load it and add it to this makefile.
 # Useful for defining per-developer variables. This file should not be under version control. ⚠️

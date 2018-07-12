@@ -9,6 +9,14 @@
       "request": "attach",
       "name": "Attach",
       "protocol": "inspector"
-    }
+    }<%_ if (config.testsuite) { %>, {
+      "type": "node",
+      "request": "launch",
+      "name": "Inspect: tests",
+      "program": "${workspaceFolder}/node_modules/.bin/_mocha",
+      "args": [
+        "--no-timeouts"
+      ]
+    }<%_ } %>
   ]
 }

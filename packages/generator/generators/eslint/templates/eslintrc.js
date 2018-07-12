@@ -14,7 +14,7 @@ module.exports = {
     'no-warning-comments': 0,
   },
 
-  overrides: [{
+  overrides: [{<%_ if (!config.testsuite) { %>
     // Custom settings for your test files
     files: [
       '**/*.test.mjs',
@@ -23,7 +23,23 @@ module.exports = {
     env: {
       // Enable your test environment of choice here to have ESLint recognise its globals
       // mocha: true,
+    },<%_ } else { %>
+    files: [
+      '**/*.test.mjs',
+    ],
+
+    env: {
+      mocha: true,
     },
+
+    globals: {
+      expect: true,
+      sinon: true,
+    },
+
+    rules: {
+      'max-classes-per-file': 'off',
+    },<%_ } %>
   }, {
     // Custom settings for plain JavaScript files
     files: [

@@ -1,0 +1,5 @@
+--colors
+--recursive
+--check-leaks
+--require test/bootstrap
+test src/**/*.test.js

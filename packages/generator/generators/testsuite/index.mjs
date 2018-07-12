@@ -1,15 +1,18 @@
 import Generator from 'yeoman-generator'
 
 const files = [
-  ['eslintrc.js', '.eslintrc.js'],
-  ['eslintignore', '.eslintignore'],
+  'test/mocha.opts',
+  'test/bootstrap.mjs',
+  'test/global-hooks.test.mjs',
+  'test/atlas/components.test.mjs',
+  ['nycrc.json', '.nycrc.json'],
 ]
 
-class ESLint extends Generator {
+class Testsuite extends Generator {
   prompts = [{
     type: 'confirm',
-    name: 'eslint',
-    message: 'Install ESLint with @strv/eslint-config-javascript ruleset? 🎨',
+    name: 'testsuite',
+    message: 'Install Mocha ☕️ + Chai 🍵 + Sinon 🏛  + NYC 🗽 test suite?',
     default: true,
   }]
 
@@ -20,19 +23,24 @@ class ESLint extends Generator {
   }
 
   install() {
-    if (!this.config.get('eslint')) {
+    if (!this.config.get('testsuite')) {
       return
     }
 
     this.npmInstall([
-      'eslint@latest',
-      'babel-eslint@latest',
-      '@strv/eslint-config-javascript@latest',
+      'mocha@latest',
+      'chai@latest',
+      'chai-as-promised@latest',
+      'dirty-chai@latest',
+      'sinon@latest',
+      'sinon-chai@latest',
+      'nyc@latest',
+      'source-map-support@latest',
     ], { 'save-dev': true })
   }
 
   writing() {
-    if (!this.config.get('eslint')) {
+    if (!this.config.get('testsuite')) {
       return
     }
 
@@ -51,4 +59,4 @@ class ESLint extends Generator {
 }
 
 // Yeoman does not support ES modules' export values 🤦
-module.exports = ESLint
+module.exports = Testsuite
