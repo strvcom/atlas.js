@@ -3,6 +3,7 @@ import Generator from 'yeoman-generator'
 const files = [
   ['env', '.env'],
   'makefile',
+  'local.mk',
   'babel.config.js',
   'bin/atlas',
   'src/index.mjs',

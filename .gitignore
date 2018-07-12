@@ -6,6 +6,7 @@ node_modules
 .bashrc
 .npmrc
 local.mk
+!packages/generator/generators/boilerplate/templates/local.mk
 
 # Compiled files
 **/*.js
