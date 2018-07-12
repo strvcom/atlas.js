@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.1.0"></a>
+# [2.1.0](https://github.com/strvcom/atlas.js/compare/@atlas.js/atlas@2.0.0...@atlas.js/atlas@2.1.0) (2018-07-12)
+
+
+### Bug Fixes
+
+* **atlas:** clean up observers after component stops ([ae31b16](https://github.com/strvcom/atlas.js/commit/ae31b16))
+
+
+### Features
+
+* **atlas:** allow components to only access dependencies they require ([653898d](https://github.com/strvcom/atlas.js/commit/653898d)), closes [#54](https://github.com/strvcom/atlas.js/issues/54)
+* **atlas:** allow some components to not be exposed (internal) ([cd2c4a7](https://github.com/strvcom/atlas.js/commit/cd2c4a7)), closes [#46](https://github.com/strvcom/atlas.js/issues/46)
+
+
+
+
 <a name="2.0.0"></a>
 # 2.0.0 (2018-05-22)
 

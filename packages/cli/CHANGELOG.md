@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.0.0"></a>
+# [1.0.0](https://github.com/strvcom/atlas.js/compare/@atlas.js/cli@0.5.0...@atlas.js/cli@1.0.0) (2018-07-12)
+
+
+### Features
+
+* **cli:** declare Atlas.js 2.0 as peer dependency ([67ccf9a](https://github.com/strvcom/atlas.js/commit/67ccf9a))
+* **cli:** run atlas.stop() if node would exit without doing any work ([aa73dc8](https://github.com/strvcom/atlas.js/commit/aa73dc8))
+
+
+### BREAKING CHANGES
+
+* **cli:** 
+
+
+
+
 <a name="0.5.0"></a>
 # 0.5.0 (2018-05-22)
 

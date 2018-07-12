@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.0.1"></a>
+## [2.0.1](https://github.com/strvcom/atlas.js/compare/@atlas.js/hook@2.0.0...@atlas.js/hook@2.0.1) (2018-07-12)
+
+
+
+
+**Note:** Version bump only for package @atlas.js/hook
+
 <a name="2.0.0"></a>
 # 2.0.0 (2018-05-22)
 

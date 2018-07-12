@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.1.0"></a>
+# [2.1.0](https://github.com/strvcom/atlas.js/compare/@atlas.js/objection@2.0.0...@atlas.js/objection@2.1.0) (2018-07-12)
+
+
+### Features
+
+* **objection:** upgrade knex to 0.15 ([3dddda9](https://github.com/strvcom/atlas.js/commit/3dddda9))
+
+
+
+
 <a name="2.0.0"></a>
 # 2.0.0 (2018-05-22)
 

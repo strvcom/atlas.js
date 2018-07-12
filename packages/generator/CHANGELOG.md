@@ -3,6 +3,34 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.1.0"></a>
+# [2.1.0](https://github.com/strvcom/atlas.js/compare/@atlas.js/generator-atlas@2.0.0...@atlas.js/generator-atlas@2.1.0) (2018-07-12)
+
+
+### Bug Fixes
+
+* **generator:** always install latest versions od deps ([1a06563](https://github.com/strvcom/atlas.js/commit/1a06563))
+* **generator:** do not include unnecessary whitespace in .editorconfig ([d1e705e](https://github.com/strvcom/atlas.js/commit/d1e705e))
+* **generator:** fix noop's dependency on non-existent package version ([907f6b7](https://github.com/strvcom/atlas.js/commit/907f6b7))
+* **generator:** include babel-syntax-object-rest-spread plugin ([4bb4fe7](https://github.com/strvcom/atlas.js/commit/4bb4fe7))
+
+
+### Features
+
+* **generator:** always pretty-print logs locally, add test.mjs config ([dfec246](https://github.com/strvcom/atlas.js/commit/dfec246))
+* **generator:** enable pretty print and lower log level on development ([f5acbb4](https://github.com/strvcom/atlas.js/commit/f5acbb4))
+* **generator:** include dotenv in the output ([ab38b8c](https://github.com/strvcom/atlas.js/commit/ab38b8c))
+* **generator:** include local.mk in the output ([e487932](https://github.com/strvcom/atlas.js/commit/e487932))
+* **generator:** makefile is now simpler and distclean works again ([ffb901e](https://github.com/strvcom/atlas.js/commit/ffb901e))
+* **generator:** optionally generate ESLint configuration 🎨 ([45f2d56](https://github.com/strvcom/atlas.js/commit/45f2d56))
+* **generator:** optionally generate test suite 🚀 ([2761441](https://github.com/strvcom/atlas.js/commit/2761441))
+* **generator:** optionally generate VS Code configuration files ([adb2e70](https://github.com/strvcom/atlas.js/commit/adb2e70))
+* **generator:** switch some files to folders, add README to them ([344ece6](https://github.com/strvcom/atlas.js/commit/344ece6))
+* **generator:** upgrade yeoman-generator to 3.0 ([40ea041](https://github.com/strvcom/atlas.js/commit/40ea041))
+
+
+
+
 <a name="2.0.0"></a>
 # 2.0.0 (2018-05-22)
 

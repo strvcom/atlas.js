@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="3.1.0"></a>
+# [3.1.0](https://github.com/strvcom/atlas.js/compare/@atlas.js/koa@3.0.0...@atlas.js/koa@3.1.0) (2018-07-12)
+
+
+### Features
+
+* **koa:** upgrade koa-websocket to ^5, ws to ^5.2 ([2e094ec](https://github.com/strvcom/atlas.js/commit/2e094ec))
+
+
+
+
 <a name="3.0.0"></a>
 # 3.0.0 (2018-05-22)
 
