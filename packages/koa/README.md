@@ -50,7 +50,7 @@ const atlas = new Atlas({
     }
   }
 })
-atlas.service('http', Koa.Service)
+atlas.service('http', Koa.Server)
 await atlas.start()
 
 // The Koa instance is now available here:
@@ -126,7 +126,7 @@ const atlas = new Atlas({
   }
 })
 
-atlas.service('http', Koa.Service)
+atlas.service('http', Koa.Server)
 atlas.hook('context', Koa.ContextHook, {
   aliases: {
     'service:koa': 'http'
