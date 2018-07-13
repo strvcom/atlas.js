@@ -47,10 +47,10 @@ class Atlas extends Generator {
   install() {
     this.npmInstall([
       '@atlas.js/atlas',
+      '@atlas.js/cli@latest',
       './src/components/noop',
     ], { save: true })
     this.npmInstall([
-      '@atlas.js/cli@latest',
       '@babel/cli@latest',
       '@babel/core@latest',
       '@babel/plugin-proposal-class-properties@latest',
