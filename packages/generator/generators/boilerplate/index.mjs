@@ -2,6 +2,7 @@ import Generator from 'yeoman-generator'
 
 const files = [
   ['env', '.env'],
+  'readme.md',
   'makefile',
   'local.mk',
   'babel.config.js',
