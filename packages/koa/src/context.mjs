@@ -4,8 +4,8 @@ import { FrameworkError } from '@atlas.js/errors'
 class ContextHook extends Hook {
   static config = {
     type: 'object',
-    default: {},
     additionalProperties: false,
+    default: {},
     properties: {
       module: {
         type: 'string',

@@ -5,6 +5,7 @@ class Mongoose extends Service {
   static config = {
     type: 'object',
     additionalProperties: false,
+    default: {},
     properties: {
       uri: {
         type: 'string',

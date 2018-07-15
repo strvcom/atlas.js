@@ -5,9 +5,11 @@ class AWS extends Service {
   static config = {
     type: 'object',
     additionalProperties: false,
+    default: {},
     properties: {
       globals: {
         type: 'object',
+        default: {},
         properties: {
           accessKeyId: { type: 'string' },
           secretAccessKey: { type: 'string' },

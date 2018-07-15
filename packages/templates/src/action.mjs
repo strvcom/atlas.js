@@ -7,6 +7,7 @@ export default class Templates extends Action {
   static config = {
     type: 'object',
     additionalProperties: false,
+    default: {},
     properties: {
       templates: {
         type: 'string',
@@ -22,6 +23,7 @@ export default class Templates extends Action {
       },
       locals: {
         type: 'object',
+        default: {},
         properties: {
           cache: {
             type: 'boolean',

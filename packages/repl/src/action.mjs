@@ -9,6 +9,7 @@ class Repl extends Action {
   static config = {
     type: 'object',
     additionalProperties: false,
+    default: {},
     properties: {
       historyFile: {
         type: 'string',
@@ -29,6 +30,7 @@ class Repl extends Action {
       newlines: {
         type: 'object',
         additionalProperties: false,
+        default: {},
         properties: {
           unix: {
             type: 'string',

@@ -16,6 +16,7 @@ class WebsocketHook extends Hook {
       middleware: {
         type: 'object',
         additionalProperties: false,
+        default: {},
         properties: {
           module: {
             type: 'string',

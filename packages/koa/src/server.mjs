@@ -8,6 +8,7 @@ class KoaService extends Service {
   static config = {
     type: 'object',
     additionalProperties: false,
+    default: {},
     properties: {
       middleware: {
         type: 'object',
