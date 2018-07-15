@@ -4,6 +4,7 @@ node_modules
 # Local configuration
 .env
 src/config/local.mjs
+local.mk
 
 # Compiled files
 **/*.js
