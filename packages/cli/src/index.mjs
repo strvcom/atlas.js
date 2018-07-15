@@ -29,8 +29,16 @@ export default function cli(caporal, argv) {
     }
 
     cmd.action(async (...args) => {
-      await command.prerun(...args)
-      await command.run(...args)
+      try {
+        await command.prerun(...args)
+        await command.run(...args)
+      } catch (err) {
+        // eslint-disable-next-line no-console
+        console.error(err.stack)
+        process.exitCode = 1
+
+        await command.atlas.stop()
+      }
     })
 
     Command.mkhelp(cmd)
