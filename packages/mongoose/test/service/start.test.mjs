@@ -31,12 +31,19 @@ describe('Mongoose::start()', () => {
     instance.model('first', new mongoose.Schema({ test: Boolean }))
     instance.model('second', new mongoose.Schema({ test: Boolean }))
 
-    expect(instance.model('first')).to.not.have.property('atlas')
-    expect(instance.model('second')).to.not.have.property('atlas')
+    const First = instance.model('first')
+    const Second = instance.model('second')
+
+    expect(First).to.not.have.property('atlas')
+    expect(Second).to.not.have.property('atlas')
+    expect(new First()).to.not.have.property('atlas')
+    expect(new Second()).to.not.have.property('atlas')
 
     await service.start(instance)
 
-    expect(instance.model('first')).to.have.property('atlas')
-    expect(instance.model('second')).to.have.property('atlas')
+    expect(First).to.have.property('atlas')
+    expect(Second).to.have.property('atlas')
+    expect(new First()).to.have.property('atlas')
+    expect(new Second()).to.have.property('atlas')
   })
 })

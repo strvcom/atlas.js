@@ -34,6 +34,37 @@ await atlas.start()
 atlas.services.database
 ```
 
+#### Accessing the Atlas instance
+
+When you add your `Schema` definitions to the service they get access to the Atlas instance as both a static property on the model and as an instance property on all instances of those models.
+
+```js
+const User = new Schema({
+  /* your schema definitions go here */
+})
+
+User.statics = {
+  doThisThing() {
+    // this refers to User, in other words, this === mongoose.model('user')
+    this.atlas
+  }
+}
+
+User.methods = {
+  doThatThing() {
+    // this refers to an instance of User, in other words:
+    // this instanceof mongoose.model('user') -> true
+    this.atlas
+  }
+}
+
+// From elsewhere in your codebase...
+const User = atlas.services.database.model('user')
+User.toThisThing()
+const user = new User()
+user.doThatThing()
+```
+
 ### ModelsHook
 
 #### Dependencies
