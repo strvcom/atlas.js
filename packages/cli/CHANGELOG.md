@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="1.1.0"></a>
+# [1.1.0](https://github.com/strvcom/atlas.js/compare/@atlas.js/cli@1.0.0...@atlas.js/cli@1.1.0) (2018-07-16)
+
+
+### Features
+
+* **cli:** print the full stack trace and stop Atlas when command throws ([73a3712](https://github.com/strvcom/atlas.js/commit/73a3712))
+
+
+
+
 <a name="1.0.0"></a>
 # [1.0.0](https://github.com/strvcom/atlas.js/compare/@atlas.js/cli@0.5.0...@atlas.js/cli@1.0.0) (2018-07-12)
 

@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.2.0"></a>
+# [2.2.0](https://github.com/strvcom/atlas.js/compare/@atlas.js/generator-atlas@2.1.0...@atlas.js/generator-atlas@2.2.0) (2018-07-16)
+
+
+### Bug Fixes
+
+* **generator:** add local.mk to gitignore ([e8ff1d4](https://github.com/strvcom/atlas.js/commit/e8ff1d4))
+* **generator:** ensure the latest version of Atlas is installed ([2ed68e8](https://github.com/strvcom/atlas.js/commit/2ed68e8))
+
+
+### Features
+
+* **generator:** add readme.md to the generated code ([ff59c99](https://github.com/strvcom/atlas.js/commit/ff59c99))
+* **generator:** include Atlas.js CLI as production dependency ([28c9295](https://github.com/strvcom/atlas.js/commit/28c9295))
+
+
+
+
 <a name="2.1.0"></a>
 # [2.1.0](https://github.com/strvcom/atlas.js/compare/@atlas.js/generator-atlas@2.0.0...@atlas.js/generator-atlas@2.1.0) (2018-07-12)
 
