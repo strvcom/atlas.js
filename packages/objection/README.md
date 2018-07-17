@@ -53,6 +53,25 @@ atlas.services.database.connection
 atlas.services.database.models
 ```
 
+#### Accessing the Atlas instance
+
+From within your models you can access the Atlas instance as both a static and instance-level property on the models. This is set up as part of the model loading process during the _prepare_ step.
+
+```js
+import { Model } from '@atlas.js/objection'
+
+class User extends Model {
+  static doThatThing() {
+    // this refers to the class, ie. this === User
+    this.atlas
+  }
+  doThisThing() {
+    // this refers to the class' instance, ie. this instanceof User === true
+    this.atlas
+  }
+}
+```
+
 ### MigrationAction
 
 This action contains methods for applying and rolling back your migrations. The migration files must export an `up()` and `down()` functions. Both of these functions should return a `Promise` and their first argument is the `knex` client.
