@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="3.1.0"></a>
+# [3.1.0](https://github.com/strvcom/atlas.js/compare/@atlas.js/mongoose@3.0.2...@atlas.js/mongoose@3.1.0) (2018-07-17)
+
+
+### Features
+
+* **mongoose:** expose atlas on `this` from instance methods, add docs ([ba6eef8](https://github.com/strvcom/atlas.js/commit/ba6eef8))
+
+
+
+
 <a name="3.0.2"></a>
 ## [3.0.2](https://github.com/strvcom/atlas.js/compare/@atlas.js/mongoose@3.0.1...@atlas.js/mongoose@3.0.2) (2018-07-16)
 

@@ -1,7 +1,7 @@
 {
   "name": "@atlas.js/mongoose",
   "description": "Mongoose service for @atlas.js",
-  "version": "3.0.2",
+  "version": "3.1.0",
   "author": "Robert Rossmann <robert.rossmann@strv.com>",
   "bugs": "https://github.com/strvcom/atlas.js/issues",
   "contributors": [],

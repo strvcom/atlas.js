@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.2.1"></a>
+## [2.2.1](https://github.com/strvcom/atlas.js/compare/@atlas.js/generator-atlas@2.2.0...@atlas.js/generator-atlas@2.2.1) (2018-07-17)
+
+
+
+
+**Note:** Version bump only for package @atlas.js/generator-atlas
+
 <a name="2.2.0"></a>
 # [2.2.0](https://github.com/strvcom/atlas.js/compare/@atlas.js/generator-atlas@2.1.0...@atlas.js/generator-atlas@2.2.0) (2018-07-16)
 
