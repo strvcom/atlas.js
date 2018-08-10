@@ -23,7 +23,7 @@
     "esdoc-ecmascript-proposal-plugin": "^1.0.0",
     "esdoc-standard-plugin": "^1.0.0",
     "eslint": "^5.0.1",
-    "lerna": "^2.8.0",
+    "lerna": "^3.0.0",
     "mocha": "^5.0.0",
     "nyc": "^12.0.0",
     "remark-cli": "^5.0.0",
