@@ -19,5 +19,8 @@
   "repository": {
     "type": "git",
     "url": "git://github.com/strvcom/atlas.js.git"
+  },
+  "dependencies": {
+    "ajv": "^6.5.2"
   }
 }
