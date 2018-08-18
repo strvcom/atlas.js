@@ -49,7 +49,7 @@ precompile: install
 install: node_modules $(GITFILES)
 
 lint: force install
-	eslint --ext .mjs --report-unused-disable-directives $(FLINT) .
+	eslint --cache --ext .mjs --report-unused-disable-directives $(FLINT) .
 	remark --quiet .
 
 test: force compile
