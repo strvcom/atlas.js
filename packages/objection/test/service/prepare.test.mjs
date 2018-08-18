@@ -85,7 +85,7 @@ describe('Objection::prepare()', () => {
 
     return expect(service.prepare()).to.eventually.be.rejectedWith(
       errors.FrameworkError,
-      /Unable to find relation UnknownModel defined in ModelA/,
+      /Unable to find relation UnknownModel defined in ModelA/u,
     )
   })
 })

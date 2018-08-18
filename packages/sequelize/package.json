@@ -11,7 +11,7 @@
     "@atlas.js/hook": "^2.0.1",
     "@atlas.js/service": "^1.1.1",
     "sequelize": "^4.37.6",
-    "umzug": "^2.0.1"
+    "umzug": "^2.0.0"
   },
   "devDependencies": {
     "@atlas.js/atlas": "^2.1.0",

@@ -58,7 +58,7 @@ describe('Koa: ContextHook', () => {
     it('throws when the property already exists on koa.context', () => {
       server.context.testmethod = sinon.stub()
       expect(() => hook.afterPrepare())
-        .to.throw(FrameworkError, /Unable to extend koa.context/)
+        .to.throw(FrameworkError, /Unable to extend koa.context/u)
     })
   })
 })

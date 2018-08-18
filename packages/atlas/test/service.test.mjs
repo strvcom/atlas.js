@@ -56,7 +56,7 @@ describe('Atlas::service()', () => {
 
     expect(args).to.have.property('log')
     expect(args.log).to.be.an('object')
-    expect(args.log.chindings).to.match(/"service":"dummy"/)
+    expect(args.log.chindings).to.match(/"service":"dummy"/u)
   })
 
   it('provides config object on service constructor argument', () => {
@@ -96,7 +96,7 @@ describe('Atlas::service()', () => {
     service.requires = ['service:dummy', 'action:dummy']
     expect(() => {
       atlas.service('dummy', service)
-    }).to.throw(FrameworkError, /Missing aliases for component dummy/)
+    }).to.throw(FrameworkError, /Missing aliases for component dummy/u)
   })
 
   it('throws when extraneous aliases are specified', () => {
@@ -105,7 +105,7 @@ describe('Atlas::service()', () => {
       atlas.service('dummy', service, { aliases: {
         'action:dummy': 'dummy',
       } })
-    }).to.throw(FrameworkError, /Unneeded aliases for component dummy/)
+    }).to.throw(FrameworkError, /Unneeded aliases for component dummy/u)
   })
 
   it('throws when user config fails component config schema', () => {

@@ -20,7 +20,7 @@ describe('Atlas::require()', () => {
   })
 
   it('throws if the module does not exist', () => {
-    expect(() => atlas.require('lolmodule')).to.throw(/Cannot find module/)
+    expect(() => atlas.require('lolmodule')).to.throw(/Cannot find module/u)
   })
 
 

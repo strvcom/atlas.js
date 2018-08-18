@@ -89,7 +89,7 @@ describe('Atlas::start()', () => {
     it('re-throws component errors thrown during .start()', () => {
       DummyService.prototype.start.rejects(new Error('fail!'))
 
-      return expect(atlas.start()).to.eventually.be.rejectedWith(/fail!/)
+      return expect(atlas.start()).to.eventually.be.rejectedWith(/fail!/u)
     })
 
     it('stops already started service if one of the components fails to start', async () => {

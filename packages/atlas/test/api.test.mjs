@@ -18,13 +18,13 @@ describe('Atlas: basics and API', () => {
   })
 
   it('requires root on construction', () => {
-    expect(() => new Atlas()).to.throw(FrameworkError, /root must be explicitly specified/)
+    expect(() => new Atlas()).to.throw(FrameworkError, /root must be explicitly specified/u)
   })
 
   it('throws when env is not provided and NODE_ENV is not set', function() {
     // eslint-disable-next-line no-process-env
     this.sandbox.stub(process.env, 'NODE_ENV').value('')
-    expect(() => new Atlas(opts)).to.throw(FrameworkError, /env not specified/)
+    expect(() => new Atlas(opts)).to.throw(FrameworkError, /env not specified/u)
   })
 
   it('supports loading the config from module path relative to root', () => {

@@ -72,7 +72,7 @@ describe('Sequelize: RelationsHook', () => {
 
     User.relations.hasAProblem = { Purchase: {} }
     expect(() =>
-      hook.afterPrepare()).to.throw(FrameworkError, /Invalid relation type/)
+      hook.afterPrepare()).to.throw(FrameworkError, /Invalid relation type/u)
 
     delete User.relations.hasAProblem
   })
@@ -83,7 +83,7 @@ describe('Sequelize: RelationsHook', () => {
     User.relations.hasMany.Problems = {}
 
     expect(() =>
-      hook.afterPrepare()).to.throw(FrameworkError, /Invalid relation target/)
+      hook.afterPrepare()).to.throw(FrameworkError, /Invalid relation target/u)
 
     delete User.relations.hasMany.Problems
   })

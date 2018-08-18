@@ -46,13 +46,13 @@ describe('Koa::stop(instance)', () => {
 
   it('throws when called on an instance not yet started', () => {
     delete instance.server
-    const msg = /Cannot stop a non-running server/
+    const msg = /Cannot stop a non-running server/u
     return expect(service.stop(instance)).to.eventually.be.rejectedWith(FrameworkError, msg)
   })
 
   it('throws when called on an instance not yet prepared', () => {
     delete instance.server
-    const msg = /Cannot stop a non-running server/
+    const msg = /Cannot stop a non-running server/u
     service = new Koa({})
     return expect(service.stop(instance)).to.eventually.be.rejectedWith(FrameworkError, msg)
   })
@@ -69,7 +69,7 @@ describe('Koa::stop(instance)', () => {
 
     return expect(service.stop(instance)).to.eventually.be.rejectedWith(
       Error,
-      new RegExp(err.message),
+      new RegExp(err.message, 'u'),
     )
   })
 })

@@ -134,7 +134,7 @@ describe('Atlas: cross-component communication', () => {
 
     return expect(atlas.start()).to.be.eventually.rejectedWith(
       FrameworkError,
-      /Invalid component type: invalid used in alias invalid:name/,
+      /Invalid component type: invalid used in alias invalid:name/u,
     )
   })
 
@@ -147,7 +147,7 @@ describe('Atlas: cross-component communication', () => {
 
     return expect(atlas.start()).to.be.eventually.rejectedWith(
       FrameworkError,
-      /Unable to find service unknown aliased as service:dummy/,
+      /Unable to find service unknown aliased as service:dummy/u,
     )
   })
 })

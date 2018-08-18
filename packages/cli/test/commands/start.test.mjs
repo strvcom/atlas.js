@@ -95,7 +95,7 @@ describe('CLI: start', () => {
       start.doExit()
 
       // Sending SIGINT causes the test suite to exit with code 130, so just test SIGTERM 🤷‍♂️
-      expect(() => process.emit('SIGTERM')).to.throw(Error, /Forced quit/)
+      expect(() => process.emit('SIGTERM')).to.throw(Error, /Forced quit/u)
 
       delete process.exitCode
     })

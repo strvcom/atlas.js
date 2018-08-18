@@ -44,6 +44,6 @@ describe('Nodemailer - instance::send()', () => {
   it('rejects if the sendMail() fails', () => {
     transport.sendMail.callsArgWithAsync(1, new Error('simulated fail'))
 
-    return expect(client.send({})).to.be.eventually.rejectedWith(/simulated fail/)
+    return expect(client.send({})).to.be.eventually.rejectedWith(/simulated fail/u)
   })
 })

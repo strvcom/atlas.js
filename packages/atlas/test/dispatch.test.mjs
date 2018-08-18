@@ -15,8 +15,8 @@ class UnrelatedHook extends Hook {
 }
 
 class DummyAction extends Action {
-  trigger(event, context) {
-    return this.dispatch(event, context)
+  trigger(event, ctx) {
+    return this.dispatch(event, ctx)
   }
 }
 
@@ -49,14 +49,14 @@ describe('Hook: custom events', () => {
 
 
   it('dispatches a custom event from a component to all observing hooks', async () => {
-    const context = {}
+    const ctx = {}
 
-    await atlas.actions.dummy.trigger('handleEvent', context)
+    await atlas.actions.dummy.trigger('handleEvent', ctx)
 
     expect(DummyHook.prototype.handleEvent).to.have.callCount(1)
-    expect(DummyHook.prototype.handleEvent).to.have.been.calledWith(context)
+    expect(DummyHook.prototype.handleEvent).to.have.been.calledWith(ctx)
     expect(AnotherHook.prototype.handleEvent).to.have.callCount(1)
-    expect(AnotherHook.prototype.handleEvent).to.have.been.calledWith(context)
+    expect(AnotherHook.prototype.handleEvent).to.have.been.calledWith(ctx)
   })
 
   it('does not dispatch the event to hooks not observing the component', async () => {

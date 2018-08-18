@@ -20,7 +20,7 @@ describe('Atlas::init()', () => {
 
   it('throws when no root is provided', () => {
     expect(() => Atlas.init({ env: 'test' }))
-      .to.throw(FrameworkError, /root must be explicitly specified/)
+      .to.throw(FrameworkError, /root must be explicitly specified/u)
   })
 
   it('does not throw TypeError when options is not provided', () => {

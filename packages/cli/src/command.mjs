@@ -85,13 +85,13 @@ class Command {
  * Normalise a module into either a default export or all the rest
  *
  * @private
- * @param     {Object}    module    The module to be normalised
+ * @param     {Object}    mod       The module to be normalised
  * @return    {Object}              The normalised module
  */
-function normalise(module) {
-  return module.hasOwnProperty('default') && typeof module.default === 'object' && module.default
-    ? module.default
-    : module
+function normalise(mod) {
+  return mod.hasOwnProperty('default') && typeof mod.default === 'object' && mod.default
+    ? mod.default
+    : mod
 }
 
 export default Command

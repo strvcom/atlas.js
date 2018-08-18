@@ -102,7 +102,7 @@ describe('Atlas::stop()', () => {
     it('re-throws component errors thrown during .stop()', () => {
       DummyService.prototype.stop.rejects(new Error('fail!'))
 
-      return expect(atlas.stop()).to.eventually.be.rejectedWith(/fail!/)
+      return expect(atlas.stop()).to.eventually.be.rejectedWith(/fail!/u)
     })
 
     it('stops the other services if one of the services throws during .stop()', async () => {

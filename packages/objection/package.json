@@ -12,7 +12,7 @@
     "knex": "^0.15.0",
     "knex-umzug": "^2.0.0",
     "objection": "^1.1.7",
-    "umzug": "^2.1.0"
+    "umzug": "^2.0.0"
   },
   "devDependencies": {
     "@atlas.js/atlas": "^2.1.0",

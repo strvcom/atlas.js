@@ -156,7 +156,7 @@ describe('Atlas::prepare()', () => {
 
       return expect(atlas.prepare()).to.eventually.be.rejectedWith(
         FrameworkError,
-        /does not have static 'observes' property/i,
+        /does not have static 'observes' property/ui,
       )
     })
   })

@@ -174,7 +174,7 @@ describe('Hook: WebsocketHook', () => {
     it('re-throws any errors returned from the koa.ws.server.close() method', () => {
       koa.ws.server.close.callsArgWithAsync(0, new Error('u-oh'))
 
-      return expect(hook.beforeStop()).to.eventually.be.rejectedWith(Error, /u-oh/)
+      return expect(hook.beforeStop()).to.eventually.be.rejectedWith(Error, /u-oh/u)
     })
   })
 })

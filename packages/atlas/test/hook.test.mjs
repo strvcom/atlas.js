@@ -58,7 +58,7 @@ describe('Atlas::hook()', () => {
 
     expect(args).to.have.property('log')
     expect(args.log).to.be.an('object')
-    expect(args.log.chindings).to.match(/"hook":"dummy"/)
+    expect(args.log.chindings).to.match(/"hook":"dummy"/u)
   })
 
   it('provides config object on hook constructor argument', () => {
@@ -98,7 +98,7 @@ describe('Atlas::hook()', () => {
     hook.requires = ['service:dummy', 'action:dummy']
     expect(() => {
       atlas.hook('dummy', hook)
-    }).to.throw(FrameworkError, /Missing aliases for component dummy/)
+    }).to.throw(FrameworkError, /Missing aliases for component dummy/u)
   })
 
   it('throws when extraneous aliases are specified', () => {
@@ -108,7 +108,7 @@ describe('Atlas::hook()', () => {
       atlas.hook('dummy', hook, { aliases: {
         'service:dummy': 'dummy',
       } })
-    }).to.throw(FrameworkError, /Unneeded aliases for component dummy/)
+    }).to.throw(FrameworkError, /Unneeded aliases for component dummy/u)
   })
 
   it('works when all requirements are specified', () => {
@@ -142,7 +142,7 @@ describe('Atlas::hook()', () => {
 
     expect(() => {
       atlas.hook('dummy', Dummy)
-    }).to.throw(FrameworkError, /Missing aliases for component dummy/)
+    }).to.throw(FrameworkError, /Missing aliases for component dummy/u)
   })
 
   it('throws when user config fails component config schema', () => {
