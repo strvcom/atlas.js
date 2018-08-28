@@ -15,7 +15,7 @@
     "@commitlint/cli": "^7.0.0",
     "@commitlint/config-conventional": "^7.0.0",
     "@strv/eslint-config-javascript": "^8.1.0",
-    "babel-eslint": "^8.2.5",
+    "babel-eslint": "^9.0.0",
     "chai": "^4.1.0",
     "chai-as-promised": "^7.1.1",
     "coveralls": "^3.0.0",
