@@ -36,6 +36,26 @@ Here is a list of STRV-maintained components.
 
 Need help? Check out the [tutorials](tutorials) folder for... well... tutorials. 🤓
 
+## Getting started
+
+The easiest and fastest way to start using Atlas.js is to use our [Yeoman generator][generator-npm-home]. It will generate the minimum and ideal project structure so you can start writing your application code right away.
+
+The generator consists of the following:
+
+- A `Makefile`
+- Babel compilation toolchain (for ES modules & class fields which are ideal for working with Atlas components)
+- Empty local git repository
+- Basic configuration files like _.editorconfig_, _.eslintignore_, ._gitignore_ etc.
+- Optionally, some additional configuration files and utilities like a test suite, VS Code settings etc.
+
+
+
+
+
+
+
+
+
 ## Core ideas
 
 ### What this is?

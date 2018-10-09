@@ -2,7 +2,7 @@
 
 ## Installation
 
-> tl;dr - There is a very basic yeoman generator to quickly scaffold the very basics needed to get Atlas up and running: [@atlas.js/generator-atlas][generator-atlas].
+> tl;dr - There is a Yeoman generator to quickly scaffold the ideal project structure & required packages needed to get Atlas up and running: [@atlas.js/generator-atlas][generator-atlas].
 > It is still recommended to at least quickly read through the stuff explained here. ⚠️
 
 All projects will need the [`@atlas.js/atlas`][@atlas.js/atlas] package, which provides all the important bits and pieces you will need on a standalone project.
@@ -14,6 +14,20 @@ This package includes the following:
 - `Atlas`: The main class which holds all your components
 - `Service` / `Action` / `Hook`: These classes are used when developing custom components - you will need to extend them
 - `errors`: This object contains references to all the errors that @atlas.js can explicitly throw at you
+
+### Using the CLI
+
+The CLI provides a command to start your Atlas instance without bothering you to write the initial bootstrap code which is generally always the same on all projects. If you generated the project with the Yeoman generator you can skip this step - the CLI is already installed for you.
+
+First, install the CLI:
+
+`npm i --save @atlas.js/cli`
+
+> The CLI package can be safely used on production environments so it's okay to install it as a regular dependency.
+
+### Manual management
+
+If you do not want to use the CLI you will need to set up the Atlas instance yourself.
 
 You start by importing the `Atlas` class:
 
