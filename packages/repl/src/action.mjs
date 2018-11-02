@@ -101,7 +101,12 @@ async function readHistory() {
 
   // Load history. This requires a wee bit of work, Node does not provide built-in support for
   // history persistence in custom REPL servers... 😡
-  const exists = await new Promise(resolve => fs.exists(file, resolve))
+  const exists = await new Promise(resolve =>
+    fs.access(file, fs.constants.F_OK | fs.constants.W_OK, err =>
+      err
+        ? resolve(false)
+        : resolve(true)))
+
   const inputs = exists
     ? (await fsp.readFile(file, 'utf8'))
       .split(os.EOL)
