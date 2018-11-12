@@ -16,17 +16,17 @@ git checkout "${TRAVIS_BRANCH}"
 
 # Prepare arguments for deployment with lerna
 lernaargs=(
-  --yes
-  --sort
-  --conventional-commits
-  --git-remote pushable-origin
-  --message "chore: release [ci skip]"
+  '--yes'
+  '--sort'
+  '--conventional-commits'
+  '--git-remote pushable-origin'
+  '--message "chore: release [ci skip]"'
 )
 
 # Customise the release depending on the branch we are releasing from
 case "${TRAVIS_BRANCH}" in
-  "release/latest")   lernaargs+=(--npm-tag=latest) ;;
-  "release/next")     lernaargs+=(--npm-tag=next) ;;
+  "release/latest")   lernaargs+=("--npm-tag=latest") ;;
+  "release/next")     lernaargs+=("--npm-tag=next") ;;
 esac
 
 # Publish!
