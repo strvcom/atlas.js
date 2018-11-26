@@ -4,13 +4,13 @@ SHELL := sh
 export PATH := node_modules/.bin/:$(PATH)
 
 # Modify these variables in local.mk to add flags to the commands, ie.
-# FINSTALL += --prefer-offline
+# NPM_FLAGS += --prefer-offline
 # Now, npm will be invoked with the specified flag and will try to install packages from cache if
 # they are available.
-FINSTALL :=
-FCOMPILE :=
-<%_ if (config.eslint) { %>FLINT :=<%_ } %>
-<%_ if (config.testsuite) { %>FTEST :=<%_ } %>
+NPM_FLAGS :=
+BABEL_FLAGS :=
+<%_ if (config.eslint) { %>ESLINT_FLAGS :=<%_ } %>
+<%_ if (config.testsuite) { %>MOCHA_FLAGS :=<%_ } %>
 
 # Build a list of our targets which should be "made" by make when compiling sources
 JSFILES := $(patsubst %.mjs, %.js, $(shell util/make/files mjs))
@@ -24,18 +24,18 @@ all: precompile
 install: node_modules
 
 precompile: install
-	babel . --extensions .mjs --out-dir . $(FCOMPILE)
+	babel . --extensions .mjs --out-dir . $(BABEL_FLAGS)
 
 compile: $(JSFILES)
 
 <%_ if (config.eslint) { %>lint:
-	eslint --ext .mjs --report-unused-disable-directives $(FLINT) .<%_ } %>
+	eslint --ext .mjs --report-unused-disable-directives $(ESLINT_FLAGS) .<%_ } %>
 
 <%_ if (config.testsuite) { %>test: force compile
-	mocha $(FTEST)
+	mocha $(MOCHA_FLAGS)
 
 inspect: force compile
-	mocha --inspect --inspect-brk $(FTEST)
+	mocha --inspect --inspect-brk $(MOCHA_FLAGS)
 
 coverage: coverage/lcov.info
 
@@ -50,14 +50,14 @@ distclean:<%_ if (config.testsuite) { %> clean<%_ } %>
 # GENERIC TARGETS
 
 node_modules: package.json
-	npm install $(FINSTALL) && touch node_modules
+	npm install $(NPM_FLAGS) && touch node_modules
 
 # Default compilation target for all source files
 %.js: %.mjs node_modules babel.config.js
-	babel $< --out-file $@ $(FCOMPILE)
+	babel $< --out-file $@ $(BABEL_FLAGS)
 
 <%_ if (config.testsuite) { %>coverage/lcov.info: $(JSFILES)
-	nyc mocha $(FTEST)<%_ } %>
+	nyc mocha $(MOCHA_FLAGS)<%_ } %>
 
 # Use this prerequisite to force the target to never be treated as "up to date"
 .PHONY: force
