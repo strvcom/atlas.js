@@ -12,7 +12,6 @@ cache:
     - node_modules
 
 before_install:
-  - npm i -g npm@6
   - touch package.json
 
 install:
