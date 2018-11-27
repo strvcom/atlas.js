@@ -107,7 +107,7 @@ class Atlas {
    * providing greater flexibility as to which components will be used.
    *
    * @param     {Atlas}   atlas                 The Atlas instance to bootstrap
-   * @param     {Object}  modules={}            All the modules which should be added to Atlas
+   * @param     {Object}  modules?              All the modules which should be added to Atlas
    * @param     {Object}  modules.actions       Actions to add
    * @param     {Object}  modules.hooks         Hooks to add
    * @param     {Object}  modules.services      Services to add
@@ -290,7 +290,7 @@ class Atlas {
    * Require a module by path, relative to the project root
    *
    * @param     {String}    location          The module's location, relative to root
-   * @param     {Object}    options={}        Options
+   * @param     {Object}    options?          Options
    * @param     {Boolean}   options.optional  If true, will not throw if the module does not exist
    * @param     {Boolean}   options.normalise If true, it will prefer the ES modules' default export
    *                                          over named exports or the CommonJS exports
@@ -315,7 +315,7 @@ class Atlas {
   }
 
   /**
-   * Register a service into this atlas at given alias
+   * Register a service into this instance of Atlas with the given alias
    *
    * @param     {String}    alias           The alias for the service - it will be used for exposing
    *                                        the service's API on the atlas.services object and for
@@ -337,7 +337,7 @@ class Atlas {
   }
 
   /**
-   * Register a hook into this atlas using given alias
+   * Register a hook into this instance of Atlas with the given alias
    *
    * @param     {String}    alias           The alias for the hook - it will be used for passing
    *                                        configuration data to it
@@ -358,7 +358,7 @@ class Atlas {
   }
 
   /**
-   * Register an action into this atlas at given alias
+   * Register an action into this instance of Atlas with the given alias
    *
    * @param     {String}    alias           The alias for the action - it will be used for exposing
    *                                        the action's API on the atlas.actions object and for
