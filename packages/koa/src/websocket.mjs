@@ -46,6 +46,7 @@ class WebsocketHook extends Hook {
   }
 
   afterPrepare() {
+    /** @type {import("koa")} */
     const koa = this.component('service:koa')
     const config = this.config
 
@@ -59,6 +60,7 @@ class WebsocketHook extends Hook {
   }
 
   afterStart() {
+    /** @type {import("koa")} */
     const koa = this.component('service:koa')
 
     koa.ws.listen({
@@ -70,10 +72,13 @@ class WebsocketHook extends Hook {
   }
 
   async beforeStop() {
+    /** @type {import("koa")} */
+    const koa = this.component('service:koa')
+
     this.log.info('websocket:close')
 
     await new Promise((resolve, reject) =>
-      this.component('service:koa').ws.server.close(err =>
+      koa.ws.server.close(err =>
         err ? reject(err) : resolve()))
   }
 }

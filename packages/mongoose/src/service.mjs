@@ -24,6 +24,11 @@ class Mongoose extends Service {
     },
   }
 
+  /**
+   * Prepare the service
+   *
+   * @return {Promise<mongoose.Mongoose>}
+   */
   prepare() {
     const instance = new mongoose.Mongoose()
     // Add a trace logger to allow users to monitor Mongoose activity
@@ -32,6 +37,12 @@ class Mongoose extends Service {
     return Promise.resolve(instance)
   }
 
+  /**
+   * Start the service
+   *
+   * @param {mongoose.Mongoose}   instance    The instance being started
+   * @return {Promise<void>}
+   */
   async start(instance) {
     for (const name of instance.modelNames()) {
       // Allow models to use the Atlas instance
@@ -42,6 +53,12 @@ class Mongoose extends Service {
     await instance.connect(this.config.uri, this.config.options)
   }
 
+  /**
+   * Stop the service
+   *
+   * @param {mongoose.Mongoose}   instance    The instance being started
+   * @return {Promise<void>}
+   */
   async stop(instance) {
     await instance.disconnect()
   }

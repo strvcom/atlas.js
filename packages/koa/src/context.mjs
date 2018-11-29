@@ -2,6 +2,7 @@ import Hook from '@atlas.js/hook'
 import { FrameworkError } from '@atlas.js/errors'
 
 class ContextHook extends Hook {
+  /** ContextHook configuration schema */
   static config = {
     type: 'object',
     additionalProperties: false,
@@ -20,6 +21,7 @@ class ContextHook extends Hook {
   ]
 
   afterPrepare() {
+    /** @type {import("koa")} */
     const koa = this.component('service:koa')
     // Prefer default export or a standard CommonJS module
     const context = this.atlas.require(this.config.module, { normalise: true })

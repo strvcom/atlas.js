@@ -2,6 +2,7 @@ import Service from '@atlas.js/service'
 import * as Admin from 'firebase-admin'
 
 class Firebase extends Service {
+  /** Firebase configuration schema */
   static config = {
     type: 'object',
     additionalProperties: false,
@@ -18,6 +19,11 @@ class Firebase extends Service {
     },
   }
 
+  /**
+   * Start the service
+   *
+   * @return {Promise<Admin.app.App>}
+   */
   prepare() {
     const config = this.config
     // Either load the credentials from the file (if it's a string) or just pass it as is (object?)
@@ -31,6 +37,12 @@ class Firebase extends Service {
     }, config.name)
   }
 
+  /**
+   * Stop the service
+   *
+   * @param {Admin.app.App} firebase    The firebase instance
+   * @return {Promise<void>}
+   */
   async stop(firebase) {
     await firebase.delete()
   }

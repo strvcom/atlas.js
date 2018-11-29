@@ -77,9 +77,7 @@ class KoaService extends Service {
   }
 
 
-  prepare(options) {
-    super.prepare(options)
-
+  prepare() {
     // Prepare Koa instance
     const koa = new Koa()
     koa.env = this.atlas.env
@@ -101,6 +99,12 @@ class KoaService extends Service {
     return koa
   }
 
+  /**
+   * Start the service
+   *
+   * @param   {Koa}     koa     The koa instance
+   * @return  {Promise<void>}
+   */
   async start(koa) {
     const server = http.createServer(koa.callback())
     koa.server = server
@@ -123,12 +127,18 @@ class KoaService extends Service {
       server.once('error', fail)
 
       // Listen already!
-      koa.server.listen(this.config.listen.port, this.config.listen.hostname)
+      server.listen(this.config.listen.port, this.config.listen.hostname)
     })
 
     this.log.info({ addrinfo: server.address() }, 'listening')
   }
 
+  /**
+   * Stop the service
+   *
+   * @param   {Koa}     koa     The koa instance
+   * @return  {Promise<void>}
+   */
   async stop(koa) {
     if (!koa || !koa.server) {
       throw new FrameworkError('Cannot stop a non-running server')
