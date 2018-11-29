@@ -1,7 +1,7 @@
 /**
  * Dispatch an event to hooks
  *
- * This function takes variable number of events to be dispatched to hooks
+ * Dispatch an event to all hooks listening on this component
  *
  * @private
  * @param     {String}    event     The event's name
