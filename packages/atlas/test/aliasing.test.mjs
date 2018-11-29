@@ -43,7 +43,7 @@ describe('Atlas: cross-component communication', () => {
     }
 
     class DummyService extends Service {
-      prepare() { return api }
+      prepare() { return Promise.resolve(api) }
     }
 
     class DummyAction extends Action {
@@ -92,7 +92,7 @@ describe('Atlas: cross-component communication', () => {
     class InternalService extends Service {
       static internal = true
 
-      prepare() { return api }
+      prepare() { return Promise.resolve(api) }
     }
 
     class DummyAction extends Action {

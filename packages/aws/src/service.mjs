@@ -37,7 +37,7 @@ class AWS extends Service {
       aws[service] = new AWSService(config)
     }
 
-    return aws
+    return Promise.resolve(aws)
   }
 
   stop() {

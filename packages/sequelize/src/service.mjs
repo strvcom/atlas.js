@@ -21,7 +21,7 @@ class Sequelize extends Service {
     // Add a trace logger to allow users to monitor Sequelize activity
     this.config.options.logging = this::strace
 
-    return new Database(this.config.uri, this.config.options)
+    return Promise.resolve(new Database(this.config.uri, this.config.options))
   }
 
   async start(instance) {

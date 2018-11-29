@@ -52,7 +52,7 @@ class Nodemailer extends Service {
     // Attach a promisified version of the sendMail function
     instance.send = instance::send
 
-    return instance
+    return Promise.resolve(instance)
   }
 
   async stop(instance) {

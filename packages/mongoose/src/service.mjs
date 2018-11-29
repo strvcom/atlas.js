@@ -34,7 +34,7 @@ class Mongoose extends Service {
     // Add a trace logger to allow users to monitor Mongoose activity
     instance.set('debug', this::mtrace)
 
-    return instance
+    return Promise.resolve(instance)
   }
 
   async start(instance) {
