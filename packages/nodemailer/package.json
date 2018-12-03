@@ -10,7 +10,8 @@
     "nodemailer": "^4.0.1"
   },
   "devDependencies": {
-    "@atlas.js/atlas": "^2.1.0"
+    "@atlas.js/atlas": "^2.1.0",
+    "@types/nodemailer": "^4.0.1"
   },
   "engines": {
     "node": ">=8.3.0",
