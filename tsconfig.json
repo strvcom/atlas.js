@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "charset": "utf8",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "target": "esnext",
+    "noEmit": true,
+    "noImplicitAny": true,
+    "skipLibCheck": false,
+    "noUnusedParameters": true,
+    "noImplicitThis": true,
+    "noUnusedLocals": true,
+    "strictNullChecks": true
+  },
+  "exclude": [
+    "node_modules",
+    "**/node_modules/*"
+  ],
+  "typeAcquisition": {
+    "enable": true
+  }
+}
