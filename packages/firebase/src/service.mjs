@@ -5,7 +5,6 @@ class Firebase extends Service {
   /** Firebase configuration schema */
   static config = {
     type: 'object',
-    additionalProperties: false,
     default: {},
     properties: {
       name: { type: 'string' },
