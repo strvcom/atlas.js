@@ -25,6 +25,7 @@ class KoaService extends Service {
         },
       },
 
+      // @TODO(semver-major): change this to an object matching the http.Server.listen({}) pattern
       listen: {
         type: 'object',
         additionalProperties: false,

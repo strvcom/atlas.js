@@ -14,7 +14,7 @@
  * @param     {Koa}       instance        Koa-compatible instance. Must implement `.use()`.
  * @param     {Handlers}  handlers        Object where keys are the middlewares' names and the
  *                                        values are the actual middleware functions.
- * @param     {Object}    config={}       Configuration for individual middlewares. The keys should
+ * @param     {Object=}   config          Configuration for individual middlewares. The keys should
  *                                        match the middleware names.
  * @return    {void}
  */

@@ -9,6 +9,9 @@
     "@atlas.js/errors": "^0.2.1",
     "@atlas.js/hook": "^2.0.1",
     "@atlas.js/service": "^1.1.1",
+    "@types/pino": "^4.7.0",
+    "@types/koa": "^2.0.0",
+    "@types/koa-websocket": "^5.0.3",
     "koa": "^2.3.0",
     "koa-websocket": "^5.0.1"
   },
