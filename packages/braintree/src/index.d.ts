@@ -5,36 +5,37 @@ declare module '@atlas.js/braintree' {
   // @TODO: Braintree does not have typings. Watch for any changes to that situation. 👀
   type Braintree = object
 
-  interface Config {
-    /**
-     * Environment to connect to
-     *
-     * Available values:
-     *
-     * ```js
-     * import { Braintree } from '@atlas.js/braintree'
-     *
-     * Braintree.Environment.{choose one}
-     * ```
-     */
-    environment: object
-
-    merchantId: string
-    publicKey: string
-    privateKey: string
-  }
-
   class Service extends AtlasService {
-    config: Config
+    /** Runtime configuration values */
+    config: Service.Config
 
     prepare(): Promise<ServiceApi>
     start(service: ServiceApi): Promise<ServiceApi>
     stop(service: ServiceApi): Promise<void>
   }
 
+  namespace Service {
+    /** Configuration schema available to this service */
+    interface Config {
+      /**
+       * Environment to connect to
+       *
+       * Available values:
+       *
+       * ```js
+       * import { Braintree } from '@atlas.js/braintree'
+       * Braintree.Environment.{choose one}
+       * ```
+       */
+      environment: object
+      merchantId: string
+      publicKey: string
+      privateKey: string
+    }
+  }
+
   export {
     Service,
-    Config,
     Braintree,
   }
 }
