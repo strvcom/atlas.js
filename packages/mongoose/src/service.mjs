@@ -24,11 +24,6 @@ class Mongoose extends Service {
     },
   }
 
-  static defaults = {
-    uri: 'mongodb://127.0.0.1:27017',
-    options: {},
-  }
-
   prepare() {
     const instance = new mongoose.Mongoose()
     // Add a trace logger to allow users to monitor Mongoose activity
