@@ -3,32 +3,21 @@ declare module '@atlas.js/aws' {
   import { GlobalConfigInstance } from 'aws-sdk/lib/config'
   import * as AWSClients from 'aws-sdk/clients/all'
   import AtlasService from '@atlas.js/service'
-  import { ServiceApi } from '@atlas.js/service'
 
-  type ServiceName = string
-  type ServiceConfig = object
   type AWSServiceApi = {
     [key: string]: object
   }
 
-  interface Config {
-    /** Global configuration options which will be applied into every service */
-    globals: GlobalConfigInstance
-
-    /**
-     * Configuration options which will be applied only to specific services
-     *
-     * ⚠️ Note that only services for which a configuration object has been defined will be made
-     * available, so make sure you declare at least an empty object here if you want to use that
-     * service.
-     */
-    services?: {
-      [key: string]: GlobalConfigInstance
-    }
-  }
-
+  /**
+   * Load and set up AWS services for use from within Atlas
+   *
+   * This class loads the AWS clients for which it will find a configuration object (even if it is
+   * empty). This is done to reduce memory footprint (the AWS SDK it huge!), so only specified
+   * clients will be loaded.
+   */
   class Service extends AtlasService {
-    config: GlobalConfigInstance
+    /** Runtime configuration values */
+    config: Service.Config
 
     /**
      * Prepare an AWS client instance
@@ -41,9 +30,27 @@ declare module '@atlas.js/aws' {
     stop(service: AWSServiceApi): Promise<void>
   }
 
+  namespace Service {
+    /** Configuration schema available to this service */
+    interface Config {
+      /** Global configuration options which will be applied into every service */
+      globals: GlobalConfigInstance
+
+      /**
+       * Configuration options which will be applied only to specific services
+       *
+       * ⚠️ Note that only services for which a configuration object has been defined will be made
+       * available, so make sure you declare at least an empty object here if you want to use that
+       * service.
+       */
+      services?: {
+        [key: string]: GlobalConfigInstance
+      }
+    }
+  }
+
   export {
     Service,
-    Config,
     AWS,
   }
 }
