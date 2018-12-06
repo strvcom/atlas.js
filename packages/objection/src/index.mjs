@@ -1,4 +1,8 @@
-import {
+import objection from 'objection'
+import Service from './service'
+import MigrationAction from './migration'
+
+const {
   compose,
   lit,
   mixin,
@@ -8,9 +12,7 @@ import {
   ref,
   transaction,
   ValidationError,
-} from 'objection'
-import Service from './service'
-import MigrationAction from './migration'
+} = objection
 
 export {
   compose,
@@ -24,4 +26,5 @@ export {
   Service,
   transaction,
   ValidationError,
+  objection,
 }
