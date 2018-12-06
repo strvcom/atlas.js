@@ -9,6 +9,7 @@
     "@atlas.js/action": "^1.1.1",
     "@atlas.js/errors": "^0.2.1",
     "@atlas.js/service": "^1.1.1",
+    "@types/knex": "^0.15.0",
     "knex": "^0.15.0",
     "knex-umzug": "^3.0.0",
     "objection": "^1.1.7",
