@@ -68,6 +68,13 @@ describe('Sequelize: ModelsHook', () => {
       }
     })
 
+    it('exposes atlas instance as both static and instance property', () => {
+      for (const Model of Object.values(testmodels)) {
+        expect(Model).to.have.property('atlas')
+        expect(Model.prototype).to.have.property('atlas')
+      }
+    })
+
     it('passes the fields and config to the Model.init() function', async function() {
       // Sanity check
       expect(Object.values(testmodels).length).to.be.greaterThan(0)

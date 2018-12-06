@@ -25,6 +25,7 @@ class Sequelize extends Service {
   }
 
   async start(instance) {
+    // @TODO(semver-major): remove this and keep it in the ModelsHook
     // Allow models to use the Atlas instance
     for (const Model of Object.values(instance.models)) {
       Model.atlas = this.atlas

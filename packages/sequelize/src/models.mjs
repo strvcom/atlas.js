@@ -30,6 +30,10 @@ class ModelsHook extends Hook {
       }
 
       Model.init(Model.fields, config)
+      // Expose Atlas to the models
+      Model.atlas = this.atlas
+      Model.prototype.atlas = this.atlas
+
       this.log.debug({ model: name }, 'sequelize model')
     }
   }
