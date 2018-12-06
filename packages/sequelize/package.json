@@ -10,6 +10,7 @@
     "@atlas.js/errors": "^0.2.1",
     "@atlas.js/hook": "^2.0.1",
     "@atlas.js/service": "^1.1.1",
+    "@types/sequelize": "^4.27.32",
     "sequelize": "^4.37.6",
     "umzug": "^2.0.0"
   },
