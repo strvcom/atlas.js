@@ -45,11 +45,11 @@ export default class Templates extends Action {
   /**
    * Render a template into HTML
    *
-   * @param     {String}    name            The template's name. This is the relative path to the
-   *                                        template's location in the `templates` directory,
-   *                                        without file extension
-   * @param     {Object}    [locals={}]     Locals to be sent to the template engine
-   * @return    {Promise<String>}           The rendered HTML string
+   * @param     {String}    name      The template's name. This is the relative path to the
+   *                                  template's location in the `templates` directory, without file
+   *                                  extension
+   * @param     {Object}    locals    Locals to be sent to the template engine
+   * @return    {Promise<String>}     The rendered HTML string
    */
   render(name, locals = {}) {
     // Location of the template on filesystem, relative to Atlas root and templates directories
