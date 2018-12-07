@@ -37,7 +37,4 @@ nbproject
 .node_history
 *.sublime-*
 *.atom-*
-.vscode
 .tern-*
-.languagebabel
-jsconfig.json

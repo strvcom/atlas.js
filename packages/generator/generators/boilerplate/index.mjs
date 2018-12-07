@@ -6,6 +6,8 @@ const files = [
   'makefile',
   'local.mk',
   'babel.config.js',
+  'jsconfig.json',
+  'tsconfig.json',
   'bin/atlas',
   'src/index.mjs',
   'src/aliases.mjs',
