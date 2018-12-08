@@ -5,7 +5,8 @@ module.exports = {
 
   extends: [
     '@strv/javascript/environments/nodejs/v10',
-    '@strv/javascript/environments/nodejs/optional',
+    '@strv/javascript/environments/nodejs/optional',<%_ if (config.testsuite) { %>
+    '@strv/javascript/environments/mocha/recommended',<%_ } %>
     '@strv/javascript/coding-styles/recommended',
   ],
 
