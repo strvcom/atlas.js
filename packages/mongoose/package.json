@@ -1,7 +1,7 @@
 {
   "name": "@atlas.js/mongoose",
   "description": "Mongoose service for @atlas.js",
-  "version": "3.2.0-alpha.0",
+  "version": "3.2.0-alpha.1",
   "author": "Robert Rossmann <robert.rossmann@strv.com>",
   "bugs": "https://github.com/strvcom/atlas.js/issues",
   "contributors": [],
@@ -12,7 +12,7 @@
     "mongoose": "^5.0.0"
   },
   "devDependencies": {
-    "@atlas.js/atlas": "^2.2.0-alpha.0",
+    "@atlas.js/atlas": "^2.2.0-alpha.1",
     "@types/mongoose": "^5.0.0"
   },
   "engines": {
