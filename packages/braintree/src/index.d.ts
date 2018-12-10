@@ -16,7 +16,7 @@ declare module '@atlas.js/braintree' {
 
   namespace Service {
     /** Configuration schema available to this service */
-    interface Config {
+    type Config = {
       /**
        * Environment to connect to
        *

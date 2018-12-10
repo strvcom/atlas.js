@@ -7,7 +7,7 @@ declare interface ComponentConstructor {
 }
 
 /** Input options for `Atlas.init()` */
-declare interface InitOptions extends Options {
+declare type InitOptions = Options & {
   /**
    * Path to a module from which service components should be loaded
    * @default   services
@@ -32,7 +32,7 @@ declare interface InitOptions extends Options {
 }
 
 /** Input options for `Atlas.bootstrap()` */
-declare interface BootstrapOptions extends Options {
+declare type BootstrapOptions = Options & {
   /**
    * All services to be added to Atlas. The key is the alias for the component and the value is
    * the Component class itself (ie. `new Component()` will be called on the value).
@@ -53,7 +53,7 @@ declare interface BootstrapOptions extends Options {
 /**
  * Input options for the second argument of `atlas.action()`, `atlas.service()`, `atlas.hook()`
  */
-declare interface ComponentOptions {
+declare type ComponentOptions = {
   /**
    * If this component requires other components, you must specify their aliases you chose for
    * them here. The key is the component name which is used by this component, and the value
@@ -65,7 +65,7 @@ declare interface ComponentOptions {
 }
 
 /** Input options for the second argument of `atlas.require()` */
-declare interface RequireOptions {
+declare type RequireOptions = {
   /** If true, do not throw if the module does not exist */
   optional: boolean,
   /** If true, prefer the ES modules' `default` export over named or CommonJS exports */
@@ -78,7 +78,7 @@ declare interface RequireOptions {
 }
 
 /** Input options for the `new Atlas()` constructor */
-declare interface Options {
+declare type Options = {
   /**
    * Environment to run Atlas in
    * @default   process.env.NODE_ENV
@@ -103,7 +103,7 @@ declare interface Options {
  * to individual components. The objects are delivered to components by checking the configuration
  * keys against the component's associated alias.
  */
-declare interface Config {
+declare type Config = {
   /** Configuration options for Atlas itself */
   atlas?: Atlas.Config
 
@@ -272,7 +272,7 @@ declare class Atlas {
 
 declare namespace Atlas {
   /** Configuration options for Atlas */
-  export interface Config {
+  export type Config = {
     /** Configuration options for Atlas' pino logger */
     log?: Pino.LoggerOptions
     /** Configuration options for Atlas' component configuration validator */

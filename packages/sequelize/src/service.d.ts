@@ -17,7 +17,7 @@ declare class Service extends AtlasService {
 
 declare namespace Service {
   /** Configuration schema available to this service */
-  interface Config {
+  type Config = {
     /**
      * URI to connect to
      * @default   sqlite://atlas-db.sqlite

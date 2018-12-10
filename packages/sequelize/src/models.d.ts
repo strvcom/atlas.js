@@ -14,7 +14,7 @@ declare class ModelsHook extends AtlasHook {
 
 declare namespace ModelsHook {
   /** Configuration schema available to this hook */
-  interface Config {
+  type Config = {
     /**
      * Module location from which to load Sequelize models
      * @default   models

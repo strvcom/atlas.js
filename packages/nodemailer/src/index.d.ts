@@ -16,7 +16,7 @@ declare module '@atlas.js/nodemailer' {
 
   namespace Service {
     /** Configuration schema available to this service */
-    interface Config {
+    type Config = {
       /**
        * The transport to be used for sending emails
        *
@@ -31,10 +31,10 @@ declare module '@atlas.js/nodemailer' {
        */
       options: object
 
-      plugins?: Array<PluginConfiguration>
+      plugins?: Array<PluginConfig>
     }
 
-    interface PluginConfiguration {
+    type PluginConfig = {
       /**
        * The plugin to be added to the transporter
        *

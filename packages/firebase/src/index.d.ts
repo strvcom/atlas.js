@@ -19,7 +19,7 @@ declare module '@atlas.js/firebase' {
 
   namespace Service {
     /** Configuration schema available to this service */
-    interface Config extends firebase.AppOptions {
+    type Config = firebase.AppOptions & {
       /**
        * Define the Firebase App's name
        * @default   default
@@ -27,11 +27,12 @@ declare module '@atlas.js/firebase' {
       name?: string
       /**
        * Provide the credentials for Firebase
+       *
        * This can optionally be a `string`, in which case the string will be treated as a module
-       * location relative to Atlas' root and the actual credentials will be `require()` from that
+       * location relative to `atlas.root` and the actual credentials will be `require()`d from that
        * module.
        */
-      credential: firebase.credential.Credential
+      credential: firebase.credential.Credential | string
     }
   }
 

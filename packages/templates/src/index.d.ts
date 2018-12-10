@@ -27,7 +27,7 @@ declare module '@atlas.js/templates' {
 
   namespace Action {
     /** Configuration schema available to this action */
-    interface Config {
+    type Config = {
       /**
        * Filesystem location, relative to `atlas.root`, where the templates are located
        * @default   templates

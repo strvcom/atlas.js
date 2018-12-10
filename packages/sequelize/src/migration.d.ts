@@ -40,7 +40,7 @@ declare class Migration extends Action {
 }
 
 declare namespace Migration {
-  interface Config {
+  type Config = {
     /**
      * Module location, relative to `atlas.root`, from which to load migration files
      * @default   migration

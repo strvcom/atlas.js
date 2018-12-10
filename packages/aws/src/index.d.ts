@@ -32,7 +32,7 @@ declare module '@atlas.js/aws' {
 
   namespace Service {
     /** Configuration schema available to this service */
-    interface Config {
+    type Config = {
       /** Global configuration options which will be applied into every service */
       globals: GlobalConfigInstance
 

@@ -19,7 +19,7 @@ declare class WebsocketHook extends AtlasHook {
 
 declare namespace WebsocketHook {
   /** Configuration schema available to this hook */
-  interface Config {
+  type Config = {
     /** Configuration for the websocket's middleware loader */
     middleware: {
       /**

@@ -15,7 +15,7 @@ declare class ModelsHook extends AtlasHook {
 
 declare namespace ModelsHook {
   /** Configuration schema available to this hook */
-  interface Config {
+  type Config = {
     /**
      * The module location, relative to `atlas.root`, from which to load the Mongoose models
      * @default   models

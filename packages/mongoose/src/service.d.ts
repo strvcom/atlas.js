@@ -18,7 +18,7 @@ declare class Service extends AtlasService {
 
 declare namespace Service {
   /** Configuration schema available to this service */
-  interface Config {
+  type Config = {
     /**
      * MongoDB URI to connect to
      * @default   mongodb://127.0.0.1:27017

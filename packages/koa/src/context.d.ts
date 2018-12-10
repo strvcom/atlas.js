@@ -15,7 +15,7 @@ declare class ContextHook extends AtlasHook {
 
 declare namespace ContextHook {
   /** Configuration schema available to this hook */
-  interface Config {
+  type Config = {
     /**
      * Location of the module, relative to `atlas.root`, from which to load the properties to extend
      * the base Koa.Context with

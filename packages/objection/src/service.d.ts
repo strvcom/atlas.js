@@ -33,7 +33,7 @@ declare namespace Service {
   }
 
   /** Configuration schema available to this service */
-  interface Config {
+  type Config = {
     /** Configuration options for knex */
     knex: knex.Config
     /**

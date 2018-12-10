@@ -29,7 +29,7 @@ declare namespace Server {
   }
 
   /** Configuration schema available to this service */
-  interface Config {
+  type Config = {
     /** Configuration for the middleware loader */
     middleware: {
       /**
