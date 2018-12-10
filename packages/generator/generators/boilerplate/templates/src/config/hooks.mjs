@@ -1,0 +1,5 @@
+/**
+ * Configuration for hooks
+ */
+
+export {}

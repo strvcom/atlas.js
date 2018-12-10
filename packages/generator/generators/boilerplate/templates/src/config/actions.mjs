@@ -1,0 +1,5 @@
+/**
+ * Configuration for actions
+ */
+
+export {}

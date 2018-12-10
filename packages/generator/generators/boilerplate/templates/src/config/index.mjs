@@ -14,15 +14,17 @@
  * And remember: the key under which you export a particular component's configuration must be the
  * same as the alias you gave to that component.
  */
+
+import atlas from './atlas'
+import * as actions from './actions'
+import * as aliases from './aliases'
+import * as services from './services'
+import * as hooks from './hooks'
+
 export default {
-  atlas: {
-    // Atlas uses pino as logger. See the project's README for possible options:
-    // https://github.com/pinojs/pino
-    // Log levels are described here: https://github.com/pinojs/pino/blob/master/docs/API.md
-    log: {},
-  },
-  actions: {},
-  services: {},
-  hooks: {},
-  aliases: {},
+  atlas,
+  actions,
+  services,
+  hooks,
+  aliases,
 }
