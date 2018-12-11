@@ -156,14 +156,18 @@ declare class Atlas {
   /** Is this instance in a started state? */
   readonly started: boolean
 
+  // @TODO: Make this work so that the declarations can remain here and still be overridable
+  // The following properties are not included in the type definitions so that users can
+  // declare their own local, per-project overloads which add proper type hints to these properties.
+
   /** Configuration for Atlas and all associated components, as passed in to the constructor */
-  readonly config: Config
+  // readonly config: Config
 
   /** All services added to this instance */
-  readonly services: object
+  // readonly services: object
 
   /** All actions added to this instance */
-  readonly actions: object
+  // readonly actions: object
 
   /** An instance of Ajv used to validate component configuration */
   validator: Ajv.Ajv

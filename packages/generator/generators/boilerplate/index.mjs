@@ -10,6 +10,7 @@ const files = [
   'tsconfig.json',
   'bin/atlas',
   'src/index.mjs',
+  'src/index.d.ts',
   'src/aliases.mjs',
   'src/actions/index.mjs',
   'src/actions/README.md',
