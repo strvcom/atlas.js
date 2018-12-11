@@ -1,7 +1,7 @@
 {
   "name": "@atlas.js/sequelize",
   "description": "Sequelize service for @atlas.js",
-  "version": "2.1.0-alpha.1",
+  "version": "2.1.0-alpha.2",
   "author": "Robert Rossmann <robert.rossmann@strv.com>",
   "bugs": "https://github.com/strvcom/atlas.js/issues",
   "contributors": [],
