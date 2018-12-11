@@ -5,7 +5,7 @@ class Sequelize extends Service {
   static config = {
     type: 'object',
     additionalProperties: false,
-    required: ['uri'],
+    default: {},
     properties: {
       uri: {
         type: 'string',

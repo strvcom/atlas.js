@@ -6,7 +6,7 @@ class Migration extends Action {
   static config = {
     type: 'object',
     additionalProperties: false,
-    required: ['module'],
+    default: {},
     properties: {
       module: {
         type: 'string',

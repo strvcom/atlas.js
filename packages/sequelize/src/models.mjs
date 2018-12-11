@@ -4,6 +4,7 @@ class ModelsHook extends Hook {
   static config = {
     type: 'object',
     additionalProperties: false,
+    default: {},
     required: ['module'],
     properties: {
       module: {

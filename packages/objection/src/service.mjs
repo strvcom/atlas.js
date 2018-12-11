@@ -6,6 +6,7 @@ class Objection extends Service {
   static config = {
     type: 'object',
     additionalProperties: false,
+    default: {},
     required: ['knex', 'models'],
     properties: {
       knex: {

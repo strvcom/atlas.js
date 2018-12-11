@@ -13,6 +13,7 @@ class KoaService extends Service {
       middleware: {
         type: 'object',
         additionalProperties: false,
+        default: {},
         properties: {
           module: {
             type: 'string',
@@ -29,6 +30,7 @@ class KoaService extends Service {
       listen: {
         type: 'object',
         additionalProperties: false,
+        default: {},
         properties: {
           port: {
             type: 'number',
@@ -46,6 +48,7 @@ class KoaService extends Service {
 
       server: {
         type: 'object',
+        default: {},
         properties: {
           timeout: {
             type: 'number',
@@ -67,6 +70,7 @@ class KoaService extends Service {
 
       koa: {
         type: 'object',
+        default: {},
         properties: {
           proxy: {
             type: 'boolean',

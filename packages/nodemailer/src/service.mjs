@@ -13,6 +13,7 @@ class Nodemailer extends Service {
       options: { type: 'object' },
       plugins: {
         type: 'array',
+        default: [],
         items: {
           type: 'object',
           additionalProperties: false,
