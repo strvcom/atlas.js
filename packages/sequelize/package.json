@@ -1,7 +1,7 @@
 {
   "name": "@atlas.js/sequelize",
   "description": "Sequelize service for @atlas.js",
-  "version": "2.1.0-alpha.2",
+  "version": "2.1.0-alpha.3",
   "author": "Robert Rossmann <robert.rossmann@strv.com>",
   "bugs": "https://github.com/strvcom/atlas.js/issues",
   "contributors": [],
@@ -15,7 +15,7 @@
     "umzug": "^2.0.0"
   },
   "devDependencies": {
-    "@atlas.js/atlas": "^2.2.0-alpha.1",
+    "@atlas.js/atlas": "^2.2.0-alpha.2",
     "sqlite3": "^4.0.0"
   },
   "engines": {
