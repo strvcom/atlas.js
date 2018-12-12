@@ -1,5 +1,5 @@
 import { FrameworkError } from '@atlas.js/errors'
-import Sequelize from 'sequelize'
+import * as Sequelize from 'sequelize'
 import { RelationsHook } from '../..'
 import * as testmodels from '../testmodels'
 

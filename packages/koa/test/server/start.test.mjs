@@ -1,4 +1,4 @@
-import http from 'http'
+import * as http from 'http'
 import { Server as Koa } from '../..'
 
 describe('Koa::start(instance)', () => {

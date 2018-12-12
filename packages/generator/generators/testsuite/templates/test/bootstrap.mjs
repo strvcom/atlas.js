@@ -1,9 +1,9 @@
 import 'source-map-support/register'
-import sinon from 'sinon'
-import chai from 'chai'
-import chaiAsPromised from 'chai-as-promised'
-import sinonChai from 'sinon-chai'
-import dirtyChai from 'dirty-chai'
+import * as sinon from 'sinon'
+import * as chai from 'chai'
+import * as chaiAsPromised from 'chai-as-promised'
+import * as sinonChai from 'sinon-chai'
+import * as dirtyChai from 'dirty-chai'
 
 // Make sure our tests always run in the 'test' environment
 // eslint-disable-next-line no-process-env

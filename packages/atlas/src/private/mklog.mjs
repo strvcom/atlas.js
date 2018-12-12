@@ -1,4 +1,4 @@
-import pino from 'pino'
+import * as pino from 'pino'
 
 /**
  * Create a new instance of logger (pino)

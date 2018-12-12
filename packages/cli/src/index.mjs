@@ -1,9 +1,13 @@
-import fs from 'fs'
-import path from 'path'
-import pkg from '../package'
+import * as fs from 'fs'
+import * as path from 'path'
+import * as pkg from '../package'
 import commands from './commands'
 
 const help = fs.readFileSync(path.join(__dirname, 'more-info.txt'), 'utf8')
+
+/**
+ * @typedef  {import("caporal")} Caporal
+ */
 
 /**
  * The CLI entry point
@@ -11,9 +15,9 @@ const help = fs.readFileSync(path.join(__dirname, 'more-info.txt'), 'utf8')
  * You should not call this function directly.
  *
  * @private
- * @param     {Object}    caporal     The caporal module
+ * @param     {Caporal}   caporal     The caporal module
  * @param     {Array}     argv        CLI arguments
- * @return    {caporal~Program}
+ * @return    {void}
  */
 export default function cli(caporal, argv) {
   caporal.version(pkg.version)

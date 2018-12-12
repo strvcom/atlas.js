@@ -1,4 +1,4 @@
-import sequelize from 'sequelize'
+import * as sequelize from 'sequelize'
 import Service from './service'
 import ModelsHook from './models'
 import RelationsHook from './relations'

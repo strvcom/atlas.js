@@ -1,4 +1,4 @@
-import pino from 'pino'
+import * as pino from 'pino'
 
 const stdSerializers = {
   err: pino.stdSerializers.err,

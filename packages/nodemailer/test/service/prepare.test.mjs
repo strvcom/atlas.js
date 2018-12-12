@@ -1,7 +1,7 @@
-import path from 'path'
-import nodemailer from 'nodemailer'
+import * as path from 'path'
+import * as nodemailer from 'nodemailer'
 import { Service as Nodemailer } from '../..'
-import dummytransport from './dummytransport'
+import * as dummytransport from './dummytransport'
 
 describe('Nodemailer::prepare()', () => {
   let service

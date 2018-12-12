@@ -1,4 +1,4 @@
-import nodemailer from 'nodemailer'
+import * as nodemailer from 'nodemailer'
 import { Service as Nodemailer } from '../..'
 
 describe('Nodemailer - instance::send()', () => {

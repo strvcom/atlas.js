@@ -1,4 +1,4 @@
-import path from 'path'
+import * as path from 'path'
 import { Atlas } from '@atlas.js/atlas'
 import { ModelsHook } from '../..'
 import * as testmodels from './testmodels'

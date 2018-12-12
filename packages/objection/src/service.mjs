@@ -1,4 +1,4 @@
-import knex from 'knex'
+import * as knex from 'knex'
 import Service from '@atlas.js/service'
 import { FrameworkError } from '@atlas.js/errors'
 

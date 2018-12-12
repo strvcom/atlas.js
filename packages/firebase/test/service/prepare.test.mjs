@@ -1,5 +1,5 @@
-import path from 'path'
-import Admin from 'firebase-admin'
+import * as path from 'path'
+import * as Admin from 'firebase-admin'
 import { Service as Firebase } from '../..'
 
 describe('Firebase::prepare()', () => {

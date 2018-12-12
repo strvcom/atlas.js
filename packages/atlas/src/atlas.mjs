@@ -1,10 +1,10 @@
 // We use for-await pattern quite extensively here for legitimate purposes
 /* eslint-disable no-await-in-loop */
 
-import path from 'path'
-import Ajv from 'ajv'
-import ajvKeywords from 'ajv-keywords'
-import pino from 'pino'
+import * as path from 'path'
+import * as Ajv from 'ajv'
+import * as ajvKeywords from 'ajv-keywords'
+import * as pino from 'pino'
 import {
   defaultsDeep as defaults,
   isPlainObject,

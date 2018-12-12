@@ -1,7 +1,7 @@
-import http from 'http'
+import * as http from 'http'
 import Service from '@atlas.js/service'
 import { FrameworkError } from '@atlas.js/errors'
-import Koa from 'koa'
+import * as Koa from 'koa'
 import middleware from './middleware'
 
 class KoaService extends Service {

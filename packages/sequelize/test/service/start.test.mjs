@@ -1,4 +1,4 @@
-import Sequelize from 'sequelize'
+import * as Sequelize from 'sequelize'
 import { Service as Database } from '../..'
 
 describe('Sequelize::start()', () => {

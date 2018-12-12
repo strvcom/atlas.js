@@ -1,5 +1,5 @@
 import Service from '@atlas.js/service'
-import Database from 'sequelize'
+import * as Database from 'sequelize'
 
 class Sequelize extends Service {
   static config = {

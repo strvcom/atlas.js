@@ -1,4 +1,4 @@
-import mongoose from 'mongoose'
+import * as mongoose from 'mongoose'
 import Service from './service'
 import ModelsHook from './models'
 

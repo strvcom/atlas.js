@@ -1,5 +1,5 @@
-import path from 'path'
-import Umzug from 'umzug'
+import * as path from 'path'
+import * as Umzug from 'umzug'
 import Action from '@atlas.js/action'
 
 class Migration extends Action {

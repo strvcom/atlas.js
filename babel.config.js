@@ -8,6 +8,7 @@ module.exports = {
     '@babel/syntax-object-rest-spread',
     ['@babel/transform-modules-commonjs', {
       allowTopLevelThis: false,
+      noInterop: true,
     }],
     '@babel/proposal-class-properties',
     '@babel/proposal-function-bind',

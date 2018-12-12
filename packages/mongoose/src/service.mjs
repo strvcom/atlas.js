@@ -1,5 +1,5 @@
 import Service from '@atlas.js/service'
-import mongoose from 'mongoose'
+import * as mongoose from 'mongoose'
 
 class Mongoose extends Service {
   static config = {

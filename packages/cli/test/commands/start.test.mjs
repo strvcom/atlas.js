@@ -1,4 +1,4 @@
-import cluster from 'cluster'
+import * as cluster from 'cluster'
 import Start from '../../src/commands/start'
 
 describe('CLI: start', () => {

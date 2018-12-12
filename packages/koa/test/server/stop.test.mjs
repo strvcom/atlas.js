@@ -1,4 +1,4 @@
-import http from 'http'
+import * as http from 'http'
 import { FrameworkError } from '@atlas.js/errors'
 import { Server as Koa } from '../..'
 

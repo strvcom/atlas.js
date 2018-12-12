@@ -1,4 +1,4 @@
-import Umzug from 'umzug'
+import * as Umzug from 'umzug'
 import { MigrationAction as Migration } from '../..'
 
 describe('Migration::pending()', () => {

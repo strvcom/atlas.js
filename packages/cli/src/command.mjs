@@ -1,4 +1,4 @@
-import path from 'path'
+import * as path from 'path'
 
 /**
  * The Command class represents a single CLI command

@@ -1,5 +1,5 @@
 import Hook from '@atlas.js/hook'
-import websocket from 'koa-websocket'
+import * as websocket from 'koa-websocket'
 import middleware from './middleware'
 
 class WebsocketHook extends Hook {

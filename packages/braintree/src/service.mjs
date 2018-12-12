@@ -1,4 +1,4 @@
-import braintree from 'braintree'
+import * as braintree from 'braintree'
 import Service from '@atlas.js/service'
 
 class Braintree extends Service {

@@ -1,5 +1,5 @@
-import path from 'path'
-import Koa from 'koa'
+import * as path from 'path'
+import * as Koa from 'koa'
 import { Server as Service } from '../..'
 import * as testmiddleware from './testmiddleware'
 

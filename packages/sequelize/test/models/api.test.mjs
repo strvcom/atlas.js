@@ -1,6 +1,6 @@
-import path from 'path'
+import * as path from 'path'
 import { Atlas } from '@atlas.js/atlas'
-import Sequelize from 'sequelize'
+import * as Sequelize from 'sequelize'
 import { ModelsHook } from '../..'
 import * as testmodels from '../testmodels'
 

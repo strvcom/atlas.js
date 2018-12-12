@@ -1,4 +1,4 @@
-import path from 'path'
+import * as path from 'path'
 import { Service as Objection } from '../..'
 
 describe('Objection::stop()', () => {

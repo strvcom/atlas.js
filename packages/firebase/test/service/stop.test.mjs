@@ -1,4 +1,4 @@
-import Admin from 'firebase-admin'
+import * as Admin from 'firebase-admin'
 import { Service as Firebase } from '../..'
 
 let service

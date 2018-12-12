@@ -1,10 +1,10 @@
-import repl from 'repl'
+import * as repl from 'repl'
 import { EventEmitter } from 'events'
 import { PassThrough } from 'stream'
-import crypto from 'crypto'
-import path from 'path'
-import os from 'os'
-import fsp from 'promisified-core/fs'
+import * as crypto from 'crypto'
+import * as path from 'path'
+import * as os from 'os'
+import * as fsp from 'promisified-core/fs'
 import { Action as Repl } from '../..'
 
 function waitForCall(spy, callCount) {

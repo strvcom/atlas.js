@@ -1,4 +1,4 @@
-import path from 'path'
+import * as path from 'path'
 import { FrameworkError } from '@atlas.js/errors'
 import { Atlas } from '../..'
 import * as testservices from './demoapp/services'

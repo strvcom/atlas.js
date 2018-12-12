@@ -1,4 +1,4 @@
-import Generator from 'yeoman-generator'
+import * as Generator from 'yeoman-generator'
 
 class Gitignore extends Generator {
   writing() {

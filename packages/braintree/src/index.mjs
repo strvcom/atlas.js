@@ -1,4 +1,4 @@
-import Braintree from 'braintree'
+import * as Braintree from 'braintree'
 import Service from './service'
 
 export {

@@ -1,4 +1,4 @@
-import braintree from 'braintree'
+import * as braintree from 'braintree'
 import { Service as Braintree } from '../..'
 
 describe('Braintree::prepare()', () => {

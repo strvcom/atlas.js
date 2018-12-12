@@ -1,4 +1,4 @@
-import caporal from 'caporal'
+import * as caporal from 'caporal'
 import commands from '../src/commands'
 import cli from '..'
 

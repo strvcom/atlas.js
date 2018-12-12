@@ -1,5 +1,5 @@
-import path from 'path'
-import consolidate from 'consolidate'
+import * as path from 'path'
+import * as consolidate from 'consolidate'
 import Action from '@atlas.js/action'
 import { FrameworkError } from '@atlas.js/errors'
 

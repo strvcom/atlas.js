@@ -1,4 +1,4 @@
-import awssdk from 'aws-sdk'
+import * as awssdk from 'aws-sdk'
 import { Service as AWS } from '../..'
 
 describe('AWS::prepare()', () => {

@@ -1,8 +1,8 @@
-import os from 'os'
-import fs from 'fs'
-import path from 'path'
-import repl from 'repl'
-import fsp from 'promisified-core/fs'
+import * as os from 'os'
+import * as fs from 'fs'
+import * as path from 'path'
+import * as repl from 'repl'
+import * as fsp from 'promisified-core/fs'
 import Action from '@atlas.js/action'
 
 class Repl extends Action {
