@@ -114,12 +114,11 @@ class ComponentContainer {
    * @return    {Promise<this>}
    */
   async prepare(options) {
-    this.component.log.trace('prepare:before')
-
     this::mkcatalog(this.#catalog, options)
 
     switch (this.type) {
       case 'service': {
+        this.component.log.trace('prepare:before')
         this.instance = await this.component.prepare()
         this.component.log.trace('prepare:after')
         break
@@ -127,7 +126,6 @@ class ComponentContainer {
       case 'hook':
       case 'action':
       default:
-        this.component.log.trace('prepare:after')
         this.instance = this.component
         break
     }
