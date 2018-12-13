@@ -111,15 +111,18 @@ class ComponentContainer {
    *
    * @param     {Object}          options           Input options
    * @param     {Object}          options.catalog   Atlas catalog of all components
+   * @param     {Map}             options.hooks     Hooks available in the application
    * @return    {Promise<this>}
    */
   async prepare(options) {
     this::mkcatalog(this.#catalog, options)
+    this::mkobservers(this.#observers, { hooks: options.hooks })
 
     switch (this.type) {
       case 'service': {
         this.component.log.trace('prepare:before')
         this.instance = await this.component.prepare()
+        await this.#observers::dispatch('afterPrepare', this.instance)
         this.component.log.trace('prepare:after')
         break
       }
@@ -136,17 +139,14 @@ class ComponentContainer {
   /**
    * Start the component
    *
-   * @param     {Object}    opts            Additional options
-   * @param     {Map}       opts.hooks      Hooks available in the application
    * @return    {Promise<this.component>}
    */
-  async start(opts) {
+  async start() {
     if (this.started) {
       return this.component
     }
 
     this.component.log.trace('start:before')
-    this::mkobservers(this.#observers, { hooks: opts.hooks })
 
     switch (this.type) {
       case 'service':
@@ -167,6 +167,7 @@ class ComponentContainer {
         break
     }
 
+    this.component.log.trace('start:after')
     this.started = true
 
     return this.component
@@ -221,7 +222,7 @@ class ComponentContainer {
  * @return    {void}
  */
 function mkobservers(observers, { hooks }) {
-  for (const [alias, container] of hooks) {
+  for (const [alias, container] of hooks || new Map()) {
     const target = container.aliases[container.Component.observes]
 
     if (this.alias === target) {

@@ -407,20 +407,19 @@ class Atlas {
       }
     }
 
-    // Prepare all components, in parallel 💪
+    // Prepare hooks
+    await Promise.all([...hooks].map(([, container]) => container.prepare({ catalog })))
+
+    // Prepare actions and services in parallel 🚀
     void (await Promise.all([
-      ...Array.from(hooks).map(async ([, container]) => ({
-        expose: false,
-        value: await container.prepare({ catalog }),
+      ...Array.from(actions).map(async ([alias, container]) => ({
+        expose: container.Component.internal ? false : 'actions',
+        value: await container.prepare({ catalog, hooks }),
+        alias,
       })),
       ...Array.from(services).map(async ([alias, container]) => ({
         expose: container.Component.internal ? false : 'services',
-        value: await container.prepare({ catalog }),
-        alias,
-      })),
-      ...Array.from(actions).map(async ([alias, container]) => ({
-        expose: container.Component.internal ? false : 'actions',
-        value: await container.prepare({ catalog }),
+        value: await container.prepare({ catalog, hooks }),
         alias,
       })),
     ]))
@@ -447,7 +446,7 @@ class Atlas {
     await Promise.all([
       ...Array.from(hooks),
       ...Array.from(actions),
-    ].map(([, container]) => container.start({ hooks })))
+    ].map(([, container]) => container.start()))
 
     // Start all services, in the order they were added to the instance 💪
     // Ordering is important here! Some services should be started as the last ones because they
