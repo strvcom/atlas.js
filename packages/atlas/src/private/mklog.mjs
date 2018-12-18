@@ -9,9 +9,16 @@ import * as pino from 'pino'
  */
 function mklog(config) {
   // Allow loading the serialisers from a module
-  config.serializers = typeof config.serializers === 'string'
+  const serialisers = typeof config.serializers === 'string'
     ? this.require(config.serializers, { normalise: true })
     : config.serializers
+
+  config.serializers = {
+    req: pino.stdSerializers.req,
+    res: pino.stdSerializers.res,
+    err: pino.stdSerializers.err,
+    ...serialisers,
+  }
 
   return pino(config)
 }
