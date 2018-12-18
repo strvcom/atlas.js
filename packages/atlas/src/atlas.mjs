@@ -468,7 +468,7 @@ class Atlas {
 
     this.#started = true
     await this.#observers::dispatch('afterStart', this)
-    this.log.info('atlas:ready')
+    this.log.info({ env: this.env }, 'atlas:ready')
 
     return this
   }
