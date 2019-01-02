@@ -62,6 +62,9 @@ test-debug: force compile
 test-watch: force compile
 	mocha --reporter min $(MOCHA_FLAGS) --watch
 
+release:
+	lerna version $(LERNA_FLAGS)
+
 docs: compile
 	esdoc
 
