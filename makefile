@@ -77,7 +77,7 @@ unlock: pristine
 	touch package.json
 
 clean:
-	rm -rf {.nyc_output,coverage,docs}
+	rm -rf {.nyc_output,coverage,docs,.eslintcache}
 	find . -name '*.log' -not -path '*/node_modules/*' -print -delete
 
 distclean: clean
