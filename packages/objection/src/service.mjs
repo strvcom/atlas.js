@@ -53,19 +53,17 @@ class Objection extends Service {
     // We must do this for all models before we start binding knex to them otherwise Objection will
     // complain
     for (const Model of Object.values(models)) {
-      for (const relation of Object.values(Model.relationMappings || {})) {
-        const target = relation.modelClass
-
+      walk(Model.relationMappings, key => key === 'modelClass', target => {
         if (typeof target !== 'string') {
-          continue
+          return target
         }
 
         if (!(target in models)) {
           throw new FrameworkError(`Unable to find relation ${target} defined in ${Model.name}`)
         }
 
-        relation.modelClass = models[target]
-      }
+        return models[target]
+      })
     }
 
     for (const [name, Model] of Object.entries(models)) {
@@ -93,6 +91,25 @@ class Objection extends Service {
 
   async stop(client) {
     await client.connection.destroy()
+  }
+}
+
+function walk(obj = {}, filter = () => false, replace = () => {}) {
+  for (const [key, value] of Object.entries(obj || {})) {
+    if (typeof value === 'object' && Boolean(value)) {
+      walk(obj[key], filter, replace)
+      continue
+    }
+
+    // Ignore function values
+    if (typeof value === 'function') {
+      continue
+    }
+
+    if (filter(key)) {
+      // Got a key which is not an object or a function!
+      obj[key] = replace(value)
+    }
   }
 }
 

@@ -44,6 +44,7 @@ describe('Objection::prepare()', () => {
       'ModelA',
       'ModelB',
       'ModelC',
+      'ModelD',
     ])
   })
 
@@ -59,6 +60,14 @@ describe('Objection::prepare()', () => {
         expect(relation.modelClass).to.be.a('function')
       }
     })
+  })
+
+  it('resolves model names in through-based relationship mappings to actual model classes', () => {
+    const Model = instance.models.ModelA
+
+    expect(Model.relationMappings.modelC.join).to.have.property('through')
+    expect(Model.relationMappings.modelC.join.through).to.have.property('modelClass')
+    expect(Model.relationMappings.modelC.join.through.modelClass).to.be.a('function')
   })
 
   it('works with models with no relationship mappings', () => {
