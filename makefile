@@ -22,7 +22,7 @@ all: precompile githooks
 # GENERIC TARGETS
 
 node_modules: package.json
-	npm install $(NPM_FLAGS) && lerna bootstrap $(LERNA_FLAGS) && touch node_modules
+	npm ci $(NPM_FLAGS) && lerna bootstrap $(LERNA_FLAGS) && touch node_modules
 
 # Default compilation target for all source files
 %.js: %.mjs node_modules babel.config.js
