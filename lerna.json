@@ -8,7 +8,6 @@
   "command": {
     "version": {
       "allowBranch": [
-        "master",
         "release/*"
       ],
       "conventionalCommits": true,
