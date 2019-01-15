@@ -3,5 +3,5 @@
 set -o errexit
 set -o pipefail
 
-make coverage
+make coverage MOCHA_FLAGS="--reporter dot"
 node_modules/.bin/coveralls < coverage/lcov.info
