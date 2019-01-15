@@ -40,4 +40,4 @@ deploy:
     repo: strvcom/atlas.js
     all_branches: true
     condition: $TRAVIS_BRANCH =~ ^release\/.{1,}$
-    node_js: '10'
+    node: '10'
