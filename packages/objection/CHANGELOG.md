@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0-alpha.6](https://github.com/strvcom/atlas.js/compare/@atlas.js/objection@2.2.0-alpha.5...@atlas.js/objection@2.2.0-alpha.6) (2019-01-15)
+
+
+### Features
+
+* **objection:** support modelClass resolution even in through relations ([83f6421](https://github.com/strvcom/atlas.js/commit/83f6421))
+
+
+
+
+
 <a name="2.1.1"></a>
 ## [2.1.1](https://github.com/strvcom/atlas.js/compare/@atlas.js/objection@2.1.0...@atlas.js/objection@2.1.1) (2018-07-17)
 
