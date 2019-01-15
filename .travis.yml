@@ -13,19 +13,16 @@ cache:
     - node_modules
 
 before_install:
-  - touch package.json
+  - ci/before-install.sh
 
 install:
-  - make install
-  - make precompile
+  - ci/install.sh
 
 script:
-  - make lint
-  - make test
+  - ci/script.sh
 
 after_success:
-  - make coverage
-  - cat coverage/lcov.info | node_modules/.bin/coveralls
+  - ci/after-success.sh
 
 env:
   global:
