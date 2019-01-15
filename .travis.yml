@@ -10,7 +10,6 @@ node_js:
 
 cache:
   directories:
-    - /usr/local/lib/node_modules
     - node_modules
 
 before_install:
