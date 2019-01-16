@@ -55,7 +55,11 @@ class WebsocketHook extends Hook {
 
     // Apply websocket middleware
     if (config.middleware) {
-      middleware(koa.ws, this.atlas.require(config.middleware.module), config.middleware.config)
+      middleware(
+        koa.ws,
+        this.atlas.require(config.middleware.module, { normalise: true }),
+        config.middleware.config,
+      )
     }
   }
 

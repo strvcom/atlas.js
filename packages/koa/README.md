@@ -69,7 +69,7 @@ import forcehttps from './forcehttps'
 import routes from './routes'
 import notfound from './notfound'
 
-export {
+export default {
   forcehttps,
   routes,
   notfound,

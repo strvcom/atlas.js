@@ -1,7 +1,7 @@
 import * as path from 'path'
 import * as Koa from 'koa'
 import { Server as Service } from '../..'
-import * as testmiddleware from './testmiddleware'
+import testmiddleware from './testmiddleware'
 
 describe('Koa::prepare()', () => {
   let service
@@ -14,7 +14,7 @@ describe('Koa::prepare()', () => {
     this.sandbox.stub(Koa.prototype, 'use')
     atlas = {
       // eslint-disable-next-line global-require
-      require: location => require(path.resolve(__dirname, location)),
+      require: location => require(path.resolve(__dirname, location)).default,
     }
     config = {
       middleware: {

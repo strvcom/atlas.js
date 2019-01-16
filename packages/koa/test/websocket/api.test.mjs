@@ -2,7 +2,7 @@ import * as path from 'path'
 import { Atlas } from '@atlas.js/atlas'
 import Hook from '@atlas.js/hook'
 import { WebsocketHook } from '../..'
-import * as testmiddleware from './testmiddleware'
+import testmiddleware from './testmiddleware'
 
 describe('Hook: WebsocketHook', () => {
   it('exists', () => {
@@ -60,7 +60,7 @@ describe('Hook: WebsocketHook', () => {
         config,
         atlas: {
           // eslint-disable-next-line global-require
-          require: location => require(path.resolve(__dirname, location)),
+          require: location => require(path.resolve(__dirname, location)).default,
         },
         log: { debug: () => {} },
         component: () => koa,

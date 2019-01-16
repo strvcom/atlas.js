@@ -96,7 +96,7 @@ class KoaService extends Service {
     if (this.config.middleware) {
       middleware(
         koa,
-        this.atlas.require(this.config.middleware.module),
+        this.atlas.require(this.config.middleware.module, { normalise: true }),
         this.config.middleware.config,
       )
     }
