@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.2.0-alpha.6](https://github.com/strvcom/atlas.js/compare/@atlas.js/koa@3.2.0-alpha.5...@atlas.js/koa@3.2.0-alpha.6) (2019-01-16)
+
+
+### Bug Fixes
+
+* **koa:** do not depend on named exports order when iterating middleware ([d28b2d9](https://github.com/strvcom/atlas.js/commit/d28b2d9))
+
+
+
+
+
 <a name="3.1.1"></a>
 ## [3.1.1](https://github.com/strvcom/atlas.js/compare/@atlas.js/koa@3.1.0...@atlas.js/koa@3.1.1) (2018-07-16)
 

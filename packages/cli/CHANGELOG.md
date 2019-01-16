@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0-alpha.5](https://github.com/strvcom/atlas.js/compare/@atlas.js/cli@1.2.0-alpha.4...@atlas.js/cli@1.2.0-alpha.5) (2019-01-16)
+
+**Note:** Version bump only for package @atlas.js/cli
+
+
+
+
+
 <a name="1.1.0"></a>
 # [1.1.0](https://github.com/strvcom/atlas.js/compare/@atlas.js/cli@1.0.0...@atlas.js/cli@1.1.0) (2018-07-16)
 

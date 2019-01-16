@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0-alpha.5](https://github.com/strvcom/atlas.js/compare/@atlas.js/atlas@2.2.0-alpha.4...@atlas.js/atlas@2.2.0-alpha.5) (2019-01-16)
+
+
+### Bug Fixes
+
+* **atlas:** do not depend on named exports order when iterating services ([d75862b](https://github.com/strvcom/atlas.js/commit/d75862b))
+
+
+
+
+
 <a name="2.1.0"></a>
 # [2.1.0](https://github.com/strvcom/atlas.js/compare/@atlas.js/atlas@2.0.0...@atlas.js/atlas@2.1.0) (2018-07-12)
 
