@@ -1,7 +1,7 @@
 import * as path from 'path'
 import { FrameworkError } from '@atlas.js/errors'
 import { Atlas } from '../..'
-import * as testservices from './demoapp/services'
+import testservices from './demoapp/services'
 import * as testactions from './demoapp/actions'
 import * as testhooks from './demoapp/hooks'
 import * as testaliases from './demoapp/aliases'

@@ -88,7 +88,7 @@ class Atlas {
 
     for (const type of types) {
       paths[type] = path.resolve(options.root, options[type])
-      modules[type] = atlas.require(options[type], { optional: true })
+      modules[type] = atlas.require(options[type], { optional: true, normalise: true })
     }
 
     atlas.log.debug({ paths }, 'atlas:init')

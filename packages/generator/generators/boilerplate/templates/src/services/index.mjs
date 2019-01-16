@@ -15,6 +15,8 @@
 
 import { Service as noop } from '@app/noop'
 
-export {
+// ES Modules' named exports are sorted alphabetically when iterated but we want to control the
+// order of the services here, that's why we are using a default export, instead. ⚠️
+export default {
   noop,
 }

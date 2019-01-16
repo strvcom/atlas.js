@@ -1,5 +1,5 @@
 import dummy from './dummy'
 
-export {
+export default {
   dummy,
 }
