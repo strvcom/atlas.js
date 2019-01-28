@@ -10,17 +10,14 @@ import {
 } from 'sequelize'
 import * as sequelize from 'sequelize'
 
-declare module '@atlas.js/sequelize' {
-
-  export {
-    Service,
-    ModelsHook,
-    RelationsHook,
-    MigrationAction,
-    Op,
-    Model,
-    DataTypes,
-    Deferrable,
-    sequelize,
-  }
+export {
+  Service,
+  ModelsHook,
+  RelationsHook,
+  MigrationAction,
+  Op,
+  Model,
+  DataTypes,
+  Deferrable,
+  sequelize,
 }

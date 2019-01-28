@@ -1,12 +1,10 @@
-declare module '@atlas.js/errors' {
-  import { ErrorObject } from 'ajv'
+import { ErrorObject } from 'ajv'
 
-  export class FrameworkError extends Error { }
+export class FrameworkError extends Error { }
 
-  export class ValidationError extends FrameworkError {
-    constructor(errors: Array<ErrorObject>)
+export class ValidationError extends FrameworkError {
+  constructor(errors: Array<ErrorObject>)
 
-    /** Errors returned by Ajv */
-    errors: Array<ErrorObject>
-  }
+  /** Errors returned by Ajv */
+  errors: Array<ErrorObject>
 }

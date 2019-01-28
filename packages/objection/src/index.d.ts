@@ -13,21 +13,18 @@ import {
 } from 'objection'
 import * as objection from 'objection'
 
-declare module '@atlas.js/objection' {
+export {
+  Service,
+  MigrationAction,
 
-  export {
-    Service,
-    MigrationAction,
-
-    compose,
-    lit,
-    mixin,
-    ref,
-    transaction,
-    Model,
-    NotFoundError,
-    QueryBuilder,
-    ValidationError,
-    objection,
-  }
+  compose,
+  lit,
+  mixin,
+  ref,
+  transaction,
+  Model,
+  NotFoundError,
+  QueryBuilder,
+  ValidationError,
+  objection,
 }
