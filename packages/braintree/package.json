@@ -1,7 +1,7 @@
 {
   "name": "@atlas.js/braintree",
   "description": "Braintree client as a component for @atlas.js",
-  "version": "2.1.0-alpha.6",
+  "version": "2.1.0-alpha.7",
   "author": "Robert Rossmann <robert.rossmann@strv.com>",
   "bugs": "https://github.com/strvcom/atlas.js/issues",
   "contributors": [],
@@ -10,7 +10,7 @@
     "braintree": "^2.2.0"
   },
   "devDependencies": {
-    "@atlas.js/atlas": "^2.2.0-alpha.6"
+    "@atlas.js/atlas": "^2.2.0-alpha.7"
   },
   "engines": {
     "node": ">=8.3.0",

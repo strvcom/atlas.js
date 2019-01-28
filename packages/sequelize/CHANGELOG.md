@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0-alpha.8](https://github.com/strvcom/atlas.js/compare/@atlas.js/sequelize@2.1.0-alpha.7...@atlas.js/sequelize@2.1.0-alpha.8) (2019-01-28)
+
+**Note:** Version bump only for package @atlas.js/sequelize
+
+
+
+
+
 # [2.1.0-alpha.7](https://github.com/strvcom/atlas.js/compare/@atlas.js/sequelize@2.1.0-alpha.6...@atlas.js/sequelize@2.1.0-alpha.7) (2019-01-28)
 
 

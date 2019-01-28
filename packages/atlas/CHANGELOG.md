@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0-alpha.7](https://github.com/strvcom/atlas.js/compare/@atlas.js/atlas@2.2.0-alpha.6...@atlas.js/atlas@2.2.0-alpha.7) (2019-01-28)
+
+
+### Bug Fixes
+
+* **atlas:** init parameters typings ([efdbf3c](https://github.com/strvcom/atlas.js/commit/efdbf3c))
+
+
+
+
+
 # [2.2.0-alpha.6](https://github.com/strvcom/atlas.js/compare/@atlas.js/atlas@2.2.0-alpha.5...@atlas.js/atlas@2.2.0-alpha.6) (2019-01-28)
 
 

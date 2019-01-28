@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0-alpha.9](https://github.com/strvcom/atlas.js/compare/@atlas.js/objection@2.2.0-alpha.8...@atlas.js/objection@2.2.0-alpha.9) (2019-01-28)
+
+**Note:** Version bump only for package @atlas.js/objection
+
+
+
+
+
 # [2.2.0-alpha.8](https://github.com/strvcom/atlas.js/compare/@atlas.js/objection@2.2.0-alpha.7...@atlas.js/objection@2.2.0-alpha.8) (2019-01-28)
 
 

@@ -1,7 +1,7 @@
 {
   "name": "@atlas.js/atlas",
   "description": "A component-based Node.js library to reduce boilerplate and provide sane project structure 🍻",
-  "version": "2.2.0-alpha.6",
+  "version": "2.2.0-alpha.7",
   "author": "Robert Rossmann <robert.rossmann@strv.com>",
   "bugs": "https://github.com/strvcom/atlas.js/issues",
   "contributors": [],
