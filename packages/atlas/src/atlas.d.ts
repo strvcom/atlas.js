@@ -24,6 +24,11 @@ declare type InitOptions = Options & {
    */
   hooks?: string
   /**
+   * Path to the module where the aliases are defined
+   * @default   aliases
+   */
+  aliases?: string
+  /**
    * Path to a module from which component configuration should be loaded (or the configuration
    * object itself)
    * @default   config
@@ -83,7 +88,7 @@ declare type Options = {
    * Environment to run Atlas in
    * @default   process.env.NODE_ENV
    */
-  env: string
+  env?: string
   /** Absolute path to folder structure where Atlas can expect its components to be defined */
   root: string
   /**
