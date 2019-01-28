@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0-alpha.1](https://github.com/strvcom/atlas.js/compare/@atlas.js/hook@2.1.0-alpha.0...@atlas.js/hook@2.1.0-alpha.1) (2019-01-28)
+
+
+### Bug Fixes
+
+* remove `declare module` wrappers from all d.ts files 🔥 ([c0e7cd5](https://github.com/strvcom/atlas.js/commit/c0e7cd5)), closes [#69](https://github.com/strvcom/atlas.js/issues/69)
+
+
+
+
+
 <a name="2.0.1"></a>
 ## [2.0.1](https://github.com/strvcom/atlas.js/compare/@atlas.js/hook@2.0.0...@atlas.js/hook@2.0.1) (2018-07-12)
 
