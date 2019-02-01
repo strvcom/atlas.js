@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.2.0-alpha.9](https://github.com/strvcom/atlas.js/compare/@atlas.js/koa@3.2.0-alpha.8...@atlas.js/koa@3.2.0-alpha.9) (2019-02-01)
+
+
+### Bug Fixes
+
+* **koa:** cast process.env.PORT to a Number when generating schema ([93a737e](https://github.com/strvcom/atlas.js/commit/93a737e)), closes [#71](https://github.com/strvcom/atlas.js/issues/71)
+
+
+
+
+
 # [3.2.0-alpha.8](https://github.com/strvcom/atlas.js/compare/@atlas.js/koa@3.2.0-alpha.7...@atlas.js/koa@3.2.0-alpha.8) (2019-01-28)
 
 **Note:** Version bump only for package @atlas.js/koa
