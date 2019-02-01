@@ -13,7 +13,7 @@
       "conventionalCommits": true,
       "message": "chore: release",
       "signGitCommit": true,
-      "noPush": true,
+      "push": false,
       "ignoreChanges": [
         "test/**",
         "package-lock.json"
