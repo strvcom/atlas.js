@@ -36,8 +36,9 @@ class KoaService extends Service {
             type: 'number',
             // It is a general best practice in the Node.js ecosystem to use the PORT env var to
             // specify the port to which the web server should bind to -> let's respect that
+            // Env vars are always strings on process.env, but the port should be a number -> recast
             // eslint-disable-next-line no-process-env
-            default: process.env.PORT || 3000,
+            default: Number(process.env.PORT) || 3000,
           },
           hostname: {
             type: 'string',
