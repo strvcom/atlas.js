@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/strvcom/atlas.js/compare/@atlas.js/aws@2.0.2...@atlas.js/aws@2.1.0) (2019-02-08)
+
+
+### Bug Fixes
+
+* component lifecycle methods should always return Promise ([2417929](https://github.com/strvcom/atlas.js/commit/2417929))
+* declarations for object shapes should use `type`, not `interface` ([7928e6a](https://github.com/strvcom/atlas.js/commit/7928e6a))
+* remove `declare module` wrappers from all d.ts files 🔥 ([c0e7cd5](https://github.com/strvcom/atlas.js/commit/c0e7cd5)), closes [#69](https://github.com/strvcom/atlas.js/issues/69)
+
+
+### Features
+
+* **aws:** add typings ([484dd49](https://github.com/strvcom/atlas.js/commit/484dd49))
+* **aws:** add typings ([5f11534](https://github.com/strvcom/atlas.js/commit/5f11534))
+
+
+
+
+
 # [2.1.0-alpha.7](https://github.com/strvcom/atlas.js/compare/@atlas.js/aws@2.1.0-alpha.6...@atlas.js/aws@2.1.0-alpha.7) (2019-01-28)
 
 **Note:** Version bump only for package @atlas.js/aws

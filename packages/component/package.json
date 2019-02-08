@@ -1,7 +1,7 @@
 {
   "name": "@atlas.js/component",
   "description": "The main class from which all other components inherit for @atlas.js. You should not need to use this class directly - it is used internally.",
-  "version": "2.2.0-alpha.1",
+  "version": "2.2.0",
   "author": "Robert Rossmann <robert.rossmann@strv.com>",
   "bugs": "https://github.com/strvcom/atlas.js/issues",
   "contributors": [],

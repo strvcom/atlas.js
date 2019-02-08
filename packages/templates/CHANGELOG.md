@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/strvcom/atlas.js/compare/@atlas.js/templates@1.0.2...@atlas.js/templates@1.1.0) (2019-02-08)
+
+
+### Bug Fixes
+
+* declarations for object shapes should use `type`, not `interface` ([7928e6a](https://github.com/strvcom/atlas.js/commit/7928e6a))
+* remove `declare module` wrappers from all d.ts files 🔥 ([c0e7cd5](https://github.com/strvcom/atlas.js/commit/c0e7cd5)), closes [#69](https://github.com/strvcom/atlas.js/issues/69)
+
+
+### Features
+
+* **templates:** add typings ([80f4f40](https://github.com/strvcom/atlas.js/commit/80f4f40))
+
+
+
+
+
 # [1.1.0-alpha.7](https://github.com/strvcom/atlas.js/compare/@atlas.js/templates@1.1.0-alpha.6...@atlas.js/templates@1.1.0-alpha.7) (2019-01-28)
 
 **Note:** Version bump only for package @atlas.js/templates

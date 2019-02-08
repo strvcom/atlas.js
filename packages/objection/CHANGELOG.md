@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0](https://github.com/strvcom/atlas.js/compare/@atlas.js/objection@2.1.1...@atlas.js/objection@2.2.0) (2019-02-08)
+
+
+### Bug Fixes
+
+* add default empty objects to JSON schema configurations ([1b7b006](https://github.com/strvcom/atlas.js/commit/1b7b006))
+* declarations for object shapes should use `type`, not `interface` ([7928e6a](https://github.com/strvcom/atlas.js/commit/7928e6a))
+* remove `declare module` wrappers from all d.ts files 🔥 ([c0e7cd5](https://github.com/strvcom/atlas.js/commit/c0e7cd5)), closes [#69](https://github.com/strvcom/atlas.js/issues/69)
+
+
+### Features
+
+* **objection:** add typings ([2f190a7](https://github.com/strvcom/atlas.js/commit/2f190a7))
+* **objection:** export the whole module ([441660d](https://github.com/strvcom/atlas.js/commit/441660d))
+* **objection:** support modelClass resolution even in through relations ([83f6421](https://github.com/strvcom/atlas.js/commit/83f6421))
+
+
+
+
+
 # [2.2.0-alpha.9](https://github.com/strvcom/atlas.js/compare/@atlas.js/objection@2.2.0-alpha.8...@atlas.js/objection@2.2.0-alpha.9) (2019-01-28)
 
 **Note:** Version bump only for package @atlas.js/objection

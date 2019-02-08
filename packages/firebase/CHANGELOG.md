@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/strvcom/atlas.js/compare/@atlas.js/firebase@2.0.2...@atlas.js/firebase@2.1.0) (2019-02-08)
+
+
+### Bug Fixes
+
+* declarations for object shapes should use `type`, not `interface` ([7928e6a](https://github.com/strvcom/atlas.js/commit/7928e6a))
+* remove `declare module` wrappers from all d.ts files 🔥 ([c0e7cd5](https://github.com/strvcom/atlas.js/commit/c0e7cd5)), closes [#69](https://github.com/strvcom/atlas.js/issues/69)
+* **firebase:** allow additional configuration properties ([cd2f9f0](https://github.com/strvcom/atlas.js/commit/cd2f9f0))
+
+
+### Features
+
+* **firebase:** add typings ([28f8a15](https://github.com/strvcom/atlas.js/commit/28f8a15))
+
+
+
+
+
 # [2.1.0-alpha.7](https://github.com/strvcom/atlas.js/compare/@atlas.js/firebase@2.1.0-alpha.6...@atlas.js/firebase@2.1.0-alpha.7) (2019-01-28)
 
 **Note:** Version bump only for package @atlas.js/firebase

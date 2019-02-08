@@ -1,14 +1,14 @@
 {
   "name": "@atlas.js/koa",
   "description": "Koa.js service for @atlas.js",
-  "version": "3.2.0-alpha.9",
+  "version": "3.2.0",
   "author": "Robert Rossmann <robert.rossmann@strv.com>",
   "bugs": "https://github.com/strvcom/atlas.js/issues",
   "contributors": [],
   "dependencies": {
-    "@atlas.js/errors": "^0.3.0-alpha.1",
-    "@atlas.js/hook": "^2.1.0-alpha.1",
-    "@atlas.js/service": "^1.2.0-alpha.1",
+    "@atlas.js/errors": "^0.3.0",
+    "@atlas.js/hook": "^2.1.0",
+    "@atlas.js/service": "^1.2.0",
     "@types/koa": "^2.0.0",
     "@types/koa-websocket": "^5.0.3",
     "@types/pino": "^4.7.0",
@@ -16,7 +16,7 @@
     "koa-websocket": "^5.0.1"
   },
   "devDependencies": {
-    "@atlas.js/atlas": "^2.2.0-alpha.7"
+    "@atlas.js/atlas": "^2.2.0"
   },
   "engines": {
     "node": ">=8.3.0",

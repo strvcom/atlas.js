@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.2.0](https://github.com/strvcom/atlas.js/compare/@atlas.js/koa@3.1.1...@atlas.js/koa@3.2.0) (2019-02-08)
+
+
+### Bug Fixes
+
+* **koa:** cast process.env.PORT to a Number when generating schema ([93a737e](https://github.com/strvcom/atlas.js/commit/93a737e)), closes [#71](https://github.com/strvcom/atlas.js/issues/71)
+* remove `declare module` wrappers from all d.ts files 🔥 ([c0e7cd5](https://github.com/strvcom/atlas.js/commit/c0e7cd5)), closes [#69](https://github.com/strvcom/atlas.js/issues/69)
+* **koa:** add `server` to the exported Koa instance type definition ([8392aaa](https://github.com/strvcom/atlas.js/commit/8392aaa))
+* **koa:** do not depend on named exports order when iterating middleware ([d28b2d9](https://github.com/strvcom/atlas.js/commit/d28b2d9))
+* add default empty objects to JSON schema configurations ([1b7b006](https://github.com/strvcom/atlas.js/commit/1b7b006))
+* declarations for object shapes should use `type`, not `interface` ([7928e6a](https://github.com/strvcom/atlas.js/commit/7928e6a))
+
+
+### Features
+
+* **koa:** add typings ([af5fb9c](https://github.com/strvcom/atlas.js/commit/af5fb9c))
+
+
+
+
+
 # [3.2.0-alpha.9](https://github.com/strvcom/atlas.js/compare/@atlas.js/koa@3.2.0-alpha.8...@atlas.js/koa@3.2.0-alpha.9) (2019-02-01)
 
 

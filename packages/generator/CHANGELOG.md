@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0](https://github.com/strvcom/atlas.js/compare/@atlas.js/generator-atlas@2.2.1...@atlas.js/generator-atlas@2.3.0) (2019-02-08)
+
+
+### Bug Fixes
+
+* **atlas:** do not depend on named exports order when iterating services ([d75862b](https://github.com/strvcom/atlas.js/commit/d75862b))
+* **generator:** do not complain about module syntax being used ([d1b3f8d](https://github.com/strvcom/atlas.js/commit/d1b3f8d))
+* **generator:** include mocha ruleset for ESLint when necessary ([d07735e](https://github.com/strvcom/atlas.js/commit/d07735e))
+* **generator:** make the makefile flags more understandable ([00a94fa](https://github.com/strvcom/atlas.js/commit/00a94fa))
+
+
+### Features
+
+* **generator:** add {js,ts}config.json ([93dc64c](https://github.com/strvcom/atlas.js/commit/93dc64c))
+* **generator:** add type definition file when generating new projects ([f032ce3](https://github.com/strvcom/atlas.js/commit/f032ce3))
+* **generator:** split the main config into separate files ([4e119df](https://github.com/strvcom/atlas.js/commit/4e119df))
+
+
+
+
+
 # [2.3.0-alpha.5](https://github.com/strvcom/atlas.js/compare/@atlas.js/generator-atlas@2.3.0-alpha.4...@atlas.js/generator-atlas@2.3.0-alpha.5) (2019-01-16)
 
 

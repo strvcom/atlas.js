@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/strvcom/atlas.js/compare/@atlas.js/hook@2.0.1...@atlas.js/hook@2.1.0) (2019-02-08)
+
+
+### Bug Fixes
+
+* remove `declare module` wrappers from all d.ts files 🔥 ([c0e7cd5](https://github.com/strvcom/atlas.js/commit/c0e7cd5)), closes [#69](https://github.com/strvcom/atlas.js/issues/69)
+
+
+### Features
+
+* **atlas:** add typings ([4fcf8d4](https://github.com/strvcom/atlas.js/commit/4fcf8d4))
+* **hook:** add typings ([75ff327](https://github.com/strvcom/atlas.js/commit/75ff327))
+
+
+
+
+
 # [2.1.0-alpha.1](https://github.com/strvcom/atlas.js/compare/@atlas.js/hook@2.1.0-alpha.0...@atlas.js/hook@2.1.0-alpha.1) (2019-01-28)
 
 

@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.2.0](https://github.com/strvcom/atlas.js/compare/@atlas.js/mongoose@3.1.0...@atlas.js/mongoose@3.2.0) (2019-02-08)
+
+
+### Bug Fixes
+
+* component lifecycle methods should always return Promise ([2417929](https://github.com/strvcom/atlas.js/commit/2417929))
+* declarations for object shapes should use `type`, not `interface` ([7928e6a](https://github.com/strvcom/atlas.js/commit/7928e6a))
+* remove `declare module` wrappers from all d.ts files 🔥 ([c0e7cd5](https://github.com/strvcom/atlas.js/commit/c0e7cd5)), closes [#69](https://github.com/strvcom/atlas.js/issues/69)
+
+
+### Features
+
+* **mongoose:** add typings ([9f30510](https://github.com/strvcom/atlas.js/commit/9f30510))
+* **mongoose:** export the whole mongoose package ([1b5cac5](https://github.com/strvcom/atlas.js/commit/1b5cac5))
+
+
+
+
+
 # [3.2.0-alpha.7](https://github.com/strvcom/atlas.js/compare/@atlas.js/mongoose@3.2.0-alpha.6...@atlas.js/mongoose@3.2.0-alpha.7) (2019-01-28)
 
 **Note:** Version bump only for package @atlas.js/mongoose

@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/strvcom/atlas.js/compare/@atlas.js/sequelize@2.0.1...@atlas.js/sequelize@2.1.0) (2019-02-08)
+
+
+### Bug Fixes
+
+* add default empty objects to JSON schema configurations ([1b7b006](https://github.com/strvcom/atlas.js/commit/1b7b006))
+* component lifecycle methods should always return Promise ([2417929](https://github.com/strvcom/atlas.js/commit/2417929))
+* declarations for object shapes should use `type`, not `interface` ([7928e6a](https://github.com/strvcom/atlas.js/commit/7928e6a))
+* remove `declare module` wrappers from all d.ts files 🔥 ([c0e7cd5](https://github.com/strvcom/atlas.js/commit/c0e7cd5)), closes [#69](https://github.com/strvcom/atlas.js/issues/69)
+
+
+### Features
+
+* **sequelize:** add typings ([e981ce2](https://github.com/strvcom/atlas.js/commit/e981ce2))
+* **sequelize:** export the whole module ([156dcd2](https://github.com/strvcom/atlas.js/commit/156dcd2))
+* **sequelize:** expose Atlas instance to the models ([41516d2](https://github.com/strvcom/atlas.js/commit/41516d2))
+
+
+
+
+
 # [2.1.0-alpha.8](https://github.com/strvcom/atlas.js/compare/@atlas.js/sequelize@2.1.0-alpha.7...@atlas.js/sequelize@2.1.0-alpha.8) (2019-01-28)
 
 **Note:** Version bump only for package @atlas.js/sequelize

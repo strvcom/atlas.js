@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/strvcom/atlas.js/compare/@atlas.js/braintree@2.0.1...@atlas.js/braintree@2.1.0) (2019-02-08)
+
+
+### Bug Fixes
+
+* declarations for object shapes should use `type`, not `interface` ([7928e6a](https://github.com/strvcom/atlas.js/commit/7928e6a))
+* remove `declare module` wrappers from all d.ts files 🔥 ([c0e7cd5](https://github.com/strvcom/atlas.js/commit/c0e7cd5)), closes [#69](https://github.com/strvcom/atlas.js/issues/69)
+
+
+### Features
+
+* **braintree:** add typings ([1b93722](https://github.com/strvcom/atlas.js/commit/1b93722))
+* **braintree:** add typings ([01657c5](https://github.com/strvcom/atlas.js/commit/01657c5))
+
+
+
+
+
 # [2.1.0-alpha.7](https://github.com/strvcom/atlas.js/compare/@atlas.js/braintree@2.1.0-alpha.6...@atlas.js/braintree@2.1.0-alpha.7) (2019-01-28)
 
 **Note:** Version bump only for package @atlas.js/braintree

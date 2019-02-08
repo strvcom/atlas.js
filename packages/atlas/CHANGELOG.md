@@ -3,6 +3,31 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0](https://github.com/strvcom/atlas.js/compare/@atlas.js/atlas@2.1.0...@atlas.js/atlas@2.2.0) (2019-02-08)
+
+
+### Bug Fixes
+
+* remove `declare module` wrappers from all d.ts files 🔥 ([c0e7cd5](https://github.com/strvcom/atlas.js/commit/c0e7cd5)), closes [#69](https://github.com/strvcom/atlas.js/issues/69)
+* **atlas:** do not depend on named exports order when iterating services ([d75862b](https://github.com/strvcom/atlas.js/commit/d75862b))
+* **atlas:** emit afterPrepare events for non-atlas observers ([3e4f2e4](https://github.com/strvcom/atlas.js/commit/3e4f2e4))
+* **atlas:** init parameters typings ([efdbf3c](https://github.com/strvcom/atlas.js/commit/efdbf3c))
+* component lifecycle methods should always return Promise ([2417929](https://github.com/strvcom/atlas.js/commit/2417929))
+* declarations for object shapes should use `type`, not `interface` ([7928e6a](https://github.com/strvcom/atlas.js/commit/7928e6a))
+
+
+### Features
+
+* **atlas:** add typings ([4fcf8d4](https://github.com/strvcom/atlas.js/commit/4fcf8d4))
+* **atlas:** log the current env when atlas is ready ([0bff882](https://github.com/strvcom/atlas.js/commit/0bff882))
+* **atlas:** merge pino serialisers with userland serialisers ([af7c10f](https://github.com/strvcom/atlas.js/commit/af7c10f))
+* **component:** add typings ([10951ba](https://github.com/strvcom/atlas.js/commit/10951ba))
+* **generator:** add type definition file when generating new projects ([f032ce3](https://github.com/strvcom/atlas.js/commit/f032ce3))
+
+
+
+
+
 # [2.2.0-alpha.7](https://github.com/strvcom/atlas.js/compare/@atlas.js/atlas@2.2.0-alpha.6...@atlas.js/atlas@2.2.0-alpha.7) (2019-01-28)
 
 

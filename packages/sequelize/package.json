@@ -1,21 +1,21 @@
 {
   "name": "@atlas.js/sequelize",
   "description": "Sequelize service for @atlas.js",
-  "version": "2.1.0-alpha.8",
+  "version": "2.1.0",
   "author": "Robert Rossmann <robert.rossmann@strv.com>",
   "bugs": "https://github.com/strvcom/atlas.js/issues",
   "contributors": [],
   "dependencies": {
-    "@atlas.js/action": "^1.2.0-alpha.1",
-    "@atlas.js/errors": "^0.3.0-alpha.1",
-    "@atlas.js/hook": "^2.1.0-alpha.1",
-    "@atlas.js/service": "^1.2.0-alpha.1",
+    "@atlas.js/action": "^1.2.0",
+    "@atlas.js/errors": "^0.3.0",
+    "@atlas.js/hook": "^2.1.0",
+    "@atlas.js/service": "^1.2.0",
     "@types/sequelize": "^4.27.32",
     "sequelize": "^4.37.6",
     "umzug": "^2.0.0"
   },
   "devDependencies": {
-    "@atlas.js/atlas": "^2.2.0-alpha.7",
+    "@atlas.js/atlas": "^2.2.0",
     "sqlite3": "^4.0.0"
   },
   "engines": {

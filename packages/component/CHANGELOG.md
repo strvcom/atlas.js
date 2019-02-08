@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0](https://github.com/strvcom/atlas.js/compare/@atlas.js/component@2.1.0...@atlas.js/component@2.2.0) (2019-02-08)
+
+
+### Bug Fixes
+
+* remove `declare module` wrappers from all d.ts files 🔥 ([c0e7cd5](https://github.com/strvcom/atlas.js/commit/c0e7cd5)), closes [#69](https://github.com/strvcom/atlas.js/issues/69)
+
+
+### Features
+
+* **component:** add typings ([10951ba](https://github.com/strvcom/atlas.js/commit/10951ba))
+
+
+
+
+
 # [2.2.0-alpha.1](https://github.com/strvcom/atlas.js/compare/@atlas.js/component@2.2.0-alpha.0...@atlas.js/component@2.2.0-alpha.1) (2019-01-28)
 
 
