@@ -4,10 +4,10 @@ module.exports = {
   parser: 'babel-eslint',
 
   extends: [
-    '@strv/javascript/environments/nodejs/v10',
-    '@strv/javascript/environments/nodejs/optional',
-    '@strv/javascript/environments/mocha/recommended',
-    '@strv/javascript/coding-styles/recommended',
+    '@strv/node/v10',
+    '@strv/node/optional',
+    '@strv/node/style',
+    '@strv/mocha',
   ],
 
   rules: {
