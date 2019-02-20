@@ -145,9 +145,10 @@ describe('Atlas::hook()', () => {
     }).to.throw(FrameworkError, /Missing aliases for component dummy/u)
   })
 
-  it('throws when user config fails component config schema', () => {
+  it('throws when user config fails component config schema', function() {
     options.config.hooks.dummy = { lol: true }
     atlas = new Atlas(options)
+    this.sandbox.stub(atlas.log, 'error')
 
     const hook = sinon.spy()
     hook.config = {

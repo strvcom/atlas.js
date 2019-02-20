@@ -15,8 +15,9 @@ describe('Service: Objection', () => {
     expect(Objection.config).to.be.an('object')
   })
 
-  it('throws on invalid config', () => {
+  it('throws on invalid config', function() {
     const atlas = new Atlas({ root: __dirname })
+    this.sandbox.stub(atlas.log, 'error')
 
     expect(() =>
       atlas.service('objection', Objection)).to.throw(errors.ValidationError)

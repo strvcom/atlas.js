@@ -108,9 +108,10 @@ describe('Atlas::service()', () => {
     }).to.throw(FrameworkError, /Unneeded aliases for component dummy/u)
   })
 
-  it('throws when user config fails component config schema', () => {
+  it('throws when user config fails component config schema', function() {
     options.config.services.dummy = { lol: true }
     atlas = new Atlas(options)
+    this.sandbox.stub(atlas.log, 'error')
 
     const service = sinon.spy()
     service.config = {
