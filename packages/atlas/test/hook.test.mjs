@@ -164,9 +164,10 @@ describe('Atlas::hook()', () => {
       atlas.hook('dummy', hook)
     } catch (err) {
       expect(err.context).to.have.all.keys([
+        'type',
+        'alias',
         'schema',
         'config',
-        'alias',
       ])
       expect(err.context.schema).to.equal(hook.config)
       expect(err.context.config).to.equal(options.config.hooks.dummy)

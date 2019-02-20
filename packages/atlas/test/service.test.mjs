@@ -127,9 +127,10 @@ describe('Atlas::service()', () => {
       atlas.service('dummy', service)
     } catch (err) {
       expect(err.context).to.have.all.keys([
+        'type',
+        'alias',
         'schema',
         'config',
-        'alias',
       ])
       expect(err.context.schema).to.equal(service.config)
       expect(err.context.config).to.equal(options.config.services.dummy)

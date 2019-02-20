@@ -83,6 +83,7 @@ class ComponentContainer {
 
     if (!info.validator.validate(info.Component.config, config)) {
       throw new ValidationError(info.validator.errors, {
+        type: this.type,
         alias: this.alias,
         schema: info.Component.config,
         config,
