@@ -38,7 +38,9 @@ export default class Templates extends Action {
     super(...args)
 
     if (!Object.keys(consolidate).includes(this.config.engine)) {
-      throw new FrameworkError(`Invalid template engine: ${this.config.engine}`)
+      throw new FrameworkError(`Invalid template engine: ${this.config.engine}`, {
+        engines: Object.keys(consolidate),
+      })
     }
   }
 
