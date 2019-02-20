@@ -9,6 +9,13 @@ describe('Errors', () => {
     it('inherits from Error', () => {
       expect(new errors.FrameworkError()).to.be.instanceOf(Error)
     })
+
+    it('supports a second context parameter which is exposed as this.context', () => {
+      const ctx = { test: true }
+      const err = new errors.FrameworkError('test', ctx)
+
+      expect(err.context).to.equal(ctx)
+    })
   })
 
   describe('ValidationError', () => {
@@ -25,6 +32,14 @@ describe('Errors', () => {
       const err = new errors.ValidationError(data)
 
       expect(err.errors).to.eql(data)
+    })
+
+    it('exposes the context parameter as this.context', () => {
+      const data = { error: '123' }
+      const ctx = { test: true }
+      const err = new errors.ValidationError(data, ctx)
+
+      expect(err.context).to.equal(ctx)
     })
 
     it('works even if no errors are given to the constructor', () => {

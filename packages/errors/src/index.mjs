@@ -6,11 +6,12 @@
  * @extends Error
  */
 class FrameworkError extends Error {
-  constructor(message) {
+  constructor(message, context = {}) {
     super(message)
     // Fix error name in stack traces
     Error.captureStackTrace(this, this.constructor)
     this.name = this.constructor.name
+    this.context = context
   }
 }
 
@@ -19,8 +20,8 @@ class FrameworkError extends Error {
  * @extends    FrameworkError
  */
 class ValidationError extends FrameworkError {
-  constructor(errors = {}) {
-    super('Atlas.js validation error')
+  constructor(errors = {}, context) {
+    super('Atlas.js validation error', context)
 
     this.errors = errors
   }
