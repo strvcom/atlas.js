@@ -5,6 +5,11 @@
   "packages": [
     "packages/*"
   ],
+  "ignoreChanges": [
+    "test/**",
+    "**/*.test.mjs",
+    "package-lock.json"
+  ],
   "command": {
     "version": {
       "allowBranch": [
@@ -13,11 +18,7 @@
       "conventionalCommits": true,
       "message": "chore: release",
       "signGitCommit": true,
-      "push": false,
-      "ignoreChanges": [
-        "test/**",
-        "package-lock.json"
-      ]
+      "push": false
     }
   }
 }
