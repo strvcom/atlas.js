@@ -1,6 +1,0 @@
---colors
---recursive
---check-leaks
---require source-map-support/register
---require test/bootstrap
-test packages/*/test/**/*.test.js
