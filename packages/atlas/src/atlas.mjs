@@ -266,11 +266,18 @@ class Atlas {
 
     // Safety checks
     if (!this.#env) {
-      throw new FrameworkError('env not specified and NODE_ENV was not set')
+      throw new FrameworkError('env not specified in options and NODE_ENV was not set', {
+        root: options.root,
+        env: options.env,
+        // eslint-disable-next-line no-process-env
+        NODE_ENV: process.env.NODE_ENV,
+      })
     }
 
     if (typeof this.root !== 'string') {
-      throw new FrameworkError(`root must be explicitly specified, got ${options.root}`)
+      throw new FrameworkError(`root must be explicitly specified, got ${options.root}`, {
+        root: options.root,
+      })
     }
 
     this.config = this::mkconfig(options.config, {
