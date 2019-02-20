@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0](https://github.com/strvcom/atlas.js/compare/@atlas.js/objection@2.2.0...@atlas.js/objection@2.3.0) (2019-02-20)
+
+
+### Features
+
+* **atlas:** log validation errors via atlas.log 🔎 ([83d088a](https://github.com/strvcom/atlas.js/commit/83d088a)), closes [#66](https://github.com/strvcom/atlas.js/issues/66)
+
+
+
+
+
 # [2.2.0](https://github.com/strvcom/atlas.js/compare/@atlas.js/objection@2.1.1...@atlas.js/objection@2.2.0) (2019-02-08)
 
 

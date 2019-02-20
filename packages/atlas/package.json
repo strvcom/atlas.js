@@ -1,13 +1,13 @@
 {
   "name": "@atlas.js/atlas",
   "description": "A component-based Node.js library to reduce boilerplate and provide sane project structure 🍻",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "author": "Robert Rossmann <robert.rossmann@strv.com>",
   "bugs": "https://github.com/strvcom/atlas.js/issues",
   "contributors": [],
   "dependencies": {
     "@atlas.js/action": "^1.2.0",
-    "@atlas.js/errors": "^0.3.0",
+    "@atlas.js/errors": "^0.4.0",
     "@atlas.js/hook": "^2.1.0",
     "@atlas.js/service": "^1.2.0",
     "@types/pino": "^4.7.0",

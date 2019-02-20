@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0](https://github.com/strvcom/atlas.js/compare/@atlas.js/atlas@2.2.0...@atlas.js/atlas@2.3.0) (2019-02-20)
+
+
+### Features
+
+* **atlas:** also expose component type in validation errors' context ([36d862c](https://github.com/strvcom/atlas.js/commit/36d862c)), closes [#66](https://github.com/strvcom/atlas.js/issues/66)
+* **atlas:** expose additional context when FrameworkError is thrown ([1f5457a](https://github.com/strvcom/atlas.js/commit/1f5457a))
+* **atlas:** expose additional context when ValidationError is thrown ([56debf1](https://github.com/strvcom/atlas.js/commit/56debf1)), closes [#66](https://github.com/strvcom/atlas.js/issues/66)
+* **atlas:** log validation errors via atlas.log 🔎 ([83d088a](https://github.com/strvcom/atlas.js/commit/83d088a)), closes [#66](https://github.com/strvcom/atlas.js/issues/66)
+
+
+
+
+
 # [2.2.0](https://github.com/strvcom/atlas.js/compare/@atlas.js/atlas@2.1.0...@atlas.js/atlas@2.2.0) (2019-02-08)
 
 

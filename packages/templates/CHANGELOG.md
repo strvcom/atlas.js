@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/strvcom/atlas.js/compare/@atlas.js/templates@1.1.0...@atlas.js/templates@1.2.0) (2019-02-20)
+
+
+### Features
+
+* **templates:** expose additional context when FrameworkError is thrown ([061a632](https://github.com/strvcom/atlas.js/commit/061a632))
+
+
+
+
+
 # [1.1.0](https://github.com/strvcom/atlas.js/compare/@atlas.js/templates@1.0.2...@atlas.js/templates@1.1.0) (2019-02-08)
 
 

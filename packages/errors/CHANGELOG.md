@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/strvcom/atlas.js/compare/@atlas.js/errors@0.3.0...@atlas.js/errors@0.4.0) (2019-02-20)
+
+
+### Features
+
+* **errors:** allow throwers to expose additional error information ([7dbbf3c](https://github.com/strvcom/atlas.js/commit/7dbbf3c))
+
+
+
+
+
 # [0.3.0](https://github.com/strvcom/atlas.js/compare/@atlas.js/errors@0.2.1...@atlas.js/errors@0.3.0) (2019-02-08)
 
 
