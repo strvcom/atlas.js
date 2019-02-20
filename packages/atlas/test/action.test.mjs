@@ -123,6 +123,19 @@ describe('Atlas::action()', () => {
     }
 
     expect(() => atlas.action('dummy', action)).to.throw(ValidationError)
+
+    try {
+      atlas.action('dummy', action)
+    } catch (err) {
+      expect(err.context).to.have.all.keys([
+        'schema',
+        'config',
+        'alias',
+      ])
+      expect(err.context.schema).to.equal(action.config)
+      expect(err.context.config).to.equal(options.config.actions.dummy)
+      expect(err.context.alias).to.equal('dummy')
+    }
   })
 
   it('works when user config passes component config schema', () => {

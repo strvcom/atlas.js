@@ -82,7 +82,11 @@ class ComponentContainer {
     const config = defaults(info.config, this.Component.defaults)
 
     if (!info.validator.validate(info.Component.config, config)) {
-      throw new ValidationError(info.validator.errors)
+      throw new ValidationError(info.validator.errors, {
+        alias: this.alias,
+        schema: info.Component.config,
+        config,
+      })
     }
 
     atlas.log.trace({

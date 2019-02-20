@@ -159,6 +159,19 @@ describe('Atlas::hook()', () => {
     }
 
     expect(() => atlas.hook('dummy', hook)).to.throw(ValidationError)
+
+    try {
+      atlas.hook('dummy', hook)
+    } catch (err) {
+      expect(err.context).to.have.all.keys([
+        'schema',
+        'config',
+        'alias',
+      ])
+      expect(err.context.schema).to.equal(hook.config)
+      expect(err.context.config).to.equal(options.config.hooks.dummy)
+      expect(err.context.alias).to.equal('dummy')
+    }
   })
 
   it('works when user config passes component config schema', () => {

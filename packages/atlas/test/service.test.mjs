@@ -122,6 +122,19 @@ describe('Atlas::service()', () => {
     }
 
     expect(() => atlas.service('dummy', service)).to.throw(ValidationError)
+
+    try {
+      atlas.service('dummy', service)
+    } catch (err) {
+      expect(err.context).to.have.all.keys([
+        'schema',
+        'config',
+        'alias',
+      ])
+      expect(err.context.schema).to.equal(service.config)
+      expect(err.context.config).to.equal(options.config.services.dummy)
+      expect(err.context.alias).to.equal('dummy')
+    }
   })
 
   it('works when user config passes component config schema', () => {
