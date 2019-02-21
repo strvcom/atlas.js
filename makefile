@@ -3,6 +3,10 @@ SHELL := sh
 export PATH := node_modules/.bin/:$(PATH)
 export NODE_OPTIONS := --trace-deprecation
 
+# On CI servers, use the `npm ci` installer to avoid introducing changes to the package-lock.json
+# On developer machines, prefer the generally more flexible `npm install`. 💪
+NPM_I := $(if $(CI), ci, install)
+
 # Modify these variables in local.mk to add flags to the commands, ie.
 # MOCHA_FLAGS += --reporter nyan
 # Now mocha will be invoked with the extra flag and will show a nice nyan cat as progress bar 🎉
@@ -22,7 +26,7 @@ all: precompile githooks
 # GENERIC TARGETS
 
 node_modules: package.json
-	npm ci $(NPM_FLAGS) && lerna bootstrap $(LERNA_FLAGS) && touch node_modules
+	npm $(NPM_I) $(NPM_FLAGS) && lerna bootstrap $(LERNA_FLAGS) && touch node_modules
 
 # Default compilation target for all source files
 %.js: %.mjs node_modules babel.config.js
