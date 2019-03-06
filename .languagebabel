@@ -1,6 +1,0 @@
-{
-  "projectRoot": true,
-  "transpileOnSave": true,
-  "createTranspiledCode": true,
-  "createMap": false
-}
