@@ -45,6 +45,17 @@
     "node": "^10.0.0",
     "npm": "^6.0.0"
   },
+  "greenkeeper": {
+    "commitMessages": {
+      "initialBadge": "docs: add Greenkeeper badge 📝",
+      "initialDependencies": "chore: update dependencies 💣",
+      "initialBranches": "build: whitelist greenkeeper branches 🎉",
+      "dependencyUpdate": "chore: update ${dependency} to ${version} 💣",
+      "devDependencyUpdate": "chore: update ${dependency} to ${version} 💣",
+      "dependencyPin": "fix: pin ${dependency} to ${oldVersion} 🔥",
+      "devDependencyPin": "fix: pin ${dependency} to ${oldVersion} 🔥"
+    }
+  },
   "homepage": "https://github.com/strvcom/atlas.js",
   "keywords": [],
   "license": "BSD-3-Clause",
