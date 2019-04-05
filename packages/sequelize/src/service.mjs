@@ -13,6 +13,7 @@ class Sequelize extends Service {
       },
       options: {
         type: 'object',
+        default: {},
       },
     },
   }
