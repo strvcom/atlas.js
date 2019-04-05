@@ -4,7 +4,7 @@ module.exports = {
   parser: 'babel-eslint',
 
   extends: [
-    '@strv/node/v10',
+    '@strv/node/v8',
     '@strv/node/optional',
     '@strv/node/style',
     '@strv/mocha',
