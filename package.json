@@ -46,6 +46,9 @@
     "npm": "^6.0.0"
   },
   "greenkeeper": {
+    "lockfiles": {
+      "outOfRangeUpdatesOnly": true
+    },
     "commitMessages": {
       "initialBadge": "docs: add Greenkeeper badge 📝",
       "initialDependencies": "chore: update dependencies 💣",
