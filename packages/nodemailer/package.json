@@ -7,11 +7,11 @@
   "contributors": [],
   "dependencies": {
     "@atlas.js/service": "^1.2.0",
-    "nodemailer": "^4.0.1"
+    "nodemailer": "^6.0.0"
   },
   "devDependencies": {
     "@atlas.js/atlas": "^2.3.0",
-    "@types/nodemailer": "^4.0.1"
+    "@types/nodemailer": "^4.6.0"
   },
   "engines": {
     "node": ">=8.3.0",
