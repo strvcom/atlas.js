@@ -9,7 +9,7 @@ describe('Sequelize: ModelsHook', () => {
   let database
 
   before(() => {
-    database = new Sequelize('sqlite://test-db.sqlite', { operatorsAliases: {} })
+    database = new Sequelize('sqlite://test-db.sqlite')
   })
 
   after(() =>
