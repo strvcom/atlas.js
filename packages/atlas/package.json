@@ -10,11 +10,11 @@
     "@atlas.js/errors": "^0.4.0",
     "@atlas.js/hook": "^2.1.0",
     "@atlas.js/service": "^1.2.0",
-    "@types/pino": "^4.7.0",
+    "@types/pino": "^5.8.0",
     "ajv": "^6.5.0",
     "ajv-keywords": "^3.2.0",
     "lodash": "^4.17.4",
-    "pino": "^4.7.0"
+    "pino": "^5.12.1"
   },
   "engines": {
     "node": ">=8.3.0",

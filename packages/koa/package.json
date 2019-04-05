@@ -11,7 +11,7 @@
     "@atlas.js/service": "^1.2.0",
     "@types/koa": "^2.0.0",
     "@types/koa-websocket": "^5.0.3",
-    "@types/pino": "^4.7.0",
+    "@types/pino": "^5.8.0",
     "koa": "^2.3.0",
     "koa-websocket": "^5.0.1"
   },

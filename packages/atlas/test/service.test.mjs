@@ -4,6 +4,7 @@ import {
   ValidationError,
 } from '@atlas.js/errors'
 import Service from '@atlas.js/service'
+import { symbols } from 'pino'
 
 class DummyService extends Service {}
 
@@ -56,7 +57,7 @@ describe('Atlas::service()', () => {
 
     expect(args).to.have.property('log')
     expect(args.log).to.be.an('object')
-    expect(args.log.chindings).to.match(/"service":"dummy"/u)
+    expect(args.log[symbols.chindingsSym]).to.match(/"service":"dummy"/u)
   })
 
   it('provides config object on service constructor argument', () => {

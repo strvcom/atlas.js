@@ -6,7 +6,7 @@
   "bugs": "https://github.com/strvcom/atlas.js/issues",
   "contributors": [],
   "dependencies": {
-    "@types/pino": "^4.7.0"
+    "@types/pino": "^5.8.0"
   },
   "engines": {
     "node": ">=8.3.0",

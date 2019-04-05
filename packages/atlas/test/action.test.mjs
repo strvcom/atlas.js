@@ -4,6 +4,7 @@ import {
   FrameworkError,
   ValidationError,
 } from '@atlas.js/errors'
+import { symbols } from 'pino'
 
 class DummyAction extends Action {}
 
@@ -56,7 +57,7 @@ describe('Atlas::action()', () => {
 
     expect(args).to.have.property('log')
     expect(args.log).to.be.an('object')
-    expect(args.log.chindings).to.match(/"action":"dummy"/u)
+    expect(args.log[symbols.chindingsSym]).to.match(/"action":"dummy"/u)
   })
 
   it('provides the config object on action constructor argument', () => {

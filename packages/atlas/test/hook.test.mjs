@@ -4,6 +4,7 @@ import {
   FrameworkError,
   ValidationError,
 } from '@atlas.js/errors'
+import { symbols } from 'pino'
 
 class DummyHook extends Hook {
   static observes = 'atlas'
@@ -58,7 +59,7 @@ describe('Atlas::hook()', () => {
 
     expect(args).to.have.property('log')
     expect(args.log).to.be.an('object')
-    expect(args.log.chindings).to.match(/"hook":"dummy"/u)
+    expect(args.log[symbols.chindingsSym]).to.match(/"hook":"dummy"/u)
   })
 
   it('provides config object on hook constructor argument', () => {
