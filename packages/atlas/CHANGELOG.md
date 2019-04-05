@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.4.0](https://github.com/strvcom/atlas.js/compare/@atlas.js/atlas@2.3.0...@atlas.js/atlas@2.4.0) (2019-04-05)
+
+
+### Features
+
+* **atlas:** upgrade pino to v5 ([60cbd2d](https://github.com/strvcom/atlas.js/commit/60cbd2d))
+
+
+
+
+
 # [2.3.0](https://github.com/strvcom/atlas.js/compare/@atlas.js/atlas@2.2.0...@atlas.js/atlas@2.3.0) (2019-02-20)
 
 

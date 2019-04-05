@@ -1,16 +1,16 @@
 {
   "name": "@atlas.js/firebase",
   "description": "A Firebase-admin service for @atlas.js",
-  "version": "2.1.1",
+  "version": "3.0.0",
   "author": "Robert Rossmann <robert.rossmann@strv.com>",
   "bugs": "https://github.com/strvcom/atlas.js/issues",
   "contributors": [],
   "dependencies": {
-    "@atlas.js/service": "^1.2.0",
+    "@atlas.js/service": "^1.2.1",
     "firebase-admin": "^7.2.0"
   },
   "devDependencies": {
-    "@atlas.js/atlas": "^2.3.0"
+    "@atlas.js/atlas": "^2.4.0"
   },
   "engines": {
     "node": ">=8.3.0",

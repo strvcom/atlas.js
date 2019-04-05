@@ -1,18 +1,18 @@
 {
   "name": "@atlas.js/mongoose",
   "description": "Mongoose service for @atlas.js",
-  "version": "3.2.1",
+  "version": "3.2.2",
   "author": "Robert Rossmann <robert.rossmann@strv.com>",
   "bugs": "https://github.com/strvcom/atlas.js/issues",
   "contributors": [],
   "dependencies": {
-    "@atlas.js/hook": "^2.1.0",
-    "@atlas.js/service": "^1.2.0",
+    "@atlas.js/hook": "^2.1.1",
+    "@atlas.js/service": "^1.2.1",
     "lodash": "^4.17.4",
     "mongoose": "^5.0.0"
   },
   "devDependencies": {
-    "@atlas.js/atlas": "^2.3.0",
+    "@atlas.js/atlas": "^2.4.0",
     "@types/mongoose": "^5.0.0"
   },
   "engines": {

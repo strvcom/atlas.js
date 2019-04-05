@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/strvcom/atlas.js/compare/@atlas.js/cli@1.2.1...@atlas.js/cli@1.3.0) (2019-04-05)
+
+
+### Features
+
+* **cli:** upgrade Caporal to v1.1 ([363ebcd](https://github.com/strvcom/atlas.js/commit/363ebcd))
+
+
+
+
+
 ## [1.2.1](https://github.com/strvcom/atlas.js/compare/@atlas.js/cli@1.2.0...@atlas.js/cli@1.2.1) (2019-02-20)
 
 **Note:** Version bump only for package @atlas.js/cli

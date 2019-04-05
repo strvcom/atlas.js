@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0](https://github.com/strvcom/atlas.js/compare/@atlas.js/objection@2.3.0...@atlas.js/objection@3.0.0) (2019-04-05)
+
+
+### Features
+
+* **objection:** upgrade knex to v0.16 ([718f40a](https://github.com/strvcom/atlas.js/commit/718f40a))
+
+
+### BREAKING CHANGES
+
+* **objection:** See the [knex changelog](https://github.com/tgriesser/knex/blob/master/CHANGELOG.md#0161---28-nov-2018) for detailed list of breaking changes.
+
+
+
+
+
 # [2.3.0](https://github.com/strvcom/atlas.js/compare/@atlas.js/objection@2.2.0...@atlas.js/objection@2.3.0) (2019-02-20)
 
 

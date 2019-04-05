@@ -1,12 +1,12 @@
 {
   "name": "@atlas.js/hook",
   "description": "The base Hook class all hooks should inherit from for @atlas.js",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "author": "Robert Rossmann <robert.rossmann@strv.com>",
   "bugs": "https://github.com/strvcom/atlas.js/issues",
   "contributors": [],
   "dependencies": {
-    "@atlas.js/component": "^2.2.0"
+    "@atlas.js/component": "^2.3.0"
   },
   "engines": {
     "node": ">=8.3.0",

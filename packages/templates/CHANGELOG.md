@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.1](https://github.com/strvcom/atlas.js/compare/@atlas.js/templates@1.2.0...@atlas.js/templates@1.2.1) (2019-04-05)
+
+**Note:** Version bump only for package @atlas.js/templates
+
+
+
+
+
 # [1.2.0](https://github.com/strvcom/atlas.js/compare/@atlas.js/templates@1.1.0...@atlas.js/templates@1.2.0) (2019-02-20)
 
 

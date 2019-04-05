@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0](https://github.com/strvcom/atlas.js/compare/@atlas.js/firebase@2.1.1...@atlas.js/firebase@3.0.0) (2019-04-05)
+
+
+### Features
+
+* **firebase:** upgrade firebase-admin to v7 ([de5650a](https://github.com/strvcom/atlas.js/commit/de5650a))
+
+
+### BREAKING CHANGES
+
+* **firebase:** See the [firebase-admin changelog](https://github.com/firebase/firebase-admin-node/blob/master/CHANGELOG.md#v700) for detailed list of breaking changes.
+
+
+
+
+
 ## [2.1.1](https://github.com/strvcom/atlas.js/compare/@atlas.js/firebase@2.1.0...@atlas.js/firebase@2.1.1) (2019-02-20)
 
 **Note:** Version bump only for package @atlas.js/firebase

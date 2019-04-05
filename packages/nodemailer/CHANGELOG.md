@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0](https://github.com/strvcom/atlas.js/compare/@atlas.js/nodemailer@2.2.0...@atlas.js/nodemailer@3.0.0) (2019-04-05)
+
+
+### Features
+
+* **nodemailer:** upgrade nodemailer to v6 ([e5f2183](https://github.com/strvcom/atlas.js/commit/e5f2183))
+
+
+### BREAKING CHANGES
+
+* **nodemailer:** See the [nodemailer changelog](https://github.com/nodemailer/nodemailer/blob/master/CHANGELOG.md#600-2019-03-25) for v6 and v5 releases for detailed list of breaking changes.
+
+
+
+
+
 # [2.2.0](https://github.com/strvcom/atlas.js/compare/@atlas.js/nodemailer@2.1.0...@atlas.js/nodemailer@2.2.0) (2019-02-20)
 
 

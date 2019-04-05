@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0](https://github.com/strvcom/atlas.js/compare/@atlas.js/sequelize@2.1.1...@atlas.js/sequelize@3.0.0) (2019-04-05)
+
+
+### Bug Fixes
+
+* **sequelize:** assign default value for Service's config.options ([f99353e](https://github.com/strvcom/atlas.js/commit/f99353e))
+
+
+### Features
+
+* **sequelize:** upgrade Sequelize to v5 ([b2b9755](https://github.com/strvcom/atlas.js/commit/b2b9755))
+
+
+### BREAKING CHANGES
+
+* **sequelize:** See the [Sequelize changelog](https://github.com/sequelize/sequelize/releases/tag/v5.1.0) for detailed list of breaking changes.
+
+
+
+
+
 ## [2.1.1](https://github.com/strvcom/atlas.js/compare/@atlas.js/sequelize@2.1.0...@atlas.js/sequelize@2.1.1) (2019-02-20)
 
 **Note:** Version bump only for package @atlas.js/sequelize

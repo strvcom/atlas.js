@@ -1,17 +1,17 @@
 {
   "name": "@atlas.js/aws",
   "description": "AWS SDK service for @atlas.js",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "author": "Robert Rossmann <robert.rossmann@strv.com>",
   "bugs": "https://github.com/strvcom/atlas.js/issues",
   "contributors": [],
   "dependencies": {
-    "@atlas.js/service": "^1.2.0",
+    "@atlas.js/service": "^1.2.1",
     "aws-sdk": "^2.94.0",
     "lodash": "^4.17.4"
   },
   "devDependencies": {
-    "@atlas.js/atlas": "^2.3.0"
+    "@atlas.js/atlas": "^2.4.0"
   },
   "engines": {
     "node": ">=8.3.0",
