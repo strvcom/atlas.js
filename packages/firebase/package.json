@@ -7,7 +7,7 @@
   "contributors": [],
   "dependencies": {
     "@atlas.js/service": "^1.2.0",
-    "firebase-admin": "^6.2.0"
+    "firebase-admin": "^7.2.0"
   },
   "devDependencies": {
     "@atlas.js/atlas": "^2.3.0"
