@@ -8,7 +8,7 @@
 
 > Built with ❤️ at [STRV][strv-home]
 
-Atlas.js is a component-based library for writing Node.js apps of all kinds of purposes. Its main goal was to encapsulate common application boilerplate code into a set of small, reusable components so that you can focus on writing code specific to your needs. You just provide the configuration for each component and you are good to go.
+Atlas.js is a platform primarily made for re-using pieces of code among multiple projects and to reduce common application boilerplate like the startup & shutdown sequences of a standard Node.js app. You write components (or use ours) which provide functionality (like a database component), put them into an Atlas instance and Atlas will take care of the rest. Using Atlas you reduce your application initialisation and shutdown sequence into a configuration object and one line of code.
 
 ## Available components
 
@@ -36,50 +36,34 @@ Here is a list of STRV-maintained components.
 
 Need help? Check out the [tutorials](tutorials) folder for... well... tutorials. 🤓
 
-## Core ideas
+## About
 
-### What this is?
+### Motivations
 
-- A lightweight, component-based state management container
-- A tool to speed up application development by not having to write the same boilerplate code over and over again
+The following section talks about the motivations behind the existence of Atlas.js.
 
-### What this is not?
+#### Code reusability
 
-- An MVC framework
-- A microservices framework (you can certainly use this to build microservices, it just does not contain the functionality that such a framework should have)
+When you get familiar with Atlas.js and the STRV-made components you will start to see and even feel that a great deal of effort has been put into making sure you can share a lot of code between projects. Whenever possible, Atlas.js will try to guide you in such a way that you should be able to write quite a lot of code in a way that is not business-specific and just publish it to npm as a module and later when you need it again on a different project, simply install it again and it all just works.
 
-## Components
+#### Managing startup/shutdown
 
-### Atlas
+Managing the startup sequence is not always easy. Sometimes it is not even clear why someone should bother themselves with a correct startup sequence of an app - nowadays many libraries that require some async initialisation support some kind of request caching where you simply start using the library and it will deliver the results when it is ready.
 
-The `Atlas` class is the primary container holding and managing your services. It provides a very basic functionality which consists of:
+This has several problems:
 
-- Gathering and distributing all of your configuration to all registered components
-- Managing your components' lifecycle (starting/stopping services, running hooks etc.)
+- Some services could be started sooner than others
+  > When you start an HTTP server before you have a database connection ready, it could happen that you will receive traffic that you are not yet ready to serve. For small loads this might not be a problem but for high traffic sites it could mean several seconds of delays and you might even exhaust your available memory just by caching the pending requests for too long. In case this kind of request caching is not supported it is even possible your app will just crash.
 
-### Service
+- Some services could be stopped sooner than others
+  > What happens to your application when you close down your database connection before you close down the HTTP server? Sure, it's easily manageable with just two services, but what if you have more? Maybe you have some Redis server somewhere in there, maybe some ElasticSearch cluster connection and other whatnots - it could get quite complicated quite fast. With Atlas, you intuitively provide the order and it's done - Atlas will stop the services one by one.
 
-A Service is a component which usually connects or interacts with an external service or other interface (like a database). The most common trait of all services is that they have state - ie. an open connection. The purpose of a `Service` component is to manage that state for you so that you don't have to (ie. connecting, reconnecting and disconnecting from a database).
+- Some developers don't care and just `process.exit()` the thing
+  > Some developers do not want to be bothered with properly cleaning up their resources like timeouts, sockets, listeners etc. and when the time comes they just force-quit the process. However, this could result in some client requests being terminated before delivering a response, resulting in weird errors, empty pages, incomplete data etc.
 
-### Hook
+#### Similar architecture between projects
 
-A hook is basically an event listener which can react to various application lifecycle events (ie. when the application is about to start or just before stopping). A hook is a great way to perform custom actions when particular things happen within the `Atlas` container (ie. run database migrations when starting).
-
-### Action
-
-Actions are a group of stateless functions which receive some input and generate an output. Their use within Atlas.js is completely optional but they are a great place to put business-specific code. Their main benefit is that they are reusable - you could call an action either from a CLI utility or from a route handler - they do not depend on the surrounding context.
-
-## Installation
-
-You always need to install the main `atlas` package:
-
-`npm i --save @atlas.js/atlas`
-
-If you want, you can install any of the official components (you can always write your own if none of them suit your needs). Let's install the `koa` component:
-
-`npm i --save @atlas.js/koa`
-
-That's it! Nothing else needs to be installed. 🎉
+When you decide to go all in on what Atlas.js offers and use the components to its fullest you will soon realise that it is very easy to navigate a completely unfamiliar codebase with relative ease - you know what is where and where to look for a specific functionality. When you work for a company like STRV it is not uncommon to switch projects every few months or so. When you can reduce the time needed to onboard a new guy/gal to your team all parties involved will be happier.
 
 ## Usage
 
@@ -126,14 +110,15 @@ const atlas = new Atlas({
 })
 
 // We need to add the components we want to use to the application
-// The first argument is the component's name - it will be used to locate the component's configuration and also the service will be exposed on that property:
+// The first argument is the component's name - it will be used to locate the component's
+// configuration and also the service will be exposed on that property:
 // `atlas.services.http`
 atlas.service('http', Koa.Service)
 
 // Great, we can finally start the app!
 atlas.start()
-.then(() => console.log('ready!'))
-.catch(err => console.error(err))
+  .then(() => console.log('ready!'))
+  .catch(err => console.error(err))
 
 export default atlas
 ```

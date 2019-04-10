@@ -2,11 +2,28 @@
 
 ## What is a component?
 
-A component is (usually) a class which implements some kind of functionality that can be used by the framework or by your own code. Currently there are 3 types of components:
+A component is (usually) a class which implements some kind of functionality that can be used by the framework or by your own code. Currently there are 3 types of components plus the core `Atlas` class.
 
-- [`Service`](writing-services.md) - interfaces with some foreign API/interface and exposes a set of functionality to work with the service (ie. a database or a remote REST API server)
-- [`Hook`](writing-hooks.md) - listens for events fired either by the Atlas instance or by some other component and reacts to those events (ie. a hook which starts some workers just after the application has started up, or a hook which provides some extra functionality to a service, or a hook which observes some other action which emits events when something interesting happens)
-- [`Action`](writing-actions.md) - Implements some business-specific functionality which can then be called from ie. an http server's route handler or from a CLI utility
+### Atlas
+
+The `Atlas` class is the primary container holding and managing your services. It provides a very basic functionality which consists of:
+
+- Gathering and distributing all of your configuration to all registered components
+- Managing your components' lifecycle (starting/stopping services, running hooks etc.)
+
+### [Service](writing-services.md)
+
+A Service is a component which usually connects or interacts with an external service or other interface (like a database). The most common trait of all services is that they have state - ie. an open connection. The purpose of a `Service` component is to manage that state for you so that you don't have to (ie. connecting, reconnecting and disconnecting from a database).
+
+### [Hook](writing-hooks.md)
+
+A hook is basically an event listener which can react to various application lifecycle events (ie. when the application is about to start or just before stopping). A hook is a great way to perform custom actions when particular things happen within the `Atlas` container (ie. run database migrations when starting).
+
+### [Action](writing-actions.md)
+
+Actions are a group of stateless functions which receive some input and generate an output. Their use within Atlas.js is completely optional but they are a great place to put business-specific code. Their main benefit is that they are reusable - you could call an action either from a CLI utility or from a route handler - they do not depend on the surrounding context.
+
+---
 
 While each component serves a different purpose, they do share some similarities. Let's look what you can do inside a component.
 
