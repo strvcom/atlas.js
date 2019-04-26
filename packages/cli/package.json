@@ -1,7 +1,7 @@
 {
   "name": "@atlas.js/cli",
   "description": "CLI interface for @atlas.js",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "author": "Robert Rossmann <robert.rossmann@strv.com>",
   "bin": {
     "atlas": "src/bin/atlas.js"

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/strvcom/atlas.js/compare/@atlas.js/cli@1.3.0...@atlas.js/cli@1.4.0) (2019-04-26)
+
+
+### Features
+
+* **cli:** integrate @strv/heimdall 🚀 ([c2ffe52](https://github.com/strvcom/atlas.js/commit/c2ffe52))
+
+
+
+
+
 # [1.3.0](https://github.com/strvcom/atlas.js/compare/@atlas.js/cli@1.2.1...@atlas.js/cli@1.3.0) (2019-04-05)
 
 
