@@ -10,6 +10,7 @@
   "contributors": [],
   "dependencies": {
     "@atlas.js/repl": "^2.1.2",
+    "@strv/heimdall": "^1.0.0",
     "caporal": "^1.1.0",
     "source-map-support": "^0.5.0"
   },
