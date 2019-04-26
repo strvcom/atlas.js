@@ -37,7 +37,7 @@ node_modules: package.json
 	cp $< $@
 
 coverage/lcov.info: $(SRCFILES)
-	nyc mocha $(MOCHA_FLAGS)
+	nyc -- mocha $(MOCHA_FLAGS)
 
 
 # TASK DEFINITIONS
