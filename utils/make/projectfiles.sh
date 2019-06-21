@@ -8,4 +8,5 @@ find . \
   -not -path '*/.*' \
   -not -name '.*.js' \
   -not -name babel.config.js \
-  -not -name eslintrc.js
+  -not -name eslintrc.js \
+  -not -name mocharc.js

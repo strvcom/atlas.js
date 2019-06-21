@@ -1,11 +1,11 @@
 import * as Generator from 'yeoman-generator'
 
 const files = [
-  'test/mocha.opts',
   'test/bootstrap.mjs',
   'test/global-hooks.test.mjs',
   'test/atlas/components.test.mjs',
   ['nycrc.json', '.nycrc.json'],
+  ['mocharc.js', '.mocharc.js'],
 ]
 
 const packages = [
