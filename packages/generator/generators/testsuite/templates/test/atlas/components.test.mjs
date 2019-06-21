@@ -1,3 +1,4 @@
+import { expect } from 'chai'
 import atlas from '../..'
 
 describe('Atlas: components', () => {

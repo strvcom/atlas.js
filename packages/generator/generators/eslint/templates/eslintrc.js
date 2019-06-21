@@ -33,11 +33,6 @@ module.exports = {
       '**/*.test.mjs',
     ],
 
-    globals: {
-      expect: true,
-      sinon: true,
-    },
-
     rules: {
       'max-classes-per-file': 'off',
     },<%_ } %>

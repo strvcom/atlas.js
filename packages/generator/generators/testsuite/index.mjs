@@ -4,6 +4,7 @@ const files = [
   'test/bootstrap.mjs',
   'test/global-hooks.test.mjs',
   'test/atlas/components.test.mjs',
+  'src/components/noop/test/service.test.mjs',
   ['nycrc.json', '.nycrc.json'],
   ['mocharc.js', '.mocharc.js'],
 ]
@@ -64,6 +65,11 @@ class Testsuite extends Generator {
         { config: this.config.getAll() },
       )
     }
+
+    const pkgpath = this.destinationPath('src/components/noop/package.json')
+    const pkg = this.fs.readJSON(pkgpath)
+    pkg.devDependencies.chai = '*'
+    this.fs.writeJSON(pkgpath, pkg)
   }
 }
 
