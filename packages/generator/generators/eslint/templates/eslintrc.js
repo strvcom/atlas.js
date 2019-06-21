@@ -4,10 +4,10 @@ module.exports = {
   parser: 'babel-eslint',
 
   extends: [
-    '@strv/javascript/environments/nodejs/v10',
-    '@strv/javascript/environments/nodejs/optional',<%_ if (config.testsuite) { %>
-    '@strv/javascript/environments/mocha/recommended',<%_ } %>
-    '@strv/javascript/coding-styles/recommended',
+    '@strv/node/v10',
+    '@strv/node/optional',
+    '@strv/node/style',<%_ if (config.testsuite) { %>
+    '@strv/mocha',<%_ } %>
   ],
 
   rules: {
@@ -32,10 +32,6 @@ module.exports = {
     files: [
       '**/*.test.mjs',
     ],
-
-    env: {
-      mocha: true,
-    },
 
     globals: {
       expect: true,

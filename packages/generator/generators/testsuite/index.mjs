@@ -8,6 +8,17 @@ const files = [
   ['nycrc.json', '.nycrc.json'],
 ]
 
+const packages = [
+  'mocha@latest',
+  'chai@latest',
+  'chai-as-promised@latest',
+  'dirty-chai@latest',
+  'sinon@latest',
+  'sinon-chai@latest',
+  'nyc@latest',
+  'source-map-support@latest',
+]
+
 class Testsuite extends Generator {
   prompts = [{
     type: 'confirm',
@@ -27,16 +38,14 @@ class Testsuite extends Generator {
       return
     }
 
-    this.npmInstall([
-      'mocha@latest',
-      'chai@latest',
-      'chai-as-promised@latest',
-      'dirty-chai@latest',
-      'sinon@latest',
-      'sinon-chai@latest',
-      'nyc@latest',
-      'source-map-support@latest',
-    ], { 'save-dev': true })
+    const packagesToInstall = [
+      ...packages,
+    ]
+
+    // @TODO: We should only do this when the user decided to add ESLint setup ⚠️
+    packagesToInstall.push('@strv/eslint-config-mocha@latest')
+
+    this.npmInstall(packagesToInstall, { 'save-dev': true })
   }
 
   writing() {

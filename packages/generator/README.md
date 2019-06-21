@@ -20,7 +20,7 @@ This generator will create the following for you:
 - A recommended file & folder structure for working with Atlas.js
 - Various configuration files following a pattern most commonly encountered when working on backend services/APIs
 - A makefile with all the necessary build targets to work efficiently on the project
-- _(optional)_ ESLint configuration, including the [@strv/eslint-config-javascript][strv-ruleset] ruleset
+- _(optional)_ ESLint configuration, including the [@strv/eslint-config-node][strv-ruleset] ruleset
 - _(optional)_ Test suite, consisting of Mocha, Chai.js, Sinon.js and NYC, plus some Chai.js plugins
 - _(optional)_ VS Code settings & launch configuration files with recommended options
 
@@ -28,6 +28,6 @@ This generator will create the following for you:
 
 See the [LICENSE](LICENSE) file for information.
 
-[strv-ruleset]: https://github.com/strvcom/eslint-config-javascript
+[strv-ruleset]: https://github.com/strvcom/code-quality-tools/tree/master/packages/eslint-config-node
 [class-fields-proposal]: https://babeljs.io/docs/en/next/babel-plugin-proposal-class-properties
 [esmodules-plugin]: https://babeljs.io/docs/en/next/babel-plugin-transform-modules-commonjs

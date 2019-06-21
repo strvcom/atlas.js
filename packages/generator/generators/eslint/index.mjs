@@ -9,7 +9,7 @@ class ESLint extends Generator {
   prompts = [{
     type: 'confirm',
     name: 'eslint',
-    message: 'Install ESLint with @strv/eslint-config-javascript ruleset? 🎨',
+    message: 'Install ESLint with @strv/eslint-config-node ruleset? 🎨',
     default: true,
   }]
 
@@ -27,7 +27,7 @@ class ESLint extends Generator {
     this.npmInstall([
       'eslint@latest',
       'babel-eslint@latest',
-      '@strv/eslint-config-javascript@latest',
+      '@strv/eslint-config-node@latest',
     ], { 'save-dev': true })
   }
 
