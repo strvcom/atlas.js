@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.4.0](https://github.com/strvcom/atlas.js/compare/@atlas.js/generator-atlas@2.3.1...@atlas.js/generator-atlas@2.4.0) (2019-06-21)
+
+
+### Bug Fixes
+
+* **generator-atlas:** install pino-pretty as dev dependency ([f1d125e](https://github.com/strvcom/atlas.js/commit/f1d125e))
+* **generator-atlas:** upgrade yeoman-generator to v4 ([c345182](https://github.com/strvcom/atlas.js/commit/c345182))
+
+
+### Features
+
+* **generator-atlas:** discourage using global versions of expect, sinon ([2ee4596](https://github.com/strvcom/atlas.js/commit/2ee4596))
+* **generator-atlas:** move generated ESLint config to the new packages ([f871a87](https://github.com/strvcom/atlas.js/commit/f871a87))
+* **generator-atlas:** use .mocharc.js instead of mocha.opts ([1cb5d47](https://github.com/strvcom/atlas.js/commit/1cb5d47))
+
+
+
+
+
 ## [2.3.1](https://github.com/strvcom/atlas.js/compare/@atlas.js/generator-atlas@2.3.0...@atlas.js/generator-atlas@2.3.1) (2019-02-20)
 
 **Note:** Version bump only for package @atlas.js/generator-atlas
