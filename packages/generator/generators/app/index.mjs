@@ -57,6 +57,7 @@ class Atlas extends Generator {
       '@babel/plugin-syntax-object-rest-spread@latest',
       '@babel/plugin-transform-modules-commonjs@latest',
       'dotenv@latest',
+      'pino-pretty@latest',
     ], { 'save-dev': true })
   }
 }
