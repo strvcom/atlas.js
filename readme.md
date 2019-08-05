@@ -14,21 +14,21 @@ Atlas.js is a platform primarily made for re-using pieces of code among multiple
 
 Here is a list of STRV-maintained components.
 
-|Component|Version|Info|
-|-|-|-|
-|[@atlas.js/atlas](packages/atlas)|[![@atlas.js/atlas][atlas-npm-version]][atlas-npm-home]|The main package with everything needed to get rolling|
-|[@atlas.js/cli](packages/cli)|[![@atlas.js/cli][cli-npm-version]][cli-npm-home]|A CLI utility to manage your Atlas app|
-|[@atlas.js/generator-atlas](packages/generator)|[![@atlas.js/generator-atlas][generator-npm-version]][generator-npm-home]|Yeoman generator to quickly scaffold your new Atlas app|
-|[@atlas.js/aws](packages/aws)|[![@atlas.js/atlas][aws-npm-version]][aws-npm-home]|For interfacing with AWS|
-|[@atlas.js/braintree](packages/braintree)|[![@atlas.js/atlas][braintree-npm-version]][braintree-npm-home]|For interfacing with Braintree payments|
-|[@atlas.js/firebase](packages/firebase)|[![@atlas.js/atlas][firebase-npm-version]][firebase-npm-home]|For interfacing with Firebase services|
-|[@atlas.js/koa](packages/koa)|[![@atlas.js/atlas][koa-npm-version]][koa-npm-home]|Service and hooks for implementing Koa-based HTTP APIs|
-|[@atlas.js/mongoose](packages/mongoose)|[![@atlas.js/atlas][mongoose-npm-version]][mongoose-npm-home]|Service and hooks for working with MongoDB and Mongoose models|
-|[@atlas.js/objection](packages/objection)|[![@atlas.js/atlas][objection-npm-version]][objection-npm-home]|Service and hooks for working with Objection.js|
-|[@atlas.js/sequelize](packages/sequelize)|[![@atlas.js/atlas][sequelize-npm-version]][sequelize-npm-home]|Service and hooks for working with Sequelize|
-|[@atlas.js/nodemailer](packages/nodemailer)|[![@atlas.js/atlas][nodemailer-npm-version]][nodemailer-npm-home]|Generic emailing service with support for multiple providers|
-|[@atlas.js/repl](packages/repl)|[![@atlas.js/atlas][repl-npm-version]][repl-npm-home]|A component to drop into an interactive shell with Atlas loaded|
-|[@atlas.js/templates](packages/templates)|[![@atlas.js/atlas][templates-npm-version]][templates-npm-home]|Action for rendering templates into html strings using consolidate.js|
+| Component                                       | Version                                                                   | Info                                                                  |
+| ----------------------------------------------- | ------------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| [@atlas.js/atlas](packages/atlas)               | [![@atlas.js/atlas][atlas-npm-version]][atlas-npm-home]                   | The main package with everything needed to get rolling                |
+| [@atlas.js/cli](packages/cli)                   | [![@atlas.js/cli][cli-npm-version]][cli-npm-home]                         | A CLI utility to manage your Atlas app                                |
+| [@atlas.js/generator-atlas](packages/generator) | [![@atlas.js/generator-atlas][generator-npm-version]][generator-npm-home] | Yeoman generator to quickly scaffold your new Atlas app               |
+| [@atlas.js/aws](packages/aws)                   | [![@atlas.js/atlas][aws-npm-version]][aws-npm-home]                       | For interfacing with AWS                                              |
+| [@atlas.js/braintree](packages/braintree)       | [![@atlas.js/atlas][braintree-npm-version]][braintree-npm-home]           | For interfacing with Braintree payments                               |
+| [@atlas.js/firebase](packages/firebase)         | [![@atlas.js/atlas][firebase-npm-version]][firebase-npm-home]             | For interfacing with Firebase services                                |
+| [@atlas.js/koa](packages/koa)                   | [![@atlas.js/atlas][koa-npm-version]][koa-npm-home]                       | Service and hooks for implementing Koa-based HTTP APIs                |
+| [@atlas.js/mongoose](packages/mongoose)         | [![@atlas.js/atlas][mongoose-npm-version]][mongoose-npm-home]             | Service and hooks for working with MongoDB and Mongoose models        |
+| [@atlas.js/objection](packages/objection)       | [![@atlas.js/atlas][objection-npm-version]][objection-npm-home]           | Service and hooks for working with Objection.js                       |
+| [@atlas.js/sequelize](packages/sequelize)       | [![@atlas.js/atlas][sequelize-npm-version]][sequelize-npm-home]           | Service and hooks for working with Sequelize                          |
+| [@atlas.js/nodemailer](packages/nodemailer)     | [![@atlas.js/atlas][nodemailer-npm-version]][nodemailer-npm-home]         | Generic emailing service with support for multiple providers          |
+| [@atlas.js/repl](packages/repl)                 | [![@atlas.js/atlas][repl-npm-version]][repl-npm-home]                     | A component to drop into an interactive shell with Atlas loaded       |
+| [@atlas.js/templates](packages/templates)       | [![@atlas.js/atlas][templates-npm-version]][templates-npm-home]           | Action for rendering templates into html strings using consolidate.js |
 
 > Did not find what you were looking for? Write your own! Check the tutorials linked below.
 
