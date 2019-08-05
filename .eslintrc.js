@@ -20,7 +20,7 @@ module.exports = {
 
     'node/shebang': ['warn', {
       convertPath: {
-        '**/*.mjs': ['^(\.+).mjs', '$1.js'],
+        '**/*.mjs': ['^(.+).mjs', '$1.js'],
       },
     }],
   },
