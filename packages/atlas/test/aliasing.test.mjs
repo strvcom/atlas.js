@@ -1,7 +1,7 @@
-import { Atlas } from '..'
 import Service from '@atlas.js/service'
 import Action from '@atlas.js/action'
 import { FrameworkError } from '@atlas.js/errors'
+import { Atlas } from '..'
 
 describe('Atlas: cross-component communication', () => {
   let atlas

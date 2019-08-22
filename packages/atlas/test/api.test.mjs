@@ -1,6 +1,6 @@
 import { stdSerializers } from 'pino'
-import { Atlas } from '..'
 import { FrameworkError } from '@atlas.js/errors'
+import { Atlas } from '..'
 
 describe('Atlas: basics and API', () => {
   let opts

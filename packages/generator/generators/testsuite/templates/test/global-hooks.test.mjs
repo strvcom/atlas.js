@@ -1,5 +1,5 @@
-import atlas from '..'
 import * as sinon from 'sinon'
+import atlas from '..'
 
 before(() => atlas.start())
 after(() => atlas.stop())

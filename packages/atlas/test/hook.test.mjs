@@ -1,10 +1,10 @@
-import { Atlas } from '..'
 import Hook from '@atlas.js/hook'
 import {
   FrameworkError,
   ValidationError,
 } from '@atlas.js/errors'
 import { symbols } from 'pino'
+import { Atlas } from '..'
 
 class DummyHook extends Hook {
   static observes = 'atlas'

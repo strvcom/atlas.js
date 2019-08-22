@@ -1,7 +1,7 @@
-import { Atlas } from '..'
 import Service from '@atlas.js/service'
 import Hook from '@atlas.js/hook'
 import Action from '@atlas.js/action'
+import { Atlas } from '..'
 
 class ServiceApi {}
 

@@ -1,10 +1,10 @@
-import { Atlas } from '..'
 import Action from '@atlas.js/action'
 import {
   FrameworkError,
   ValidationError,
 } from '@atlas.js/errors'
 import { symbols } from 'pino'
+import { Atlas } from '..'
 
 class DummyAction extends Action {}
 

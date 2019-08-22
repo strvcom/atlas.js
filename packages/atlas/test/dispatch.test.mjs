@@ -1,6 +1,6 @@
-import { Atlas } from '..'
 import Hook from '@atlas.js/hook'
 import Action from '@atlas.js/action'
+import { Atlas } from '..'
 
 class DummyHook extends Hook {
   static observes = 'action:dummy'

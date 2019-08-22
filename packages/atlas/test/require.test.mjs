@@ -1,5 +1,5 @@
-import { Atlas } from '..'
 import * as democonfig from './democonfig'
+import { Atlas } from '..'
 
 describe('Atlas::require()', () => {
   let atlas

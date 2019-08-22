@@ -1,10 +1,10 @@
-import { Atlas } from '..'
 import {
   FrameworkError,
   ValidationError,
 } from '@atlas.js/errors'
 import Service from '@atlas.js/service'
 import { symbols } from 'pino'
+import { Atlas } from '..'
 
 class DummyService extends Service {}
 
