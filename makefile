@@ -16,7 +16,8 @@ ESLINT_FLAGS :=
 NPM_FLAGS :=
 LERNA_FLAGS :=
 
-SRCFILES := $(patsubst %.mjs, %.js, $(shell utils/make/projectfiles.sh mjs))
+SRCFILES := $(shell utils/make/projectfiles.sh mjs)
+DSTFILES := $(patsubst %.mjs, %.js, $(SRCFILES))
 GITFILES := $(patsubst utils/githooks/%, .git/hooks/%, $(wildcard utils/githooks/*))
 
 # Do this when make is invoked without targets
@@ -36,7 +37,7 @@ node_modules: package.json
 .git/hooks/%: utils/githooks/%
 	cp $< $@
 
-coverage/lcov.info: $(SRCFILES)
+coverage/lcov.info: $(DSTFILES)
 	nyc -- mocha $(MOCHA_FLAGS)
 
 
@@ -44,7 +45,7 @@ coverage/lcov.info: $(SRCFILES)
 
 githooks: $(GITFILES)
 
-compile: $(SRCFILES)
+compile: $(DSTFILES)
 
 coverage: coverage/lcov.info
 
