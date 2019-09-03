@@ -64,5 +64,8 @@
   "repository": {
     "type": "git",
     "url": "git://github.com/strvcom/atlas.js.git"
+  },
+  "scripts": {
+    "install": "touch node_modules && make"
   }
 }
