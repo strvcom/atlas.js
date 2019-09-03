@@ -1,6 +1,7 @@
 # Defining shell is necessary in order to modify PATH
 SHELL := sh
-export PATH := node_modules/.bin/:$(PATH)
+BINDIR := node_modules/.bin/
+export PATH := $(BINDIR):$(PATH)
 export NODE_OPTIONS := --trace-deprecation
 
 # On CI servers, use the `npm ci` installer to avoid introducing changes to the package-lock.json
@@ -62,7 +63,7 @@ test: force compile
 	mocha $(MOCHA_FLAGS)
 
 test-debug: force compile
-	mocha --inspect --inspect-brk $(MOCHA_FLAGS)
+	node --inspect-brk $(BINDIR)/_mocha --no-timeouts $(MOCHA_FLAGS)
 
 test-watch: force compile
 	mocha --reporter min $(MOCHA_FLAGS) --watch

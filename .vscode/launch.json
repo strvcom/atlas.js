@@ -7,17 +7,28 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Inspect: tests",
+      "showAsyncStacks": true,
+      "preLaunchTask": "babel:compile",
+      "name": "Inspect: Mocha",
       "program": "${workspaceFolder}/node_modules/.bin/_mocha",
       "args": [
-        "--no-timeouts"
-      ]
+        "--no-timeouts",
+      ],
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "internalConsoleOptions": "openOnSessionStart"
     },
     {
       "type": "node",
       "request": "attach",
+      "showAsyncStacks": true,
       "name": "Attach",
-      "protocol": "inspector"
+      "protocol": "inspector",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "internalConsoleOptions": "openOnSessionStart"
     }
   ]
 }
